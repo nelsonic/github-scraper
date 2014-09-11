@@ -1,0 +1,19 @@
+{
+  "name": "fuata",
+  "version": "0.0.1",
+  "description": "insert imaginative description here",
+  "main": "index.js",
+  "scripts": {
+    "test": "hello"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nelsonic/fuata.git"
+  },
+  "author": "nelsonic <nodecoder@gmail.com> (https://github.com/nelsonic)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nelsonic/fuata/issues"
+  },
+  "homepage": "https://github.com/nelsonic/fuata"
+}
