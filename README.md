@@ -25,6 +25,45 @@ Followers
 - dateUnfollowed
 
 
+Example data structure:
+```js
+{
+    "followers": [
+        {
+            "u": "u1",
+            "s": "timestamp"
+        },
+        {
+            "u": "u2",
+            "s": "timestamp"
+        }
+    ],
+    "following": [
+        {
+            "u": "u3",
+            "s": "timestamp"
+        },
+        {
+            "u": "u2",
+            "s": "timestamp",
+            "e": "timestamp"
+        }
+    ]
+}
+
+```
+
+This can be stored as a basic
+[flat-file database](http://en.wikipedia.org/wiki/Flat_file_database)
+where **github-username.json** would be the file
+
+the key here is:
+
+- **u**: *username* (of the person who the user is following
+  or being followed by)
+- **s**: *startdate* when the person first started following/being followed
+- **e**: *enddate* when the person stopped following
+
 
 # Simple UI
 
