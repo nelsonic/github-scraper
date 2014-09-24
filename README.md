@@ -64,6 +64,16 @@ the key here is:
 - **s**: *startdate* when the person first started following/being followed
 - **e**: *enddate* when the person stopped following
 
+In addition to creating a file per user,
+we should maintain an index of all the users we are tracking.
+the easiest way is to have a new-line-separted list
+
+But... in the interest of being able to run this on Heroku
+(where you don't have access to the filesystem so no flat-file-db!)
+I'm going to use LevelDB for this.
+
+
+
 
 # Simple UI
 
@@ -78,3 +88,13 @@ the key here is:
 **Q**:How is this different from Klout? <br />
 **A**:[Klout](https://klout.com/corp/score) tries to calculate your
 "influence". That's interesting.
+
+
+> Must read up about http://en.wikipedia.org/wiki/Inverted_index
+> so I understand how to use: https://www.npmjs.org/package/level-inverted-index
+
+
+## Useful Links
+
+- Intro to web-scraping with cheerio:
+https://www.digitalocean.com/community/tutorials/how-to-use-node-js-request-and-cheerio-to-set-up-simple-web-scraping

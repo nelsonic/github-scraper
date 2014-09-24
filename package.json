@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/nelsonic/fuata/issues"
   },
-  "homepage": "https://github.com/nelsonic/fuata"
+  "homepage": "https://github.com/nelsonic/fuata",
+  "devDependencies": {
+    "tape": "^3.0.0"
+  },
+  "dependencies": {
+    "cheerio": "^0.17.0",
+    "request": "^2.44.0"
+  }
 }
