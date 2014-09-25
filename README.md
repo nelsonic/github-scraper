@@ -8,7 +8,8 @@ Have you ever wanted to know who are the **best people** online
 - Who is "**trending**" and ***why***?
 
 I wonder this all the time.
-So I'm building ***fuata*** (working title) to [***scratch my own itch***](https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php).
+So I'm building [***fuata***](https://translate.google.com/#auto/en/fuata)
+(working title) to [***scratch my own itch***](https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php).
 
 # Data Model
 
@@ -73,6 +74,14 @@ But... in the interest of being able to run this on Heroku
 I'm going to use LevelDB for this.
 
 
+## Tests
+
+Check:
+
+- [ ] GitHub.com is accessible
+- [ ] a *known* GitHub user exists
+- [ ] *known* GH user has
+  -
 
 
 # Simple UI
@@ -96,5 +105,77 @@ I'm going to use LevelDB for this.
 
 ## Useful Links
 
+- Summary of ***Most Active*** GitHub users: http://git.io/top
 - Intro to web-scraping with cheerio:
 https://www.digitalocean.com/community/tutorials/how-to-use-node-js-request-and-cheerio-to-set-up-simple-web-scraping
+- GitHub background info: http://en.wikipedia.org/wiki/GitHub
+
+### GitHub Stats API
+
+- Github Stats API: https://developer.github.com/v3/repos/statistics/
+- GitHub Followers API: https://developer.github.com/v3/users/followers/
+
+Example:
+
+```sh
+curl -v https://api.github.com/users/pgte/followers
+```
+
+```js
+[
+  {
+    "login": "methodmissing",
+    "id": 379,
+    "avatar_url": "https://avatars.githubusercontent.com/u/379?v=2",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/methodmissing",
+    "html_url": "https://github.com/methodmissing",
+    "followers_url": "https://api.github.com/users/methodmissing/followers",
+    "following_url": "https://api.github.com/users/methodmissing/following{/other_user}",
+    "gists_url": "https://api.github.com/users/methodmissing/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/methodmissing/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/methodmissing/subscriptions",
+    "organizations_url": "https://api.github.com/users/methodmissing/orgs",
+    "repos_url": "https://api.github.com/users/methodmissing/repos",
+    "events_url": "https://api.github.com/users/methodmissing/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/methodmissing/received_events",
+    "type": "User",
+    "site_admin": false
+  },
+
+etc...]
+```
+
+#### Issues with using the GitHub API:
+
+- The API only returns 30 results per query.
+- **X-RateLimit-Limit**: **60** (can only make 60 requests per hour) ...
+1440 queries per day (60 per hour x 24 hours) sounds like *ample* on the surface.
+But, if we assume the average person has at least 2 pages worth of followers (30<)
+it means on a single instance/server we can only track 720 people.
+Not really enough to do any sort of trend analysis. :disappointed:
+If we are tracking people with hundreds of followers (and *growing fast*)
+e.g. 300< followers. the number of users we can track comes down to
+1440 / 10 = 140 people...
+(10 requests to fetch complete list of followers) we burn through 1440 requests
+pretty quickly.
+- There's no guarantee which order the followers will be in
+(e.g. most recent first?)
+- **Results** are ***Cached*** so they are not-real time like they are in the
+Web. (seems daft, but its true.) Ideally they would have a ***Streaming API***
+but sadly, [GitHub is built in Ruby-on-Rails](http://builtwith.com/github.com)
+which is "RESTful" (not real-time).
+
+#### *But*...
+
+Once we know who we *should* be following, we can use
+
+- https://developer.github.com/v3/users/followers/#follow-a-user
+- https://developer.github.com/v3/users/followers/#check-if-one-user-follows-another
+
+## Interesting Facts
+
+- GitHub has 3.4 Million users
+- yet the most followed person [Linus Torvalds](https://github.com/torvalds)
+only has 19k followers
+-
