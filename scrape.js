@@ -45,10 +45,10 @@ function profile(user, callback) {
       s.longest  = parseInt(contribs[1].replace(" days", ""), 10);
       s.current  = parseInt(contribs[2].replace(" days", ""), 10);
 
-      callback(s);
+      callback(null, s);
 
     } else {
-      callback();
+      callback(response.statusCode);
     }
   });
 }

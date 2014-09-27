@@ -6,7 +6,7 @@ var scrape = require('../scrape.js');
 
 test('Basic Checks for a Known User @pgte', function (assert) {
 	var user = 'pgte';
-	scrape.profile(user, function (s) {
+	scrape.profile(user, function (err, s) {
 		// console.log(s);
 		assert.ok(s.joined === '2009-01-20T10:54:20Z', '- @' + user + ' Joined Date 2009-01-20T10:54:20Z has not chaged');
 		assert.ok(s.worksfor === 'YLD', '- @' + user + ' Works for YLD');
@@ -25,13 +25,30 @@ test('Basic Checks for a Known User @pgte', function (assert) {
 // Zombie User should have no email, no followers or following
 test('Checks for a Zombie (no activity) user @zero', function (assert) {
 	var user = 'zero';
-	scrape.profile(user, function (s) {
+	scrape.profile(user, function (err, s) {
 		// console.log(s);
 		assert.ok(s.followerscount === 0, '- @' + user + ' Has no followers');
 		assert.ok(s.stared === 0, '- @' + user + ' Has starred zero repos');
 		assert.ok(s.followingcount === 0, '- @' + user + ' Is following nobody');
 		assert.ok(s.contribs === 0, '- @' + user + ' Has made zero contributions to Open Source this year');
-		assert.ok(s.email === '', '- @' + user + ' Has no email address');
+		assert.ok(s.email === '', '- User @' + user + ' Has no email address');
+		assert.end();
+	});
+});
+
+// test for failure (user doesn't exist HTTP status = 404)
+test('Test for a non-existant user', function (assert) {
+	var user = Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
+	scrape.profile(user, function (err, s) {
+		assert.ok(err === 404, '- 404 for unknown user @' + user);
+		assert.end();
+	});
+});
+
+test('Linus Torvals has thousands of followers (whats new?)', function (assert) {
+	var user = 'torvalds';
+	scrape.profile(user, function (err, s) {
+		assert.ok(s.followerscount > 18000, '- User @' + user + ' has more than 18k followers!');
 		assert.end();
 	});
 });
