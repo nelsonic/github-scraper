@@ -80,8 +80,10 @@ Check:
 
 - [ ] GitHub.com is accessible
 - [ ] a *known* GitHub user exists
-- [ ] *known* GH user has
-  -
+- [ ] *known* GH user has non-zero number of followers
+- [ ] *known* GH user is following a non-zero number of people
+
+
 
 
 # Simple UI
@@ -168,14 +170,25 @@ which is "RESTful" (not real-time).
 
 #### *But*...
 
+
 Once we know who we *should* be following, we can use
 
 - https://developer.github.com/v3/users/followers/#follow-a-user
 - https://developer.github.com/v3/users/followers/#check-if-one-user-follows-another
+e.g:
+
+```sh
+curl -v https://api.github.com/users/pgte/following/visionmedia
+```
 
 ## Interesting Facts
 
 - GitHub has 3.4 Million users
 - yet the most followed person [Linus Torvalds](https://github.com/torvalds)
 only has 19k followers
--
+
+## Data to Scrape
+
+![example github profile](http://i.imgur.com/uDscohR.jpg)
+
+Interesting bits of info have blue squares drawn around them.
