@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/nelsonic/fuata.png)](https://codeclimate.com/github/nelsonic/fuata)
 [![Dependencies](https://david-dm.org/nelsonic/fuata.png?theme=shields.io)](https://david-dm.org/nelsonic/fuata)
 [![devDependency Status](https://david-dm.org/nelsonic/fuata/dev-status.svg)](https://david-dm.org/nelsonic/fuata#info=devDependencies)
-[![NPM version](https://badge.fury.io/js/fuata.png)](https://npmjs.org/package/fuata)
+<!-- [![NPM version](https://badge.fury.io/js/fuata.png)](https://npmjs.org/package/fuata) -->
 
 
 # *Who* Should I Follow?

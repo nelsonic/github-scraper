@@ -28,7 +28,6 @@
   "devDependencies": {
     "coveralls": "^2.11.2",
     "istanbul": "^0.3.0",
-    "jscs": "^1.6.1",
     "nodemon": "^1.2.1",
     "pre-commit": "0.0.9",
     "request": "^2.40.0",
