@@ -4,7 +4,10 @@
   "description": "insert imaginative description here",
   "main": "index.js",
   "scripts": {
-    "test": "hello"
+    "test": "./node_modules/tape/bin/tape ./test/*.js",
+    "coverage": "istanbul cover ./node_modules/tape/bin/tape ./test/*.js && istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
+    "jshint": "jshint -c .jshintrc --exclude-path .gitignore .",
+    "codestyle": "jscs -p google scrape.js test/"
   },
   "repository": {
     "type": "git",
@@ -16,11 +19,21 @@
     "url": "https://github.com/nelsonic/fuata/issues"
   },
   "homepage": "https://github.com/nelsonic/fuata",
-  "devDependencies": {
-    "tape": "^3.0.0"
-  },
   "dependencies": {
     "cheerio": "^0.17.0",
     "request": "^2.44.0"
-  }
+  },
+  "devDependencies": {
+    "faker": "^1.1.0",
+    "istanbul": "^0.3.0",
+    "jscs": "^1.6.1",
+    "pre-commit": "0.0.9",
+    "request": "^2.40.0",
+    "tape": "^2.14.0",  
+    "nodemon": "^1.2.1"
+  },
+  "pre-commit": [
+    "jshint",
+    "coverage"
+  ]
 }
