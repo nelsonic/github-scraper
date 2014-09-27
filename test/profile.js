@@ -2,7 +2,7 @@
 "use strict";
 
 var test = require('tape');
-var scrape = require('../scrape.js');
+var scrape = require('../src/profile.js');
 
 test('Basic Checks for a Known User @pgte', function (assert) {
 	var user = 'pgte';

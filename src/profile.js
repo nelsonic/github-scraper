@@ -1,6 +1,5 @@
 var request = require('request');
 var cheerio = require('cheerio');
-var user = 'visionmedia';
 
 // basic info
 function profile(user, callback) {
@@ -35,6 +34,7 @@ function profile(user, callback) {
       s.email = $('.email').text();                        // email address
       s.url = $('.url').text();                            // Website
       s.joined = $('.join-date').attr('datetime');         // Joined GitHub
+      s.avatar = $('.avatar').attr('src');                 // Profile pic
 
       // Contributions to Open Source in the past 12 months
       var contribs = [];
@@ -56,3 +56,5 @@ function profile(user, callback) {
 module.exports = {
   profile: profile
 }
+
+
