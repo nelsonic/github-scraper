@@ -1,56 +1,59 @@
 var request = require('request');
 var cheerio = require('cheerio');
-var user = 'iteles';
+var user = 'visionmedia';
 
+// basic info
+function profile(user, callback){
+  request('https://github.com/'+user, function (error, response, html) {
+    if (!error && response.statusCode === 200) {
 
+      var $ = cheerio.load(html);
+      var s = {};
 
-request('https://github.com/'+user, function (error, response, html) {
-  if (!error && response.statusCode == 200) {
+      // overall stats
+      var stats = [];
+      $('.vcard-stat-count').each(function(i,elem) {
+          var stat = $(this).text();
+          // thousands
+          if(stat.indexOf('k') > -1){
+              stat = parseInt( stat, 10 ) * 1000;
+          } else {
+              stat = parseInt( stat, 10 );
+          }
+          stats.push( stat );
+      });
 
-    var $ = cheerio.load(html);
-    var s = {}; // stats object
-    s.followers = $('.vcard-stat-count').first().text();
-    s.stars = $('.vcard-stat-count').next().text();
-    s.following = $('.vcard-stat-count').next().next().text();
+      s.followerscount = stats[0];
+      s.stared         = stats[1];
+      s.followingcount = stats[2];
 
-    $('.vcard-stat-count').each(function(i,elem) {
-        console.log($(this).text());
-        console.log(this);
-    });
+      // General Info
+      s.worksfor = $('.vcard-detail').first().text();      // Works for
+      s.location = $('.octicon-location').parent().text(); // Location
+      s.fullname = $('.vcard-fullname').text();            // Full Name
+      s.email = $('.email').text();                        // email address
+      s.url = $('.url').text();                            // Website
+      s.joined = $('.join-date').attr('datetime');         // Joined GitHub
 
-    // console.log(s);
+      // Contributions to Open Source in the past 12 months
+      var contribs = []
+      $('.contrib-number').each(function(i,elem){
+        contribs.push($(this).text());
+      });
+      s.contribs = parseInt(contribs[0].replace(' total',''),10);
+      s.longest  = parseInt(contribs[1].replace(' days',''),10);
+      s.current  = parseInt(contribs[2].replace(' days',''),10);
 
+      callback(s);
 
+    } else {
+      callback();
+    }
+  });
+}
 
-    // var parsedResults = [];
-    // $('span.comhead').each(function(i, element){
-    //   // Select the previous element
-    //   var a = $(this).prev();
-    //   // Get the rank by parsing the element two levels above the "a" element
-    //   var rank = a.parent().parent().text();
-    //   // Parse the link title
-    //   var title = a.text();
-    //   // Parse the href attribute from the "a" element
-    //   var url = a.attr('href');
-    //   // Get the subtext children from the next row in the HTML table.
-    //   var subtext = a.parent().parent().next().children('.subtext').children();
-    //   // Extract the relevant data from the children
-    //   var points = $(subtext).eq(0).text();
-    //   var username = $(subtext).eq(1).text();
-    //   var comments = $(subtext).eq(2).text();
-    //   // Our parsed meta data object
-    //   var metadata = {
-    //     rank: parseInt(rank),
-    //     title: title,
-    //     url: url,
-    //     points: parseInt(points),
-    //     username: username,
-    //     comments: parseInt(comments)
-    //   };
-    //   // Push meta-data into parsedResults array
-    //   parsedResults.push(metadata);
-    // });
-    // // Log our finished parse results in the terminal
-    // console.log(parsedResults);
-  }
+profile('pgte', function(s){
+  console.log(s);
 });
+
+
