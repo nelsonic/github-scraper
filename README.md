@@ -1,3 +1,12 @@
+# Untitled Pet Project
+
+[![Build Status](https://travis-ci.org/nelsonic/fuata.png?branch=master)](https://travis-ci.org/nelsonic/fuata)
+[![Coverage Status](https://coveralls.io/repos/nelsonic/fuata/badge.png)](https://coveralls.io/r/nelsonic/fuata)
+[![Code Climate](https://codeclimate.com/github/nelsonic/fuata.png)](https://codeclimate.com/github/nelsonic/fuata)
+[![Dependencies](https://david-dm.org/nelsonic/fuata.png?theme=shields.io)](https://david-dm.org/nelsonic/fuata)
+[![devDependency Status](https://david-dm.org/nelsonic/fuata/dev-status.svg)](https://david-dm.org/nelsonic/fuata#info=devDependencies)
+[![NPM version](https://badge.fury.io/js/fuata.png)](https://npmjs.org/package/fuata)
+
 
 # *Who* Should I Follow?
 
@@ -78,11 +87,15 @@ I'm going to use LevelDB for this.
 
 Check:
 
-- [ ] GitHub.com is accessible
-- [ ] a *known* GitHub user exists
-- [ ] *known* GH user has non-zero number of followers
-- [ ] *known* GH user is following a non-zero number of people
+- [x] GitHub.com is accessible
+- [x] a *known* GitHub user exists
+- [x] *known* GH user has non-zero number of followers
+- [x] *known* GH user is following a non-zero number of people
 
+Scrape following/followers page:
+
+- [ ] Scrape first page
+- [ ] Check for 'next' page
 
 
 
@@ -185,7 +198,7 @@ curl -v https://api.github.com/users/pgte/following/visionmedia
 
 - GitHub has 3.4 Million users
 - yet the most followed person [Linus Torvalds](https://github.com/torvalds)
-only has 19k followers
+only has 19k followers (so its a highly distributed network )
 
 ## Data to Scrape
 
