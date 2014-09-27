@@ -20,6 +20,8 @@ test('Basic Checks for a Known User @pgte', function (assert) {
 		assert.ok(s.longest > 6, '- @' + user + ' Has a decent contribution "streak"');		
 		assert.end();
 	});
+
+
 });
 
 // Zombie User should have no email, no followers or following
@@ -52,3 +54,8 @@ test('Linus Torvals has thousands of followers (whats new?)', function (assert) 
 		assert.end();
 	});
 });
+
+// var user = 'visionmedia';
+// scrape.profile(user, function (err, s) {
+//   console.log(s);
+// });

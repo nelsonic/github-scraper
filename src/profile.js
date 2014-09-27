@@ -41,7 +41,7 @@ function profile(user, callback) {
       $('.contrib-number').each(function () {
         contribs.push($(this).text());
       });
-      s.contribs = parseInt(contribs[0].replace(" total", ""), 10);
+      s.contribs = parseInt(contribs[0].replace(" total", "").replace(",", ""), 10);
       s.longest  = parseInt(contribs[1].replace(" days", ""), 10);
       s.current  = parseInt(contribs[2].replace(" days", ""), 10);
 

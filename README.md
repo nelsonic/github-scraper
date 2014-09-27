@@ -39,17 +39,17 @@ Example data structure:
 (nested Objects are easier for data updates)
 ```js
 {
-    "followers": {
-        "u1" : { "s": "timestamp" },
-        "u2" : { "s": "timestamp" }
-    },
-    "following": {
-        "u3" : { "s" : "timestamp" },
-        "u2" : {
-            "s": "timestamp",
-            "e": "timestamp"
-        }
+  "followers": {
+    "u1" : { "s": "timestamp" },
+    "u2" : { "s": "timestamp" }
+  },
+  "following": {
+    "u3" : { "s" : "timestamp" },
+    "u2" : {
+      "s": "timestamp",
+      "e": "timestamp"
     }
+  }
 }
 ```
 
@@ -196,3 +196,20 @@ only has 19k followers (so its a highly distributed network )
 ![example github profile](http://i.imgur.com/uDscohR.jpg)
 
 Interesting bits of info have blue squares drawn around them.
+
+Basic Profile Details for TJ:
+```js
+followerscount: 11000,
+  stared: 1000,
+  followingcount: 147,
+  worksfor: 'Segment.io',
+  location: 'Victoria, BC, Canada',
+  fullname: 'TJ Holowaychuk',
+  email: 'tj@vision-media.ca',
+  url: 'http://tjholowaychuk.com',
+  joined: '2008-09-18T22:37:28Z',
+  avatar: 'https://avatars2.githubusercontent.com/u/25254?v=2&s=460',
+  contribs: 3217,
+  longest: 43,
+  current: 0
+```
