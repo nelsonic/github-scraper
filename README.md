@@ -36,32 +36,23 @@ Followers
 
 
 Example data structure:
+(nested Objects are easier for data updates)
 ```js
 {
-    "followers": [
-        {
-            "u": "u1",
-            "s": "timestamp"
-        },
-        {
-            "u": "u2",
-            "s": "timestamp"
-        }
-    ],
-    "following": [
-        {
-            "u": "u3",
-            "s": "timestamp"
-        },
-        {
-            "u": "u2",
+    "followers": {
+        "u1" : { "s": "timestamp" },
+        "u2" : { "s": "timestamp" }
+    },
+    "following": {
+        "u3" : { "s" : "timestamp" },
+        "u2" : {
             "s": "timestamp",
             "e": "timestamp"
         }
-    ]
+    }
 }
-
 ```
+
 
 This can be stored as a basic
 [flat-file database](http://en.wikipedia.org/wiki/Flat_file_database)
