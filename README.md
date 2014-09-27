@@ -85,13 +85,18 @@ Check:
 
 Scrape following/followers page:
 
-- [ ] Scrape first page
-- [ ] Check for 'next' page
+- [x] Scrape first page
+- [x] Check for 'next' page
 
 New user?
 - [ ] If a user doesn't exist in the Database create it.
 - [ ] set time for **lastupdated** to *now*.
 
+
+## Backup the Data
+
+Given that LevelDB is Node (in-memory) storage.
+It makes sense to either pay for persistance
 
 
 # Simple UI
