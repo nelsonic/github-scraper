@@ -88,6 +88,10 @@ Scrape following/followers page:
 - [ ] Scrape first page
 - [ ] Check for 'next' page
 
+New user?
+- [ ] If a user doesn't exist in the Database create it.
+- [ ] set time for **lastupdated** to *now*.
+
 
 
 # Simple UI
@@ -191,7 +195,7 @@ curl -v https://api.github.com/users/pgte/following/visionmedia
 - yet the most followed person [Linus Torvalds](https://github.com/torvalds)
 only has 19k followers (so its a highly distributed network )
 
-## Data to Scrape
+## Profile Data to Scrape
 
 ![example github profile](http://i.imgur.com/uDscohR.jpg)
 
@@ -199,7 +203,7 @@ Interesting bits of info have blue squares drawn around them.
 
 Basic Profile Details for TJ:
 ```js
-followerscount: 11000,
+  followerscount: 11000,
   stared: 1000,
   followingcount: 147,
   worksfor: 'Segment.io',
