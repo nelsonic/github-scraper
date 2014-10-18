@@ -69,9 +69,9 @@ In addition to creating a file per user,
 we should maintain an index of all the users we are tracking.
 the easiest way is to have a new-line-separted list
 
-But... in the interest of being able to run this on Heroku
+~~But... in the interest of being able to run this on Heroku
 (where you don't have access to the filesystem so no flat-file-db!)
-I'm going to use LevelDB for this.
+I'm going to use LevelDB for this.~~ >> File!
 
 
 ## Tests
@@ -96,7 +96,11 @@ New user?
 ## Backup the Data
 
 Given that LevelDB is Node (in-memory) storage.
-It makes sense to either pay for persistance
+It makes sense to either pay for persistance or ***use files***!
+
+
+
+
 
 
 # Simple UI
