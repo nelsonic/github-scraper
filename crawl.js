@@ -2,24 +2,68 @@ var P = require('./src/profile.js');
 var F = require('./src/follow.js');
 var fs = require('fs');
 var path = require('path');
-var users = [];
+var users = []; // GLOBAL!
+var inituser = 'alanshaw'; // Patient Zero
 
 var limit = 10; // concurrency limit
+var jobs = 0;   // jobs currently running
+
+function run() {
+  console.log("Jobs Running:", jobs, ' | Available: ', limit - jobs);
+  if(jobs < limit && users.length > (limit - jobs)) {
+    for(var i = 0; i < limit; i++) {
+      jobs++;
+      // console.log(users[users.length - i])
+      crawl(users[i]); // pick users off the end of list
+    }
+  } else {
+    jobs++;
+    crawl(inituser);
+  }
+}
 
 function cleanup(user) {
   // remove dupes from list of users
-  users = users.filter (function (v, i, a) {
+  users = users.filter(function (v, i, a) {
     return a.indexOf (v) === i;
   }); // http://stackoverflow.com/a/14821032/1148249
 
+  // remove undefined - http://stackoverflow.com/a/2843625/1148249
+  users.filter(function(n){ return n });
+
   // remove the current user we are checking from list of users
   var index = users.indexOf(user);
-  users.splice(index, 1); // http://stackoverflow.com/a/3954451/1148249
+  users = users.splice(index, 1); // http://stackoverflow.com/a/3954451/1148249
 
   return true;
 }
 
+// save list of users users.log to file
+function saveUsers(users) {
+  var filename = __dirname+'/users.log'
+  fs.writeFile(filename, users.join('\n'), function (err) {
+    if (err) {
+      throw err;
+    }
+    // console.log(filename+' saved!');
+    // console.log('Users:',users.length);
+  });
+}
+
+function nextUser(){
+  var u = users[jobs+1];
+  if(typeof u === 'undefined' || u.length === 0 || u === undefined) {
+    console.log( ' - - - - - - '+u +' - - - - - - -');
+    cleanup(u);
+    nextUser();
+  } else {
+    return u;
+  }
+
+}
+
 function crawl(user) {
+  console.log("User:", user)
   var filename = './data/'+user+'.log';
 
   P.profile(user, function(error, profile){
@@ -31,10 +75,9 @@ function crawl(user) {
       // crawl list of following
       F.following(user, function(error, following){
         following.map(function(u){ users.push(u) });
-
-        console.log(" - - - - > " + user + " < - - - - - ");
-        console.log("Followers:",followers.length);
-        console.log("Following:",following.length);
+        var log = " > " + user;
+        log = log + " | Followers:" + followers.length;
+        log = log + " | Following:" + following.length;
 
         profile.following = following.join(',');
         profile.followers = followers.join(',');
@@ -43,10 +86,14 @@ function crawl(user) {
           if (err) {
             throw err;
           }
-          console.log(filename+' saved!');
+          log = log + ' | ' + filename +' saved! ';
           cleanup(user); // remove user from users array (dont re-crawl)
           saveUsers(users);
-          return crawl(users[0]); // next iteration
+          log = log + ' | Users:' + users.length;
+          console.log(log);
+          jobs--;
+          var u = nextUser();
+          return crawl(u); // next iteration
         });
       });
     });
@@ -79,6 +126,22 @@ function checkLastCrawled(user, callback){
   })
 }
 
+function boot(){
+  // check if a users.log file exists
+  var fd = __dirname+'/users.log'
+  fs.readFile(fd, 'utf8', function(err, data){
+    if(err){
+      console.log("Users File Does not Exist");
+    } else {
+      users = data.toString().split('\n');
+      console.log("User Count:", users.length);
+    }
+    run();
+  })
+}
+
+boot();
+
 // checkLastCrawled('alanshaw', function(){
 //   console.log('done');
 // })
@@ -86,19 +149,6 @@ function checkLastCrawled(user, callback){
 // function keep going
 
 
-// save list of users users.log to file
-function saveUsers(users) {
-  var filename = __dirname+'/users.log'
-  fs.writeFile(filename, users.join('\n'), function (err) {
-    if (err) {
-      throw err;
-    }
-    console.log(filename+' saved!');
-    console.log('Users:',users.length);
-  });
-}
 
 
-// Patient Zero
-var user = 'alanshaw';
-crawl(user);
+// crawl(user);
