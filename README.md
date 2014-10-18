@@ -1,4 +1,4 @@
-# Untitled Pet Project
+# Untitled
 
 [![Build Status](https://travis-ci.org/nelsonic/fuata.png?branch=master)](https://travis-ci.org/nelsonic/fuata)
 [![Coverage Status](https://coveralls.io/repos/nelsonic/fuata/badge.png)](https://coveralls.io/r/nelsonic/fuata)
@@ -28,11 +28,12 @@ I expect to store a couple of hundred (million) records in the database.
 - @username
 - dateJoined
 
-Followers
-- followingUsername
-- @username
+Following
+- following @username
 - dateFollowed
 - dateUnfollowed
+
+same for followers.
 
 
 Example data structure:
@@ -98,10 +99,19 @@ New user?
 Given that LevelDB is Node (in-memory) storage.
 It makes sense to either pay for persistance or ***use files***!
 
+### Quantify Data Load
+
+Each time we crawl a user's profile we add 5kb (average) data to the file.
+
+![340kb 73 files](http://i.imgur.com/8VRPCmC.png)
+
+so crawling the full list of GitHub users (5 Million) *once*
+would require 5,000,000 * 5kb = 25 Gb!
 
 
 
-
+We might need to find a more efficient way of storing the data.
+SQL?
 
 # Simple UI
 
@@ -113,14 +123,30 @@ It makes sense to either pay for persistance or ***use files***!
 
 ## FAQ?
 
-**Q**:How is this different from Klout? <br />
-**A**:[Klout](https://klout.com/corp/score) tries to calculate your
-"influence". That's interesting.
+**Q**: How is this different from Klout? <br />
+**A**: [Klout](https://klout.com/corp/score) tries to calculate your
+social "influence". That's *interesting* but useless for tracking *makers*.
 
+
+
+## Research
 
 > Must read up about http://en.wikipedia.org/wiki/Inverted_index
 > so I understand how to use: https://www.npmjs.org/package/level-inverted-index
 
+- GitHub stats (node module): https://github.com/apiengine/ghstats
+(no tests or recent work/activity, but interesting functionality)
+
+- Hard Drive reliability stats:
+https://www.backblaze.com/blog/hard-drive-reliability-update-september-2014
+(useful when selecting which drives to use in the storage array -
+  Clear Winner is Hitachi 3TB)
+- RAID explained in layman's terms:
+http://uk.pcmag.com/storage-devices-reviews/7917/feature/raid-levels-explained
+- RAID Calculator:
+https://www.synology.com/en-global/support/RAID_calculator
+(if you don't already know how much space you get)
+- SQLite limits: https://www.sqlite.org/limits.html
 
 ## Useful Links
 
@@ -226,3 +252,114 @@ Basic Profile Details for TJ:
   longest: 43,
   current: 0
 ```
+
+## Tasks
+
+- [ ] Check Max Crawler Concurrency
+- [ ] Experiment with Child Processes?
+
+---
+
+COUNT LEO NIKOLAYEVICH TOLSTOY was born
+August 28, 1828, at the family estate of Yasna-
+ya Polyana, in the province of Tula. His moth-
+er died when he was three and his father six
+years later. Placed in the care of his aunts, he
+passed many of his early years at Kazan, where,
+in 1844, after a preliminary training by French
+tutors, he entered the university. He cared lit-
+tle for the university and in 1847 withdrew be-
+cause of "ill-health and domestic circum-
+stances." He had, however, done a great deal
+of reading, of French, English, and Russian
+novels, the New Testament, Voltaire, and
+Hegel. The author exercising the greatest in-
+fluence upon him at this time was Rousseau;
+he read his complete works and for sometime
+wore about his neck a medallion of Rousseau.
+
+Immediately upon leaving the university,
+Tolstoy returned to his estate and, perhaps inr
+spired by his enthusiasm for Rousseau, pre-
+pared to devote himself to agriculture and to
+improving the condition of his serfs. His first
+attempt at social reform proved disappointing,
+and after six months he withdrew to Moscow
+and St. Petersburg, where he gave himself over
+to the irregular life characteristic of his class
+and time. In 1851, determined to "escape my
+debts and, more than anything else, my hab-
+its," he enlisted in the Army as a gentleman-
+volunteer, and went to the Caucasus. While at
+Tiflis, preparing for his examinations as a
+cadet, he wrote the first portion of the trilogy,
+Childhood, Boyhood, and Youth, in which he
+celebrated the happiness of "being with Na-
+ture, seeing her, communing with her." He al-
+so began The Cossacks with the intention of
+showing that culture is the enemy of happi-
+ness. Although continuing his army life, he
+gradually came to realize that "a military ca-
+reer is not for me, and the sooner I get out of
+it and devote myself entirely to literature the
+better." His Sevastopol Sketches (1855) were
+so successful that Czar Nicholas issued special
+orders that he should be removed from a post
+of danger.
+
+Returning to St. Petersburg, Tolstoy was re-
+ceived with great favor in both the official and
+literary circles of the capital. He soon became
+
+
+
+interested in the popular progressive move-
+ment of the time, and in 1857 he decided to go
+abroad and study the educational and munici-
+pal systems of other countries. That year, and
+again in 1860, he traveled in Europe. At Yas-
+naya Polyana in 1861 he liberated his serfs and
+opened a school, established on the principle
+that "everything which savours of compulsion
+is harmful." He started a magazine to promote
+his notions on education and at the same time
+served as an official arbitrator for grievances
+between the nobles and the recently emanci-
+pated serfs. By the end of 1863 he was so ex-
+hausted that he discontinued his activities and
+retired to the steppes to drink koumis for his
+health.
+
+Tolstoy had been contemplating marriage
+for some time, and in 1862 he married Sophie
+Behrs, sixteen years his junior, and the daugh-
+ter of a fashionable Moscow doctor. Their
+early married life at Yasnaya Polyana was
+tranquil. Family cares occupied the Countess,
+and in the course of her life she bore thirteen
+children, nine of whom survived infancy. Yet
+she also acted as a copyist for her husband,
+who after their marriage turned again to writ-
+ing. He was soon at work upon "a novel of
+the i8io's and *2o's" which absorbed all his
+time and effort. He went frequently to Mos-
+cow, "studying letters, diaries, and traditions"
+and "accumulated a whole library" of histori-
+cal material on the period. He interviewed
+survivors of the battles of that time and trav-
+eled to Borodino to draw up a map of the
+battleground. Finally, in 1869, after his work
+had undergone several changes in conception
+and he had "spent five years of uninterrupted
+andjgxceptionally strenuous labor Tnnierthe
+IbesfcondUtions of life/' he published War and
+Peace. Its appearance immediately established
+Tolstoy's reputation, and in the judgment of
+Turgenev, the acknowledged dean of Russian
+letters, gave him "first place among all our
+contemporary writers."
+
+The years immediately following the com-
+pletion of War and Peace were pa**efl in a
+great variety of occupations, none of which
+Tohtoy found satisfying. He tried busying

@@ -45,7 +45,7 @@ function crawl(user) {
           }
           console.log(filename+' saved!');
           cleanup(user); // remove user from users array (dont re-crawl)
-          console.log('Users:',users.length);
+          saveUsers(users);
           return crawl(users[0]); // next iteration
         });
       });
@@ -53,7 +53,7 @@ function crawl(user) {
   })
 }
 
-function checkLastCrawled(user){
+function checkLastCrawled(user, callback){
   var filename = path.normalize('./data/'+user+'.log');
   console.log(filename, __filename);
   // check when the last time we crawled a user profile was
@@ -69,8 +69,8 @@ function checkLastCrawled(user){
     var diff = Number(now.getTime()-mtime.getTime());
     console.log(now + ' - ' + mtime + ' = '+diff );
 
-    // if the difference is bigger than 24 hours crawl again.
-    if(diff > 24 * 3600 * 1000) {
+    // if the difference is bigger than 1 day crawl again.
+    if(diff > 24 * 60 * 60 * 1000) {
       crawl(user);
     } else {
       cleanup(user); // remove user from users array (dont re-crawl)
@@ -79,14 +79,26 @@ function checkLastCrawled(user){
   })
 }
 
-checkLastCrawled('alanshaw', function(){
-  console.log('done');
-})
+// checkLastCrawled('alanshaw', function(){
+//   console.log('done');
+// })
 
 // function keep going
 
 
+// save list of users users.log to file
+function saveUsers(users) {
+  var filename = __dirname+'/users.log'
+  fs.writeFile(filename, users.join('\n'), function (err) {
+    if (err) {
+      throw err;
+    }
+    console.log(filename+' saved!');
+    console.log('Users:',users.length);
+  });
+}
+
 
 // Patient Zero
 var user = 'alanshaw';
-// crawl(user);
+crawl(user);
