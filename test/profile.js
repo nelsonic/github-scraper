@@ -17,11 +17,9 @@ test('Basic Checks for a Known User @pgte', function (assert) {
 		assert.ok(s.stared > 100, '- @' + user + ' Has starred more than 100 repos');
 		assert.ok(s.followingcount > 50, '- @' + user + ' Is following more than 50 people');
 		assert.ok(s.contribs > 365, '- @' + user + ' Has made at least 365 contributions to Open Source this year');
-		assert.ok(s.longest > 6, '- @' + user + ' Has a decent contribution "streak"');		
+		assert.ok(s.longest > 6, '- @' + user + ' Has a decent contribution "streak"');
 		assert.end();
 	});
-
-
 });
 
 // Zombie User should have no email, no followers or following
@@ -55,7 +53,18 @@ test('Linus Torvals has thousands of followers (whats new?)', function (assert) 
 	});
 });
 
-// var user = 'visionmedia';
-// scrape.profile(user, function (err, s) {
-//   console.log(s);
-// });
+test('Test for Defunct user: MMRibot >> 404', function (assert) {
+	var user = 'MMRibot';
+	scrape.profile(user, function (err) {
+		assert.ok(err === 404, '- 404 for unknown user @' + user);
+		assert.end();
+	});
+});
+
+test('Test for undefined user >> 400', function (assert) {
+	var user;
+	scrape.profile(user, function (err) {
+		assert.ok(err === 400, '- 400 for unknown user @' + user);
+		assert.end();
+	});
+});

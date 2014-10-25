@@ -3,7 +3,11 @@ var cheerio = require('cheerio');
 
 // basic info
 function profile(user, callback) {
+  if(!user || user.length === 0 || typeof user === 'undefined'){
+    return callback(400);
+  }
   request('https://github.com/' + user, function (error, response, html) {
+
     if (!error && response.statusCode === 200) {
 
       var $ = cheerio.load(html);
@@ -41,9 +45,11 @@ function profile(user, callback) {
       $('.contrib-number').each(function () {
         contribs.push($(this).text());
       });
-      s.contribs = parseInt(contribs[0].replace(" total", "").replace(",", ""), 10);
-      s.longest  = parseInt(contribs[1].replace(" days", ""), 10);
-      s.current  = parseInt(contribs[2].replace(" days", ""), 10);
+      // if(contribs.length > 0) {
+        s.contribs = parseInt(contribs[0].replace(" total", "").replace(",", ""), 10);
+        s.longest  = parseInt(contribs[1].replace(" days", ""), 10);
+        s.current  = parseInt(contribs[2].replace(" days", ""), 10);
+      // }
 
       callback(null, s);
 
@@ -56,5 +62,3 @@ function profile(user, callback) {
 module.exports = {
   profile: profile
 }
-
-

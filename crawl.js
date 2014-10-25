@@ -6,35 +6,25 @@ var users = []; // GLOBAL!
 var inituser = 'alanshaw'; // Patient Zero
 
 var limit = 10; // concurrency limit
-var jobs = 0;   // jobs currently running
+var jobs = [];   // jobs currently running
 
-function run() {
-  console.log("Jobs Running:", jobs, ' | Available: ', limit - jobs);
-  if(jobs < limit && users.length > (limit - jobs)) {
-    for(var i = 0; i < limit; i++) {
-      jobs++;
-      // console.log(users[users.length - i])
-      crawl(users[i]); // pick users off the end of list
-    }
-  } else {
-    jobs++;
-    crawl(inituser);
-  }
-}
 
 function cleanup(user) {
+  var log = ' - - - > ' + user + ' | Before: ' + users.length
   // remove dupes from list of users
   users = users.filter(function (v, i, a) {
     return a.indexOf (v) === i;
   }); // http://stackoverflow.com/a/14821032/1148249
 
   // remove undefined - http://stackoverflow.com/a/2843625/1148249
-  users.filter(function(n){ return n });
+  // users.filter(function(n){ return n });
 
   // remove the current user we are checking from list of users
   var index = users.indexOf(user);
-  users = users.splice(index, 1); // http://stackoverflow.com/a/3954451/1148249
+  users.splice(index, 1); // http://stackoverflow.com/a/3954451/1148249
 
+  log = log + ' | After: ' + users.length;
+  console.log(log);
   return true;
 }
 
@@ -67,36 +57,40 @@ function crawl(user) {
   var filename = './data/'+user+'.log';
 
   P.profile(user, function(error, profile){
+    if(error){
+      console.log(user + ' ' +error);
+      jobs--;
+    } else {
+      // crawl list of followers
+      F.followers(user, function(error, followers){
+        followers.map(function(u){ users.push(u) });
 
-    // crawl list of followers
-    F.followers(user, function(error, followers){
-      followers.map(function(u){ users.push(u) });
+        // crawl list of following
+        F.following(user, function(error, following){
+          following.map(function(u){ users.push(u) });
+          var log = " > " + user;
+          log = log + " | Followers:" + followers.length;
+          log = log + " | Following:" + following.length;
 
-      // crawl list of following
-      F.following(user, function(error, following){
-        following.map(function(u){ users.push(u) });
-        var log = " > " + user;
-        log = log + " | Followers:" + followers.length;
-        log = log + " | Following:" + following.length;
-
-        profile.following = following.join(',');
-        profile.followers = followers.join(',');
-        profile.last = new Date().getTime();
-        fs.appendFile(filename, JSON.stringify(profile)+'\n', function (err) {
-          if (err) {
-            throw err;
-          }
-          log = log + ' | ' + filename +' saved! ';
-          cleanup(user); // remove user from users array (dont re-crawl)
-          saveUsers(users);
-          log = log + ' | Users:' + users.length;
-          console.log(log);
-          jobs--;
-          var u = nextUser();
-          return crawl(u); // next iteration
+          profile.following = following.join(',');
+          profile.followers = followers.join(',');
+          profile.last = new Date().getTime();
+          fs.appendFile(filename, JSON.stringify(profile)+'\n', function (err) {
+            if (err) {
+              throw err;
+            }
+            log = log + ' | ' + filename +' saved! ';
+            cleanup(user); // remove user from users array (dont re-crawl)
+            saveUsers(users);
+            log = log + ' | Users:' + users.length;
+            console.log(log);
+            jobs--;
+            var u = nextUser();
+            return crawl(u); // next iteration
+          });
         });
       });
-    });
+    }
   })
 }
 
@@ -124,6 +118,20 @@ function checkLastCrawled(user, callback){
       return crawl(users[0]); // next iteration
     }
   })
+}
+
+function run() {
+  console.log("Jobs Running:", jobs, ' | Available: ', limit - jobs);
+  if(jobs.length < limit && users.length > (limit - jobs)) {
+    for(var i = 0; i < limit; i++) {
+      // console.log(users[users.length - i])
+      crawl(users[i]); // pick users off the end of list
+      jobs.push(users[i]);
+    }
+  } else {
+    jobs.push(inituser);
+    crawl(inituser);
+  }
 }
 
 function boot(){
