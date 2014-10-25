@@ -10,7 +10,7 @@ test('Save (and Open) basic profile to disk', function (assert) {
   var user = 'alanshaw';
   scrape.profile(user, function (err, profile) {
     fsdb.save(user, profile, function(err, data){
-      assert.equal(data, user+'.log saved');
+      assert.equal(data, user+'.json saved');
       fsdb.open(user, function(err, data){
         if(err){
           console.log(' - - - - - - - - ');

@@ -1,9 +1,12 @@
 var fs = require('fs');
 var path = require('path');
 
+var folder = './data/';
+var ext = '.json';
+
 // open the json file
 function open (user, callback) {
-  var filename = path.normalize('./data/'+user+'.log');
+  var filename = path.normalize(folder+user+ext);
   fs.readFile(filename, 'utf8', function(err, data){
     callback(err, data);
   });
@@ -11,9 +14,9 @@ function open (user, callback) {
 }
 
 function save (user, profile, callback){
-  var filename = path.normalize('./data/'+user+'.log');
+  var filename = path.normalize(folder+user+ext);
   fs.writeFile(filename, JSON.stringify(profile, null, '\t'), function (err) {
-    callback(err, user +'.log saved');
+    callback(err, user +ext +' saved');
   });
 }
 
