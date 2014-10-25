@@ -2,7 +2,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 // generic multi-page scraper
-function generic(method, user, page, f, callback) {
+function followGeneric (method, user, page, f, callback) {
   // console.log(user + ' - - - - Page:' + page + ' - - - - ' + f.length);
   var url = 'https://github.com/' + user + '/' + method + '?page=' + page;
 
@@ -24,7 +24,7 @@ function generic(method, user, page, f, callback) {
       if (typeof nextpage !==  'undefined' && nextpage.length !== 0) {
         // e.g: https://github.com/andrew/following?page=3
         page = nextpage.attr('href').split("=")[1];
-        generic(method, user, page, f, callback); // recursive
+        followGeneric(method, user, page, f, callback); // recursive
       } else {
         callback(null, f);
       }
@@ -35,27 +35,29 @@ function generic(method, user, page, f, callback) {
   });
 }
 
-function followers(user, callback) {
-  generic('followers', user, 1, [], callback);
+function followers (user, callback) {
+  followGeneric('followers', user, 1, [], callback);
 }
 
-function following(user, callback) {
-  generic('following', user, 1, [], callback);
+function following (user, callback) {
+  followGeneric('following', user, 1, [], callback);
+}
+
+var fsdb = require('./save.js'); // our fs opperations
+
+function updateGeneric (user, arr, callback) {
+  // open the existing file on disk
+  fsdb.open(user, function(err, data){
+    var profile = JSON.parse(data);
+    // console.log(profile)
+    callback(err, profile);
+  })
+  // if there's an error the user does not exist
+
 }
 
 module.exports = {
   following: following,
-  followers: followers
+  followers: followers,
+  updateGeneric: updateGeneric
 }
-
-// following('andrew', function (err, f) {
-//   console.log("Totall Following: " + f.length);
-// });
-
-// following('sabariz', function (err, f) {
-//   console.log("Totall Following: " + f.length);
-// });
-
-// following('csjaba', function (err, f) {
-//   console.log("Totall Following: " + f.length);
-// });

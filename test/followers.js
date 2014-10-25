@@ -28,3 +28,21 @@ test('Alan has more than 51 (1 page of) followers', function (assert) {
 		assert.end();
 	});
 });
+
+// update list of followers
+
+test('Alan has more than 51 (1 page of) followers', function (assert) {
+	var user = 'alanshaw';
+	f.followers(user, function (err, s) {
+		assert.ok(s.length > 51, '- @' + user + ' has ' + s.length + ' followers');
+		assert.end();
+	});
+});
+
+test('Alan has more than 51 (1 page of) followers', function (assert) {
+	var user = 'alanshaw';
+	f.updateGeneric(user, [], function (err, s) {
+		// assert.ok(s.length > 51, '- @' + user + ' has ' + s.length + ' followers');
+		assert.end();
+	});
+});
