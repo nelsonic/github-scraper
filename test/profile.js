@@ -62,9 +62,9 @@ test('Test for Defunct user: MMRibot >> 404', function (assert) {
 });
 
 test('Test for undefined user >> 400', function (assert) {
-	var user;
+	var user; // i.e. undefined
 	scrape.profile(user, function (err) {
-		assert.ok(err === 400, '- 400 for unknown user @' + user);
+		assert.ok(err === 400, '- 400 for user @' + user);
 		assert.end();
 	});
 });

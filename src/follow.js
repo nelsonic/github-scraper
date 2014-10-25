@@ -1,7 +1,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 
-// basic info
+// generic multi-page scraper
 function generic(method, user, page, f, callback) {
   // console.log(user + ' - - - - Page:' + page + ' - - - - ' + f.length);
   var url = 'https://github.com/' + user + '/' + method + '?page=' + page;
@@ -17,8 +17,8 @@ function generic(method, user, page, f, callback) {
 
       // check pagination has a "next" button indicating more people
       // borrowed from: http://stackoverflow.com/questions/6673777/
-      var nextpage = $('.pagination a').filter(function () { 
-        return $(this).text() === "Next"; 
+      var nextpage = $('.pagination a').filter(function () {
+        return $(this).text() === "Next";
       });
 
       if (typeof nextpage !==  'undefined' && nextpage.length !== 0) {
