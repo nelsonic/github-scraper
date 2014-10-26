@@ -86,35 +86,15 @@ function updateUsers(method, profile, latest) {
       profile[method][u] = [];
     });
   }
-  // insert new follows
-    latest.map(function(u) {
-      if((existing.indexOf(u) === -1)) {
-        profile[method][u].push(new Date().getTime());
-      }
-    });
+
+  latest.map(function(u) {
+    if((existing.indexOf(u) === -1)) {
+      profile[method][u].push(new Date().getTime());
+    }
+  });
 
   return profile;
 }
-
-// example:
-// followers('hyprstack', function(err, f) {
-//   if(!err && f.length > 0) {
-//     delete f[0];
-//     var latest = ['torvalds', 'dhh'].concat(f);
-//     var profile = { followers:{}, following:{} }
-//     profile = updateUsers('following', profile, latest);
-//     console.log(profile);
-//     console.log(' - - - - - - - - - - ');
-//     console.log('Unfollow: '+latest[0]);
-//     latest = tidyArray(latest[0], latest)
-//     // delete latest[0]
-//     profile = updateUsers('following', profile, latest);
-//     console.log(profile);
-//   }
-// });
-
-
-
 
 module.exports = {
   following: following,
