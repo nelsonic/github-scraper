@@ -40,8 +40,7 @@ test('Alan has more than 51 (1 page of) followers', function (assert) {
 	});
 });
 
-
-// random user (no record in "db")
+// can't decide where to put this test...
 var P = require('../src/profile.js');
 
 test('Record when a user stops following', function (assert) {
@@ -55,7 +54,6 @@ test('Record when a user stops following', function (assert) {
 			console.log('Unfollow: '+f[0]);
 			var removed = f[0];
 			f = F.tidyArray(f[0], f)
-			// delete latest[0]
 			profile = F.updateUsers('followers', profile, f);
 			// console.log(profile);
 			assert.equal(profile.followers[removed].length, 2);

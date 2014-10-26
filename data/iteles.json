@@ -1,0 +1,62 @@
+{
+	"followerscount": 6,
+	"stared": 30,
+	"followingcount": 8,
+	"worksfor": "London, UK",
+	"location": "London, UK",
+	"fullname": "Ines Teles",
+	"email": "",
+	"url": "http://www.twitter.com/iteles",
+	"joined": "2013-04-17T21:10:06Z",
+	"avatar": "https://avatars1.githubusercontent.com/u/4185328?v=2&s=460",
+	"contribs": 189,
+	"longest": 31,
+	"current": 2,
+	"followers": {
+		"vs4vijay": [
+			1414611227200,
+			1414611227836
+		],
+		"joaquimserafim": [
+			1414611227200
+		],
+		"nodecoder": [
+			1414611227200
+		],
+		"edwardcodes": [
+			1414611227200
+		],
+		"hyprstack": [
+			1414611227200
+		],
+		"nelsonic": [
+			1414611227200
+		]
+	},
+	"following": {
+		"edwardcodes": [
+			1414611227830
+		],
+		"pmelopereira": [
+			1414611227830
+		],
+		"triketora": [
+			1414611227830
+		],
+		"hyprstack": [
+			1414611227830
+		],
+		"dp6ai": [
+			1414611227830
+		],
+		"samsoffes": [
+			1414611227830
+		],
+		"halfdan": [
+			1414611227830
+		],
+		"nelsonic": [
+			1414611227830
+		]
+	}
+}

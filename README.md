@@ -93,6 +93,8 @@ New user?
 - [x] If a user doesn't exist in the Database create it.
 - [ ] set time for **lastupdated** to *now*.
 
+Read data from db/disk so we can update it.
+- [ ] If a user has previously been crawled there will be a record in db
 
 ## Backup the Data
 
