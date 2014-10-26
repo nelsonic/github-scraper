@@ -45,7 +45,7 @@ test('Full Workflow', function (assert) {
               db.open(user, function(err6, data) {
                 var profile = JSON.parse(data);
                 console.log(profile.followers[removed]);
-                assert.equal(profile.followers[removed].length, 2);
+                assert.equal(profile.followers[removed].length, 2, ' unfollowed');
                 // console.log(err0, err1, err2, err3, err4, err5);
                 assert.end();
               });
@@ -55,5 +55,16 @@ test('Full Workflow', function (assert) {
         })
       })
     })
+  });
+});
+
+var C = require('../src/index.js');
+test('Test Complete Crawl (and save to db)', function (assert) {
+  var user = 'joaquimserafim';
+  C.crawlUser(user, function (err, profile) {
+    assert.ok(err === null, ' no error ' + user);
+    var followers = Object.keys(profile.followers);
+    assert.true(followers.length > 20, user + ' has more than 20 followers');
+    assert.end();
   });
 });

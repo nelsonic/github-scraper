@@ -58,6 +58,16 @@ function tidyArray(elem, arr) {
   return arr;
 }
 
+// generic function re-used below
+function update(method, profile, existing, latest) {
+  latest.map(function(u) {
+    if((existing.indexOf(u) === -1)) {
+      profile[method][u].push(new Date().getTime());
+    }
+  });
+  return profile;
+}
+
 /**
  * @method can be 'followers' or 'following'
  * @profile is a profile object that may or may not have
@@ -69,12 +79,7 @@ function updateUsers(method, profile, latest) {
   if(profile.hasOwnProperty(method)){
     existing = Object.keys(profile[method]);
     // update people who/we have stopped following
-      existing.map(function(u) {
-        if((latest.indexOf(u) === -1)) {
-          profile[method][u].push(new Date().getTime());
-        }
-      });
-
+    profile = update(method, profile, latest, existing); // yes switched!
   } else { // profile does not currently have follower/following object
     existing = [];
     profile[method] = {};
@@ -82,14 +87,7 @@ function updateUsers(method, profile, latest) {
       profile[method][u] = [];
     });
   }
-
-  latest.map(function(u) {
-    if((existing.indexOf(u) === -1)) {
-      profile[method][u].push(new Date().getTime());
-    }
-  });
-
-  return profile;
+  return update(method, profile, existing, latest);
 }
 
 module.exports = {

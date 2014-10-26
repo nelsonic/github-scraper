@@ -259,3 +259,26 @@ Basic Profile Details for TJ:
 
 - [ ] Check Max Crawler Concurrency
 - [ ] Experiment with Child Processes?
+
+Example:
+
+```js
+var P = require('./src/profile.js');
+var F = require('./src/follow.js');
+var db = require('./src/save.js');
+
+var user = 'alanshaw';
+
+P.profile(user, function (err, profile) {
+  F.followers(user, function(e1, followers){
+    profile = F.updateUsers('followers', profile, followers);
+    F.following(user, function(e2, following){
+      profile = F.updateUsers('following', profile, following);
+      console.log(profile);
+      db.save(user, profile, function(err, data){
+        console.log(data);
+      })
+    })
+  })
+});
+```
