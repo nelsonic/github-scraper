@@ -3,15 +3,15 @@
 
 var test = require('tape');
 var scrape = require('../src/profile.js');
-var fsdb = require('../src/save.js');
+var db = require('../src/save.js');
 
 // save a basic profile to disk
 test('Save (and Open) basic profile to disk', function (assert) {
   var user = 'alanshaw';
   scrape.profile(user, function (err, profile) {
-    fsdb.save(user, profile, function(err, data){
+    db.save(user, profile, function(err, data){
       assert.equal(data, user+'.json saved');
-      fsdb.open(user, function(err, data){
+      db.open(user, function(err, data){
         if(err){
           console.log(' - - - - - - - - ');
           console.log(err)
@@ -27,7 +27,7 @@ test('Save (and Open) basic profile to disk', function (assert) {
 // test failure to open a file that doesn't exist
 test('Save (and Open) basic profile to disk', function (assert) {
   var user = Math.floor(Math.random() * 1000000000000000); // rndm
-  fsdb.open(user, function(err, data) {
+  db.open(user, function(err, data) {
     assert.equal(err.errno, 34); // file not found
     assert.end();
   })

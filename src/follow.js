@@ -43,21 +43,82 @@ function following (user, callback) {
   followGeneric('following', user, 1, [], callback);
 }
 
-var fsdb = require('./save.js'); // our fs opperations
+var db = require('./save.js'); // our fs opperations
 
-function updateGeneric (user, arr, callback) {
-  // open the existing file on disk
-  fsdb.open(user, function(err, data){
-    var profile = JSON.parse(data);
-    // console.log(profile)
-    callback(err, profile);
-  })
-  // if there's an error the user does not exist
 
+function tidyArray(elem, arr) {
+  var log = ' --> removing ' + elem + ' | Before: ' + arr.length
+  // remove dupes from list of users
+  arr = arr.filter(function (v, i, a) {
+    return a.indexOf (v) === i;
+  }); // http://stackoverflow.com/a/14821032/1148249
+
+  // remove the current user we are checking from list of users
+  var index = arr.indexOf(elem);
+  arr.splice(index, 1); // http://stackoverflow.com/a/3954451/1148249
+
+  log = log + ' | After: ' + arr.length;
+  console.log(log);
+  return arr;
 }
+
+/**
+ * @method can be 'followers' or 'following'
+ * @profile is a profile object that may or may not have
+ *   a followers / following object listing people
+ * @latest is the list of people we *just* scraped
+ */
+function updateUsers(method, profile, latest) {
+  var existing;
+  if(profile.hasOwnProperty(method)){
+    existing = Object.keys(profile[method]);
+    // update people who/we have stopped following
+      existing.map(function(u) {
+        if((latest.indexOf(u) === -1)) {
+          profile[method][u].push(new Date().getTime());
+        }
+      });
+
+  } else { // profile does not currently have follower/following object
+    existing = [];
+    profile[method] = {};
+    latest.map(function(u) {
+      profile[method][u] = [];
+    });
+  }
+  // insert new follows
+    latest.map(function(u) {
+      if((existing.indexOf(u) === -1)) {
+        profile[method][u].push(new Date().getTime());
+      }
+    });
+
+  return profile;
+}
+
+// example:
+// followers('hyprstack', function(err, f) {
+//   if(!err && f.length > 0) {
+//     delete f[0];
+//     var latest = ['torvalds', 'dhh'].concat(f);
+//     var profile = { followers:{}, following:{} }
+//     profile = updateUsers('following', profile, latest);
+//     console.log(profile);
+//     console.log(' - - - - - - - - - - ');
+//     console.log('Unfollow: '+latest[0]);
+//     latest = tidyArray(latest[0], latest)
+//     // delete latest[0]
+//     profile = updateUsers('following', profile, latest);
+//     console.log(profile);
+//   }
+// });
+
+
+
 
 module.exports = {
   following: following,
   followers: followers,
-  updateGeneric: updateGeneric
+  updateUsers: updateUsers,
+  tidyArray: tidyArray
 }
