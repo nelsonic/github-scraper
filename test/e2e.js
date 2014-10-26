@@ -32,7 +32,7 @@ test('Full Workflow', function (assert) {
           db.open(user, function(err4, data) {
             // console.log(data);
             var profile = JSON.parse(data);
-            console.log(profile)
+            // console.log(profile)
             var f = Object.keys(profile['followers']);
             // 5
             var removed = f[0];

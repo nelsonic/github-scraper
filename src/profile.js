@@ -11,10 +11,8 @@ function profile(user, callback) {
     if (!error && response.statusCode === 200) {
 
       var $ = cheerio.load(html);
-      var s = {};
-
-      // overall stats
-      var stats = [];
+      var p = {};     // profile object
+      var stats = []; // global stats
 
       $('.vcard-stat-count').each(function () {
           var stat = $(this).text();
@@ -27,31 +25,31 @@ function profile(user, callback) {
           stats.push(stat);
         });
 
-      s.followerscount = stats[0];
-      s.stared         = stats[1];
-      s.followingcount = stats[2];
+      p.followerscount = stats[0];
+      p.stared         = stats[1];
+      p.followingcount = stats[2];
 
       // General Info
-      s.worksfor = $('.vcard-detail').first().text();      // Works for
-      s.location = $('.octicon-location').parent().text(); // Location
-      s.fullname = $('.vcard-fullname').text();            // Full Name
-      s.email = $('.email').text();                        // email address
-      s.url = $('.url').text();                            // Website
-      s.joined = $('.join-date').attr('datetime');         // Joined GitHub
-      s.avatar = $('.avatar').attr('src');                 // Profile pic
+      p.worksfor = $('.vcard-detail').first().text();      // Works for
+      p.location = $('.octicon-location').parent().text(); // Location
+      p.fullname = $('.vcard-fullname').text();            // Full Name
+      p.email = $('.email').text();                        // email address
+      p.url = $('.url').text();                            // Website
+      p.joined = $('.join-date').attr('datetime');         // Joined GitHub
+      p.avatar = $('.avatar').attr('src');                 // Profile pic
 
       // Contributions to Open Source in the past 12 months
       var contribs = [];
       $('.contrib-number').each(function () {
         contribs.push($(this).text());
       });
-      // if(contribs.length > 0) {
-        s.contribs = parseInt(contribs[0].replace(" total", "").replace(",", ""), 10);
-        s.longest  = parseInt(contribs[1].replace(" days", ""), 10);
-        s.current  = parseInt(contribs[2].replace(" days", ""), 10);
+      // if(contribp.length > 0) {
+        p.contribs = parseInt(contribs[0].replace(" total", "").replace(",", ""), 10);
+        p.longest  = parseInt(contribs[1].replace(" days", ""), 10);
+        p.current  = parseInt(contribs[2].replace(" days", ""), 10);
       // }
-
-      callback(null, s);
+      p.lastupdated = new Date().getTime();
+      callback(null, p);
 
     } else {
       callback(response.statusCode);

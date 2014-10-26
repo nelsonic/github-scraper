@@ -61,10 +61,24 @@ test('Test for Defunct user: MMRibot >> 404', function (assert) {
 	});
 });
 
-test('Test for undefined user >> 400', function (assert) {
+test('Test for undefined user >> 400 error', function (assert) {
 	var user; // i.e. undefined
 	scrape.profile(user, function (err) {
 		assert.ok(err === 400, '- 400 for user @' + user);
+		assert.end();
+	});
+});
+
+test('Confirm date (lastupdated) being set correctly on profile', function (assert) {
+	var user = 'jim'; // i.e. undefined
+	scrape.profile(user, function (err, p) {
+		console.log(p.lastupdated);
+		var now = new Date().getSeconds();
+		var d = new Date(p.lastupdated).getSeconds();
+		// if we wer able to parse the p.lastupdated as a date
+		// console.log(now, ' : ', d);
+		assert.equal(now, d);
+		// assert.ok(err === 400, '- 400 for user @' + user);
 		assert.end();
 	});
 });

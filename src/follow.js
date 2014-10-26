@@ -47,7 +47,6 @@ var db = require('./save.js'); // our fs opperations
 
 
 function tidyArray(elem, arr) {
-  var log = ' --> removing ' + elem + ' | Before: ' + arr.length
   // remove dupes from list of users
   arr = arr.filter(function (v, i, a) {
     return a.indexOf (v) === i;
@@ -56,9 +55,6 @@ function tidyArray(elem, arr) {
   // remove the current user we are checking from list of users
   var index = arr.indexOf(elem);
   arr.splice(index, 1); // http://stackoverflow.com/a/3954451/1148249
-
-  log = log + ' | After: ' + arr.length;
-  console.log(log);
   return arr;
 }
 
