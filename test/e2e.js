@@ -16,6 +16,7 @@ var P = require('../src/profile.js');
 // 6. Save to DB again
 // 7. Read from DB & confirm follow count correct.
 // Update a profile in "db" then read it back
+/*
 test('Full Workflow', function (assert) {
   var user = 'iteles';
   // 1
@@ -57,14 +58,39 @@ test('Full Workflow', function (assert) {
     })
   });
 });
+*/
 
 var C = require('../src/index.js');
+
+test('E2E with including unfollowing, updating & deleting', function (t) {
+  var user = 'nodecoder';
+  C.crawlUser(user, function(err1, profile){
+    // manually remove a follower:
+    var f = Object.keys(profile['followers']);
+    var removed = f[0];
+    f = F.tidyArray(f[0], f)
+    profile = F.updateUsers('followers', profile, f);
+
+    // maunally update, read & delete the record
+    db.save(user, profile, function(err2, log) {
+      db.open(user, function(err3, data) {
+        var profile = JSON.parse(data);
+        t.equal(profile.followers[removed].length, 2, "✓ "+removed +' unfollowed');
+        db.erase(user, function(err4, data){
+          t.end();
+        }); // end erase
+      }); // end open
+    }); // end save
+  })
+});
+
+
 test('Test Complete Crawl (and save to db)', function (assert) {
   var user = 'joaquimserafim';
   C.crawlUser(user, function (err, profile) {
-    assert.ok(err === null, ' no error ' + user);
+    assert.ok(err === null, '✓  no error ' + user);
     var followers = Object.keys(profile.followers);
-    assert.true(followers.length > 20, user + ' has more than 20 followers');
+    assert.true(followers.length > 20, "✓ " +user + ' has more than 20 followers');
     assert.end();
   });
 });

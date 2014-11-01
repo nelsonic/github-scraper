@@ -12,7 +12,8 @@ function crawlUser(user, callback) {
   db.open(user, function(dberr, data) {
     if(dberr){
       // callback(dberr);
-      console.log(dberr); // log "New User!"
+      // console.log(dberr); // log "New User!"
+      console.log(">> NEW USER:", user);
     } else {
       ep = JSON.parse(data);
     }
