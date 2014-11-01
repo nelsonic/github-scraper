@@ -9,7 +9,7 @@ var F = require('../src/follow.js');
 test('Non-existant user doesnt have a following page', function (assert) {
 	var user = Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
 	F.followers(user, function (err, s) {
-		assert.ok(err === 404, '- 404 unknown user @' + user + ' no following page');
+		assert.ok(err === 404, '✓ 404 unknown user @' + user + ' no following page');
 		assert.end();
 	});
 });
@@ -17,7 +17,7 @@ test('Non-existant user doesnt have a following page', function (assert) {
 test('@Zero has zero followers', function (assert) {
 	var user = 'zero';
 	F.followers(user, function (err, s) {
-		assert.ok(s.length === 0, '- @' + user + ' doesnt follow.');
+		assert.ok(s.length === 0, '✓ @' + user + ' doesnt follow.');
 		assert.end();
 	});
 });
@@ -25,7 +25,7 @@ test('@Zero has zero followers', function (assert) {
 test('Alan has more than 51 (1 page of) followers', function (assert) {
 	var user = 'alanshaw';
 	F.followers(user, function (err, s) {
-		assert.ok(s.length > 51, '- @' + user + ' has ' + s.length + ' followers');
+		assert.ok(s.length > 51, '✓ @' + user + ' has ' + s.length + ' followers');
 		assert.end();
 	});
 });
@@ -46,9 +46,18 @@ test('Record when a user stops following', function (assert) {
 			f = F.tidyArray(f[0], f)
 			profile = F.updateUsers('followers', profile, f);
 			// console.log(profile);
-			assert.equal(profile.followers[removed].length, 2);
+			assert.equal(profile.followers[removed].length, 2, "✓ "+removed+" stopped following");
 			assert.end();
 		});
 
 	})
+});
+
+// test method fail on update
+test('Alan has more than 51 (1 page of) followers', function (assert) {
+	var profile = { followers : { } };
+	var latest = ['tom', 'dick', 'harry'];
+	profile = F.update('followers', profile, ['jim'], latest);
+	assert.true(profile.followers['tom'].length === 1, "✓ Tom is following");
+	assert.end();
 });

@@ -28,3 +28,4 @@ node_modules
 .lock-wscript
 .vagrant
 crawl.js
+.DS_Store

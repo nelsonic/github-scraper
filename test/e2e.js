@@ -68,3 +68,15 @@ test('Test Complete Crawl (and save to db)', function (assert) {
     assert.end();
   });
 });
+
+
+test('Delete record to ensure dberr', function (assert) {
+  var user = 'zero';
+  db.erase(user, function(err){
+    C.crawlUser(user, function (err, profile) {
+      assert.ok(err === null, ' no error ' + user);
+      assert.end();
+    });
+  })
+});
+// delete user after checking to ensure we throw dberr

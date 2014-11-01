@@ -62,6 +62,9 @@ function tidyArray(elem, arr) {
 function update(method, profile, existing, latest) {
   latest.map(function(u) {
     if((existing.indexOf(u) === -1)) {
+      if(typeof profile[method][u] === 'undefined') {
+        profile[method][u] = [];
+      }
       profile[method][u].push(new Date().getTime());
     }
   });
@@ -94,5 +97,6 @@ module.exports = {
   following: following,
   followers: followers,
   updateUsers: updateUsers,
-  tidyArray: tidyArray
+  tidyArray: tidyArray,
+  update: update
 }
