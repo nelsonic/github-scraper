@@ -20,7 +20,16 @@ function save (user, profile, callback){
   });
 }
 
+function erase (user, callback){
+  var filename = path.normalize(folder+user+ext);
+  var renamed  = path.normalize(folder+'__'+user+ext);
+  fs.rename(filename, renamed, function (err) {
+    callback(err, user+' deleted');
+  });
+}
+
 module.exports = {
   save: save,
-  open: open
+  open: open,
+  erase: erase
 }

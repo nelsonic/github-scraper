@@ -2,35 +2,51 @@
 "use strict";
 
 var test = require('tape');
-var scrape = require('../src/profile.js');
+var P = require('../src/profile.js');
 var db = require('../src/save.js');
 
 // save a basic profile to disk
 test('Save (and Open) basic profile to disk', function (assert) {
   var user = 'alanshaw';
-  scrape.profile(user, function (err, profile) {
-    db.save(user, profile, function(err, data){
-      assert.equal(data, user+'.json saved');
-      db.open(user, function(err, data){
-        if(err){
-          console.log(' - - - - - - - - ');
-          console.log(err)
-          console.log(' - - - - - - - - ');
-        }
-        assert.deepEqual(JSON.parse(data), profile);
-        assert.end();
-      })
+  var profile = { "hello":"world" };
+  db.save(user, profile, function(err, data){
+    assert.equal(data, user+'.json saved', "✓ Record saved");
+    db.open(user, function(err, data){
+      if(err){
+        console.log(' - - - - - - - - ');
+        console.log(err)
+        console.log(' - - - - - - - - ');
+      }
+      assert.deepEqual(JSON.parse(data), profile, "✓ Profile matches");
+      assert.end();
     })
-  });
+  })
 });
 
 // test failure to open a file that doesn't exist
-test('Save (and Open) basic profile to disk', function (assert) {
+test('Try opening a file that doesnt exist', function (assert) {
   var user = Math.floor(Math.random() * 1000000000000000); // rndm
   db.open(user, function(err, data) {
-    assert.equal(err.errno, 34); // file not found
+    assert.equal(err.errno, 34, "✓ " +user +" Not Found"); // file not found
     assert.end();
-  })
+  });
+});
+
+// delete a record
+test('Save (and Open) basic profile to disk', function (assert) {
+  var user = Math.floor(Math.random() * 1000000000000000); // rndm
+  var profile = { "hello":"world" };
+  db.save(user, profile, function(err, data){
+    assert.equal(data, user+'.json saved' ,"✓ User Created");
+    db.erase(user, function(err, data){
+      assert.equal(data, user+' deleted', "✓ User Deleted");
+      // confirm it was deleted:
+      db.open(user, function(err, data) {
+        assert.equal(err.errno, 34, "✓ User Not Found"); // file not found
+        assert.end();
+      });
+    });
+  });
 });
 
 // open log file to extract json
