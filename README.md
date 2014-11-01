@@ -263,22 +263,11 @@ Basic Profile Details for TJ:
 Example:
 
 ```js
-var P = require('./src/profile.js');
-var F = require('./src/follow.js');
-var db = require('./src/save.js');
+var C = require('./src/index.js');
 
 var user = 'alanshaw';
 
-P.profile(user, function (err, profile) {
-  F.followers(user, function(e1, followers){
-    profile = F.updateUsers('followers', profile, followers);
-    F.following(user, function(e2, following){
-      profile = F.updateUsers('following', profile, following);
-      console.log(profile);
-      db.save(user, profile, function(err, data){
-        console.log(data);
-      })
-    })
-  })
+C.crawlUser(user, function (err, profile) {
+  console.log(profile);
 });
 ```
