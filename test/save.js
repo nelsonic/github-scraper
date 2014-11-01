@@ -33,8 +33,8 @@ test('Try opening a file that doesnt exist', function (assert) {
 });
 
 // delete a record
-test('Save (and Open) basic profile to disk', function (assert) {
-  var user = Math.floor(Math.random() * 1000000000000000); // rndm
+test('(Soft) Delete a record', function (assert) {
+  var user = 'zero';
   var profile = { "hello":"world" };
   db.save(user, profile, function(err, data){
     assert.equal(data, user+'.json saved' ,"✓ User Created");
