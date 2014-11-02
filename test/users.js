@@ -1,5 +1,5 @@
 /*jslint node: true */
-"use strict";
+// "use strict";
 
 var test  = require('tape');
 var U = require('../src/users.js');
@@ -33,6 +33,43 @@ test('Add an array of users to existing list of users', function (t) {
     users = F.tidyArray(users, u1);
     users = F.tidyArray(users, u2);
     db.saveUsers(users, function(e, d){
+      t.end();
+    });
+  });
+});
+
+test('Integration test adds list of followers for know user to users', function (t) {
+  var user = 'iteles';
+  F.followers(user, function(e,f){
+    U.addUsers(f, function(err, users) {
+      t.true((users.indexOf(f[0]) > -1), "✓ " +f[0]  +" user added");
+      t.ok((users.indexOf(f[1]) > -1), "✓ " +f[1] +" user added");
+      users = F.tidyArray(users, u1);
+      users = F.tidyArray(users, u2);
+      db.saveUsers(users, function(e, d){
+        t.end();
+      });
+    });
+  })
+});
+
+var interval = 1; // set the interval for how often to crawl a user
+
+// get next user to crawl from list of users
+test('nextUser should work when supplied an undefined user', function(t) {
+  var u; // undefined
+  var users = [u, 'jim'];
+  U.nextUser(users, interval, function(e, nu){
+    console.log(nu);
+    t.equal(nu, users[1], "✓ " +users[1] +" is next user")
+    t.end();
+  });
+});
+
+test('this', function(t) {
+  F.following('nodecoder', function (e, f) {
+    U.nextUser(f, interval, function(e, nu) {
+      console.log(nu);
       t.end();
     });
   });

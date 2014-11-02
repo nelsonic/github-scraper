@@ -46,7 +46,9 @@ function lastUpdated (user, callback){
 // save list of users users.json to file
 function saveUsers (users, callback) {
   var filename = path.normalize(folder+'users'+ext);
+  users = users.filter(function() { return true; }); // remove undefined
   fs.writeFile(filename, users.join('\n'), function (err) {
+    // console.log('Saved ', users.length, 'users')
     callback(err, 'saved');
   });
 }

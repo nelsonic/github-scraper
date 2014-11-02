@@ -50,6 +50,9 @@ function tidyArray(arr, elem) {
     return a.indexOf (v) === i;
   }); // http://stackoverflow.com/a/14821032/1148249
 
+  // remove undefined/blank http://stackoverflow.com/a/281393/1148249
+  arr = arr.filter(function(e) { return e; });
+
   // remove the current user we are checking from list of users
   var index = arr.indexOf(elem);
   if(index > -1){
