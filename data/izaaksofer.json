@@ -1,0 +1,65 @@
+{
+	"followercount": 8,
+	"stared": 1,
+	"followingcount": 7,
+	"worksfor": "Joined on Jul 3, 2013",
+	"location": "",
+	"fullname": "",
+	"email": "",
+	"url": "",
+	"joined": "2013-07-03T11:51:37Z",
+	"avatar": "https://avatars1.githubusercontent.com/u/4929798?v=2&s=460",
+	"contribs": 57,
+	"longest": 3,
+	"current": 0,
+	"lastupdated": 1414923661405,
+	"followers": {
+		"nelsonic": [
+			1414923662047
+		],
+		"Subhan786": [
+			1414923662047
+		],
+		"FilWisher": [
+			1414923662047
+		],
+		"slowsushi": [
+			1414923662047
+		],
+		"sofer": [
+			1414923662047
+		],
+		"walthamstowbob": [
+			1414923662047
+		],
+		"GBGuinan": [
+			1414923662047
+		],
+		"ettore90": [
+			1414923662047
+		]
+	},
+	"following": {
+		"nelsonic": [
+			1414923663143
+		],
+		"stephanfowler": [
+			1414923663143
+		],
+		"sofer": [
+			1414923663143
+		],
+		"leochilds": [
+			1414923663143
+		],
+		"walthamstowbob": [
+			1414923663143
+		],
+		"GBGuinan": [
+			1414923663143
+		],
+		"ettore90": [
+			1414923663143
+		]
+	}
+}

@@ -27,7 +27,6 @@ function nextUser(users, interval, callback) {
     if(err) {
       return callback(err, u);
     }
-    console.log(' - - - - - - - - - - - - - - - - > ' +diff +' > ' + interval)
     if(diff > interval) {
       callback(err, u);
     } else {
@@ -35,21 +34,7 @@ function nextUser(users, interval, callback) {
       nextUser(users, interval, callback); // recurse
     }
   })
-  // if(typeof u === 'undefined' || u.length === 0 || u === undefined) {
-  //   console.log( ' - - - - - - '+u +' - - - - - - -');
-  //   F.tidyArray(users, u);
-  //   nextUser(users);
-  // } else
-  // return u;
 }
-
-var interval = 24 * 60 * 60 * 1000;
-
-F.following('nodecoder', function (e, f) {
-  nextUser(f, interval, function(e, u) {
-    console.log(u);
-  });
-});
 
 module.exports = {
   addUsers: addUsers,

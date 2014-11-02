@@ -66,9 +66,18 @@ test('nextUser should work when supplied an undefined user', function(t) {
   });
 });
 
-test('this', function(t) {
+test('Works when interval is low', function(t) {
   F.following('nodecoder', function (e, f) {
     U.nextUser(f, interval, function(e, nu) {
+      console.log(nu);
+      t.end();
+    });
+  });
+});
+
+test('Works when interval is high', function(t) {
+  F.following('nodecoder', function (e, f) {
+    U.nextUser(f, 10000000000, function(e, nu) {
       console.log(nu);
       t.end();
     });
