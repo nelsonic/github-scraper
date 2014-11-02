@@ -14,7 +14,7 @@ test('E2E with including unfollowing, updating & deleting', function (t) {
     // manually remove a follower:
     var f = Object.keys(profile['followers']);
     var removed = f[0];
-    f = F.tidyArray(f[0], f)
+    f = F.tidyArray(f, f[0])
     profile = F.updateUsers('followers', profile, f);
 
     // maunally update, read & delete the record

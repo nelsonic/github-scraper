@@ -43,10 +43,8 @@ function following (user, callback) {
   followGeneric('following', user, 1, [], callback);
 }
 
-var db = require('./save.js'); // our fs opperations
-
-
-function tidyArray(elem, arr) {
+// a cople of utility functions
+function tidyArray(arr, elem) {
   // remove dupes from list of users
   arr = arr.filter(function (v, i, a) {
     return a.indexOf (v) === i;
@@ -54,7 +52,9 @@ function tidyArray(elem, arr) {
 
   // remove the current user we are checking from list of users
   var index = arr.indexOf(elem);
-  arr.splice(index, 1); // http://stackoverflow.com/a/3954451/1148249
+  if(index > -1){
+    arr.splice(index, 1); // http://stackoverflow.com/a/3954451/1148249
+  }
   return arr;
 }
 

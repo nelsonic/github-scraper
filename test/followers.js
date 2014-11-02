@@ -43,7 +43,7 @@ test('Record when a user stops following', function (assert) {
 			// console.log(' - - - - - - - - - - ');
 			console.log('Unfollow: '+f[0]);
 			var removed = f[0];
-			f = F.tidyArray(f[0], f)
+			f = F.tidyArray(f, f[0])
 			profile = F.updateUsers('followers', profile, f);
 			// console.log(profile);
 			assert.equal(profile.followers[removed].length, 2, "✓ "+removed+" stopped following");

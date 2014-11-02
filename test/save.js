@@ -66,6 +66,20 @@ test('Unknown file should return error', function (t) {
   });
 });
 
+// save users
+test('Save & retrieve list of users', function (t) {
+  var users = ['hello', 'world'];
+  db.saveUsers(users, function(err, data) {
+    t.equal(err, null, "✓ Users saved"); // file saved
+    db.open('users', function(err, data) {
+      t.equal(err, null, "✓ Users retrieved"); // file found
+      // console.log(data.split('\n'));
+      t.deepEqual(data.split('\n'), users,  "✓ saveUsers");
+      t.end();
+    });
+  });
+});
+
 /*
 
 // if the difference is bigger than 1 day crawl again.

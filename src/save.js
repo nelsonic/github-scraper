@@ -28,7 +28,7 @@ function erase (user, callback){
   });
 }
 
-function lastUpdated(user, callback){
+function lastUpdated (user, callback){
   var filename = path.normalize(folder+user+ext);
   // check when the last time we crawled a user profile
   // by reading the mtime on the file
@@ -43,10 +43,18 @@ function lastUpdated(user, callback){
   });
 }
 
+// save list of users users.json to file
+function saveUsers (users, callback) {
+  var filename = path.normalize(folder+'users'+ext);
+  fs.writeFile(filename, users.join('\n'), function (err) {
+    callback(err, 'saved');
+  });
+}
 
 module.exports = {
   save: save,
   open: open,
   erase: erase,
-  lastUpdated: lastUpdated
+  lastUpdated: lastUpdated,
+  saveUsers: saveUsers
 }
