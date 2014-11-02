@@ -6,6 +6,7 @@ var user = 'alanshaw';
 
 // E2E Function
 function crawlUser(user, callback) {
+  var start = new Date().getTime();
   var ep = false; // existing profile
   // Yes, this is not best-practice asynchronous JS but its one fewer
   // nested callback and is ALWAYS faster than crawling a profile page
@@ -27,7 +28,7 @@ function crawlUser(user, callback) {
         profile = F.updateUsers('following', p, following);
         // console.log(profile);
         db.save(user, profile, function(e3, data) {
-          // console.log(data);
+          console.log(new Date().getTime() - start +' ms');
           callback(err, profile);
         })
       })

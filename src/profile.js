@@ -25,7 +25,7 @@ function profile(user, callback) {
           stats.push(stat);
         });
 
-      p.followerscount = stats[0];
+      p.followercount  = stats[0];
       p.stared         = stats[1];
       p.followingcount = stats[2];
 

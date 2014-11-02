@@ -1,6 +1,6 @@
 // removed
 var C = require('./src/');
 
-C.crawlUser('nelsonic', function(err, profile){
-  console.log(profile);
+C.crawlUser('pgte', function(err, profile){
+  console.log(profile.following['nelsonic']);
 })

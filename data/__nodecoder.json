@@ -1,5 +1,5 @@
 {
-	"followerscount": 2,
+	"followercount": 2,
 	"stared": 19,
 	"followingcount": 5,
 	"worksfor": "Great",
@@ -12,31 +12,31 @@
 	"contribs": 0,
 	"longest": 0,
 	"current": 0,
-	"lastupdated": 1414827488933,
+	"lastupdated": 1414932518716,
 	"followers": {
 		"hyprstack": [
-			1414827489567,
-			1414827490186
+			1414932519350,
+			1414932519962
 		],
 		"edwardcodes": [
-			1414827489567
+			1414932519350
 		]
 	},
 	"following": {
 		"edwardcodes": [
-			1414827490183
+			1414932519960
 		],
 		"hyprstack": [
-			1414827490184
+			1414932519960
 		],
 		"iteles": [
-			1414827490184
+			1414932519960
 		],
 		"nelsonic": [
-			1414827490184
+			1414932519960
 		],
 		"tj": [
-			1414827490184
+			1414932519960
 		]
 	}
 }

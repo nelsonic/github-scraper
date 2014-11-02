@@ -41,15 +41,12 @@ Example data structure:
 ```js
 {
   "followers": {
-    "u1" : { "s": "timestamp" },
-    "u2" : { "s": "timestamp" }
+    "u1" : ["timestamp"],
+    "u2" : ["timestamp"]
   },
   "following": {
-    "u3" : { "s" : "timestamp" },
-    "u2" : {
-      "s": "timestamp",
-      "e": "timestamp"
-    }
+    "u3" : ["timestamp"],
+    "u2" : ["timestamp", "timestamp2", "timestamp3"]
   }
 }
 ```
@@ -63,16 +60,16 @@ the key here is:
 
 - **u**: *username* (of the person who the user is following
   or being followed by)
-- **s**: *startdate* when the person first started following/being followed
-- **e**: *enddate* when the person stopped following
+- **timestamp**: *startdate* when the person first started following/being followed
+*enddate* when the person stopped following
 
 In addition to creating a file per user,
 we should maintain an index of all the users we are tracking.
-the easiest way is to have a new-line-separted list
+the easiest way is to have a new-line-separted list.
 
 ~~But... in the interest of being able to run this on Heroku
 (where you don't have access to the filesystem so no flat-file-db!)
-I'm going to use LevelDB for this.~~ >> File!
+I'm going to use LevelDB for this.~~ >> Use Files on DigitalOcean!
 
 
 ## Tests
@@ -94,7 +91,7 @@ New user?
 - [x] set time for **lastupdated** to *now*.
 
 Read data from db/disk so we can update it.
-- [ ] If a user has previously been crawled there will be a record in db
+- [x] If a user has previously been crawled there will be a record in db
 
 ## Backup the Data
 
@@ -117,7 +114,7 @@ SQL?
 
 # Simple UI
 
-> - [ ] Upload sketch
+- [ ] Upload sketch
 
 
 <br />
@@ -240,7 +237,7 @@ Interesting bits of info have blue squares drawn around them.
 
 Basic Profile Details for TJ:
 ```js
-  followerscount: 11000,
+  followercount: 11000,
   stared: 1000,
   followingcount: 147,
   worksfor: 'Segment.io',
@@ -257,10 +254,14 @@ Basic Profile Details for TJ:
 
 ## Tasks
 
-- [ ] Check Max Crawler Concurrency
-- [ ] Experiment with Child Processes?
 
-Example:
+* [ ] Add lastmodified checker for DB (avoid crawling more than once a day)
+* [ ] Save List of Users to DB
+* [ ] Check Max Crawler Concurrency
+* [ ] Experiment with Child Processes?
+* [ ] Record Profile (basics) History
+
+Crawler Example:
 
 ```js
 var C = require('./src/index.js');
@@ -271,3 +272,8 @@ C.crawlUser(user, function (err, profile) {
   console.log(profile);
 });
 ```
+
+# Objective 1
+
+- Track who the best people to follow are
+- Track if I am already following a person
