@@ -1,6 +1,10 @@
 // removed
 var C = require('./src/');
 
-C.crawlUser('pgte', function(err, profile){
-  console.log(profile.following['nelsonic']);
+var start = new Date.now();
+C.crawlUser('alanshaw', function(err, profile){
+  console.log(profile.followers['nelsonic']);
+  var end = new Date.now();
+  var time = end - start;
+  console.log('       T: ' + time +' ms');
 })

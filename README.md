@@ -254,7 +254,6 @@ Basic Profile Details for TJ:
 
 ## Tasks
 
-
 * [ ] Add lastmodified checker for DB (avoid crawling more than once a day)
 * [ ] Save List of Users to DB
 * [ ] Check Max Crawler Concurrency

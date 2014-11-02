@@ -2,52 +2,80 @@
 "use strict";
 
 var test = require('tape');
-var P = require('../src/profile.js');
 var db = require('../src/save.js');
 
 // save a basic profile to disk
-test('Save (and Open) basic profile to disk', function (assert) {
+test('Save (and Open) basic profile to disk', function (t) {
   var user = 'alanshaw';
   var profile = { "hello":"world" };
   db.save(user, profile, function(err, data){
-    assert.equal(data, user+'.json saved', "✓ Record saved");
+    t.equal(data, user+'.json saved', "✓ Record saved");
     db.open(user, function(err, data){
       if(err){
         console.log(' - - - - - - - - ');
         console.log(err)
         console.log(' - - - - - - - - ');
       }
-      assert.deepEqual(JSON.parse(data), profile, "✓ Profile matches");
-      assert.end();
+      t.deepEqual(JSON.parse(data), profile, "✓ Profile matches");
+      t.end();
     })
   })
 });
 
 // test failure to open a file that doesn't exist
-test('Try opening a file that doesnt exist', function (assert) {
+test('Try opening a file that doesnt exist', function (t) {
   var user = Math.floor(Math.random() * 1000000000000000); // rndm
   db.open(user, function(err, data) {
-    assert.equal(err.errno, 34, "✓ " +user +" Not Found"); // file not found
-    assert.end();
+    t.equal(err.errno, 34, "✓ " +user +" Not Found"); // file not found
+    t.end();
   });
 });
 
 // delete a record
-test('(Soft) Delete a record', function (assert) {
+test('(Soft) Delete a record', function (t) {
   var user = 'zero';
   var profile = { "hello":"world" };
   db.save(user, profile, function(err, data){
-    assert.equal(data, user+'.json saved' ,"✓ User Created");
+    t.equal(data, user+'.json saved' ,"✓ User Created");
     db.erase(user, function(err, data){
-      assert.equal(data, user+' deleted', "✓ User Deleted");
+      t.equal(data, user+' deleted', "✓ User Deleted");
       // confirm it was deleted:
       db.open(user, function(err, data) {
-        assert.equal(err.errno, 34, "✓ User Not Found"); // file not found
-        assert.end();
+        t.equal(err.errno, 34, "✓ User Not Found"); // file not found
+        t.end();
       });
     });
   });
 });
+
+// check last mod date on file:
+test('lastUpdated - Known file', function (t) {
+  db.lastUpdated('__zero', function(err, diff){
+    // console.log('Last Crawled: '+Math.floor(diff/(60*60*1000)) +' Hours ago' );
+    t.true(diff > 0, "✓ Last modified " +diff +" ms ago");
+    t.end();
+  });
+});
+
+// epect an error when file does not exist:
+test('Unknown file should return error', function (t) {
+  var user = Math.floor(Math.random() * 1000000000000000); // rndm
+  db.lastUpdated(user, function(err, diff){
+    t.equal(err.errno, 34, "✓ Record does not exist"); // file not found
+    t.end();
+  });
+});
+
+/*
+
+// if the difference is bigger than 1 day crawl again.
+if(diff > 24 * 60 * 60 * 1000) {
+
+} else {
+
+}
+
+*/
 
 // open log file to extract json
 

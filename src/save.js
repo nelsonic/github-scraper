@@ -28,8 +28,25 @@ function erase (user, callback){
   });
 }
 
+function lastUpdated(user, callback){
+  var filename = path.normalize(folder+user+ext);
+  // check when the last time we crawled a user profile
+  // by reading the mtime on the file
+  fs.stat(filename, function(err, stats){
+    if(err) { // file doesn't exist
+      return callback(err, 0);
+    }
+    var mtime = new Date(stats.mtime);
+    var now = new Date();
+    var diff = Number(now.getTime()-mtime.getTime());
+    callback(err, diff);
+  });
+}
+
+
 module.exports = {
   save: save,
   open: open,
-  erase: erase
+  erase: erase,
+  lastUpdated: lastUpdated
 }
