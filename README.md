@@ -254,8 +254,8 @@ Basic Profile Details for TJ:
 
 ## Tasks
 
-* [ ] Add lastmodified checker for DB (avoid crawling more than once a day)
-* [ ] Save List of Users to DB
+* [x] Add lastmodified checker for DB (avoid crawling more than once a day) >> db.lastUpdated
+* [x] Save List of Users to DB
 * [ ] Check Max Crawler Concurrency
 * [ ] Experiment with Child Processes?
 * [ ] Record Profile (basics) History

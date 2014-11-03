@@ -82,3 +82,5 @@ test('Confirm date (lastupdated) being set correctly on profile', function (asse
 		assert.end();
 	});
 });
+
+// crawl an org to force the profile to fail
