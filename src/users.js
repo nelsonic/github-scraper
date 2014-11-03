@@ -1,5 +1,6 @@
 var db = require('./save.js');
 var F = require('./follow.js');
+var chalk = require('chalk');
 
 // add users from list of followers/following
 function addUsers(list, callback) {
@@ -20,10 +21,20 @@ function addUsers(list, callback) {
 
 // from the list of users return the next
 function nextUser(users, interval, callback) {
-  // if(!users || users.length < 1);
+  if(!users || users.length < 1) {
+    return callback(500, 'no users');
+  }
   // console.log(users)
-  users = F.tidyArray(users);
+  // users = F.tidyArray(users);
+  var d = new Date();
+  var t = d.getMinutes() +':' +d.getSeconds()+':'+d.getMilliseconds();
   var u = users[0];
+  console.log(chalk.red(t) + chalk.green(' nextUser ') +chalk.cyan(u));
+  if(typeof u === 'undefined'){
+    users.splice(0, 1);
+    return nextUser(users, interval, callback); // recurse
+  } 
+  // console.log(users.length + ' users >> next: '+u)
   db.lastUpdated(u, function(err, diff) {
     // console.log("Diff: "+diff +' > interval '+interval);
     if(err) {
@@ -31,7 +42,8 @@ function nextUser(users, interval, callback) {
     } else if(diff > interval) {
       callback(err, u);
     } else {
-      users = F.tidyArray(users, u);
+      // users = F.tidyArray(users, u);
+      users.splice(0, 1);
       nextUser(users, interval, callback); // recurse
     }
   })
