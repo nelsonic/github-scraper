@@ -23,6 +23,9 @@ function crawlUser(user, callback) {
   });
 
   P.profile(user, function (err, profile) {
+    if(err || !profile) {
+      return callback(err, profile);
+    }
     var p = ep ? ep : profile;
     F.followers(user, function(e1, followers) {
       profile = F.updateUsers('followers', p, followers);

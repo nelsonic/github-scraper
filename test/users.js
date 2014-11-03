@@ -67,18 +67,46 @@ test('nextUser should work when supplied an undefined user', function(t) {
 });
 
 test('Works when interval is low', function(t) {
-  F.following('nodecoder', function (e, f) {
-    U.nextUser(f, interval, function(e, nu) {
-      console.log(nu);
-      t.end();
+  var user = 'edwardcodes';
+  db.save('nodecoder', {"hello":"world"}, function(e,d){
+    // console.log('72 >> '+d);
+    F.following(user, function (e, f) {
+      U.nextUser(f, 1, function(e, nu) {
+        // console.log('>> 74 >> ' +nu + " | "+user);
+        t.true('nodecoder' === nu, "✓ nextUser is nodecoder")
+        U.nextUser(f, 5000, function(e, nu) {
+          // console.log('>> 76 >> ' +nu + " | "+user);
+          t.true('hyprstack' === nu, "✓ nextUser is hyprstack")
+          db.erase('nodecoder', function(e,d){
+            t.end();
+          });
+        });
+      });
+    });
+  });
+});
+
+test('Works when interval is low - known static user edwardcodes', function(t) {
+  var user = 'edwardcodes';
+  db.save('nodecoder', {"hello":"world"}, function(e,d){
+    F.following(user, function (e, f) {
+      U.nextUser(f, 3000, function(e, nu) {
+        // console.log('>> 91 >> ' +nu + " | "+user);
+        t.true('hyprstack' === nu, "✓ nextUser is hyprstack")
+        db.erase('nodecoder', function(e,d){
+          t.end();
+        });
+      });
     });
   });
 });
 
 test('Works when interval is high', function(t) {
-  F.following('nodecoder', function (e, f) {
+  var user = 'nodecoder';
+  F.following(user, function (e, f) {
     U.nextUser(f, 10000000000, function(e, nu) {
-      console.log(nu);
+      // console.log('>> 107 >> ' +nu + " | "+user);
+      t.true('edwardcodes' === nu, "✓ nextUser is nodecoder")
       t.end();
     });
   });

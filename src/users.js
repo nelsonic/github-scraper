@@ -21,13 +21,14 @@ function addUsers(list, callback) {
 // from the list of users return the next
 function nextUser(users, interval, callback) {
   // if(!users || users.length < 1);
+  // console.log(users)
   users = F.tidyArray(users);
   var u = users[0];
-  db.lastUpdated(u, function(err, diff){
+  db.lastUpdated(u, function(err, diff) {
+    // console.log("Diff: "+diff +' > interval '+interval);
     if(err) {
       return callback(err, u);
-    }
-    if(diff > interval) {
+    } else if(diff > interval) {
       callback(err, u);
     } else {
       users = F.tidyArray(users, u);

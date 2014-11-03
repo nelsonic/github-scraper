@@ -82,7 +82,7 @@ function update(method, profile, existing, latest) {
  */
 function updateUsers(method, profile, latest) {
   var existing;
-  if(profile.hasOwnProperty(method)){
+  if(profile && profile.hasOwnProperty(method)){
     existing = Object.keys(profile[method]);
     // update people who/we have stopped following
     profile = update(method, profile, latest, existing); // yes switched!

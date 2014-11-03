@@ -10,6 +10,11 @@ var C = require('../src/index.js');
 
 test('E2E with including unfollowing, updating & deleting', function (t) {
   var user = 'nodecoder';
+  // this is my before function:
+  db.erase(user, function(err4, data){
+    console.log(user + " ✓ erased")
+  });
+
   C.crawlUser(user, function(err1, profile){
     // manually remove a follower:
     var f = Object.keys(profile['followers']);
@@ -53,3 +58,12 @@ test('Delete record to ensure dberr', function (assert) {
   })
 });
 */
+
+// test for failure (user doesn't exist HTTP status = 404)
+test('Test for a non-existant user', function (t) {
+  var user = Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
+  C.crawlUser(user, function (e, p) {
+    t.equal(e, 404, '- 404 for unknown user @' + user);
+    t.end();
+  });
+});

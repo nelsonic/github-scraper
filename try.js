@@ -2,7 +2,7 @@
 var C = require('./src/');
 
 var start = Date.now();
-C.crawlUser('nelsonic', function(err, profile){
+C.crawlUser('iteles', function(err, profile){
   console.log(profile.following['nelsonic']);
   var end = Date.now();
   var time = end - start;
