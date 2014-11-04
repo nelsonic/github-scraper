@@ -12,11 +12,11 @@ var u2 = 'u' + Math.floor(Math.random() * 1000000000000000); // rndm
 var newusers = [u1, u2];
 
 // list of users doesnt exist:
-test('Dont fail when users.json is not present', function (t) {
+test(Chalk.yellow('Dont fail when users.json is not present'), function (t) {
   db.erase('users', function(err){
     U.addUsers(newusers, function(err, users) {
-      t.equal(err.errno, 34, "✓ users.json does not exist"); // file not found
-      t.true((users.indexOf(u2) > -1), "✓ New user added");
+      t.equal(err.errno, 34, Chalk.green("✓ users.json does not exist")); // file not found
+      t.true((users.indexOf(u2) > -1), Chalk.green("✓ New user added"));
       users = F.tidyArray(users, u1);
       users = F.tidyArray(users, u2);
       db.saveUsers(users, function(e, d){
@@ -29,8 +29,8 @@ test('Dont fail when users.json is not present', function (t) {
 // add list of followers/following to list of users
 test('Add an array of users to existing list of users', function (t) {
   U.addUsers(newusers, function(err, users) {
-    t.true((users.indexOf(u2) > -1), "✓ New user added");
-    t.ok((users.indexOf(u2) > -1), "✓ New user added");
+    t.true((users.indexOf(u1) > -1), Chalk.green("✓ New user" +u1 +"added"));
+    t.ok((users.indexOf(u2) > -1), Chalk.green("✓ New user" +u2 +"added"));
     users = F.tidyArray(users, u1);
     users = F.tidyArray(users, u2);
     db.saveUsers(users, function(e, d){
@@ -43,8 +43,8 @@ test('Integration test adds list of followers for know user to users', function 
   var user = 'iteles';
   F.followers(user, function(e,f){
     U.addUsers(f, function(err, users) {
-      t.true((users.indexOf(f[0]) > -1), "✓ " +f[0]  +" user added");
-      t.ok((users.indexOf(f[1]) > -1), "✓ " +f[1] +" user added");
+      t.true((users.indexOf(f[0]) > -1), Chalk.green("✓ " +f[0]  +" user added"));
+      t.ok((users.indexOf(f[1]) > -1), Chalk.green("✓ " +f[1] +" user added"));
       users = F.tidyArray(users, u1);
       users = F.tidyArray(users, u2);
       db.saveUsers(users, function(e, d){
@@ -63,8 +63,8 @@ test('nextUser should work when supplied an undefined user', function(t) {
   var users = [u, u2];
 
   U.nextUser(users, interval, function(e, nu){
-    console.log(Chalk.red('>> '+nu));
-    console.log(Chalk.cyan(users));
+    // console.log(Chalk.green('>> '+nu));
+    // console.log(Chalk.cyan(users));
     t.equal(nu, u2, Chalk.green("✓ " +nu +" is next user"));
     t.end();
   });
@@ -87,10 +87,10 @@ test('Works when interval is low', function(t) {
     F.following(user, function (e, f) {
       U.nextUser(f, 1, function(e, nu) {
         // console.log('>> 74 >> ' +nu + " | "+user);
-        t.true('nodecoder' === nu, "✓ nextUser is " +nu)
+        t.true('nodecoder' === nu, Chalk.green("✓ nextUser is " +nu))
         U.nextUser(f, 5000, function(e, nu) {
           // console.log('>> 76 >> ' +nu + " | "+user);
-          t.true('hyprstack' === nu, "✓ nextUser is hyprstack")
+          t.true('hyprstack' === nu, Chalk.green("✓ nextUser is hyprstack"))
           db.erase('nodecoder', function(e,d){
             t.end();
           });
@@ -106,7 +106,7 @@ test('Works when interval is low - known static user edwardcodes', function(t) {
     F.following(user, function (e, f) {
       U.nextUser(f, 3000, function(e, nu) {
         // console.log('>> 91 >> ' +nu + " | "+user);
-        t.true('hyprstack' === nu, "✓ nextUser is hyprstack")
+        t.true('hyprstack' === nu, Chalk.green("✓ nextUser is hyprstack"))
         db.erase('nodecoder', function(e,d){
           t.end();
         });
@@ -123,7 +123,7 @@ test('Works when interval is high', function(t) {
   F.following(user, function (e, f) {
     U.nextUser(f, 10000000000, function(e, nu) {
       // console.log('>> 107 >> ' +nu + " | "+user);
-      t.true('edwardcodes' === nu, "✓ nextUser is " +nu)
+      t.true('edwardcodes' === nu, Chalk.green("✓ nextUser is " +nu))
       t.end();
     });
   });

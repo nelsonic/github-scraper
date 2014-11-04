@@ -29,7 +29,7 @@ function nextUser(users, interval, callback) {
   var d = new Date();
   var t = d.getMinutes() +':' +d.getSeconds()+':'+d.getMilliseconds();
   var u = users[0];
-  console.log(chalk.red(t) + chalk.green(' nextUser ') +chalk.cyan(u));
+  // console.log(chalk.red(t) + chalk.green(' nextUser ') +chalk.cyan(u));
   if(typeof u === 'undefined'){
     users.splice(0, 1);
     return nextUser(users, interval, callback); // recurse
