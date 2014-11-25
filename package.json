@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/nelsonic/fuata",
   "dependencies": {
-    "cheerio": "^0.17.0",
-    "request": "^2.44.0"
+    "cheerio": "^0.18.0",
+    "request": "^2.48.0"
   },
   "devDependencies": {
     "chalk": "^0.5.1",
