@@ -276,3 +276,9 @@ C.crawlUser(user, function (err, profile) {
 
 - Track who the best people to follow are
 - Track if I am already following a person
+
+
+### Twitter Followers
+
+- https://dev.twitter.com/rest/reference/get/followers/list
+- https://github.com/twitter/twurl
