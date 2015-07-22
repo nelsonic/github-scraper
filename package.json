@@ -1,5 +1,5 @@
 {
-  "name": "fuata",
+  "name": "github-scraper",
   "version": "0.0.2",
   "description": "insert imaginative description here",
   "main": "index.js",
@@ -8,20 +8,20 @@
     "quick": "./node_modules/tape/bin/tape ./test/*.js",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js && istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
-    "codeclimate": "CODECLIMATE_REPO_TOKEN=d2f93c6b1b66737b381f2a75152245fba367e6cc6be5586834804d08cd091408 ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=d76761e65db40196c610696b451975d738be69a40438ae9fec3a5a3113af799f ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
     "jshint": "jshint -c .jshintrc --exclude-path .gitignore .",
     "codestyle": "jscs -p google src/ test/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nelsonic/fuata.git"
+    "url": "https://github.com/nelsonic/github-scraper.git"
   },
   "author": "nelsonic <nodecoder@gmail.com> (https://github.com/nelsonic)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nelsonic/fuata/issues"
+    "url": "https://github.com/nelsonic/github-scraper/issues"
   },
-  "homepage": "https://github.com/nelsonic/fuata",
+  "homepage": "https://github.com/nelsonic/github-scraper",
   "dependencies": {
     "cheerio": "^0.19.0",
     "request": "^2.60.0",
