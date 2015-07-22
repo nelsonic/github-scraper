@@ -1,8 +1,7 @@
 // removed
-var C = require('./src/');
-
+var Profile = require('./lib/profile');
 var start = Date.now();
-C.crawlUser('nelsonic', function(err, profile){
+Profile('nelsonic', function(err, profile){
   console.log(profile);
   var end = Date.now();
   var time = end - start;
