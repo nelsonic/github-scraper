@@ -26,7 +26,7 @@ test('Save (and Open) basic profile to disk', function (t) {
 test('Try opening a file that doesnt exist', function (t) {
   var user = Math.floor(Math.random() * 1000000000000000); // rndm
   db.open(user, function(err, data) {
-    t.equal(err.errno, 34, "✓ " +user +" Not Found"); // file not found
+    t.equal(err.errno, -2, "✓ " +user +" Not Found"); // file not found
     t.end();
   });
 });
@@ -41,7 +41,7 @@ test('(Soft) Delete a record', function (t) {
       t.equal(data, user+' deleted', "✓ User Deleted");
       // confirm it was deleted:
       db.open(user, function(err, data) {
-        t.equal(err.errno, 34, "✓ User Not Found"); // file not found
+        t.equal(err.errno, -2, "✓ User Not Found"); // file not found
         t.end();
       });
     });
@@ -61,7 +61,7 @@ test('lastUpdated - Known file', function (t) {
 test('Unknown file should return error', function (t) {
   var user = Math.floor(Math.random() * 1000000000000000); // rndm
   db.lastUpdated(user, function(err, diff){
-    t.equal(err.errno, 34, "✓ Record does not exist"); // file not found
+    t.equal(err.errno, -2, "✓ Record does not exist"); // file not found
     t.end();
   });
 });

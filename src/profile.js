@@ -7,7 +7,6 @@ function profile(user, callback) {
     return callback(400);
   }
   request('https://github.com/' + user, function (error, response, html) {
-
     if (!error && response.statusCode === 200) {
 
       var $ = cheerio.load(html);
