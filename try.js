@@ -4,6 +4,6 @@
 // })
 
 var repositories = require('./lib/repositories');
-repositories('alanshaw', function(err, repos){
+repositories('iteles', function(err, repos){
   console.log(repos);
 })
