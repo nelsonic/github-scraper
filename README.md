@@ -1,7 +1,7 @@
 # Untitled
 
 [![Build Status](https://travis-ci.org/nelsonic/fuata.png?branch=master)](https://travis-ci.org/nelsonic/fuata)
-[![Coverage Status](https://coveralls.io/repos/nelsonic/fuata/badge.png)](https://coveralls.io/r/nelsonic/fuata)
+[![Test Coverage](https://codeclimate.com/github/nelsonic/fuata/badges/coverage.svg)](https://codeclimate.com/github/nelsonic/fuata/coverage)
 [![Code Climate](https://codeclimate.com/github/nelsonic/fuata.png)](https://codeclimate.com/github/nelsonic/fuata)
 [![Dependencies](https://david-dm.org/nelsonic/fuata.png?theme=shields.io)](https://david-dm.org/nelsonic/fuata)
 [![devDependency Status](https://david-dm.org/nelsonic/fuata/dev-status.svg)](https://david-dm.org/nelsonic/fuata#info=devDependencies)

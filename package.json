@@ -8,7 +8,7 @@
     "quick": "./node_modules/tape/bin/tape ./test/*.js",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js && istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=d2f93c6b1b66737b381f2a75152245fba367e6cc6be5586834804d08cd091408 ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
     "jshint": "jshint -c .jshintrc --exclude-path .gitignore .",
     "codestyle": "jscs -p google src/ test/"
   },
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "chalk": "^1.1.0",
-    "coveralls": "^2.11.3",
+    "codeclimate-test-reporter": "0.0.4",
     "istanbul": "^0.3.17",
     "jshint": "^2.8.0",
     "pre-commit": "1.0.10",
@@ -38,6 +38,7 @@
   "pre-commit": [
     "jshint",
     "coverage",
-    "coveralls"
+    "codeclimate"
+
   ]
 }
