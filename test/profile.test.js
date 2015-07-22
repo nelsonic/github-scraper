@@ -1,6 +1,3 @@
-/*jslint node: true */
-"use strict";
-
 var test = require('tape');
 var profile = require('../lib/profile');
 
