@@ -18,23 +18,49 @@ it has quite a few limitations (see: "_Issues with GitHub API_" section below) t
 
 We need a _simple_ way of systematically getting ***all*** the info from GitHub so that we can store trends.
 
+We are building this project to [***scratch our own itch***](https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php)
+if you too want to know
+
 
 ## What *Problem* (are we trying to solve)?
 
-We want to "[_crawl_](https://en.wikipedia.org/wiki/Web_crawler)" GitHub
-to extract insights / trends and present a tailored dashboard for each person using the site.
++ ***Who*** are the up-and-comming people (_worth following_) on GitHub?
++ ***Which*** are the ***interesting projects*** (*and why?!*)
++ Is a project's ***popularity growing*** or decreasing?
++ What are the chances of success for a given project?
 
-+ *Who* are the up-and-comming people on GitHub?
-+ Which are the ***interesting projects*** (*and why?!*)
 
-Have you ever wanted to know who are the **best people** online
-**to follow** and ***why***?
+## How?
 
-- Who posts interesting content and who doesn't?
-- Who is "**trending**" and ***why***?
+We are "[_crawling_](https://en.wikipedia.org/wiki/Web_crawler)" GitHub
+to extract raw data which we will derive insights / trends and present a tailored dashboard for each person using the site.
 
-I wonder this all the time.
-So I'm building ***github-scraper*** to [***scratch my own itch***](https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php).
+### 1. Profile
+
+Everything starts with the personal profile.
+
+![example github profile](http://i.imgur.com/uDscohR.jpg)
+
+Interesting bits of info have blue squares drawn around them.
+
+Basic Profile Details for TJ:
+```js
+  followercount: 11000,
+  stared: 1000,
+  followingcount: 147,
+  worksfor: 'Segment.io',
+  location: 'Victoria, BC, Canada',
+  fullname: 'TJ Holowaychuk',
+  email: 'tj@vision-media.ca',
+  url: 'http://tjholowaychuk.com',
+  joined: '2008-09-18T22:37:28Z',
+  avatar: 'https://avatars2.githubusercontent.com/u/25254?v=2&s=460',
+  contribs: 3217,
+  longest: 43,
+  current: 0
+```
+
+
 
 ### Data Model
 
@@ -244,28 +270,7 @@ curl -v https://api.github.com/users/pgte/following/visionmedia
 - yet the most followed person [Linus Torvalds](https://github.com/torvalds)
 only has 19k followers (so its a highly distributed network )
 
-## Profile Data to Scrape
 
-![example github profile](http://i.imgur.com/uDscohR.jpg)
-
-Interesting bits of info have blue squares drawn around them.
-
-Basic Profile Details for TJ:
-```js
-  followercount: 11000,
-  stared: 1000,
-  followingcount: 147,
-  worksfor: 'Segment.io',
-  location: 'Victoria, BC, Canada',
-  fullname: 'TJ Holowaychuk',
-  email: 'tj@vision-media.ca',
-  url: 'http://tjholowaychuk.com',
-  joined: '2008-09-18T22:37:28Z',
-  avatar: 'https://avatars2.githubusercontent.com/u/25254?v=2&s=460',
-  contribs: 3217,
-  longest: 43,
-  current: 0
-```
 
 ## Tasks
 
