@@ -1,4 +1,4 @@
-# Untitled
+# GitHub Scraper
 
 [![Build Status](https://travis-ci.org/nelsonic/fuata.png?branch=master)](https://travis-ci.org/nelsonic/fuata)
 [![Test Coverage](https://codeclimate.com/github/nelsonic/fuata/badges/coverage.svg)](https://codeclimate.com/github/nelsonic/fuata/coverage)
@@ -7,8 +7,25 @@
 [![devDependency Status](https://david-dm.org/nelsonic/fuata/dev-status.svg)](https://david-dm.org/nelsonic/fuata#info=devDependencies)
 <!-- [![NPM version](https://badge.fury.io/js/fuata.png)](https://npmjs.org/package/fuata) -->
 
+## Why?
 
-# *Who* Should I Follow?
+_How_ can we _discover_ which are the _interesting_ people and projects
+on GitHub (without *manually* checking *dozens* of GitHub profiles/repositories each day) ?
+
+We _could_ use the [GitHub ***API***](https://developer.github.com/v3/)
+to get (_almost_ all the) records from GitHub, but sadly,
+it has quite a few limitations (see: "_Issues with GitHub API_" section below) the biggest limitation being the _rate-limiting_ on API requests.
+
+We need a _simple_ way of systematically getting ***all*** the info from GitHub so that we can store trends.
+
+
+## What *Problem* (are we trying to solve)?
+
+We want to "[_crawl_](https://en.wikipedia.org/wiki/Web_crawler)" GitHub
+to extract insights / trends and present a tailored dashboard for each person using the site.
+
++ *Who* are the up-and-comming people on GitHub?
++ Which are the ***interesting projects*** (*and why?!*)
 
 Have you ever wanted to know who are the **best people** online
 **to follow** and ***why***?
@@ -17,12 +34,11 @@ Have you ever wanted to know who are the **best people** online
 - Who is "**trending**" and ***why***?
 
 I wonder this all the time.
-So I'm building [***fuata***](https://translate.google.com/#auto/en/fuata)
-(working title) to [***scratch my own itch***](https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php).
+So I'm building ***github-scraper*** to [***scratch my own itch***](https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php).
 
-# Data Model
+### Data Model
 
-I expect to store a couple of hundred (million) records in the database.
+We expect to store a couple of hundred (million) records in the database.
 
 - fullName
 - @username
@@ -190,7 +206,7 @@ curl -v https://api.github.com/users/pgte/followers
 etc...]
 ```
 
-#### Issues with using the GitHub API:
+#### Issues (with using the) GitHub API:
 
 - The API only returns 30 results per query.
 - **X-RateLimit-Limit**: **60** (can only make 60 requests per hour) ...
@@ -211,7 +227,6 @@ but sadly, [GitHub is built in Ruby-on-Rails](http://builtwith.com/github.com)
 which is "RESTful" (not real-time).
 
 #### *But*...
-
 
 Once we know who we *should* be following, we can use
 
