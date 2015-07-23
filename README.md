@@ -200,6 +200,8 @@ https://www.synology.com/en-global/support/RAID_calculator
 - Intro to web-scraping with cheerio:
 https://www.digitalocean.com/community/tutorials/how-to-use-node-js-request-and-cheerio-to-set-up-simple-web-scraping
 - GitHub background info: http://en.wikipedia.org/wiki/GitHub
++ GitHub Event Types:
+https://developer.github.com/v3/activity/events/types/
 
 ### GitHub Stats API
 

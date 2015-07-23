@@ -17,3 +17,12 @@ test('expect random (non-existent) user to return 404 error ', function(t){
 		t.end();
 	})
 })
+
+test('parse @iteles activity feed (expect recent activity)', function(t){
+	var user = 'iteles', repo;
+	feed(user, function(err, repos){
+		t.ok(err === null, 'No error when parsing ' +user +' activity feed');
+
+		t.end();
+	})
+})
