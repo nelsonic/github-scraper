@@ -67,6 +67,77 @@ Basic Profile Details for TJ:
 
 
 
+### 3. Activity feed
+
+Every person on
+
+#### Parsing the Feed
+
+#### Using xml2js to parse the Atom Feed
+
+The activity feed is published as an [**.atom**](https://en.wikipedia.org/wiki/RSS)
+xml string which contains a list of entries.
+
+We use [**xml2js**](https://www.npmjs.com/package/xml2js)
+(which in turn uses the [**sax**](https://www.npmjs.com/package/sax) xml parser) to parse the xml stream. This results in a object similar to the following example:
+
+```js
+{ '$':
+   { xmlns: 'http://www.w3.org/2005/Atom',
+     'xmlns:media': 'http://search.yahoo.com/mrss/',
+     'xml:lang': 'en-US' },
+  id: [ 'tag:github.com,2008:/iteles' ],
+  link: [ { '$': [Object] }, { '$': [Object] } ],
+  title: [ 'iteles’s Activity' ],
+  updated: [ '2015-07-22T23:31:25Z' ],
+  entry:
+   [ { id: [Object],
+       published: [Object],
+       updated: [Object],
+       link: [Object],
+       title: [Object],
+       author: [Object],
+       'media:thumbnail': [Object],
+       content: [Object] },
+     { id: [Object],
+       published: [Object],
+       updated: [Object],
+       link: [Object],
+       title: [Object],
+       author: [Object],
+       'media:thumbnail': [Object],
+       content: [Object] }
+    ]
+}
+```
+Each call to the atom feed returns the latest 30 enties.
+We're showing 2 here for illustration (_so you get the idea..._)
+
+From this we _extract_ only the relevant info:
+
+```sh
+'2015-07-22T12:33:14Z alanshaw pushed to master at alanshaw/david-www',
+'2015-07-22T12:33:14Z alanshaw created tag v9.4.3 at alanshaw/david-www',
+'2015-07-22T09:23:28Z alanshaw closed issue tableflip/i18n-browserify#6',
+'2015-07-21T17:08:19Z alanshaw commented on issue alanshaw/david#71',
+'2015-07-21T17:05:47Z alanshaw commented on issue alanshaw/david#71',
+'2015-07-21T17:03:32Z alanshaw commented on issue alanshaw/david#71',
+'2015-07-21T08:24:13Z alanshaw pushed to master at tableflip/score-board',
+'2015-07-20T17:49:59Z alanshaw deleted branch refactor-corp-events at tableflip/sow-api-client',
+'2015-07-20T17:49:58Z alanshaw pushed to master at tableflip/sow-api-client',
+'2015-07-20T17:49:58Z alanshaw merged pull request tableflip/sow-api-client#2',
+'2015-07-20T17:49:54Z alanshaw opened pull request tableflip/sow-api-client#2',
+'2015-07-20T16:59:47Z alanshaw created branch refactor-corp-events at tableflip/sow-api-client',
+'2015-07-20T14:09:47Z alanshaw pushed to master at tableflip/sow-integration',
+'2015-07-20T13:58:56Z alanshaw pushed to master at tableflip/sow-integration',
+'2015-07-20T11:47:39Z alanshaw pushed to master at tableflip/sow-integration',
+'2015-07-18T07:30:36Z alanshaw closed issue alanshaw/md-tokenizer#1',
+'2015-07-18T07:30:36Z alanshaw commented on issue alanshaw/md-tokenizer#1',
+'2015-07-18T07:27:40Z alanshaw created tag v0.0.1 at alanshaw/md-tokenizer'
+```
+
+
+
 ### Data Model
 
 We expect to store a couple of hundred (million) records in the database.

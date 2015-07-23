@@ -9,7 +9,8 @@
 // })
 
 var feed = require('./lib/feed');
-feed('iteles', function(err, list){
+feed('alanshaw', function(err, list){
   console.log(err);
-  console.log(list)
+  console.log(list, list.entries.length)
+
 })
