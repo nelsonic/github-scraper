@@ -19,10 +19,13 @@ test('expect random (non-existent) user to return 404 error ', function(t){
 })
 
 test('parse @iteles activity feed (expect recent activity)', function(t){
-	var user = 'iteles', repo;
-	feed(user, function(err, repos){
-		t.ok(err === null, 'No error when parsing ' +user +' activity feed');
-
+	var user = 'iteles';
+	feed(user, function(err, list){
+		t.ok(err === null, 'No error when parsing @' +user +' activity feed');
+    var entry = list.entries.filter(function(e){
+      return e.indexOf('commented');
+    })
+    t.ok(list.entries.length === 30, '@' +user +' activity feed contains 30 entries')
 		t.end();
 	})
 })

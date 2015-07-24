@@ -129,8 +129,6 @@ e.g: https://github.com/iteles?tab=activity
 
 #### Parsing the Feed
 
-#### Using xml2js to parse the Atom Feed
-
 The activity feed is published as an [**.atom**](https://en.wikipedia.org/wiki/RSS)
 xml string which contains a list of entries.
 
@@ -184,6 +182,8 @@ From this we _extract_ only the relevant info:
 '2015-07-18T07:30:36Z alanshaw closed issue alanshaw/md-tokenizer#1',
 '2015-07-18T07:30:36Z alanshaw commented on issue alanshaw/md-tokenizer#1',
 ```
+Instead of _wasting_ (_what will be **Giga**_) ***Bytes***
+
 As we can see from this there are several event types:
 
 + **pushed to master** at
@@ -204,6 +204,16 @@ https://developer.github.com/v3/activity/events/types/
 One thing worth noting is that RSS feed is ***Not Real-Time*** ...
 sadly, it only gets updated periodically so we cannot rely on it to
 have the *latest* info.
+
+### 4. Repository
+
+This is where things start getting interesting ...
+
+[upload screenshot]
+
+
+
+
 
 
 ### Data Model
