@@ -211,8 +211,25 @@ This is where things start getting interesting ...
 
 [upload screenshot]
 
+example: https://github.com/nelsonic/adoro
+
+```js
+{ desc: 'The little publishing tool you\'ll love using. [work-in-progress]',
+  website: 'http://www.dwyl.io/',
+  watchers: 3,
+  stars: 8,
+  forks: 1,
+  commits: 12,
+  branches: 1,
+  releases: 1,
+  contribs: 1,
+  langs: [ 'JavaScript 90.7%', 'CSS 9.3%' ] }
+```
 
 
+> Annoyingly the number of issues and pull requestsis are
+loaded *after* the page has loaded (via XHR) so we do not get these
+two stats on page load.
 
 
 
