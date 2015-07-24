@@ -9,7 +9,7 @@
 // })
 
 var feed = require('./lib/feed');
-feed('alanshaw', function(err, list){
+feed('nelsonic', function(err, list){
   console.log(err);
   console.log(list, list.entries.length)
 

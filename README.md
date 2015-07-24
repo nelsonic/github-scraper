@@ -63,13 +63,69 @@ Basic Profile Details for TJ:
 
 ### 2. Repositories
 
+The next tab on the personal profile page is "Repositories"
+this is a list of the personal projects the person is working on:
+
 [upload screenshot]
 
+We crawl this page and return an array containing the repo properties:
+
+```js
+
+[
+  { url: '/iteles/learn-ab-and-multivariate-testing',
+    name: 'learn-ab-and-multivariate-testing',
+    lang: '',
+    desc: 'Tutorial on A/B and multivariate testing',
+    info: '',
+    stars: '4',
+    forks: '0',
+    updated: '2015-07-08T08:36:37Z' },
+  { url: '/iteles/practical-full-stack-testing',
+    name: 'practical-full-stack-testing',
+    lang: 'HTML',
+    desc: 'A fork of @nelsonic\'s repo to allow for PRs',
+    info: 'forked from nelsonic/practical-js-tdd',
+    stars: '0',
+    forks: '36',
+    updated: '2015-06-06T14:40:43Z' },
+  { url: '/iteles/styling-for-accessibility',
+    name: 'styling-for-accessibility',
+    lang: '',
+    desc: 'A collection of \'do\'s and \'don\'t\'s of CSS to ensure accessibility',
+    info: '',
+    stars: '0',
+    forks: '0',
+    updated: '2015-05-26T11:06:28Z' },
+  { url: '/iteles/Ultimate-guide-to-successful-meetups',
+    name: 'Ultimate-guide-to-successful-meetups',
+    lang: '',
+    desc: 'The ultimate guide to organizing successful meetups',
+    info: '',
+    stars: '3',
+    forks: '0',
+    updated: '2015-05-19T09:40:39Z' },
+  { url: '/iteles/Javascript-the-Good-Parts-notes',
+    name: 'Javascript-the-Good-Parts-notes',
+    lang: '',
+    desc: 'Notes on the seminal "Javascript the Good Parts: byDouglas Crockford',
+    info: '',
+    stars: '41',
+    forks: '12',
+    updated: '2015-05-17T16:39:35Z' }
+]
+```
 
 
 ### 3. Activity feed
 
-Every person on
+Every person on GitHub has an RSS feed for their recent activity
+
+it can be viewed online by visiting:
+```sh
+https://github.com/{username}?tab=activity
+```
+e.g: https://github.com/iteles?tab=activity
 
 #### Parsing the Feed
 
@@ -120,22 +176,34 @@ From this we _extract_ only the relevant info:
 '2015-07-22T12:33:14Z alanshaw created tag v9.4.3 at alanshaw/david-www',
 '2015-07-22T09:23:28Z alanshaw closed issue tableflip/i18n-browserify#6',
 '2015-07-21T17:08:19Z alanshaw commented on issue alanshaw/david#71',
-'2015-07-21T17:05:47Z alanshaw commented on issue alanshaw/david#71',
-'2015-07-21T17:03:32Z alanshaw commented on issue alanshaw/david#71',
 '2015-07-21T08:24:13Z alanshaw pushed to master at tableflip/score-board',
 '2015-07-20T17:49:59Z alanshaw deleted branch refactor-corp-events at tableflip/sow-api-client',
 '2015-07-20T17:49:58Z alanshaw pushed to master at tableflip/sow-api-client',
 '2015-07-20T17:49:58Z alanshaw merged pull request tableflip/sow-api-client#2',
 '2015-07-20T17:49:54Z alanshaw opened pull request tableflip/sow-api-client#2',
-'2015-07-20T16:59:47Z alanshaw created branch refactor-corp-events at tableflip/sow-api-client',
-'2015-07-20T14:09:47Z alanshaw pushed to master at tableflip/sow-integration',
-'2015-07-20T13:58:56Z alanshaw pushed to master at tableflip/sow-integration',
-'2015-07-20T11:47:39Z alanshaw pushed to master at tableflip/sow-integration',
 '2015-07-18T07:30:36Z alanshaw closed issue alanshaw/md-tokenizer#1',
 '2015-07-18T07:30:36Z alanshaw commented on issue alanshaw/md-tokenizer#1',
-'2015-07-18T07:27:40Z alanshaw created tag v0.0.1 at alanshaw/md-tokenizer'
 ```
+As we can see from this there are several event types:
 
++ **pushed to master** at
++ **created tag** v9.4.3 at
++ **opened issue**
++ **commented on issue**
++ **closed issue**
++ **deleted branch**
++ **opened pull request**
++ **merged pull request**
++ **starred** username/repo-name
+
+For now we are *not* going to parse the event types, we are simply going to store them in our list for later analysis.
+
+We have a good pointer when its time to start interpreting the data:
+https://developer.github.com/v3/activity/events/types/
+
+One thing worth noting is that RSS feed is ***Not Real-Time*** ...
+sadly, it only gets updated periodically so we cannot rely on it to
+have the *latest* info.
 
 
 ### Data Model
@@ -347,7 +415,8 @@ curl -v https://api.github.com/users/pgte/following/visionmedia
 - GitHub has 3.4 Million users
 - yet the most followed person [Linus Torvalds](https://github.com/torvalds)
 only has 19k followers (so its a highly distributed network )
-
++ https://www.githubarchive.org/ attempts to archive all of GitHub
++ http://octoboard.com/ shows stats for the past 24h
 
 
 ## Tasks
