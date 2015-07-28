@@ -261,10 +261,27 @@ example: https://github.com/nelsonic/adoro
 
 ### Issues
 
+List of issues for a repository:
+
+```sh
+[
+  {
+    url: '/dwyl/tudo/issues/76',
+    title: 'Does knowing who on your team is currently online help get work done?',
+    created: '2015-07-24T13:24:32Z',
+    author: 'nelsonic',
+    labels: [ 'enhancement', 'help wanted', 'question' ]
+  }
+]
+```
+
 ```sh
 2015-07-22T12:33:14Z issue /dwyl/tudo/issues/77
 ```
 
+> Should we include the "all issues by this author" link?
++ **created_by** https://github.com/dwyl/tudo/issues/created_by/iteles
++ **assignee** (assigned to): https://github.com/dwyl/tudo/issues?q=assignee%3Aiteles+is%3Aopen
 
 
 ### Issue (_individual_)
