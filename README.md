@@ -264,17 +264,35 @@ example: https://github.com/nelsonic/adoro
 List of issues for a repository:
 
 ```sh
-[
-  {
-    url: '/dwyl/tudo/issues/76',
-    title: 'Does knowing who on your team is currently online help get work done?',
-    created: '2015-07-24T13:24:32Z',
-    author: 'nelsonic',
-    labels: [ 'enhancement', 'help wanted', 'question' ]
-  }
-]
+{ entries:
+   [
+     {
+       url: '/dwyl/tudo/issues/46',
+       title: 'discuss components',
+       created: '2015-07-21T15:34:22Z',
+       author: 'benjaminlees',
+       comments: 3,
+       assignee: 'izaakrogan',
+       milestone: 'I don\'t know what I\'m doing',
+       labels: [ 'enhancement', 'help wanted', 'question' ]
+     },
+     {
+       url: '/dwyl/tudo/issues/45',
+       title: 'Create riot components from HTML structure files',
+       created: '2015-07-21T15:24:58Z',
+       author: 'msmichellegar',
+       comments: 2,
+       assignee: 'msmichellegar',
+       labels: [ 'question' ]
+     }
+  ],
+  open: 30,
+  closed: 20,
+  next: '/dwyl/tudo/issues?page=2&q=is%3Aissue+is%3Aopen'
+}
 ```
 
+Each issue in the list would create a entry in the crawler (worker) queue:
 ```sh
 2015-07-22T12:33:14Z issue /dwyl/tudo/issues/77
 ```

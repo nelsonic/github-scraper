@@ -17,3 +17,28 @@ test('expect random (non-existent) repo to return 404 error ', function(t){
 		t.end();
 	})
 })
+
+test('crawl known repository that has *many* issues ', function(t){
+	var project = 'dwyl/tudo'
+	issues(project, function(err, list) {
+    t.ok(err === null, 'No Error when crawling ' +project +' issues');
+    console.log(list.entries.length);
+		// t.ok(err === 404, 'Got 404 Error when username does not exist');
+    var count = list.entries.length;
+		t.ok(count > 1, 'repo: ' +project +' has ' +count + ' issues (non-zero) on (First Page)');
+    t.ok(list.open > 1, 'repo: ' +project +' has ' +list.open + ' OPEN issues (non-zero)');
+    t.ok(list.closed > 10, 'repo: ' +project +' has ' +list.closed + ' CLOSED issues');
+		t.end();
+	})
+})
+
+test('crawl known repository that only has a single page of issues ', function(t){
+	var project = 'dwyl/ignored'
+	issues(project, function(err, list) {
+    t.ok(err === null, 'No Error when crawling ' +project +' issues');
+    var count = list.entries.length;
+		t.ok(count === 0, 'repo: ' +project +' has ' +count + ' issues (ZERO)');
+    t.ok(list.closed > 5, 'repo: ' +project +' has ' +list.closed + ' CLOSED issues');
+		t.end();
+	})
+})
