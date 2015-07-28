@@ -43,35 +43,53 @@ Everything starts with the personal profile.
 
 Interesting bits of info have blue squares drawn around them.
 
-Basic Profile Details for TJ:
+Basic Profile Details for TJ (_with organisations_):
 ```js
-  followercount: 11000,
+{ followercount: 15000,
   stared: 1000,
-  followingcount: 147,
-  worksfor: 'Segment.io',
+  followingcount: 164,
+  worksfor: 'Segment.com',
   location: 'Victoria, BC, Canada',
   fullname: 'TJ Holowaychuk',
   email: 'tj@vision-media.ca',
   url: 'http://tjholowaychuk.com',
   joined: '2008-09-18T22:37:28Z',
-  avatar: 'https://avatars2.githubusercontent.com/u/25254?v=2&s=460',
-  contribs: 3217,
-  longest: 43,
-  current: 0
+  avatar: 'https://avatars2.githubusercontent.com/u/25254?v=3&s=460',
+  contribs: 705,
+  longest: 8,
+  current: 0,
+  lastupdated: 1437741697916,
+  orgs:
+   [ '/zeromq https://avatars0.githubusercontent.com/u/109777?v=3&s=84',
+     '/LearnBoost https://avatars0.githubusercontent.com/u/204174?v=3&s=84',
+     '/senchalabs https://avatars1.githubusercontent.com/u/313839?v=3&s=84',
+     '/segmentio https://avatars0.githubusercontent.com/u/819518?v=3&s=84',
+     '/luna https://avatars0.githubusercontent.com/u/1493601?v=3&s=84',
+     '/component https://avatars2.githubusercontent.com/u/1687071?v=3&s=84',
+     '/basijeGithub https://avatars3.githubusercontent.com/u/4106647?v=3&s=84',
+     '/solid https://avatars2.githubusercontent.com/u/4202963?v=3&s=84',
+     '/koajs https://avatars1.githubusercontent.com/u/5055057?v=3&s=84',
+     '/slate https://avatars3.githubusercontent.com/u/5479637?v=3&s=84',
+     '/clibs https://avatars3.githubusercontent.com/u/5657447?v=3&s=84',
+     '/reworkcss https://avatars2.githubusercontent.com/u/5658224?v=3&s=84',
+     '/expressjs https://avatars3.githubusercontent.com/u/5658226?v=3&s=84',
+     '/cojs https://avatars3.githubusercontent.com/u/6047096?v=3&s=84',
+     '/uv https://avatars1.githubusercontent.com/u/6080123?v=3&s=84',
+     '/nanodb https://avatars0.githubusercontent.com/u/6482465?v=3&s=84',
+     '/jstrace https://avatars3.githubusercontent.com/u/6807372?v=3&s=84' ] }
 ```
 
 
 ### 2. Repositories
 
 The next tab on the personal profile page is "Repositories"
-this is a list of the personal projects the person is working on:
+this is a **list** of the ***personal projects*** the person is working on:
 
-[upload screenshot]
+<img width="1033" alt="github-ines-list-of-repositories" src="https://cloud.githubusercontent.com/assets/194400/8909661/7e83e97e-347a-11e5-84c9-239f558a2b98.png">
 
 We crawl this page and return an array containing the repo properties:
 
 ```js
-
 [
   { url: '/iteles/learn-ab-and-multivariate-testing',
     name: 'learn-ab-and-multivariate-testing',
@@ -81,6 +99,14 @@ We crawl this page and return an array containing the repo properties:
     stars: '4',
     forks: '0',
     updated: '2015-07-08T08:36:37Z' },
+  { url: '/iteles/learn-tdd',
+    name: 'learn-tdd',
+    lang: 'JavaScript',
+    desc: 'A brief introduction to Test Driven Development (TDD) in JavaScript',
+    info: 'forked from dwyl/learn-tdd',
+    stars: '0',
+    forks: '4',
+    updated: '2015-06-29T17:24:56Z' },
   { url: '/iteles/practical-full-stack-testing',
     name: 'practical-full-stack-testing',
     lang: 'HTML',
@@ -119,7 +145,8 @@ We crawl this page and return an array containing the repo properties:
 
 ### 3. Activity feed
 
-Every person on GitHub has an RSS feed for their recent activity
+Every person on GitHub has an RSS feed for their recent activity;
+this is the 3rd and final tab of the person's profile page.
 
 it can be viewed online by visiting:
 ```sh
@@ -205,7 +232,7 @@ One thing worth noting is that RSS feed is ***Not Real-Time*** ...
 sadly, it only gets updated periodically so we cannot rely on it to
 have the *latest* info.
 
-### 4. Repository
+### 4. Repository Stats
 
 This is where things start getting interesting ...
 
@@ -214,7 +241,9 @@ This is where things start getting interesting ...
 example: https://github.com/nelsonic/adoro
 
 ```js
-{ desc: 'The little publishing tool you\'ll love using. [work-in-progress]',
+{
+  url: 'https://github.com/nelsonic/adoro',
+  desc: 'The little publishing tool you\'ll love using. [work-in-progress]',
   website: 'http://www.dwyl.io/',
   watchers: 3,
   stars: 8,
@@ -222,14 +251,26 @@ example: https://github.com/nelsonic/adoro
   commits: 12,
   branches: 1,
   releases: 1,
-  contribs: 1,
-  langs: [ 'JavaScript 90.7%', 'CSS 9.3%' ] }
+  langs: [ 'JavaScript 90.7%', 'CSS 9.3%' ]
+}
 ```
 
+> Annoyingly the number of issues and pull requests, contributors and issues
+ are only rendered *after* the page has loaded (via XHR) so we do not get
+ these three stats on page load.
 
-> Annoyingly the number of issues and pull requestsis are
-loaded *after* the page has loaded (via XHR) so we do not get these
-two stats on page load.
+### Issues
+
+
+
+
+
+### {#} Crawl the List of commits
+
+It will be interesting to see/track:
++ **who** makes the most commits to the project
++ **when** (***what time*** of day/night) people do their work
++ **what** did the person contribute? (docs, code improvement, tests, typo, dependency update?)
 
 
 

@@ -1,5 +1,5 @@
 // var profile = require('./lib/profile');
-// profile('alanshaw', function(err, profile){
+// profile('tj', function(err, profile){
 //   console.log(profile);
 // })
 
@@ -15,7 +15,7 @@
 //
 // })
 
-var repo = require('./lib/repo');
-repo('nelsonic/adoro', function(err, stats){
-  console.log(stats);
-})
+// var repo = require('./lib/repo');
+// repo('nelsonic/adoro', function(err, stats){
+//   console.log(stats);
+// })
