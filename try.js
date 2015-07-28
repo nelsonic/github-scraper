@@ -21,6 +21,6 @@
 // })
 
 var issues = require('./lib/issues');
-repo('dwyl/tudo/issues', function(err, list){
+issues('dwyl/tudo', function(err, list){
   console.log(list);
 })
