@@ -22,6 +22,9 @@
     "url": "https://github.com/nelsonic/github-scraper/issues"
   },
   "homepage": "https://github.com/nelsonic/github-scraper",
+  "engines": {
+    "node": ">= 0.12"
+  },
   "dependencies": {
     "cheerio": "^0.19.0",
     "request": "^2.60.0",
