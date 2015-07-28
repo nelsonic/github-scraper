@@ -1,17 +1,17 @@
 var test = require('tape');
 var repo = require('../lib/repo');
 
-test('expect 400 when username not stated', function(t){
-  var user = '';
-  repo(user, function(err, stats){
+test('expect 400 when repo not stated', function(t){
+  var project = '';
+  repo(project, function(err, stats){
     t.ok(err === 400, 'got 400 error when no user defined');
     t.end();
   })
 })
 
-test('expect random (non-existent) user to return 404 error ', function(t){
-	var user = Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
-	repo(user, function(err, stats){
+test('expect random (non-existent) repo to return 404 error ', function(t){
+	var project = Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
+	repo(project, function(err, stats){
 		t.ok(err === 404, 'Got 404 Error when username does not exist');
 		t.ok(typeof stats === 'undefined', '@param repos is undefined (as expected)');
 		t.end();
@@ -33,8 +33,6 @@ test('crawl known repository for stats', function(t){
 	})
 })
 
-
-//
 test('crawl single language repo', function(t){
 	var project = 'nelsonic/coin-change-ruby';
 	repo(project, function(err, stats) {

@@ -19,3 +19,8 @@
 // repo('nelsonic/adoro', function(err, stats){
 //   console.log(stats);
 // })
+
+var issues = require('./lib/issues');
+repo('dwyl/tudo/issues', function(err, list){
+  console.log(list);
+})

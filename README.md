@@ -261,6 +261,14 @@ example: https://github.com/nelsonic/adoro
 
 ### Issues
 
+```sh
+2015-07-22T12:33:14Z issue /dwyl/tudo/issues/77
+```
+
+
+
+### Issue (_individual_)
+
 
 
 
@@ -506,14 +514,3 @@ C.crawlUser(user, function (err, profile) {
   console.log(profile);
 });
 ```
-
-# Objective 1
-
-- Track who the best people to follow are
-- Track if I am already following a person
-
-
-### Twitter Followers
-
-- https://dev.twitter.com/rest/reference/get/followers/list
-- https://github.com/twitter/twurl
