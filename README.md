@@ -367,16 +367,22 @@ if [_Sally_](http://www.imdb.com/title/tt1483013/quotes?item=qt1905812)
 
 #### Issues Filters
 
-There are *many* filters we can use to find issues: https://help.github.com/articles/search-syntax/
+There are *many* filters we can use to find issues, here are a few:
 
 + **created** https://github.com/search?q=author%3Aiteles&s=created&type=Issues&o=desc&state=open
 + **updated**: https://github.com/search?q=author%3Aiteles&s=updated&type=Issues&o=desc&state=open
 + **date range**: https://github.com/dwyl/time/issues?q=is%3Aissue+is%3Aopen+updated%3A%3C2015-06-28
 
-For *way* more details on searching & filters see: https://help.github.com/articles/searching-github/#types-of-searches
+##### Further Reading on Searching+Filters
+
+For *way* more details on searching & filters see:
+
++ https://help.github.com/articles/searching-issues/
++ https://help.github.com/articles/searching-github/#types-of-searches
++ https://help.github.com/articles/search-syntax/
+
 
 ### 6. Issue (_individual_)
-
 
 
 
