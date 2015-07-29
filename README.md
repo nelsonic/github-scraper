@@ -309,12 +309,58 @@ Each issue in the list would create a entry in the crawler (worker) queue:
 + **created_by** https://github.com/dwyl/tudo/issues/created_by/iteles
 + **assignee** (assigned to): https://github.com/dwyl/tudo/issues?q=assignee%3Aiteles+is%3Aopen
 
+### 5.b Issues > Search
+
+A ***much*** more *effective* way of collating all the issues relevant to a person is to search for them!
+
+
+For the issues created across all their *personal* repositories
+use a search query of the form:
+```sh
+https://github.com/search?q=user%3A{username|org}
+&state={state}
+&type=Issues&s={relevance}
+&o={order}
+```
+e.g:
+https://github.com/search?q=user%3Aiteles&state=open&type=Issues&s=updated&o=asc
+
+##### Author
+
+Or to find ***all*** the issues where the person is the ***author***
+use a query of the following format:
+
+```sh
+https://github.com/search?q=author%3A{username|org}
+&state={state}
+&type=Issues&s={relevance}
+&o={order}
+```
+
++ **created** https://github.com/search?q=author%3Aiteles&s=created&type=Issues&o=desc&state=open
++ **updated**: https://github.com/search?q=author%3Aiteles&s=updated&type=Issues&o=desc&state=open
+
+##### Mentions
+
+We can use a ***mentions*** (search) query to discover all the
+issues where a given person (_username_) was mentioned:
+
+```sh
+https://github.com/search?q=mentions%3A{username}&type=Issues&state={state}
+```
+
+e.g: https://github.com/search?q=mentions%3Aiteles&type=Issues&state=open
+
+This _could_ be more than the issues in the person's (_own_) repos *or* the repos the person has access to (_via org_). e.g:
+if [_Sally_](http://www.imdb.com/title/tt1483013/quotes?item=qt1905812)
+  axks a clarifying question on a project she has not yet contributed to,
+  the issue will not appear when we crawl the repos on her profile or orgs she has access to ...
+
 #### Issues Filters
 
 There are *many* filters we can use to find issues: https://help.github.com/articles/search-syntax/
 
 + https://github.com/dwyl/time/issues?q=is%3Aissue+is%3Aopen+updated%3A%3C2015-06-28
-
 
 ### 6. Issue (_individual_)
 
