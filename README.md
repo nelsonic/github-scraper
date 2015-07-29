@@ -26,10 +26,10 @@ Don't *you* want to know what's "***Hot***" on GitHub _right now_...?
 
 + ***Who*** are the up-and-comming people (_worth following_) on GitHub?
 + ***Which*** are the ***interesting projects*** (*and why?!*)
-+ Is a project's ***popularity growing*** or decreasing?
-+ What is the average age of an issue?
++ Is a project's ***popularity growing*** or *plateaued*?
++ What is the average age of an issue for a project?
 + Will my Pull Request *ever* get *merged* or did I just [***waste 3 hours***](https://twitter.com/nelsonic/status/621984170353524736)?
-+ What are the chances of success for a given project?
++ How many projects get started but never finished?
 + Are there (_already_) any ***similar projects*** to what I'm trying to build? (_reduce duplication of effort which is rampant in Open Source!!_)
 
 ## How?
@@ -244,7 +244,7 @@ have the *latest* info.
 
 This is where things start getting interesting ...
 
-[upload screenshot]
+![github-repo-page](https://cloud.githubusercontent.com/assets/194400/8930109/d8a76ab8-3522-11e5-8e07-95596a889fde.png)
 
 example: https://github.com/nelsonic/adoro
 
@@ -268,6 +268,18 @@ example: https://github.com/nelsonic/adoro
  these three stats on page load.
 
 ### 5. Issues
+
+Clicking on the issues icon/link in any repository takes us to the list of all the issues.
+
+Visiting a project with more than a page worth of issues has pagination at the bottom of the page:
+
+![tudo-issues-list-showing-pagination](https://cloud.githubusercontent.com/assets/194400/8942419/27b9446a-356d-11e5-84f9-5de2eaae506b.png)
+
+Which has a link to: https://github.com/dwyl/tudo/issues?page=2&q=is%3Aissue+is%3Aopen
+
+![tudo-issues-second-page](https://cloud.githubusercontent.com/assets/194400/8942423/33bf0a2e-356d-11e5-82b8-1bd142fb2302.png)
+
+
 
 List of issues for a repository:
 

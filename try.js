@@ -20,15 +20,15 @@
 //   console.log(stats);
 // })
 
-// var issues = require('./lib/issues');
-// issues('dwyl/tudo', function(err, list){
-//   console.log(list);
-// })
-
 var issues = require('./lib/issues');
-issues('dwyl/ignored', function(err, list){
+issues('dwyl/tudo', function(err, list){
   console.log(list);
 })
+
+// var issues = require('./lib/issues');
+// issues('dwyl/ignored', function(err, list){
+//   console.log(list);
+// })
 
 // var issues_search = require('./lib/issues_search');
 // var options = { username : 'iteles' };
