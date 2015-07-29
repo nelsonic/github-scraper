@@ -347,6 +347,7 @@ https://github.com/search?q=assignee%3A{username|org}
 &state={state}
 &type=Issues&s={relevance}
 &o={order}
+&s={filter}
 ```
 
 #### Mentions
