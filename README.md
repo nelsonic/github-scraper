@@ -18,22 +18,26 @@ it has quite a few limitations (see: "_Issues with GitHub API_" section below) t
 
 We need a _simple_ way of systematically getting ***all*** the info from GitHub so that we can store trends.
 
-We are building this project to [***scratch our own itch***](https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php)
-if you too want to know
+> Also, we're building this project to [***scratch our own itch***](https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php)  
+Don't *you* want to know what's "***Hot***" on GitHub _right now_...?
 
 
-## What *Problem* (are we trying to solve)?
+## What *Problem* (are we _trying_ to solve)?
 
 + ***Who*** are the up-and-comming people (_worth following_) on GitHub?
 + ***Which*** are the ***interesting projects*** (*and why?!*)
 + Is a project's ***popularity growing*** or decreasing?
++ What is the average age of an issue?
++ Will my Pull Request *ever* get *merged* or did I just [***waste 3 hours***](https://twitter.com/nelsonic/status/621984170353524736)?
 + What are the chances of success for a given project?
-
++ Are there (_already_) any ***similar projects*** to what I'm trying to build? (_reduce duplication of effort which is rampant in Open Source!!_)
 
 ## How?
 
 We are "[_crawling_](https://en.wikipedia.org/wiki/Web_crawler)" GitHub
-to extract raw data which we will derive insights / trends and present a tailored dashboard for each person using the site.
+to extract raw data from the (_public_) pages.
+
+> Note: We *know* scraping is *considerably* slower than using the GitHub API. We are doing this for "*Educational purposes*"...
 
 ### 1. Profile
 
@@ -209,7 +213,11 @@ From this we _extract_ only the relevant info:
 '2015-07-18T07:30:36Z alanshaw closed issue alanshaw/md-tokenizer#1',
 '2015-07-18T07:30:36Z alanshaw commented on issue alanshaw/md-tokenizer#1',
 ```
-Instead of _wasting_ (_what will be **Giga**_) ***Bytes***
+Instead of _wasting_ (_what will be **Giga**_) ***Bytes*** of space with key:value pairs by storing the entries as JSON, we are storing the activity feed entries as strings in an array.
+Each item in the array can be broken down into:
+```sh
+{date-time} {username} {action} {link}
+```
 
 As we can see from this there are several event types:
 
@@ -259,7 +267,7 @@ example: https://github.com/nelsonic/adoro
  are only rendered *after* the page has loaded (via XHR) so we do not get
  these three stats on page load.
 
-### Issues
+### 5. Issues
 
 List of issues for a repository:
 
@@ -301,8 +309,14 @@ Each issue in the list would create a entry in the crawler (worker) queue:
 + **created_by** https://github.com/dwyl/tudo/issues/created_by/iteles
 + **assignee** (assigned to): https://github.com/dwyl/tudo/issues?q=assignee%3Aiteles+is%3Aopen
 
+#### Issues Filters
 
-### Issue (_individual_)
+There are *many* filters we can use to find issues: https://help.github.com/articles/search-syntax/
+
++ https://github.com/dwyl/time/issues?q=is%3Aissue+is%3Aopen+updated%3A%3C2015-06-28
+
+
+### 6. Issue (_individual_)
 
 
 
@@ -523,9 +537,9 @@ curl -v https://api.github.com/users/pgte/following/visionmedia
 
 ## Interesting Facts
 
-- GitHub has 3.4 Million users
+- GitHub has 10.3 Million users (_at last count_)
 - yet the most followed person [Linus Torvalds](https://github.com/torvalds)
-only has 19k followers (so its a highly distributed network )
+"_only_" has **28k followers** (_so its a **highly distributed network**_ )
 + https://www.githubarchive.org/ attempts to archive all of GitHub
 + http://octoboard.com/ shows stats for the past 24h
 

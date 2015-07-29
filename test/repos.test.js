@@ -1,5 +1,5 @@
 var test = require('tape');
-var repositories = require('../lib/repositories');
+var repositories = require('../lib/repos');
 
 test('expect 400 when username not stated', function(t){
   var user = '';

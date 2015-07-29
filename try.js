@@ -3,9 +3,9 @@
 //   console.log(profile);
 // })
 
-// var repositories = require('./lib/repositories');
-// repositories('iteles', function(err, repos){
-//   console.log(repos);
+// var repos = require('./lib/repos');
+// repos('iteles', function(err, list){
+//   console.log(list);
 // })
 
 // var feed = require('./lib/feed');
