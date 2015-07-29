@@ -313,6 +313,36 @@ Each issue in the list would create a entry in the crawler (worker) queue:
 
 A ***much*** more *effective* way of collating all the issues relevant to a person is to search for them!
 
+example:
+ https://github.com/search?type=Issues&q=author%3Aiteles&state=open&o=desc&s=created
+
+```js
+{
+  entries:
+   [
+     { title: 'Remove flexbox from CSS',
+       url: '/dwyl/dwyl.github.io/issues/29',
+       desc: 'To ensure the site works across all devices, particularly Kindle/e-readers.',
+       author: 'iteles',
+       created: '2015-07-25T22:57:20Z',
+       comments: 2 },
+     { title: 'CSS | Add indentation back into main.css (disappeared from master)',
+       url: '/dwyl/tudo/issues/77',
+       desc: 'All indentation has been removed from main.css in the latest commit.     \n\nThis needs to be put back in as originally written by @msmichellegar and @iteles.',
+       author: 'iteles',
+       created: '2015-07-25T16:27:59Z' },
+     { title: 'CSS | Investigate styling of issue label colours',
+       url: '/dwyl/tudo/issues/72',
+       desc: 'Labels can be given any colour so there is no predictable set that we can code into the CSS file.\n\nWe need to investigate what the best way to ensure we can provide the right colour of background to the ...',
+       author: 'iteles',
+       created: '2015-07-23T17:49:02Z',
+       comments: 4 }
+  ],
+  next: '/search?o=desc&p=2&q=author%3Aiteles&s=created&state=open&type=Issues'
+}
+```
+
+
 #### Owner
 
 For the issues created across all their *personal* repositories
