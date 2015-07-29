@@ -25,8 +25,13 @@
 //   console.log(list);
 // })
 
-var issues_search = require('./lib/issues_search');
-var options = { username : 'iteles' };
-issues_search(options, function(err, list){
+var issues = require('./lib/issues');
+issues('dwyl/ignored', function(err, list){
   console.log(list);
 })
+
+// var issues_search = require('./lib/issues_search');
+// var options = { username : 'iteles' };
+// issues_search(options, function(err, list){
+//   console.log(list);
+// })

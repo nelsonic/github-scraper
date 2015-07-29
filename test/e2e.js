@@ -1,7 +1,4 @@
-/*jslint node: true */
-"use strict";
-
-// uses all the other modules
+/*
 var test = require('tape');
 var db = require('../src/save.js');
 var F = require('../src/follow.js');
@@ -67,3 +64,4 @@ test('Test for a non-existant user', function (t) {
     t.end();
   });
 });
+*/

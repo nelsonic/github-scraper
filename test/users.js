@@ -1,6 +1,4 @@
-/*jslint node: true */
-// "use strict";
-
+/*
 var test  = require('tape');
 var U = require('../src/users.js');
 var db = require('../src/save.js');
@@ -158,3 +156,4 @@ test('Last Updated', function(t) {
     });
   });
 });
+*/

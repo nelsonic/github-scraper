@@ -1,6 +1,4 @@
-/*jslint node: true */
-"use strict";
-
+/*
 var test = require('tape');
 var F = require('../src/follow.js');
 
@@ -61,3 +59,4 @@ test('Alan has more than 51 (1 page of) followers', function (assert) {
 	assert.true(profile.followers['tom'].length === 1, "✓ Tom is following");
 	assert.end();
 });
+*/
