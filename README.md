@@ -313,6 +313,7 @@ Each issue in the list would create a entry in the crawler (worker) queue:
 
 A ***much*** more *effective* way of collating all the issues relevant to a person is to search for them!
 
+#### Owner
 
 For the issues created across all their *personal* repositories
 use a search query of the form:
@@ -325,7 +326,7 @@ https://github.com/search?q=user%3A{username|org}
 e.g:
 https://github.com/search?q=user%3Aiteles&state=open&type=Issues&s=updated&o=asc
 
-##### Author
+#### Author (_created by_)
 
 Or to find ***all*** the issues where the person is the ***author***
 use a query of the following format:
@@ -337,10 +338,18 @@ https://github.com/search?q=author%3A{username|org}
 &o={order}
 ```
 
-+ **created** https://github.com/search?q=author%3Aiteles&s=created&type=Issues&o=desc&state=open
-+ **updated**: https://github.com/search?q=author%3Aiteles&s=updated&type=Issues&o=desc&state=open
+#### Assignee (_issues assigned to this person_)
 
-##### Mentions
+Or to find ***all*** the issues *assigned* to the person use a query of the following format:
+
+```sh
+https://github.com/search?q=assignee%3A{username|org}
+&state={state}
+&type=Issues&s={relevance}
+&o={order}
+```
+
+#### Mentions
 
 We can use a ***mentions*** (search) query to discover all the
 issues where a given person (_username_) was mentioned:
@@ -360,7 +369,11 @@ if [_Sally_](http://www.imdb.com/title/tt1483013/quotes?item=qt1905812)
 
 There are *many* filters we can use to find issues: https://help.github.com/articles/search-syntax/
 
-+ https://github.com/dwyl/time/issues?q=is%3Aissue+is%3Aopen+updated%3A%3C2015-06-28
++ **created** https://github.com/search?q=author%3Aiteles&s=created&type=Issues&o=desc&state=open
++ **updated**: https://github.com/search?q=author%3Aiteles&s=updated&type=Issues&o=desc&state=open
++ **date range**: https://github.com/dwyl/time/issues?q=is%3Aissue+is%3Aopen+updated%3A%3C2015-06-28
+
+For *way* more details on searching & filters see: https://help.github.com/articles/searching-github/#types-of-searches
 
 ### 6. Issue (_individual_)
 
