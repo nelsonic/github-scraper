@@ -1,6 +1,4 @@
-/*jslint node: true */
-"use strict";
-
+/*
 var test = require('tape');
 var scrape = require('../src/follow.js');
 
@@ -28,3 +26,4 @@ test('Chris is Following more than 51 (1 page of) people', function (assert) {
 		assert.end();
 	});
 });
+*/

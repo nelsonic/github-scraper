@@ -1,6 +1,6 @@
 {
-  "name": "fuata",
-  "version": "0.0.1",
+  "name": "github-scraper",
+  "version": "0.0.3",
   "description": "insert imaginative description here",
   "main": "index.js",
   "scripts": {
@@ -8,36 +8,41 @@
     "quick": "./node_modules/tape/bin/tape ./test/*.js",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js && istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=d76761e65db40196c610696b451975d738be69a40438ae9fec3a5a3113af799f ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
     "jshint": "jshint -c .jshintrc --exclude-path .gitignore .",
     "codestyle": "jscs -p google src/ test/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nelsonic/fuata.git"
+    "url": "https://github.com/nelsonic/github-scraper.git"
   },
   "author": "nelsonic <nodecoder@gmail.com> (https://github.com/nelsonic)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nelsonic/fuata/issues"
+    "url": "https://github.com/nelsonic/github-scraper/issues"
   },
-  "homepage": "https://github.com/nelsonic/fuata",
+  "homepage": "https://github.com/nelsonic/github-scraper",
+  "engines": {
+    "node": ">= 0.12"
+  },
   "dependencies": {
-    "cheerio": "^0.18.0",
-    "request": "^2.48.0",
-    "twitter": "^0.2.13"
+    "cheerio": "^0.19.0",
+    "request": "^2.60.0",
+    "twitter": "^1.2.5",
+    "wreck": "^6.0.0",
+    "xml2js": "^0.4.9"
   },
   "devDependencies": {
-    "chalk": "^0.5.1",
-    "coveralls": "^2.11.2",
-    "istanbul": "^0.3.0",
-    "pre-commit": "0.0.9",
-    "request": "^2.40.0",
-    "tape": "3.0.0"
+    "chalk": "^1.1.0",
+    "codeclimate-test-reporter": "0.0.4",
+    "istanbul": "^0.3.17",
+    "jshint": "^2.8.0",
+    "pre-commit": "1.0.10",
+    "tape": "^4.0.0"
   },
   "pre-commit": [
     "jshint",
     "coverage",
-    "coveralls"
+    "codeclimate"
   ]
 }

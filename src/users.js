@@ -33,20 +33,22 @@ function nextUser(users, interval, callback) {
   if(typeof u === 'undefined'){
     users.splice(0, 1);
     return nextUser(users, interval, callback); // recurse
-  } 
+  }
+  return callback(null, u);
   // console.log(users.length + ' users >> next: '+u)
-  db.lastUpdated(u, function(err, diff) {
-    // console.log("Diff: "+diff +' > interval '+interval);
-    if(err) {
-      return callback(err, u);
-    } else if(diff > interval) {
-      callback(err, u);
-    } else {
-      // users = F.tidyArray(users, u);
-      users.splice(0, 1);
-      nextUser(users, interval, callback); // recurse
-    }
-  })
+  // db.lastUpdated(u, function(err, diff) {
+  //   console.log("Diff: "+diff +' > interval '+interval);
+  //   console.log(err);
+  //   if(err) {
+  //     return callback(err, u);
+  //   } else if(diff > interval) {
+  //     callback(err, u);
+  //   } else {
+  //     // users = F.tidyArray(users, u);
+  //     users.splice(0, 1);
+  //     nextUser(users, interval, callback); // recurse
+  //   }
+  // }); // can't remember what this does so commenting out.
 }
 
 module.exports = {
