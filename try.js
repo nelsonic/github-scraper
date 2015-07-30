@@ -20,10 +20,10 @@
 //   console.log(stats);
 // })
 
-var issues = require('./lib/issues');
-issues('dwyl/tudo', function(err, list){
-  console.log(list);
-})
+// var issues = require('./lib/issues');
+// issues('dwyl/tudo', function(err, list){
+//   console.log(list);
+// })
 
 // var issues = require('./lib/issues');
 // issues('dwyl/ignored', function(err, list){
@@ -35,3 +35,8 @@ issues('dwyl/tudo', function(err, list){
 // issues_search(options, function(err, list){
 //   console.log(list);
 // })
+
+var labels = require('./lib/labels');
+labels('dwyl/tudo', function(err, list){
+  console.log(list);
+})

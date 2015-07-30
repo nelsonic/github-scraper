@@ -17,18 +17,19 @@ test('expect random (non-existent) repo to return 404 error ', function(t){
 		t.end();
 	})
 })
-//
-// test('crawl known repository for stats', function(t){
-// 	var project = 'nelsonic/adoro';
-// 	repo(project, function(err, stats) {
-//     console.log(stats);
-// 		t.ok(err === null, 'No Error when crawling ' + project +' (repo pages)');
-// 		t.ok(stats.watchers > 1, ' has more than 1 watchers: '+stats.watchers);
-//     t.ok(stats.stars > 5, ' has more than 5 stars: '+stats.stars);
-//     t.ok(stats.forks > 0, ' has more than 0 forks: '+stats.forks);
-//     t.ok(stats.branches > 0, ' has non-zero number of branches: '+stats.branches);
-//     // t.ok(stats.contribs > 0, ' has non-zero number of contributors: '+stats.contribs);
-//     t.ok(stats.langs[0].indexOf('Java') > -1, 'Language is: '+ stats.langs)
-// 		t.end();
-// 	})
-// })
+
+test('crawl dwyl/tudo/labels', function(t){
+	var project = 'dwyl/tudo';
+	labels(project, function(err, list) {
+    console.log(list);
+		t.ok(err === null, 'No Error when crawling ' + project +' (repo pages)');
+    var question = list.filter(function(item){
+      return item.name === 'question';
+    })
+    question = question[0];
+		t.ok(question.link === '/dwyl/tudo/labels/question', 'question.link is : '+question.link);
+    t.ok(question.count > 1, 'question.count (number of open issues): '+question.count);
+    t.ok(question.style.indexOf('#fff') > -1, 'question.styles are '+question.style);
+		t.end();
+	})
+})
