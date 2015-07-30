@@ -442,7 +442,35 @@ https://github.com/rethinkdb/rethinkdb/labels
 
 We need to crawl these for each repo.
 
-
+Here's the extraction of the standard labels:
+```js
+[
+  { name: 'bug',
+    style: 'background-color: #fc2929; color: #fff;',
+    link: '/dwyl/tudo/labels/bug',
+    count: 3 },
+  { name: 'duplicate',
+    style: 'background-color: #cccccc; color: #333333;',
+    link: '/dwyl/tudo/labels/duplicate',
+    count: 0 },
+  { name: 'enhancement',
+    style: 'background-color: #84b6eb; color: #1c2733;',
+    link: '/dwyl/tudo/labels/enhancement',
+    count: 11 },
+  { name: 'help wanted',
+    style: 'background-color: #159818; color: #fff;',
+    link: '/dwyl/tudo/labels/help%20wanted',
+    count: 21 },
+  { name: 'invalid',
+    style: 'background-color: #e6e6e6; color: #333333;',
+    link: '/dwyl/tudo/labels/invalid',
+    count: 1 },
+  { name: 'question',
+    style: 'background-color: #cc317c; color: #fff;',
+    link: '/dwyl/tudo/labels/question',
+    count: 10 }
+]
+```
 
 
 
