@@ -428,6 +428,22 @@ For *way* more details on searching & filters see:
 ### 6. Issue (_individual_)
 
 
+### 7. Labels (for a repository)
+
+All repositories have a set of standard labels (built-in to GitHub)
+e.g: https://github.com/dwyl/tudo/labels is (_currently_) only using the "*standard*" labels.
+
+<img width="998" alt="github-dwyl-tudo-labels-list" src="https://cloud.githubusercontent.com/assets/194400/8945752/36c87754-3582-11e5-9a46-a4a786ca7c25.png">
+
+Whereas the RethinkDB (which uses GitHub for all their project tracking) uses _several **custom labels**_:
+https://github.com/rethinkdb/rethinkdb/labels
+
+<img width="996" alt="github-rethinkdb-issues-list" src="https://cloud.githubusercontent.com/assets/194400/8945786/7b98b718-3582-11e5-961b-905d268dd39a.png">
+
+We need to crawl these for each repo.
+
+
+
 
 
 ### {#} Crawl the List of commits
