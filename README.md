@@ -21,7 +21,7 @@ We needed a _simple_ way of systematically getting data from GitHub (_before peo
 
 We _tried_ using the [GitHub ***API***](https://developer.github.com/v3/)
 to get records from GitHub, but sadly,
-it has quite a few limitations (see: "_Issues with GitHub API_" section below) the biggest limitation being the _rate-limiting_ on API requests.
+it has quite a few limitations (see: "_Issues with GitHub API_" section below) the biggest limitation being the [_rate-limiting_](https://developer.github.com/v3/#rate-limiting) on API requests.
 
 Thirdly we're building this project to [***scratch our own itch***](https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php)  
 ... scraping the _pages_ of GitHub has given us a _unique_ insight into the features of the platform which has leveled-up our skills.
@@ -31,19 +31,23 @@ Thirdly we're building this project to [***scratch our own itch***](https://gett
 
 ## What (*Problem* are we _trying_ to Solve)?
 
+Having a way of extracting the *essential* data from GitHub
+is a solution to a _surprisingly **wide array of problems**_, here are a few:
+
 + ***Who*** are the up-and-comming people (_worth following_) on GitHub?
 + ***Which*** are the ***interesting projects*** (*and why?!*)
++ ***What*** is the average age of an issue for a project?
 + Is a project's ***popularity growing*** or *plateaued*?
-+ What is the average age of an issue for a project?
-+ Will my Pull Request *ever* get *merged* or did I just [***waste 3 hours***](https://twitter.com/nelsonic/status/621984170353524736)?
-+ How many projects get started but never finished?
 + Are there (_already_) any ***similar projects*** to what I'm trying to build? (_reduce duplication of effort which is rampant in Open Source!!_)
++ How many projects get started but never finished?
++ ***Will** my Pull Request *ever* get *merged* or is the module maintainer *too busy* and did I just [***waste 3 hours***](https://twitter.com/nelsonic/status/621984170353524736)?
++ _insert **your idea/problem** here_ ...
 
-## How?
+# How?
 
-This module "[_scrapes_](https://en.wikipedia.org/wiki/Web_scraping)" (_public_) pages on GitHub to extract raw data.
+This module fetches (_public_) pages on GitHub and "[_scrapes_](https://en.wikipedia.org/wiki/Web_scraping)" the html to extract raw data.
 
-> Note: We *know* scraping is *considerably* slower than using the GitHub API. We are doing this for "*Educational purposes*"...
+## People
 
 ### 1. Profile
 
@@ -88,70 +92,6 @@ Basic Profile Details for TJ (_with organisations_):
      '/nanodb https://avatars0.githubusercontent.com/u/6482465?v=3&s=84',
      '/jstrace https://avatars3.githubusercontent.com/u/6807372?v=3&s=84' ] }
 ```
-
-
-### 2. Repositories
-
-The next tab on the personal profile page is "Repositories"
-this is a **list** of the ***personal projects*** the person is working on, e.g: https://github.com/iteles?tab=repositories
-
-<img width="1033" alt="github-ines-list-of-repositories" src="https://cloud.githubusercontent.com/assets/194400/8909661/7e83e97e-347a-11e5-84c9-239f558a2b98.png">
-
-We crawl this page and return an array containing the repo properties:
-
-```js
-[
-  { url: '/iteles/learn-ab-and-multivariate-testing',
-    name: 'learn-ab-and-multivariate-testing',
-    lang: '',
-    desc: 'Tutorial on A/B and multivariate testing',
-    info: '',
-    stars: '4',
-    forks: '0',
-    updated: '2015-07-08T08:36:37Z' },
-  { url: '/iteles/learn-tdd',
-    name: 'learn-tdd',
-    lang: 'JavaScript',
-    desc: 'A brief introduction to Test Driven Development (TDD) in JavaScript',
-    info: 'forked from dwyl/learn-tdd',
-    stars: '0',
-    forks: '4',
-    updated: '2015-06-29T17:24:56Z' },
-  { url: '/iteles/practical-full-stack-testing',
-    name: 'practical-full-stack-testing',
-    lang: 'HTML',
-    desc: 'A fork of @nelsonic\'s repo to allow for PRs',
-    info: 'forked from nelsonic/practical-js-tdd',
-    stars: '0',
-    forks: '36',
-    updated: '2015-06-06T14:40:43Z' },
-  { url: '/iteles/styling-for-accessibility',
-    name: 'styling-for-accessibility',
-    lang: '',
-    desc: 'A collection of \'do\'s and \'don\'t\'s of CSS to ensure accessibility',
-    info: '',
-    stars: '0',
-    forks: '0',
-    updated: '2015-05-26T11:06:28Z' },
-  { url: '/iteles/Ultimate-guide-to-successful-meetups',
-    name: 'Ultimate-guide-to-successful-meetups',
-    lang: '',
-    desc: 'The ultimate guide to organizing successful meetups',
-    info: '',
-    stars: '3',
-    forks: '0',
-    updated: '2015-05-19T09:40:39Z' },
-  { url: '/iteles/Javascript-the-Good-Parts-notes',
-    name: 'Javascript-the-Good-Parts-notes',
-    lang: '',
-    desc: 'Notes on the seminal "Javascript the Good Parts: byDouglas Crockford',
-    info: '',
-    stars: '41',
-    forks: '12',
-    updated: '2015-05-17T16:39:35Z' }
-]
-```
-
 
 ### 3. Activity feed
 
@@ -245,6 +185,96 @@ https://developer.github.com/v3/activity/events/types/
 One thing worth noting is that RSS feed is ***Not Real-Time*** ...
 sadly, it only gets updated periodically so we cannot rely on it to
 have the *latest* info.
+
+
+### 3. Followers
+
+
+
+Example data structure:
+(nested Objects are easier for data updates)
+```js
+{
+  "followers": {
+    "u1" : ["timestamp"],
+    "u2" : ["timestamp"]
+  },
+  "following": {
+    "u3" : ["timestamp"],
+    "u2" : ["timestamp", "timestamp2", "timestamp3"]
+  }
+}
+```
+
+- **u**: *username* (the GitHub username of the person)
+- **timestamp**: *startdate* when the person first starred/watched (a repo) or followed a person
+> note: when multiple timestamps are recorded this signifies that the person starred and then un-starred (or un-watched) the repo or followed then un-followed a person.
+
+<br />
+
+## Projects
+
+### 2. Repositories
+
+The next tab on the personal profile page is "Repositories"
+this is a **list** of the ***personal projects*** the person is working on, e.g: https://github.com/iteles?tab=repositories
+
+<img width="1033" alt="github-ines-list-of-repositories" src="https://cloud.githubusercontent.com/assets/194400/8909661/7e83e97e-347a-11e5-84c9-239f558a2b98.png">
+
+We crawl this page and return an array containing the repo properties:
+
+```js
+[
+  { url: '/iteles/learn-ab-and-multivariate-testing',
+    name: 'learn-ab-and-multivariate-testing',
+    lang: '',
+    desc: 'Tutorial on A/B and multivariate testing',
+    info: '',
+    stars: '4',
+    forks: '0',
+    updated: '2015-07-08T08:36:37Z' },
+  { url: '/iteles/learn-tdd',
+    name: 'learn-tdd',
+    lang: 'JavaScript',
+    desc: 'A brief introduction to Test Driven Development (TDD) in JavaScript',
+    info: 'forked from dwyl/learn-tdd',
+    stars: '0',
+    forks: '4',
+    updated: '2015-06-29T17:24:56Z' },
+  { url: '/iteles/practical-full-stack-testing',
+    name: 'practical-full-stack-testing',
+    lang: 'HTML',
+    desc: 'A fork of @nelsonic\'s repo to allow for PRs',
+    info: 'forked from nelsonic/practical-js-tdd',
+    stars: '0',
+    forks: '36',
+    updated: '2015-06-06T14:40:43Z' },
+  { url: '/iteles/styling-for-accessibility',
+    name: 'styling-for-accessibility',
+    lang: '',
+    desc: 'A collection of \'do\'s and \'don\'t\'s of CSS to ensure accessibility',
+    info: '',
+    stars: '0',
+    forks: '0',
+    updated: '2015-05-26T11:06:28Z' },
+  { url: '/iteles/Ultimate-guide-to-successful-meetups',
+    name: 'Ultimate-guide-to-successful-meetups',
+    lang: '',
+    desc: 'The ultimate guide to organizing successful meetups',
+    info: '',
+    stars: '3',
+    forks: '0',
+    updated: '2015-05-19T09:40:39Z' },
+  { url: '/iteles/Javascript-the-Good-Parts-notes',
+    name: 'Javascript-the-Good-Parts-notes',
+    lang: '',
+    desc: 'Notes on the seminal "Javascript the Good Parts: byDouglas Crockford',
+    info: '',
+    stars: '41',
+    forks: '12',
+    updated: '2015-05-17T16:39:35Z' }
+]
+```
 
 ### 4. Repository Stats
 
@@ -478,39 +508,18 @@ Here's the extraction of the standard labels:
 ]
 ```
 
+## Future Features / Road Map ?
 
 
-### {#} Crawl the List of commits
+### Crawl the List of commits
 
-It will be interesting to see/track:
+Would it be interesting to see/track:
 + **who** makes the most commits to the project
 + **when** (***what time*** of day/night) people do their work
 + **what** did the person contribute? (docs, code improvement, tests, typo, dependency update?)
 
+Show your interest in this feature: https://github.com/nelsonic/github-scraper/issues/17
 
-
-
-### Followers
-
-
-Example data structure:
-(nested Objects are easier for data updates)
-```js
-{
-  "followers": {
-    "u1" : ["timestamp"],
-    "u2" : ["timestamp"]
-  },
-  "following": {
-    "u3" : ["timestamp"],
-    "u2" : ["timestamp", "timestamp2", "timestamp3"]
-  }
-}
-```
-
-- **u**: *username* (the GitHub username of the person)
-- **timestamp**: *startdate* when the person first starred/watched (a repo) or followed a person
-> note: when multiple timestamps are recorded this signifies that the person starred and then un-starred (or un-watched) the repo or followed then un-followed a person.
 
 ## Tests
 

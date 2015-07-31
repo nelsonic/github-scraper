@@ -36,7 +36,12 @@
 //   console.log(list);
 // })
 
-var labels = require('./lib/labels');
-labels('dwyl/tudo', function(err, list){
+// var labels = require('./lib/labels');
+// labels('dwyl/tudo', function(err, list){
+//   console.log(list);
+// })
+
+var milestones = require('./lib/milestones');
+milestones('dwyl/tudo', function(err, list){
   console.log(list);
 })
