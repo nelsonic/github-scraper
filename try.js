@@ -48,8 +48,9 @@ var repo = 'dwyl/tudo'
 //   console.log(list);
 // })
 
-var orgname = 'dwyl';
+// var orgname = 'dwyl';
 // // var orgname = 'rethinkdb';
+var orgname = 'github';
 var org = require('./lib/org');
 org(orgname, function(err, data){
   console.log(data);
