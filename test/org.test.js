@@ -20,8 +20,21 @@ test('Scrape random (non-existent) profile (error test) ', function(t){
 test('Fetch dwyl Organisation ', function(t){
 	var orgname = 'dwyl';
 	org(orgname, function(err, data) {
-		t.ok(typeof data === 'object', 'data')
-		// t.ok(p.developerprogram === true, '- @' + user + ' is a member of the "GitHub Developer Program"');
+		t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
+		t.ok(data.pcount > 10, '"pcount":'+data.pcount);
+		t.ok(data.next === '/dwyl?page=2', 'dwyl has more than one page');
+		t.end();
+	});
+})
+
+
+test('Fetch Second page of dwyl org', function(t){
+	var orgname = '/dwyl?page=2';
+	org(orgname, function(err, data) {
+		// console.log(data);
+		t.ok(data.repos.length === 20, 'SECOND page of org has 20 repos: '+data.repos.length)
+		t.ok(data.pcount > 10, '"pcount":'+data.pcount);
+		t.ok(data.next === '/dwyl?page=3', 'dwyl has more than one page');
 		t.end();
 	});
 })

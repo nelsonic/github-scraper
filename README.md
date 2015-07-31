@@ -40,7 +40,7 @@ is a solution to a _surprisingly **wide array of problems**_, here are a few:
 + Is a project's ***popularity growing*** or *plateaued*?
 + Are there (_already_) any ***similar projects*** to what I'm trying to build? (_reduce duplication of effort which is rampant in Open Source!!_)
 + How many projects get started but never finished?
-+ ***Will** my Pull Request *ever* get *merged* or is the module maintainer *too busy* and did I just [***waste 3 hours***](https://twitter.com/nelsonic/status/621984170353524736)?
++ ***Will*** my **Pull Request** *ever* get *merged* or is the module maintainer *too busy* and did I just [***waste 3 hours***](https://twitter.com/nelsonic/status/621984170353524736)?
 + _insert **your idea/problem** here_ ...
 
 # How?
