@@ -41,7 +41,10 @@
 //   console.log(list);
 // })
 
+var repo = 'dwyl/tudo'
+// var repo = 'rethinkdb/rethinkdb'
 var milestones = require('./lib/milestones');
-milestones('dwyl/tudo', function(err, list){
+milestones(repo, function(err, list){
   console.log(list);
 })
+//
