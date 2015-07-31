@@ -42,9 +42,15 @@
 // })
 
 var repo = 'dwyl/tudo'
-// var repo = 'rethinkdb/rethinkdb'
-var milestones = require('./lib/milestones');
-milestones(repo, function(err, list){
-  console.log(list);
+// // var repo = 'rethinkdb/rethinkdb'
+// var milestones = require('./lib/milestones');
+// milestones(repo, function(err, list){
+//   console.log(list);
+// })
+
+var orgname = 'dwyl';
+// // var orgname = 'rethinkdb';
+var org = require('./lib/org');
+org(orgname, function(err, data){
+  console.log(data);
 })
-//
