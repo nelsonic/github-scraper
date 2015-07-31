@@ -18,18 +18,13 @@ test('expect random (non-existent) repo to return 404 error ', function(t){
 	})
 })
 
-// test('crawl dwyl/tudo/labels', function(t){
-// 	var project = 'dwyl/tudo';
-// 	labels(project, function(err, list) {
-//     console.log(list);
-// 		t.ok(err === null, 'No Error when crawling ' + project +' (repo pages)');
-//     var question = list.filter(function(item){
-//       return item.name === 'question';
-//     })
-//     question = question[0];
-// 		t.ok(question.link === '/dwyl/tudo/labels/question', 'question.link is : '+question.link);
-//     t.ok(question.count > 1, 'question.count (number of open issues): '+question.count);
-//     t.ok(question.style.indexOf('#fff') > -1, 'question.styles are '+question.style);
-// 		t.end();
-// 	})
-// })
+test('crawl dwyl/tudo/milestones', function(t){
+	var project = 'dwyl/tudo';
+	milestones(project, function(err, list) {
+    console.log(list);
+		t.ok(err === null, 'No Error when crawling ' + project +' (repo pages)');
+    t.ok(list.open > 0, 'list.open '+list.open);
+    t.ok(list.closed > 0, 'list.closed '+list.closed);
+		t.end();
+	})
+})

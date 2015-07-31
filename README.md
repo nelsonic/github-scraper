@@ -357,6 +357,28 @@ Each issue in the list would create a entry in the crawler (worker) queue:
 + **created_by** https://github.com/dwyl/tudo/issues/created_by/iteles
 + **assignee** (assigned to): https://github.com/dwyl/tudo/issues?q=assignee%3Aiteles+is%3Aopen
 
+### Milestones
+
+Milestones are used to group issues into logical units.
+
+![dwyl-tudo-milestones](https://cloud.githubusercontent.com/assets/194400/9010055/b3e4da72-379c-11e5-8fd3-680bf928a389.png)
+
+```js
+{
+  entries:
+   [ { name: 'Test Milestone - Please Don\'t Close!',
+       due: 'Past due by 12 days',
+       updated: 'Last updated about 4 hours ago',
+       desc: 'This Milestone in used in our e2e tests to check for an over-due milestone, so please don\'t close it!',
+       progress: '0%',
+       open: 1,
+       closed: 0 } ],
+  open: 2,
+  closed: 1
+}
+```
+
+
 ### 5.b Issues > Search
 
 A ***much*** more *effective* way of collating all the issues relevant to a person is to search for them!
