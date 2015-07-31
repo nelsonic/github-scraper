@@ -9,20 +9,27 @@
 
 ## Why?
 
-_How_ can we _discover_ which are the _interesting_ people and projects
-on GitHub (without *manually* checking *dozens* of GitHub profiles/repositories each day) ?
+Our _initial reason_ for writing this set of scrapers was to satisfy the _curiosity_ / _question_:
+> _How_ can we ***discover*** which are the ***interesting people and projects
+on GitHub***  
+(_without **manually** checking *dozens* of GitHub profiles/repositories each day_) ?
 
-We _could_ use the [GitHub ***API***](https://developer.github.com/v3/)
-to get (_almost_ all the) records from GitHub, but sadly,
+Our _second reason_ for scraping data from GitHub is so that we can show people a "*summary view*" of all their issues in our [Tudo](https://github.com/dwyl/tudo) project (which helps people track/manage/organise/prioritise their GitHub issues).
+See: https://github.com/dwyl/tudo/issues/51
+
+We needed a _simple_ way of systematically getting data from GitHub (_before people authenticate_) and scraping is the only way we could think of.
+
+We _tried_ using the [GitHub ***API***](https://developer.github.com/v3/)
+to get records from GitHub, but sadly,
 it has quite a few limitations (see: "_Issues with GitHub API_" section below) the biggest limitation being the _rate-limiting_ on API requests.
 
-We need a _simple_ way of systematically getting ***all*** the info from GitHub so that we can store trends.
+Thirdly we're building this project to [***scratch our own itch***](https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php)  
+... scraping the _pages_ of GitHub has given us a _unique_ insight into the features of the platform which has leveled-up our skills.
 
-> Also, we're building this project to [***scratch our own itch***](https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php)  
-Don't *you* want to know what's "***Hot***" on GitHub _right now_...?
+> Don't *you* want to know ***what's "Hot" right now on GitHub***...?
 
 
-## What *Problem* (are we _trying_ to solve)?
+## What (*Problem* are we _trying_ to Solve)?
 
 + ***Who*** are the up-and-comming people (_worth following_) on GitHub?
 + ***Which*** are the ***interesting projects*** (*and why?!*)
@@ -34,8 +41,7 @@ Don't *you* want to know what's "***Hot***" on GitHub _right now_...?
 
 ## How?
 
-We are "[_crawling_](https://en.wikipedia.org/wiki/Web_crawler)" GitHub
-to extract raw data from the (_public_) pages.
+This module "[_scrapes_](https://en.wikipedia.org/wiki/Web_scraping)" (_public_) pages on GitHub to extract raw data.
 
 > Note: We *know* scraping is *considerably* slower than using the GitHub API. We are doing this for "*Educational purposes*"...
 
@@ -87,7 +93,7 @@ Basic Profile Details for TJ (_with organisations_):
 ### 2. Repositories
 
 The next tab on the personal profile page is "Repositories"
-this is a **list** of the ***personal projects*** the person is working on:
+this is a **list** of the ***personal projects*** the person is working on, e.g: https://github.com/iteles?tab=repositories
 
 <img width="1033" alt="github-ines-list-of-repositories" src="https://cloud.githubusercontent.com/assets/194400/8909661/7e83e97e-347a-11e5-84c9-239f558a2b98.png">
 
@@ -483,20 +489,8 @@ It will be interesting to see/track:
 
 
 
-### Data Model
 
-We expect to store a couple of hundred (million) records in the database.
-
-- fullName
-- @username
-- dateJoined
-
-Following
-- following @username
-- dateFollowed
-- dateUnfollowed
-
-same for followers.
+### Followers
 
 
 Example data structure:
@@ -514,32 +508,15 @@ Example data structure:
 }
 ```
 
-
-This can be stored as a basic
-[flat-file database](http://en.wikipedia.org/wiki/Flat_file_database)
-where **github-username.json** would be the file
-
-the key here is:
-
-- **u**: *username* (of the person who the user is following
-  or being followed by)
-- **timestamp**: *startdate* when the person first started following/being followed
-*enddate* when the person stopped following
-
-In addition to creating a file per user,
-we should maintain an index of all the users we are tracking.
-the easiest way is to have a new-line-separted list.
-
-~~But... in the interest of being able to run this on Heroku
-(where you don't have access to the filesystem so no flat-file-db!)
-I'm going to use LevelDB for this.~~ >> Use Files on DigitalOcean!
-
+- **u**: *username* (the GitHub username of the person)
+- **timestamp**: *startdate* when the person first starred/watched (a repo) or followed a person
+> note: when multiple timestamps are recorded this signifies that the person starred and then un-starred (or un-watched) the repo or followed then un-followed a person.
 
 ## Tests
 
 Check:
 
-- [x] GitHub.com is accessible
+- [x] GitHub.com is accessible (this is implied by any of the methods returning a result; if no results, then the site is unavailable)
 - [x] a *known* GitHub user exists
 - [x] *known* GH user has non-zero number of followers
 - [x] *known* GH user is following a non-zero number of people

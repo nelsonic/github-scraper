@@ -8,7 +8,7 @@
 //   console.log(list);
 // })
 
-// var feed = require('./lib/feed');
+ // var feed = require('./lib/feed');
 // feed('nelsonic', function(err, list){
 //   console.log(err);
 //   console.log(list, list.entries.length)
