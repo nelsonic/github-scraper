@@ -189,7 +189,7 @@ have the *latest* info.
 
 ### 3. Followers
 
-
+Who is following this person
 
 Example data structure:
 (nested Objects are easier for data updates)
@@ -209,6 +209,12 @@ Example data structure:
 - **u**: *username* (the GitHub username of the person)
 - **timestamp**: *startdate* when the person first starred/watched (a repo) or followed a person
 > note: when multiple timestamps are recorded this signifies that the person starred and then un-starred (or un-watched) the repo or followed then un-followed a person.
+
+### 4. starred
+
+Which repositories has the person starred?
+
+
 
 <br />
 
