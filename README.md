@@ -522,6 +522,8 @@ For *way* more details on searching & filters see:
 ### 6. Issue (_individual_)
 
 
+
+
 ### 7. Labels (for a repository)
 
 All repositories have a set of standard labels (built-in to GitHub)
