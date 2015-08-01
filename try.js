@@ -50,8 +50,16 @@ var repo = 'dwyl/tudo'
 
 // var orgname = 'dwyl';
 // // var orgname = 'rethinkdb';
-var orgname = 'github';
-var org = require('./lib/org');
-org(orgname, function(err, data){
+// var orgname = 'github';
+// var org = require('./lib/org');
+// org(orgname, function(err, data){
+//   console.log(data);
+// });
+
+// var username = 'iteles';
+var username = 'pgte';
+var followers = require('./lib/followers');
+followers(username, function(err, data){
   console.log(data);
-})
+  console.log(data.followers.length)
+});
