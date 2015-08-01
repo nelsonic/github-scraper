@@ -17,13 +17,28 @@ test('Scrape random (non-existent) profile (error test) ', function(t){
 	})
 })
 
-test('read list of stars for pandajs/sad ', function(t){
-  var username = 'nelsonic';
+test('read list of starred repos for single page @lukebond (who never stars anything!) ', function(t){
+  var username = 'lukebond';
 	starred(username, function(err, data) {
 		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
-		t.ok(data.entries.length > 0, '"stars": '+data.entries.length);
-		// t.ok(typeof data.next === 'undefined', username +' only has 1 page of stars');
+		t.ok(data.entries.length > 0, '@'+username +' has only "starred": '+data.entries.length +' repos');
+		t.ok(typeof data.next === 'undefined', username +' has no "next page" (because he does not star anything!)');
 		t.end();
+	});
+})
+
+test('read list of starred repos for single page @iteles (multi-page) ', function(t){
+  var username = 'iteles';
+	starred(username, function(err, data) {
+		console.log(data)
+		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
+		t.ok(data.entries.length === 30, '@'+username +' has only "starred": '+data.entries.length +' repos (first page)');
+		t.ok(data.next.indexOf('page=2') > -1, '@'+username +' has multiple pages of starred repos');
+		starred(data.next, function(err2, data2){
+			console.log(data2.next)
+			t.ok(data2.next.indexOf('page=3') > -1, '@'+username +' has multiple pages of starred repos');
+			t.end();
+		})
 	});
 })
 
