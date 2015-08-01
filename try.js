@@ -57,12 +57,23 @@ var repo = 'dwyl/tudo'
 // });
 
 // var username = 'iteles';
-var username = 'pgte';
-var followers = require('./lib/followers');
-followers(username, function(err, data){
+// var username = 'pgte';
+// var followers = require('./lib/followers');
+// followers(username, function(err, data){
+//   console.log(data);
+//   console.log(data.followers.length)
+//   followers(data.next, function(err2, data2){
+//     console.log(data2.followers.length);
+//   })
+// });
+
+var username = 'Marak';
+var following = require('./lib/following');
+following(username, function(err, data){
   console.log(data);
-  console.log(data.followers.length)
-  followers(data.next, function(err2, data2){
-    console.log(data2.followers.length);
+  console.log(data.following.length)
+  following(data.next, function(err2, data2){
+    console.log(data2.following.length, data2.next);
+
   })
 });
