@@ -219,7 +219,31 @@ Example data structure:
 
 Which repositories has the person starred?
 
+```js
 
+{ entries:
+   [
+     '/ListnPlay/riot-isomorphic',
+     '/RiotGear/riotgear.github.io',
+     '/nelsonic/stream-to-s3',
+     '/dwyl/terminate',
+     '/BBC-News/wraith',
+     '/Huddle/PhantomCSS',
+     '/nelsonic/github-scraper',
+     '/nelsonic/node-js-by-example',
+     '/dwyl/tudo',
+     '/dwyl/hapi-socketio-redis-chat-example',
+     '/dwyl/intellectual-property',
+     '/dwyl/summer-2015',
+     '/stumpsyn/policies',
+     '/rorysedgwick/moose',
+     '/Danwhy/email-alerting',
+     '/msmichellegar/parallax-background-tutorial',
+     '/dwyl/learn-tdd',
+     '/ladieswhocode/london',
+     '/dwyl/repo-badges' ],
+  next: 'https://github.com/stars/iteles?direction=desc&page=2&sort=created' }
+```
 
 
 <br />
