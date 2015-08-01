@@ -62,4 +62,7 @@ var followers = require('./lib/followers');
 followers(username, function(err, data){
   console.log(data);
   console.log(data.followers.length)
+  followers(data.next, function(err2, data2){
+    console.log(data2.followers.length);
+  })
 });
