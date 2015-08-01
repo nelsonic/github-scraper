@@ -1,62 +1,43 @@
-/*
-var test = require('tape');
-var F = require('../src/follow.js');
+var test      = require('tape');
+var followers = require('../lib/followers');
 
-
-// test for failure (user doesn't exist HTTP status = 404)
-test('Non-existant user doesnt have a following page', function (assert) {
-	var user = Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
-	F.followers(user, function (err, s) {
-		assert.ok(err === 404, '✓ 404 unknown user @' + user + ' no following page');
-		assert.end();
-	});
-});
-
-test('@Zero has zero followers', function (assert) {
-	var user = 'zero';
-	F.followers(user, function (err, s) {
-		assert.ok(s.length === 0, '✓ @' + user + ' doesnt follow.');
-		assert.end();
-	});
-});
-
-test('Alan has more than 51 (1 page of) followers', function (assert) {
-	var user = 'alanshaw';
-	F.followers(user, function (err, s) {
-		assert.ok(s.length > 51, '✓ @' + user + ' has ' + s.length + ' followers');
-		assert.end();
-	});
-});
-
-// can't decide where to put this test...
-var P = require('../src/profile.js');
-
-test('Record when a user stops following', function (assert) {
-	var user = 'hyprstack';
-	P.profile(user, function(err, profile){
-		F.followers(user, function(error, f) {
-			// console.log(f);
-			profile = F.updateUsers('followers', profile, f);
-			// console.log(profile);
-			// console.log(' - - - - - - - - - - ');
-			console.log('Unfollow: '+f[0]);
-			var removed = f[0];
-			f = F.tidyArray(f, f[0])
-			profile = F.updateUsers('followers', profile, f);
-			// console.log(profile);
-			assert.equal(profile.followers[removed].length, 2, "✓ "+removed+" stopped following");
-			assert.end();
-		});
-
+test('Scrape undefined profile (error test) ', function(t) {
+	followers(null, function(err){
+		t.ok(err, 400, 'Receive 400 Error when orgname is undefined');
+		t.end();
 	})
-});
+})
 
-// test method fail on update
-test('Alan has more than 51 (1 page of) followers', function (assert) {
-	var profile = { followers : { } };
-	var latest = ['tom', 'dick', 'harry'];
-	profile = F.update('followers', profile, ['jim'], latest);
-	assert.true(profile.followers['tom'].length === 1, "✓ Tom is following");
-	assert.end();
-});
-*/
+test('Scrape random (non-existent) profile (error test) ', function(t){
+	var username = '' + Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
+	followers(username, function(err, data){
+		t.ok(err === 404, 'Got 404 Error when username does not exist');
+		t.ok(typeof data === 'undefined', '@param profile is undefined (as expected)');
+		t.end();
+	})
+})
+
+test('read list of followers for @iteles ', function(t){
+  var username = 'iteles';
+	followers(username, function(err, data) {
+		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
+		t.ok(data.followers.length > 10, '"followers": '+data.followers.length);
+		t.ok(typeof data.next === 'undefined', username +' only has 1 page of followers');
+		t.end();
+	});
+})
+
+test('read list of followers for @pgte (multi-page)', function(t){
+  var username = 'pgte';
+	followers(username, function(err, data) {
+		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
+		t.ok(data.followers.length > 50, '"followers": '+data.followers.length);
+		t.ok(data.next === 'https://github.com/pgte/followers?page=2', username +' multi-page followers');
+    // crawl second page:
+    followers(data.next, function(err2, data2){
+      t.ok(data2.followers.length > 50, '"followers": '+data.followers.length);
+      t.ok(data2.next === 'https://github.com/pgte/followers?page=3', username +' multi-page followers');
+		  t.end();
+    })
+	});
+})
