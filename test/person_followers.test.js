@@ -33,6 +33,11 @@ test('read list of followers for @pgte (multi-page)', function(t){
 		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
 		t.ok(data.followers.length > 50, '"followers": '+data.followers.length);
 		t.ok(data.next === 'https://github.com/pgte/followers?page=2', username +' multi-page followers');
-		t.end();
+    // crawl second page:
+    followers(data.next, function(err2, data2){
+      t.ok(data.followers.length > 50, '"followers": '+data.followers.length);
+      t.ok(data.next === 'https://github.com/pgte/followers?page=3', username +' multi-page followers');
+		  t.end();
+    })
 	});
 })
