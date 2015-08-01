@@ -95,6 +95,7 @@ Basic Profile Details for TJ (_with organisations_):
 
 ### 2. Repositories
 
+List of the person's repos.
 
 
 ### 3. Activity feed
@@ -217,6 +218,7 @@ Example data structure:
 ### 4. starred
 
 Which repositories has the person starred?
+
 
 
 
@@ -546,6 +548,31 @@ Here's the extraction of the standard labels:
 
 ![org profile](https://cloud.githubusercontent.com/assets/4185328/9015844/f65ec83c-37c3-11e5-8ee5-ff7db9b8b715.png)
 
+Sample results for crawling the GitHub Organisation: https://github.com/github
+```js
+{ repos:
+   [ { name: 'hubot',
+       desc: 'A customizable life embetterment robot.',
+       updated: '2015-07-31T20:09:50Z',
+       lang: 'CoffeeScript',
+       stars: '8,545',
+       forks: '1,888' },
+     { name: 'github-services',
+       desc: 'Official GitHub Services Integration - You can set these up in your repository settings screen under Service Hooks',
+       updated: '2015-07-31T20:04:55Z',
+       lang: 'Ruby',
+       stars: '1,659',
+       forks: '1,185' } ],
+  name: 'GitHub',
+  desc: 'GitHub, the company.',
+  location: 'San Francisco, CA',
+  url: 'https://github.com/about',
+  email: 'support@github.com',
+  pcount: 192,
+  avatar: 'https://avatars3.githubusercontent.com/u/9919?v=3&s=200',
+  next: '/github?page=2' }
+```
+
 
 ## Future Features / Road Map ?
 
@@ -702,7 +729,7 @@ which is "RESTful" (not real-time).
 
 #### *But*...
 
-Once we know who we *should* be following, we can use
+Once we know _who_ we *should* be following, we can use
 
 - https://developer.github.com/v3/users/followers/#follow-a-user
 - https://developer.github.com/v3/users/followers/#check-if-one-user-follows-another

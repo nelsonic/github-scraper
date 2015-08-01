@@ -78,12 +78,20 @@ var repo = 'dwyl/tudo'
 //   })
 // });
 
-var repo = 'nelsonic/practical-js-tdd';
-var stars = require('./lib/stars');
-stars(repo, function(err, data){
+// var repo = 'nelsonic/practical-js-tdd';
+// var stars = require('./lib/stars');
+// stars(repo, function(err, data){
+//   console.log(data);
+//   console.log(data.stars.length)
+//   // stars(data.next, function(err2, data2){
+//   //   console.log(data2.starers.length, data2.next);
+//   // })
+// });
+
+var username = 'Marak';
+// var orgname = 'rethinkdb'
+// var orgname = 'github';
+var starred = require('./lib/starred');
+starred(username, function(err, data){
   console.log(data);
-  console.log(data.stars.length)
-  // stars(data.next, function(err2, data2){
-  //   console.log(data2.starers.length, data2.next);
-  // })
 });
