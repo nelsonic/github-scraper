@@ -93,6 +93,10 @@ Basic Profile Details for TJ (_with organisations_):
      '/jstrace https://avatars3.githubusercontent.com/u/6807372?v=3&s=84' ] }
 ```
 
+### 2. Repositories
+
+
+
 ### 3. Activity feed
 
 Every person on GitHub has an RSS feed for their recent activity;
@@ -715,24 +719,3 @@ curl -v https://api.github.com/users/pgte/following/visionmedia
 "_only_" has **28k followers** (_so its a **highly distributed network**_ )
 + https://www.githubarchive.org/ attempts to archive all of GitHub
 + http://octoboard.com/ shows stats for the past 24h
-
-
-## Tasks
-
-* [x] Add lastmodified checker for DB (avoid crawling more than once a day) >> db.lastUpdated
-* [x] Save List of Users to DB
-* [ ] Check Max Crawler Concurrency
-* [ ] Experiment with Child Processes?
-* [ ] Record Profile (basics) History
-
-Crawler Example:
-
-```js
-var C = require('./src/index.js');
-
-var user = 'alanshaw';
-
-C.crawlUser(user, function (err, profile) {
-  console.log(profile);
-});
-```
