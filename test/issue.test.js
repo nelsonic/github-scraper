@@ -30,7 +30,12 @@ test('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function(t){
 		t.ok(data.labels.length > 2, url + ' has '+data.labels.length + ' labels')
 		t.ok(data.milestone === 'Minimal Usable Product', 'Milestone is: '+data.milestone);
 		t.ok(data.assignee.length > 0, url + ' has assignee: '+ data.assignee);
+		t.ok(data.participants.length > 2, url + ' has participants: ' + data.participants);
+		t.ok(data.participants.indexOf('iteles') > -1), url + ' has participation from @iteles';
+
 		// t.ok(data.entries.length > 2, url + ' has: '+data.entries.length);
+		
+		
 
 		console.log(data);		
 		t.end();
