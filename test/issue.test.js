@@ -21,11 +21,16 @@ test('Scrape random (non-existent) issue (error test) ', function(t){
 test('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function(t){
 	var url = '/dwyl/tudo/issues/51';
 	issue(url, function(err, data) {
+		t.ok(data.url.indexOf(url) > -1, url + ' is: ' +data.url)
 		t.ok(data.title.length > 0, url + ' has title: '+data.title);
 		t.ok(data.status.length > 0, url + ' is: '+data.status);
 		t.ok(data.author.length > 0, url + ' was authored by: '+data.author);
 		t.ok(data.created.length > 0, url + ' was created on: '+data.created);
-
+		// labels
+		t.ok(data.labels.length > 2, url + ' has '+data.labels.length + ' labels')
+		t.ok(data.milestone === 'Minimal Usable Product', 'Milestone is: '+data.milestone);
+		t.ok(data.assignee.length > 0, url + ' has assignee: '+ data.assignee);
+		// t.ok(data.entries.length > 2, url + ' has: '+data.entries.length);
 
 		console.log(data);		
 		t.end();
