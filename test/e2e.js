@@ -1,3 +1,18 @@
+var gs = require('../lib/');
+var test = require('tape');
+
+test('Scrape a known profile', function(t){
+  gs.profile('tj', function(err, profile){
+    console.log(profile);
+    t.end()
+  })
+})
+
+// feed('nelsonic', function(err, list){
+//   console.log(err);
+//   console.log(list, list.entries.length)
+// })
+
 /*
 var test = require('tape');
 var db = require('../src/save.js');
