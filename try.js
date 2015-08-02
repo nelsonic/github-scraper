@@ -1,7 +1,7 @@
-var profile = require('./lib/profile');
-profile('tj', function(err, profile){
-  console.log(profile);
-})
+// var profile = require('./lib/profile');
+// profile('tj', function(err, profile){
+//   console.log(profile);
+// })
 
 // var repos = require('./lib/repos');
 // repos('iteles', function(err, list){
@@ -48,9 +48,9 @@ profile('tj', function(err, profile){
 //   console.log(list);
 // })
 
-// var orgname = 'dwyl';
-// // var orgname = 'rethinkdb';
-// var orgname = 'github';
+// var orgname = '/dwyl';
+// // var orgname = '/rethinkdb';
+// var orgname = '/github';
 // var org = require('./lib/org');
 // org(orgname, function(err, data){
 //   console.log(data);
@@ -102,6 +102,8 @@ profile('tj', function(err, profile){
 //   console.log(list);
 // })
 // 
-// var issue = require('./lib/issue');
-// var url = '/dwyl/tudo/issues/51';
-
+var issue = require('./lib/issue');
+var url = '/dwyl/tudo/issues/51';
+issue(url, function(err, data){
+  console.log(data);
+});
