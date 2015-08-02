@@ -35,3 +35,15 @@ test('Find the repo with most stars for a given user', function(t) {
     t.end();
   })
 })
+
+
+test('find issue in repo with most comments', function(t){
+	var project = '/dwyl/ignored'
+	gs.issues(project, function(err, list) {
+    t.ok(err === null, 'No Error when crawling ' +project +' issues');
+    var count = list.entries.length;
+		t.ok(count === 0, 'repo: ' +project +' has ' +count + ' issues (ZERO)');
+    t.ok(list.closed > 5, 'repo: ' +project +' has ' +list.closed + ' CLOSED issues');
+		t.end();
+	})
+})
