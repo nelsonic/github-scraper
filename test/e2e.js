@@ -1,9 +1,13 @@
 var gs = require('../lib/');
 var test = require('tape');
 
-test('Scrape a known profile', function(t){
-  gs.profile('tj', function(err, profile){
-    console.log(profile);
+test('Scrape a known profile @alanshaw', function(t){
+  var user = 'alanshaw';
+  gs.profile(user, function(err, data){
+    t.ok(data.developerprogram === true, '- @' + user + ' is a member of the "GitHub Developer Program"');
+    t.ok(data.followercount > 100, '- @' + user + ' Has more than 100 followers');
+    t.ok(data.starred > 100, '- @' + user + ' Has starred more than 100 repos');
+    console.log(data);
     t.end()
   })
 })
