@@ -10,21 +10,33 @@ test('expect 400 when repo not stated', function(t){
 })
 
 test('expect random (non-existent) repo to return 404 error ', function(t){
-	var project = Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
-	milestones(project, function(err, list){
+	var project = '/'+Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
+	milestones(project, function(err, data){
 		t.ok(err === 404, 'Got 404 Error when repo does not exist');
-		t.ok(typeof list === 'undefined', '@param list is undefined (as expected)');
+		t.ok(typeof data === 'undefined', '@param list is undefined (as expected)');
 		t.end();
 	})
 })
 
-test('crawl dwyl/tudo/milestones', function(t){
-	var project = 'dwyl/tudo';
-	milestones(project, function(err, list) {
-    console.log(list);
+test('crawl /dwyl/tudo/milestones', function(t){
+	var project = '/dwyl/tudo';
+	milestones(project, function(err, data) {
+    console.log(data);
 		t.ok(err === null, 'No Error when crawling ' + project +' (repo pages)');
-    t.ok(list.open > 0, 'list.open '+list.open);
-    t.ok(list.closed > 0, 'list.closed '+list.closed);
+    t.ok(data.open > 0, 'data.open '+data.open);
+    t.ok(data.closed > 0, 'data.closed '+data.closed);
+		t.end();
+	})
+})
+
+test('/rethinkdb/rethinkdb has many milestones', function(t){
+	var project = '/rethinkdb/rethinkdb';
+	milestones(project, function(err, data) {
+    // console.log(list);
+		t.ok(err === null, 'No Error when crawling ' + project +' (repo pages)');
+    t.ok(data.open > 2, 'data.open '+data.open);
+    t.ok(data.entries.length === data.open, project + " has " + data.entries.length +' milestones' )
+    t.ok(data.closed > 0, 'data.closed '+data.closed);
 		t.end();
 	})
 })
