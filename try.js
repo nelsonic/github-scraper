@@ -1,7 +1,7 @@
-// var profile = require('./lib/profile');
-// profile('tj', function(err, profile){
-//   console.log(profile);
-// })
+var profile = require('./lib/profile');
+profile('tj', function(err, profile){
+  console.log(profile);
+})
 
 // var repos = require('./lib/repos');
 // repos('iteles', function(err, list){
@@ -41,7 +41,7 @@
 //   console.log(list);
 // })
 
-var repo = 'dwyl/tudo'
+// var repo = 'dwyl/tudo'
 // // var repo = 'rethinkdb/rethinkdb'
 // var milestones = require('./lib/milestones');
 // milestones(repo, function(err, list){
@@ -89,10 +89,19 @@ var repo = 'dwyl/tudo'
 // });
 
 // var username = 'lukebond';
-var username = 'iteles'
-// var orgname = 'rethinkdb'
-// var orgname = 'github';
-var starred = require('./lib/starred');
-starred(username, function(err, data){
-  console.log(data);
-});
+// var username = 'iteles'
+// // var orgname = 'rethinkdb'
+// // var orgname = 'github';
+// var starred = require('./lib/starred');
+// starred(username, function(err, data){
+//   console.log(data);
+// });
+
+// var issues = require('./lib/issues');
+// issues('dwyl/tudo', function(err, list){
+//   console.log(list);
+// })
+// 
+// var issue = require('./lib/issue');
+// var url = '/dwyl/tudo/issues/51';
+

@@ -9,7 +9,7 @@ test('Scrape undefined profile (error test) ', function(t) {
 })
 
 test('Scrape random (non-existent) profile (error test) ', function(t){
-	var orgname = '' + Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
+	var orgname = '/' + Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
 	org(orgname, function(err, data){
 		t.ok(err === 404, 'Got 404 Error when username does not exist');
 		t.ok(typeof profile === 'undefined', '@param profile is undefined (as expected)');
@@ -18,7 +18,7 @@ test('Scrape random (non-existent) profile (error test) ', function(t){
 })
 
 test('Fetch dwyl Organisation ', function(t){
-	var orgname = 'dwyl';
+	var orgname = '/dwyl';
 	org(orgname, function(err, data) {
 		t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
 		t.ok(data.pcount > 10, '"pcount":'+data.pcount);
@@ -39,7 +39,7 @@ test('Fetch Second page of dwyl org', function(t){
 })
 
 test('Scrape an org without a next page (known data)', function(t){
-	var orgname = 'PeerSun';
+	var orgname = '/PeerSun';
 	org(orgname, function(err, data) {
 		// console.log(data);
 		t.ok(data.repos.length === 5, 'org '+orgname + ' has ' +data.repos.length + ' repos.')
@@ -49,7 +49,7 @@ test('Scrape an org without a next page (known data)', function(t){
 })
 
 test('Scrape an org without a next page (known data)', function(t){
-	var orgname = 'github';
+	var orgname = '/github';
 	org(orgname, function(err, data) {
 		console.log(data);
 		// t.ok(data.repos.length === 5, 'org '+orgname + ' has ' +data.repos.length + ' repos.')
