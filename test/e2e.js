@@ -37,13 +37,19 @@ test('Find the repo with most stars for a given user', function(t) {
 })
 
 
-test('find issue in repo with most comments', function(t){
-	var project = '/dwyl/ignored'
-	gs.issues(project, function(err, list) {
+test.only('find issue with most comments', function(t){
+	var project = '/dwyl/tudo'
+	gs.issues(project, function(err, data) {
     t.ok(err === null, 'No Error when crawling ' +project +' issues');
-    var count = list.entries.length;
-		t.ok(count === 0, 'repo: ' +project +' has ' +count + ' issues (ZERO)');
-    t.ok(list.closed > 5, 'repo: ' +project +' has ' +list.closed + ' CLOSED issues');
+
+    data.entries.sort(function(a,b){
+      return b.comments - a.comments
+    })
+    // console.log(data.entries[0])
+    var issue = data.entries[0];
+    t.ok(issue.comments > 4, issue.title + ' has ' + issue.comments + ' comments!')
+		// t.ok(count === 0, 'repo: ' +project +' has ' +count + ' issues (ZERO)');
+    t.ok(data.closed > 5, 'repo: ' +project +' has ' +data.closed + ' CLOSED issues');
 		t.end();
 	})
 })
