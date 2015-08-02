@@ -31,7 +31,7 @@ test('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function(t){
 		t.ok(data.milestone === 'Minimal Usable Product', 'Milestone is: '+data.milestone);
 		t.ok(data.assignee.length > 0, url + ' has assignee: '+ data.assignee);
 		t.ok(data.participants.length > 2, url + ' has participants: ' + data.participants);
-		t.ok(data.participants.indexOf('iteles') > -1), url + ' has participation from @iteles';
+		t.ok(data.participants.indexOf('iteles') > -1, url + ' has participation from @iteles');
 
 		t.ok(data.entries.length > 2, url + ' has: '+data.entries.length);
 
@@ -44,7 +44,7 @@ test('Scrape known issue without assignee', function(t) {
 	var url ='/1602/compound/issues/20'
 	issue(url, function(err, data){
 		t.ok(typeof data.assignee === 'undefined', "assignee is undefined")
-		t.ok(data.state === 'Closed', url +' status is: '+url.state)
+		t.ok(data.state === 'Closed', url +' state is: ' + data.state)
 		t.end()
 	});
 })
@@ -52,12 +52,12 @@ test('Scrape known issue without assignee', function(t) {
 test('Scrape known issue without milestone', function(t){
 	var url = '/dwyl/time/issues/154';
 	issue(url, function(err, data){
-	  // console.log(data);
+	  console.log(data);
 	  var d = data.entries.filter(function(item){
 	    return item.id === 'issuecomment-104228711';
 	  })
 	  d = d[0] // there should only be one entry
-		t.ok(data.state === 'Closed', url +' status is: '+url.state)
+		t.ok(data.state === 'Closed', url +' state is: ' + data.state)
 		var dash = ' - - - - - - - - - - - - '
 		var easter_egg = '\n' + dash +'>  '+ d.body +'  <' + dash +'\n'
 		t.ok(d.body === 'I Love you!', url +' last comment is: '+easter_egg);

@@ -41,12 +41,12 @@
 //   console.log(list);
 // })
 
-// var repo = 'dwyl/tudo'
-// // var repo = 'rethinkdb/rethinkdb'
-// var milestones = require('./lib/milestones');
-// milestones(repo, function(err, list){
-//   console.log(list);
-// })
+var repo = '/dwyl/tudo'
+// var repo = '/rethinkdb/rethinkdb'
+var milestones = require('./lib/milestones');
+milestones(repo, function(err, data){
+  console.log(data);
+})
 
 // var orgname = '/dwyl';
 // // var orgname = '/rethinkdb';
@@ -104,12 +104,8 @@
 //
 var issue = require('./lib/issue');
 // var url = '/dwyl/time/issues/28';
-var url = '/dwyl/time/issues/154';
-issue(url, function(err, data){
-  console.log(data);
-  var d = data.entries.filter(function(item){
-    return item.id === 'issuecomment-104228711';
-  })
-  d = d[0]
-  console.log(d.body);
-});
+// var url = '/dwyl/time/issues/154';
+// var url = '/dwyl/tudo/issues/51'
+// issue(url, function(err, data){
+//   console.log(data);
+// });

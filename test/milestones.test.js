@@ -35,8 +35,8 @@ test('/rethinkdb/rethinkdb has many milestones', function(t){
     // console.log(list);
 		t.ok(err === null, 'No Error when crawling ' + project +' (repo pages)');
     t.ok(data.open > 2, 'data.open '+data.open);
-    t.ok(data.entries.length === data.open, project + " has " + data.entries.length +' milestones' )
-    t.ok(data.closed > 0, 'data.closed '+data.closed);
+    t.ok(data.entries.length === data.open, project + " has " + data.entries.length +' open milestones' )
+    t.ok(data.closed > 0, project + ' closed milestones: '+data.closed);
 		t.end();
 	})
 })

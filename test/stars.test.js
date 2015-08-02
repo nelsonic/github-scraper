@@ -21,7 +21,7 @@ test('read list of stars for pandajs/sad ', function(t){
   var username = 'pandajs/sad';
 	stars(username, function(err, data) {
 		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
-		t.ok(data.stars.length > 0, '"stars": '+data.stars.length);
+		t.ok(data.entries.length > 0, '"stars": '+data.entries.length);
 		t.ok(typeof data.next === 'undefined', username +' only has 1 page of stars');
 		t.end();
 	});
@@ -31,11 +31,11 @@ test('read list of stars for nelsonic/practical-js-tdd (multi-page)', function(t
   var username = 'nelsonic/practical-js-tdd';
 	stars(username, function(err, data) {
 		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
-		t.ok(data.stars.length > 50, '"stars": '+data.stars.length);
+		t.ok(data.entries.length > 50, '"stars": '+data.entries.length);
 		t.ok(data.next === 'https://github.com/'+username +'/stargazers?page=2', username +' multi-page stars');
     // crawl second page:
     stars(data.next, function(err2, data2){
-      t.ok(data2.stars.length > 50, '"stars": '+data.stars.length);
+      t.ok(data2.entries.length > 50, '"stars": '+data.entries.length);
       t.ok(data2.next === 'https://github.com/'+username +'/stargazers?page=3', username +' multi-page stars');
 		  t.end();
     })
