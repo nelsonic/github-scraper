@@ -18,12 +18,12 @@ test('Scrape random (non-existent) issue (error test) ', function(t){
 	})
 })
 
-test.only('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function(t){
+test('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function(t){
 	var url = '/dwyl/tudo/issues/51';
 	issue(url, function(err, data) {
 		t.ok(data.url.indexOf(url) > -1, url + ' is: ' +data.url)
 		t.ok(data.title.length > 0, url + ' has title: '+data.title);
-		t.ok(data.status.length > 0, url + ' is: '+data.status);
+		t.ok(data.state.length > 0, url + ' is: '+data.state);
 		t.ok(data.author.length > 0, url + ' was authored by: '+data.author);
 		t.ok(data.created.length > 0, url + ' was created on: '+data.created);
 		// labels
@@ -34,10 +34,33 @@ test.only('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function
 		t.ok(data.participants.indexOf('iteles') > -1), url + ' has participation from @iteles';
 
 		t.ok(data.entries.length > 2, url + ' has: '+data.entries.length);
-		
-		
 
-		console.log(data);		
+		// console.log(data);
 		t.end();
+	});
+})
+
+test('Scrape known issue without assignee', function(t) {
+	var url ='/1602/compound/issues/20'
+	issue(url, function(err, data){
+		t.ok(typeof data.assignee === 'undefined', "assignee is undefined")
+		t.ok(data.state === 'Closed', url +' status is: '+url.state)
+		t.end()
+	});
+})
+
+test('Scrape known issue without milestone', function(t){
+	var url = '/dwyl/time/issues/154';
+	issue(url, function(err, data){
+	  // console.log(data);
+	  var d = data.entries.filter(function(item){
+	    return item.id === 'issuecomment-104228711';
+	  })
+	  d = d[0] // there should only be one entry
+		t.ok(data.state === 'Closed', url +' status is: '+url.state)
+		var dash = ' - - - - - - - - - - - - '
+		var easter_egg = '\n' + dash +'>  '+ d.body +'  <' + dash +'\n'
+		t.ok(d.body === 'I Love you!', url +' last comment is: '+easter_egg);
+		t.end()
 	});
 })

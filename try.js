@@ -101,9 +101,15 @@
 // issues('dwyl/tudo', function(err, list){
 //   console.log(list);
 // })
-// 
+//
 var issue = require('./lib/issue');
-var url = '/dwyl/time/issues/28';
+// var url = '/dwyl/time/issues/28';
+var url = '/dwyl/time/issues/154';
 issue(url, function(err, data){
   console.log(data);
+  var d = data.entries.filter(function(item){
+    return item.id === 'issuecomment-104228711';
+  })
+  d = d[0]
+  console.log(d.body);
 });
