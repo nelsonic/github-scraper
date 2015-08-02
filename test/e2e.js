@@ -23,3 +23,15 @@ test('parse @iteles activity feed (expect recent activity)', function(t){
 		t.end();
 	})
 })
+
+test('Find the repo with most stars for a given user', function(t) {
+  var user = 'iteles';
+  gs.repos(user, function(err, data){
+    data.sort(function(a,b){
+      return b.stars - a.stars ;
+    });
+    var repo = data[0]
+    t.ok(repo.stars > 42, '@' + user +' > ' +repo.name +' has ' + repo.stars +' stars!');
+    t.end();
+  })
+})
