@@ -18,7 +18,7 @@ test('Scrape random (non-existent) issue (error test) ', function(t){
 	})
 })
 
-test('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function(t){
+test.only('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function(t){
 	var url = '/dwyl/tudo/issues/51';
 	issue(url, function(err, data) {
 		t.ok(data.url.indexOf(url) > -1, url + ' is: ' +data.url)
@@ -33,7 +33,7 @@ test('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function(t){
 		t.ok(data.participants.length > 2, url + ' has participants: ' + data.participants);
 		t.ok(data.participants.indexOf('iteles') > -1), url + ' has participation from @iteles';
 
-		// t.ok(data.entries.length > 2, url + ' has: '+data.entries.length);
+		t.ok(data.entries.length > 2, url + ' has: '+data.entries.length);
 		
 		
 

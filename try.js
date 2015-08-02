@@ -103,7 +103,7 @@
 // })
 // 
 var issue = require('./lib/issue');
-var url = '/dwyl/tudo/issues/51';
+var url = '/dwyl/time/issues/28';
 issue(url, function(err, data){
   console.log(data);
 });
