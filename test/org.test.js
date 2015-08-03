@@ -38,7 +38,7 @@ test('Fetch Second page of dwyl org', function(t){
 	});
 })
 
-test('Scrape an org without a next page (known data)', function(t){
+test('Scrape an org WITHOUT a next page (known data)', function(t){
 	var orgname = '/PeerSun';
 	org(orgname, function(err, data) {
 		// console.log(data);
@@ -48,12 +48,11 @@ test('Scrape an org without a next page (known data)', function(t){
 	});
 })
 
-test('Scrape an org without a next page (known data)', function(t){
+test('Scrape an org WITH a next page', function(t){
 	var orgname = '/github';
 	org(orgname, function(err, data) {
-		console.log(data);
+		// console.log(data);
 		// t.ok(data.entries.length === 5, 'org '+orgname + ' has ' +data.entries.length + ' repos.')
-		t.ok(data.pcount > 100, '"pcount":'+data.pcount);
 		t.ok(data.pcount > 100, '"pcount":'+data.pcount);
 		t.ok(data.location === 'San Francisco, CA', 'data.location: '+data.location);
 		t.ok(data.url === 'https://github.com/about', 'data.url: '+data.url);

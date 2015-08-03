@@ -2,7 +2,7 @@
   "name": "github-scraper",
   "version": "1.2.0",
   "description": "insert imaginative description here",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "dev": "nodemon test/followers.js",
     "quick": "./node_modules/tape/bin/tape ./test/*.js",
