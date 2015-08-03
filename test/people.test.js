@@ -17,7 +17,24 @@ test('Scrape random (non-existent) profile (error test) ', function(t){
 	})
 })
 
+test('Scrape org with single page of people', function(t){
+	var org = '/tableflip'
+	people(org, function(err, data){
+		console.log(data);
+		t.ok(data.entries.length > 5, 'There are '+data.entries.length +' people in '+org);
+		t.end();
+	})
+})
 
+test('Scrape org with multiple pages of people', function(t){
+	var org = '/github'
+	people(org, function(err, data){
+		console.log(data.next);
+		t.ok(data.entries.length > 20, 'There are '+data.entries.length +' people in '+org);
+		t.ok(data.next === '/orgs/github/people?page=2', org +' has multiple pages of peeps!');
+		t.end();
+	})
+})
 
 //
 // test('read list of stars for pandajs/sad ', function(t){
