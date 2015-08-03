@@ -9,35 +9,45 @@
 
 ## Why?
 
-_How_ can we _discover_ which are the _interesting_ people and projects
-on GitHub (without *manually* checking *dozens* of GitHub profiles/repositories each day) ?
+Our _initial reason_ for writing this set of scrapers was to satisfy the _curiosity_ / _question_:
+> _How_ can we ***discover*** which are the ***interesting people and projects
+on GitHub***  
+(_without **manually** checking *dozens* of GitHub profiles/repositories each day_) ?
 
-We _could_ use the [GitHub ***API***](https://developer.github.com/v3/)
-to get (_almost_ all the) records from GitHub, but sadly,
-it has quite a few limitations (see: "_Issues with GitHub API_" section below) the biggest limitation being the _rate-limiting_ on API requests.
+Our _second reason_ for scraping data from GitHub is so that we can show people a "*summary view*" of all their issues in our [Tudo](https://github.com/dwyl/tudo) project (which helps people track/manage/organise/prioritise their GitHub issues).
+See: https://github.com/dwyl/tudo/issues/51
 
-We need a _simple_ way of systematically getting ***all*** the info from GitHub so that we can store trends.
+We needed a _simple_ way of systematically getting data from GitHub (_before people authenticate_) and scraping is the only way we could think of.
 
-> Also, we're building this project to [***scratch our own itch***](https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php)  
-Don't *you* want to know what's "***Hot***" on GitHub _right now_...?
+We _tried_ using the [GitHub ***API***](https://developer.github.com/v3/)
+to get records from GitHub, but sadly,
+it has quite a few limitations (see: "_Issues with GitHub API_" section below) the biggest limitation being the [_rate-limiting_](https://developer.github.com/v3/#rate-limiting) on API requests.
+
+Thirdly we're building this project to [***scratch our own itch***](https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php)  
+... scraping the _pages_ of GitHub has given us a _unique_ insight into the features of the platform which has leveled-up our skills.
+
+> Don't *you* want to know ***what's "Hot" right now on GitHub***...?
 
 
-## What *Problem* (are we _trying_ to solve)?
+## What (*Problem* are we _trying_ to Solve)?
+
+Having a way of extracting the *essential* data from GitHub
+is a solution to a _surprisingly **wide array of problems**_, here are a few:
 
 + ***Who*** are the up-and-comming people (_worth following_) on GitHub?
 + ***Which*** are the ***interesting projects*** (*and why?!*)
++ ***What*** is the average age of an issue for a project?
 + Is a project's ***popularity growing*** or *plateaued*?
-+ What is the average age of an issue for a project?
-+ Will my Pull Request *ever* get *merged* or did I just [***waste 3 hours***](https://twitter.com/nelsonic/status/621984170353524736)?
-+ How many projects get started but never finished?
 + Are there (_already_) any ***similar projects*** to what I'm trying to build? (_reduce duplication of effort which is rampant in Open Source!!_)
++ How many projects get started but never finished?
++ ***Will*** my **Pull Request** *ever* get *merged* or is the module maintainer *too busy* and did I just [***waste 3 hours***](https://twitter.com/nelsonic/status/621984170353524736)?
++ _insert **your idea/problem** here_ ...
 
-## How?
+# How?
 
-We are "[_crawling_](https://en.wikipedia.org/wiki/Web_crawler)" GitHub
-to extract raw data from the (_public_) pages.
+This module fetches (_public_) pages on GitHub and "[_scrapes_](https://en.wikipedia.org/wiki/Web_scraping)" the html to extract raw data.
 
-> Note: We *know* scraping is *considerably* slower than using the GitHub API. We are doing this for "*Educational purposes*"...
+## People
 
 ### 1. Profile
 
@@ -83,11 +93,12 @@ Basic Profile Details for TJ (_with organisations_):
      '/jstrace https://avatars3.githubusercontent.com/u/6807372?v=3&s=84' ] }
 ```
 
+## Projects
 
 ### 2. Repositories
 
 The next tab on the personal profile page is "Repositories"
-this is a **list** of the ***personal projects*** the person is working on:
+this is a **list** of the ***personal projects*** the person is working on, e.g: https://github.com/iteles?tab=repositories
 
 <img width="1033" alt="github-ines-list-of-repositories" src="https://cloud.githubusercontent.com/assets/194400/8909661/7e83e97e-347a-11e5-84c9-239f558a2b98.png">
 
@@ -146,8 +157,36 @@ We crawl this page and return an array containing the repo properties:
 ]
 ```
 
+### 3. Repository Stats
 
-### 3. Activity feed
+This is where things start getting interesting ...
+
+![github-repo-page](https://cloud.githubusercontent.com/assets/194400/8930109/d8a76ab8-3522-11e5-8e07-95596a889fde.png)
+
+example: https://github.com/nelsonic/adoro
+
+```js
+{
+  url: 'https://github.com/nelsonic/adoro',
+  desc: 'The little publishing tool you\'ll love using. [work-in-progress]',
+  website: 'http://www.dwyl.io/',
+  watchers: 3,
+  stars: 8,
+  forks: 1,
+  commits: 12,
+  branches: 1,
+  releases: 1,
+  langs: [ 'JavaScript 90.7%', 'CSS 9.3%' ]
+}
+```
+
+> Annoyingly the number of issues and pull requests, contributors and issues
+ are only rendered *after* the page has loaded (via XHR) so we do not get
+ these three stats on page load.
+
+
+
+### 4. Activity feed
 
 Every person on GitHub has an RSS feed for their recent activity;
 this is the 3rd and final tab of the person's profile page.
@@ -240,34 +279,64 @@ One thing worth noting is that RSS feed is ***Not Real-Time*** ...
 sadly, it only gets updated periodically so we cannot rely on it to
 have the *latest* info.
 
-### 4. Repository Stats
 
-This is where things start getting interesting ...
+### 5. Followers
 
-![github-repo-page](https://cloud.githubusercontent.com/assets/194400/8930109/d8a76ab8-3522-11e5-8e07-95596a889fde.png)
+Who is following this person
 
-example: https://github.com/nelsonic/adoro
-
+Example data structure:
+(nested Objects are easier for data updates)
 ```js
 {
-  url: 'https://github.com/nelsonic/adoro',
-  desc: 'The little publishing tool you\'ll love using. [work-in-progress]',
-  website: 'http://www.dwyl.io/',
-  watchers: 3,
-  stars: 8,
-  forks: 1,
-  commits: 12,
-  branches: 1,
-  releases: 1,
-  langs: [ 'JavaScript 90.7%', 'CSS 9.3%' ]
+  "followers": {
+    "u1" : ["timestamp"],
+    "u2" : ["timestamp"]
+  },
+  "following": {
+    "u3" : ["timestamp"],
+    "u2" : ["timestamp", "timestamp2", "timestamp3"]
+  }
 }
 ```
 
-> Annoyingly the number of issues and pull requests, contributors and issues
- are only rendered *after* the page has loaded (via XHR) so we do not get
- these three stats on page load.
+- **u**: *username* (the GitHub username of the person)
+- **timestamp**: *startdate* when the person first starred/watched (a repo) or followed a person
+> note: when multiple timestamps are recorded this signifies that the person starred and then un-starred (or un-watched) the repo or followed then un-followed a person.
 
-### 5. Issues
+### 6. starred
+
+Which repositories has the person starred?
+
+```js
+
+{ entries:
+   [
+     '/ListnPlay/riot-isomorphic',
+     '/RiotGear/riotgear.github.io',
+     '/nelsonic/stream-to-s3',
+     '/dwyl/terminate',
+     '/BBC-News/wraith',
+     '/Huddle/PhantomCSS',
+     '/nelsonic/github-scraper',
+     '/nelsonic/node-js-by-example',
+     '/dwyl/tudo',
+     '/dwyl/hapi-socketio-redis-chat-example',
+     '/dwyl/intellectual-property',
+     '/dwyl/summer-2015',
+     '/stumpsyn/policies',
+     '/rorysedgwick/moose',
+     '/Danwhy/email-alerting',
+     '/msmichellegar/parallax-background-tutorial',
+     '/dwyl/learn-tdd',
+     '/ladieswhocode/london',
+     '/dwyl/repo-badges' ],
+  next: 'https://github.com/stars/iteles?direction=desc&page=2&sort=created' }
+```
+
+
+<br />
+
+### 7. Issues
 
 Clicking on the issues icon/link in any repository takes us to the list of all the issues.
 
@@ -321,7 +390,29 @@ Each issue in the list would create a entry in the crawler (worker) queue:
 + **created_by** https://github.com/dwyl/tudo/issues/created_by/iteles
 + **assignee** (assigned to): https://github.com/dwyl/tudo/issues?q=assignee%3Aiteles+is%3Aopen
 
-### 5.b Issues > Search
+### Milestones
+
+Milestones are used to group issues into logical units.
+
+![dwyl-tudo-milestones](https://cloud.githubusercontent.com/assets/194400/9010055/b3e4da72-379c-11e5-8fd3-680bf928a389.png)
+
+```js
+{
+  entries:
+   [ { name: 'Test Milestone - Please Don\'t Close!',
+       due: 'Past due by 12 days',
+       updated: 'Last updated about 4 hours ago',
+       desc: 'This Milestone in used in our e2e tests to check for an over-due milestone, so please don\'t close it!',
+       progress: '0%',
+       open: 1,
+       closed: 0 } ],
+  open: 2,
+  closed: 1
+}
+```
+
+
+### 7.b Issues > Search
 
 A ***much*** more *effective* way of collating all the issues relevant to a person is to search for them!
 
@@ -425,10 +516,53 @@ For *way* more details on searching & filters see:
 + https://help.github.com/articles/search-syntax/
 
 
-### 6. Issue (_individual_)
+### 8. Issue (_individual_)
+
+The result of scraping https://github.com/dwyl/tudo/issues/51
+
+```js
+{ entries:
+   [ { id: 'issue-96442793',
+       author: 'nelsonic',
+       created: '2015-07-22T00:00:45Z',
+       body: 'instead of waiting for people to perform the steps to authorise Tudo (to access their GitHub orgs/issues we could request their GitHub username on the login page and initiate the retrieval of their issues while they are authenticating... That way, by the time they get back to Tudo their issues dashboard is already pre-rendered and loaded! This is a wow-factor people won\'t be expecting and thus our app immediately delivers on our first promise!\n\nThoughts?' },
+     { id: 'issuecomment-123807796',
+       author: 'iteles',
+       created: '2015-07-22T17:54:12Z',
+       body: 'I\'d love to test this out, this will be an amazing selling point if we can get the performance to work like we expect!' },
+     { id: 'issuecomment-124048121',
+       author: 'nelsonic',
+       created: '2015-07-23T10:20:15Z',
+       body: '@iteles have you watched the Foundation Episode featuring Kevin Systrom (instagram) ?\n\n\nhttps://www.youtube.com/watch?v=nld8B9l1aRE\n\n\nWhat were the USPs that contributed to instagram\'s success (considering how many photo-related-apps were in the app store at the time) ?\n\ncc: @besarthoxhaj' },
+     { id: 'issuecomment-124075792',
+       author: 'besarthoxhaj',
+       created: '2015-07-23T11:59:31Z',
+       body: '@nelsonic love the idea! Let\'s do it!' } ],
+  labels: [ 'enhancement', 'help wanted', 'question' ],
+  participants: [ 'nelsonic', 'iteles', 'besarthoxhaj' ],
+  url: '/dwyl/tudo/issues/51',
+  title: 'Pre-fetch people\'s issues while they are authenticating with GitHub',
+  state: 'Open',
+  author: 'nelsonic',
+  created: '2015-07-22T00:00:45Z',
+  milestone: 'Minimal Usable Product',
+  assignee: 'besarthoxhaj' }
+```
+
+By contrast using the GitHub API to fetch this issue
+see: https://developer.github.com/v3/issues/#get-a-single-issue
+
+format:
+```sh
+/repos/:owner/:repo/issues/:number
+```
+
+```sh
+curl https://api.github.com/repos/dwyl/tudo/issues/51
+```
 
 
-### 7. Labels (for a repository)
+### 9. Labels (for a repository)
 
 All repositories have a set of standard labels (built-in to GitHub)
 e.g: https://github.com/dwyl/tudo/labels is (_currently_) only using the "*standard*" labels.
@@ -472,74 +606,56 @@ Here's the extraction of the standard labels:
 ]
 ```
 
+## Organisation
+
+### 10. Org
+
+![org profile](https://cloud.githubusercontent.com/assets/4185328/9015844/f65ec83c-37c3-11e5-8ee5-ff7db9b8b715.png)
+
+Sample results for crawling the GitHub Organisation: https://github.com/github
+```js
+{ repos:
+   [ { name: 'hubot',
+       desc: 'A customizable life embetterment robot.',
+       updated: '2015-07-31T20:09:50Z',
+       lang: 'CoffeeScript',
+       stars: '8,545',
+       forks: '1,888' },
+     { name: 'github-services',
+       desc: 'Official GitHub Services Integration - You can set these up in your repository settings screen under Service Hooks',
+       updated: '2015-07-31T20:04:55Z',
+       lang: 'Ruby',
+       stars: '1,659',
+       forks: '1,185' } ],
+  name: 'GitHub',
+  desc: 'GitHub, the company.',
+  location: 'San Francisco, CA',
+  url: 'https://github.com/about',
+  email: 'support@github.com',
+  pcount: 192,
+  avatar: 'https://avatars3.githubusercontent.com/u/9919?v=3&s=200',
+  next: '/github?page=2' }
+```
 
 
-### {#} Crawl the List of commits
+## Future Features / Road Map ?
 
-It will be interesting to see/track:
+
+### Crawl the List of commits
+
+Would it be interesting to see/track:
 + **who** makes the most commits to the project
 + **when** (***what time*** of day/night) people do their work
 + **what** did the person contribute? (docs, code improvement, tests, typo, dependency update?)
 
-
-
-### Data Model
-
-We expect to store a couple of hundred (million) records in the database.
-
-- fullName
-- @username
-- dateJoined
-
-Following
-- following @username
-- dateFollowed
-- dateUnfollowed
-
-same for followers.
-
-
-Example data structure:
-(nested Objects are easier for data updates)
-```js
-{
-  "followers": {
-    "u1" : ["timestamp"],
-    "u2" : ["timestamp"]
-  },
-  "following": {
-    "u3" : ["timestamp"],
-    "u2" : ["timestamp", "timestamp2", "timestamp3"]
-  }
-}
-```
-
-
-This can be stored as a basic
-[flat-file database](http://en.wikipedia.org/wiki/Flat_file_database)
-where **github-username.json** would be the file
-
-the key here is:
-
-- **u**: *username* (of the person who the user is following
-  or being followed by)
-- **timestamp**: *startdate* when the person first started following/being followed
-*enddate* when the person stopped following
-
-In addition to creating a file per user,
-we should maintain an index of all the users we are tracking.
-the easiest way is to have a new-line-separted list.
-
-~~But... in the interest of being able to run this on Heroku
-(where you don't have access to the filesystem so no flat-file-db!)
-I'm going to use LevelDB for this.~~ >> Use Files on DigitalOcean!
+Show your interest in this feature: https://github.com/nelsonic/github-scraper/issues/17
 
 
 ## Tests
 
 Check:
 
-- [x] GitHub.com is accessible
+- [x] GitHub.com is accessible (this is implied by any of the methods returning a result; if no results, then the site is unavailable)
 - [x] a *known* GitHub user exists
 - [x] *known* GH user has non-zero number of followers
 - [x] *known* GH user is following a non-zero number of people
@@ -677,7 +793,7 @@ which is "RESTful" (not real-time).
 
 #### *But*...
 
-Once we know who we *should* be following, we can use
+Once we know _who_ we *should* be following, we can use
 
 - https://developer.github.com/v3/users/followers/#follow-a-user
 - https://developer.github.com/v3/users/followers/#check-if-one-user-follows-another
@@ -694,24 +810,3 @@ curl -v https://api.github.com/users/pgte/following/visionmedia
 "_only_" has **28k followers** (_so its a **highly distributed network**_ )
 + https://www.githubarchive.org/ attempts to archive all of GitHub
 + http://octoboard.com/ shows stats for the past 24h
-
-
-## Tasks
-
-* [x] Add lastmodified checker for DB (avoid crawling more than once a day) >> db.lastUpdated
-* [x] Save List of Users to DB
-* [ ] Check Max Crawler Concurrency
-* [ ] Experiment with Child Processes?
-* [ ] Record Profile (basics) History
-
-Crawler Example:
-
-```js
-var C = require('./src/index.js');
-
-var user = 'alanshaw';
-
-C.crawlUser(user, function (err, profile) {
-  console.log(profile);
-});
-```

@@ -1,0 +1,856 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=1020">
+    
+    
+    <title>Pre-fetch people&#39;s issues while they are authenticating with GitHub · Issue #51 · dwyl/tudo · GitHub</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta content="@github" name="twitter:site" /><meta content="summary" name="twitter:card" /><meta content="Pre-fetch people&#39;s issues while they are authenticating with GitHub · Issue #51 · dwyl/tudo" name="twitter:title" /><meta content="instead of waiting for people to perform the steps to authorise Tudo (to access their GitHub orgs/issues we could request their GitHub username on the login page and initiate the retrieval of their..." name="twitter:description" /><meta content="https://avatars1.githubusercontent.com/u/194400?v=3&amp;s=400" name="twitter:image:src" />
+      <meta content="GitHub" property="og:site_name" /><meta content="object" property="og:type" /><meta content="https://avatars1.githubusercontent.com/u/194400?v=3&amp;s=400" property="og:image" /><meta content="Pre-fetch people&#39;s issues while they are authenticating with GitHub · Issue #51 · dwyl/tudo" property="og:title" /><meta content="https://github.com/dwyl/tudo/issues/51" property="og:url" /><meta content="instead of waiting for people to perform the steps to authorise Tudo (to access their GitHub orgs/issues we could request their GitHub username on the login page and initiate the retrieval of their..." property="og:description" />
+      <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+    <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    
+    <meta name="pjax-timeout" content="1000">
+    
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="repo_issues" data-pjax-transient>
+
+        <meta name="google-analytics" content="UA-3769691-2">
+
+    <meta content="collector.githubapp.com" name="octolytics-host" /><meta content="collector-cdn.github.com" name="octolytics-script-host" /><meta content="github" name="octolytics-app-id" /><meta content="529B211C:6D95:72CFD27:55BE4911" name="octolytics-dimension-request_id" />
+    
+    <meta content="Rails, view, issues#show" data-pjax-transient="true" name="analytics-event" />
+    <meta class="js-ga-set" name="dimension1" content="Logged Out">
+      <meta class="js-ga-set" name="dimension4" content="Current repo nav">
+    <meta name="is-dotcom" content="true">
+        <meta name="hostname" content="github.com">
+    <meta name="user-login" content="">
+
+      <link rel="icon" sizes="any" mask href="https://assets-cdn.github.com/pinned-octocat.svg">
+      <meta name="theme-color" content="#4078c0">
+      <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+    <!-- </textarea> --><!-- '"` --><meta content="authenticity_token" name="csrf-param" />
+<meta content="7ZCcQJc6fHRtd2rrhk9Qv9tebQX8qDR1TSXE1RVq1qKe39QIrkAzMd4ddu2qiePlau0Fte5KOu3ai3TRL4+Edw==" name="csrf-token" />
+    
+
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github/index-c7126cd67871e693a9f863b7a0e99879ca39079b15a8784f8b543c03bf14ad72.css" media="all" rel="stylesheet" />
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github2/index-87247f16e6450ef54cb0eda3f8f1484e33a3f18c7a7d3df1f76f67cba36a8d6d.css" media="all" rel="stylesheet" />
+    
+    
+
+
+    <meta http-equiv="x-pjax-version" content="f8fdf7d6713452aadb5c847c2e94f51b">
+
+      
+  <meta name="description" content="tudo - :white_check_mark: A single version of the truth with integrated task tracking, delegation and accountability.">
+  <meta name="go-import" content="github.com/dwyl/tudo git https://github.com/dwyl/tudo.git">
+
+  <meta content="11708465" name="octolytics-dimension-user_id" /><meta content="dwyl" name="octolytics-dimension-user_login" /><meta content="37846873" name="octolytics-dimension-repository_id" /><meta content="dwyl/tudo" name="octolytics-dimension-repository_nwo" /><meta content="true" name="octolytics-dimension-repository_public" /><meta content="false" name="octolytics-dimension-repository_is_fork" /><meta content="37846873" name="octolytics-dimension-repository_network_root_id" /><meta content="dwyl/tudo" name="octolytics-dimension-repository_network_root_nwo" />
+  <link href="https://github.com/dwyl/tudo/commits/master.atom" rel="alternate" title="Recent Commits to tudo:master" type="application/atom+xml">
+
+  </head>
+
+
+  <body class="logged_out  env-production  vis-public">
+    <a href="#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+    <div class="wrapper">
+      
+      
+      
+
+
+
+        
+        <div class="header header-logged-out" role="banner">
+  <div class="container clearfix">
+
+    <a class="header-logo-wordmark" href="https://github.com/" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
+      <span class="mega-octicon octicon-logo-github"></span>
+    </a>
+
+    <div class="header-actions" role="navigation">
+        <a class="btn btn-primary" href="/join" data-ga-click="(Logged out) Header, clicked Sign up, text:sign-up">Sign up</a>
+      <a class="btn" href="/login?return_to=%2Fdwyl%2Ftudo%2Fissues%2F51" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Sign in</a>
+    </div>
+
+    <div class="site-search repo-scope js-site-search" role="search">
+      <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/dwyl/tudo/search" class="js-site-search-form" data-global-search-url="/search" data-repo-search-url="/dwyl/tudo/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+  <label class="js-chromeless-input-container form-control">
+    <div class="scope-badge">This repository</div>
+    <input type="text"
+      class="js-site-search-focus js-site-search-field is-clearable chromeless-input"
+      data-hotkey="s"
+      name="q"
+      placeholder="Search"
+      aria-label="Search this repository"
+      data-global-scope-placeholder="Search GitHub"
+      data-repo-scope-placeholder="Search"
+      tabindex="1"
+      autocapitalize="off">
+  </label>
+</form>
+    </div>
+
+      <ul class="header-nav left" role="navigation">
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="/explore" data-ga-click="(Logged out) Header, go to explore, text:explore">Explore</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="/features" data-ga-click="(Logged out) Header, go to features, text:features">Features</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="https://enterprise.github.com/" data-ga-click="(Logged out) Header, go to enterprise, text:enterprise">Enterprise</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="/blog" data-ga-click="(Logged out) Header, go to blog, text:blog">Blog</a>
+          </li>
+      </ul>
+
+  </div>
+</div>
+
+
+
+      <div id="start-of-content" class="accessibility-aid"></div>
+          <div class="site" itemscope itemtype="http://schema.org/WebPage">
+    <div id="js-flash-container">
+      
+    </div>
+    <div class="pagehead repohead instapaper_ignore readability-menu ">
+      <div class="container">
+
+        <div class="clearfix">
+          
+<ul class="pagehead-actions">
+
+  <li>
+      <a href="/login?return_to=%2Fdwyl%2Ftudo"
+    class="btn btn-sm btn-with-count tooltipped tooltipped-n"
+    aria-label="You must be signed in to watch a repository" rel="nofollow">
+    <span class="octicon octicon-eye"></span>
+    Watch
+  </a>
+  <a class="social-count" href="/dwyl/tudo/watchers">
+    27
+  </a>
+
+  </li>
+
+  <li>
+      <a href="/login?return_to=%2Fdwyl%2Ftudo"
+    class="btn btn-sm btn-with-count tooltipped tooltipped-n"
+    aria-label="You must be signed in to star a repository" rel="nofollow">
+    <span class="octicon octicon-star"></span>
+    Star
+  </a>
+
+    <a class="social-count js-social-count" href="/dwyl/tudo/stargazers">
+      13
+    </a>
+
+  </li>
+
+    <li>
+      <a href="/login?return_to=%2Fdwyl%2Ftudo"
+        class="btn btn-sm btn-with-count tooltipped tooltipped-n"
+        aria-label="You must be signed in to fork a repository" rel="nofollow">
+        <span class="octicon octicon-repo-forked"></span>
+        Fork
+      </a>
+      <a href="/dwyl/tudo/network" class="social-count">
+        0
+      </a>
+    </li>
+</ul>
+
+          <h1 itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public ">
+            <span class="mega-octicon octicon-repo"></span>
+            <span class="author"><a href="/dwyl" class="url fn" itemprop="url" rel="author"><span itemprop="title">dwyl</span></a></span><!--
+         --><span class="path-divider">/</span><!--
+         --><strong><a href="/dwyl/tudo" data-pjax="#js-repo-pjax-container">tudo</a></strong>
+
+            <span class="page-context-loader">
+              <img alt="" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+            </span>
+
+          </h1>
+        </div>
+
+      </div>
+    </div>
+
+      <div class="container">
+        <div class="repository-with-sidebar repo-container new-discussion-timeline ">
+          <div class="repository-sidebar clearfix">
+              
+
+<nav class="sunken-menu repo-nav js-repo-nav js-sidenav-container-pjax js-octicon-loaders"
+     role="navigation"
+     data-pjax="#js-repo-pjax-container"
+     data-issue-count-url="/dwyl/tudo/issues/counts">
+  <ul class="sunken-menu-group">
+    <li class="tooltipped tooltipped-w" aria-label="Code">
+      <a href="/dwyl/tudo" aria-label="Code" class="js-selected-navigation-item sunken-menu-item" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /dwyl/tudo">
+        <span class="octicon octicon-code"></span> <span class="full-word">Code</span>
+        <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>    </li>
+
+      <li class="tooltipped tooltipped-w" aria-label="Issues">
+        <a href="/dwyl/tudo/issues" aria-label="Issues" aria-selected="true" class="js-selected-navigation-item selected sunken-menu-item" data-hotkey="g i" data-selected-links="repo_issues repo_labels repo_milestones /dwyl/tudo/issues">
+          <span class="octicon octicon-issue-opened"></span> <span class="full-word">Issues</span>
+          <span class="js-issue-replace-counter"></span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+    <li class="tooltipped tooltipped-w" aria-label="Pull requests">
+      <a href="/dwyl/tudo/pulls" aria-label="Pull requests" class="js-selected-navigation-item sunken-menu-item" data-hotkey="g p" data-selected-links="repo_pulls /dwyl/tudo/pulls">
+          <span class="octicon octicon-git-pull-request"></span> <span class="full-word">Pull requests</span>
+          <span class="js-pull-replace-counter"></span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>    </li>
+
+  </ul>
+  <div class="sunken-menu-separator"></div>
+  <ul class="sunken-menu-group">
+
+    <li class="tooltipped tooltipped-w" aria-label="Pulse">
+      <a href="/dwyl/tudo/pulse" aria-label="Pulse" class="js-selected-navigation-item sunken-menu-item" data-selected-links="pulse /dwyl/tudo/pulse">
+        <span class="octicon octicon-pulse"></span> <span class="full-word">Pulse</span>
+        <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>    </li>
+
+    <li class="tooltipped tooltipped-w" aria-label="Graphs">
+      <a href="/dwyl/tudo/graphs" aria-label="Graphs" class="js-selected-navigation-item sunken-menu-item" data-selected-links="repo_graphs repo_contributors /dwyl/tudo/graphs">
+        <span class="octicon octicon-graph"></span> <span class="full-word">Graphs</span>
+        <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>    </li>
+  </ul>
+
+
+</nav>
+
+                <div class="only-with-full-nav">
+                    
+<div class="js-clone-url clone-url open"
+  data-protocol-type="http">
+  <h3><span class="text-emphasized">HTTPS</span> clone URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target"
+           value="https://github.com/dwyl/tudo.git" readonly="readonly" aria-label="HTTPS clone URL">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+  
+<div class="js-clone-url clone-url "
+  data-protocol-type="subversion">
+  <h3><span class="text-emphasized">Subversion</span> checkout URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target"
+           value="https://github.com/dwyl/tudo" readonly="readonly" aria-label="Subversion checkout URL">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+
+
+  <div class="clone-options">You can clone with
+    <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/users/set_protocol?protocol_selector=http&amp;protocol_type=clone" class="inline-form js-clone-selector-form " data-form-nonce="668ce49d0f11832d8677aa644f9d8b4bdef9069a" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="qD8vrIkBK46hof+aUQilZESUayuJBjVXAnMP5weAF3vQY1HsAPfXoc57usRhlUWDrn26AHToFTrb5CS23K9gHg==" /></div><button class="btn-link js-clone-selector" data-protocol="http" type="submit">HTTPS</button></form> or <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/users/set_protocol?protocol_selector=subversion&amp;protocol_type=clone" class="inline-form js-clone-selector-form " data-form-nonce="668ce49d0f11832d8677aa644f9d8b4bdef9069a" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="6uCYcwui4VwnMrH/TtJVdz0MH7I0vmzaShe6yvfdnkfHq3pVkbxIymv/TlM+gRudc0LC7OzrDozh6u5W/4+Xbg==" /></div><button class="btn-link js-clone-selector" data-protocol="subversion" type="submit">Subversion</button></form>.
+    <a href="https://help.github.com/articles/which-remote-url-should-i-use" class="help tooltipped tooltipped-n" aria-label="Get help on which URL is right for you.">
+      <span class="octicon octicon-question"></span>
+    </a>
+  </div>
+
+                  <a href="/dwyl/tudo/archive/master.zip"
+                     class="btn btn-sm sidebar-button"
+                     aria-label="Download the contents of dwyl/tudo as a zip file"
+                     title="Download the contents of dwyl/tudo as a zip file"
+                     rel="nofollow">
+                    <span class="octicon octicon-cloud-download"></span>
+                    Download ZIP
+                  </a>
+                </div>
+          </div>
+          <div id="js-repo-pjax-container" class="repository-content context-loader-container" data-pjax-container>
+
+            
+<style type="text/css" media="screen">
+  span.labelstyle-fc2929, .linked-labelstyle-fc2929 {  background-color: #fc2929 !important;  color: #fff !important;}.labelstyle-fc2929.selected {  background-color: #fc2929 !important;  color: #fff !important;}.label-select-menu .labelstyle-fc2929.selected {  background:rgba(252, 41, 41, 0.12) !important;  color: #991818 !important;}
+
+span.labelstyle-cccccc, .linked-labelstyle-cccccc {  background-color: #cccccc !important;  color: #333333 !important;}.labelstyle-cccccc.selected {  background-color: #cccccc !important;  color: #333333 !important;}.label-select-menu .labelstyle-cccccc.selected {  background:rgba(204, 204, 204, 0.12) !important;  color: #999999 !important;}
+
+span.labelstyle-84b6eb, .linked-labelstyle-84b6eb {  background-color: #84b6eb !important;  color: #1c2733 !important;}.labelstyle-84b6eb.selected {  background-color: #84b6eb !important;  color: #1c2733 !important;}.label-select-menu .labelstyle-84b6eb.selected {  background:rgba(132, 182, 235, 0.12) !important;  color: #557699 !important;}
+
+span.labelstyle-159818, .linked-labelstyle-159818 {  background-color: #159818 !important;  color: #fff !important;}.labelstyle-159818.selected {  background-color: #159818 !important;  color: #fff !important;}.label-select-menu .labelstyle-159818.selected {  background:rgba(21, 152, 24, 0.12) !important;  color: #159918 !important;}
+
+span.labelstyle-e6e6e6, .linked-labelstyle-e6e6e6 {  background-color: #e6e6e6 !important;  color: #333333 !important;}.labelstyle-e6e6e6.selected {  background-color: #e6e6e6 !important;  color: #333333 !important;}.label-select-menu .labelstyle-e6e6e6.selected {  background:rgba(230, 230, 230, 0.12) !important;  color: #999999 !important;}
+
+span.labelstyle-cc317c, .linked-labelstyle-cc317c {  background-color: #cc317c !important;  color: #fff !important;}.labelstyle-cc317c.selected {  background-color: #cc317c !important;  color: #fff !important;}.label-select-menu .labelstyle-cc317c.selected {  background:rgba(204, 49, 124, 0.12) !important;  color: #99245c !important;}
+
+span.labelstyle-ffffff, .linked-labelstyle-ffffff {  background-color: #ffffff !important;  color: #333333 !important;}.labelstyle-ffffff.selected {  background-color: #ffffff !important;  color: #333333 !important;}.label-select-menu .labelstyle-ffffff.selected {  background:rgba(255, 255, 255, 0.12) !important;  color: #999999 !important;}
+</style>
+
+<div class="issues-listing" data-pjax>
+  <div class="context-loader large-format-loader">
+  <p><img alt="" height="64" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-128.gif" width="64" /></p>
+  <p>Loading…</p>
+</div>
+
+    <div id="show_issue" class="js-issues-results">
+
+    
+  <div
+    id="partial-discussion-header"
+    class="gh-header js-details-container js-socket-channel js-updatable-content issue"
+    data-channel="dwyl/tudo:issue:96442793"
+    data-url="/dwyl/tudo/issues/51/show_partial?partial=issues%2Ftitle">
+
+  <div class="gh-header-show ">
+      <div class="gh-header-actions">
+          <a href="/dwyl/tudo/issues/new" class="btn btn-sm btn-primary right" data-hotkey="c">
+            New issue
+          </a>
+      </div>
+
+    <h1 class="gh-header-title">
+      <span class="js-issue-title">Pre-fetch people&#39;s issues while they are authenticating with GitHub</span>
+      <span class="gh-header-number">#51</span>
+    </h1>
+  </div>
+
+
+  <div class="flex-table gh-header-meta">
+    <div class="flex-table-item">
+        <div class="state state-open">
+          <span class="octicon octicon-issue-opened"></span>
+          Open
+        </div>
+    </div>
+    <div class="flex-table-item flex-table-item-primary">
+        <a href="/nelsonic" class="author">nelsonic</a> opened this <span class="noun">Issue</span> <time datetime="2015-07-22T00:00:45Z" is="relative-time">Jul 22, 2015</time>
+        &middot; 3 comments
+    </div>
+  </div>
+</div>
+
+
+    <div id="discussion_bucket" class="tab-content clearfix">
+      <div class="discussion-sidebar ">
+        <div id="partial-discussion-stats"
+     class="discussion-stats js-socket-channel js-updatable-content"
+     data-channel="dwyl/tudo:issue:96442793"
+     data-url="/dwyl/tudo/issues/51/show_partial?partial=issues%2Fdiscussion_stats">
+</div>
+
+<div class="discussion-sidebar-item sidebar-labels js-discussion-sidebar-item">
+  <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/dwyl/tudo/issues/51?partial=issues%2Fsidebar%2Fshow%2Flabels" class="js-issue-sidebar-form" data-form-nonce="668ce49d0f11832d8677aa644f9d8b4bdef9069a" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="_method" type="hidden" value="put" /><input name="authenticity_token" type="hidden" value="QM8FaBWlS1RF4T2D0hP3fyXtDuz+hG9RHZFiN/Y4W4gTIcXXLdWFsrwzlK+Q2XSUAX/d05R4QqReE3hLF5onIw==" /></div>
+      
+  <h3 class="discussion-sidebar-heading">
+    Labels
+  </h3>
+
+
+    <div class="labels css-truncate">
+      <a href="/dwyl/tudo/labels/enhancement" class="label css-truncate-target linked-labelstyle-84b6eb" title="enhancement">enhancement</a>
+  <a href="/dwyl/tudo/labels/help%20wanted" class="label css-truncate-target linked-labelstyle-159818" title="help wanted">help wanted</a>
+  <a href="/dwyl/tudo/labels/question" class="label css-truncate-target linked-labelstyle-cc317c" title="question">question</a>
+
+</div>
+
+</form></div>
+
+<div class="discussion-sidebar-item sidebar-milestone js-discussion-sidebar-item">
+  <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/dwyl/tudo/issues/51/set_milestone?partial=issues%2Fsidebar%2Fshow%2Fmilestone" class="js-issue-sidebar-form" data-form-nonce="668ce49d0f11832d8677aa644f9d8b4bdef9069a" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="_method" type="hidden" value="put" /><input name="authenticity_token" type="hidden" value="RwlWyKAoGvmId4KIqWOXVYO9MhXBZ6fphvvz4YbuYVbLBwlXfv1UcNHOg54CX2ztkqyPWSFjqjk3CPV2BIzoxQ==" /></div>
+    
+  <h3 class="discussion-sidebar-heading">
+    Milestone
+  </h3>
+
+
+      <span class="progress-bar"><span class="progress" style="width: 0.0%">&nbsp;</span></span>
+  <a title="Minimal Usable Product" href="/dwyl/tudo/milestones/Minimal%20Usable%20Product" class="milestone-name css-truncate">
+    <span class="css-truncate-target">Minimal Usable Pr...</span>
+  </a>
+
+</form></div>
+
+<div class="discussion-sidebar-item sidebar-assignee js-discussion-sidebar-item">
+  <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/dwyl/tudo/issues/51?partial=issues%2Fsidebar%2Fshow%2Fassignee" class="js-issue-sidebar-form" data-form-nonce="668ce49d0f11832d8677aa644f9d8b4bdef9069a" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="_method" type="hidden" value="put" /><input name="authenticity_token" type="hidden" value="H5CHwe29ilMu8jEH2rP/FvsXKE7Ss5DkW4bTEEHSe9D/jxoXO2/Pwr/2GcKGg8bws9CS0xIYrP3wMZIBULoZzQ==" /></div>
+    
+  <h3 class="discussion-sidebar-heading">
+    Assignee
+  </h3>
+
+
+    <span class="css-truncate">
+    <img alt="@besarthoxhaj" class="avatar" height="20" src="https://avatars2.githubusercontent.com/u/7887496?v=3&amp;s=40" width="20" />
+    <a href="/dwyl/tudo/issues/assigned/besarthoxhaj" class="assignee css-truncate-target">besarthoxhaj</a>
+</span>
+
+</form></div>
+
+
+<div id="partial-users-participants" class="discussion-sidebar-item js-socket-channel js-updatable-content"
+    data-channel="dwyl/tudo:issue:96442793"
+      data-url="/dwyl/tudo/issues/51/show_partial?partial=issues%2Fparticipants"
+  >
+  <div class="participation">
+
+    <h3 class="discussion-sidebar-heading">
+      3 participants
+    </h3>
+    <div class="participation-avatars">
+        <a class="participant-avatar tooltipped tooltipped-s" aria-label="nelsonic" href="/nelsonic"><img alt="@nelsonic" class="avatar" height="20" src="https://avatars1.githubusercontent.com/u/194400?v=3&amp;s=40" width="20" /> </a>
+        <a class="participant-avatar tooltipped tooltipped-s" aria-label="iteles" href="/iteles"><img alt="@iteles" class="avatar" height="20" src="https://avatars0.githubusercontent.com/u/4185328?v=3&amp;s=40" width="20" /> </a>
+        <a class="participant-avatar tooltipped tooltipped-s" aria-label="besarthoxhaj" href="/besarthoxhaj"><img alt="@besarthoxhaj" class="avatar" height="20" src="https://avatars2.githubusercontent.com/u/7887496?v=3&amp;s=40" width="20" /> </a>
+    </div>
+  </div>
+</div>
+
+
+
+
+      </div>
+
+      <div class="discussion-timeline js-quote-selection-container">
+
+        <div class="js-discussion js-socket-channel" data-channel="dwyl/tudo:marked-as-read:96442793">
+          
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="/nelsonic"><img alt="@nelsonic" class="timeline-comment-avatar" height="48" src="https://avatars1.githubusercontent.com/u/194400?v=3&amp;s=96" width="48" /></a>
+    <div id="issue-96442793"
+     class="comment previewable-edit timeline-comment js-comment js-task-list-container owner-comment"
+     data-body-version="dbc725b3c09aa668d36a6e7c53799417">
+
+  <div class="timeline-comment-header ">
+
+
+    <span class="timeline-comment-label">Owner</span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="/nelsonic" class="author">nelsonic</a>
+    </strong>
+
+    commented
+
+    <a href="#issue-96442793" class="timestamp">
+      <time datetime="2015-07-22T00:00:45Z" is="relative-time">Jul 22, 2015</time>
+    </a>
+  </div>
+</div>
+
+
+  <div class="comment-content">
+
+    <div class="edit-comment-hide">
+      <div class="comment-body markdown-body markdown-format js-comment-body">
+          <p>instead of waiting for people to perform the steps to authorise Tudo (to access their GitHub orgs/issues we <em>could</em> request their GitHub username on the login page and initiate the retrieval of their issues <em>while</em> they are authenticating... That way, by the time they get back to Tudo their issues dashboard is already pre-rendered and loaded! This is a <strong><em>wow-factor</em></strong> people won't be <em>expecting</em> and thus our app immediately delivers on our first promise!</p>
+
+<p>Thoughts?</p>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+  </div>
+  
+      
+
+
+  <div class="discussion-item discussion-item-labeled">
+    <div class="discussion-item-header" id="event-361748431">
+
+      <span class="octicon octicon-tag discussion-item-icon"></span>
+      <img alt="@nelsonic" class="avatar" height="16" src="https://avatars2.githubusercontent.com/u/194400?v=3&amp;s=32" width="16" />
+      <a href="/nelsonic" class="author">nelsonic</a>
+        added <span class="label-color" style="background-color: #84b6eb;" title="by nelsonic at 2015-07-22 00:01:16"><a href="/dwyl/tudo/labels/enhancement" style="color: #1c2733">enhancement</a></span> <span class="label-color" style="background-color: #159818;" title="by nelsonic at 2015-07-22 00:01:16"><a href="/dwyl/tudo/labels/help%20wanted" style="color: #fff">help wanted</a></span> <span class="label-color" style="background-color: #cc317c;" title="by nelsonic at 2015-07-22 00:01:16"><a href="/dwyl/tudo/labels/question" style="color: #fff">question</a></span> labels <a href="https://github.com/dwyl/tudo/issues/51#event-361748431" class="timestamp"><time class="timestamp" datetime="2015-07-22T00:01:16Z" is="relative-time">Jul 22, 2015</time></a>
+    </div>
+  </div>
+
+
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="/iteles"><img alt="@iteles" class="timeline-comment-avatar" height="48" src="https://avatars0.githubusercontent.com/u/4185328?v=3&amp;s=96" width="48" /></a>
+    <div id="issuecomment-123807796"
+     class="comment previewable-edit timeline-comment js-comment js-task-list-container owner-comment"
+     data-body-version="cf161b5c7794bab652998978ff1b2636">
+
+  <div class="timeline-comment-header ">
+
+
+    <span class="timeline-comment-label">Owner</span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="/iteles" class="author">iteles</a>
+    </strong>
+
+    commented
+
+    <a href="#issuecomment-123807796" class="timestamp">
+      <time datetime="2015-07-22T17:54:12Z" is="relative-time">Jul 22, 2015</time>
+    </a>
+  </div>
+</div>
+
+
+  <div class="comment-content">
+
+    <div class="edit-comment-hide">
+      <div class="comment-body markdown-body markdown-format js-comment-body">
+          <p>I'd love to test this out, this will be an amazing selling point if we can get the performance to work like we expect!</p>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+  </div>
+  
+
+
+      
+
+
+  <div class="discussion-item discussion-item-assigned">
+    <div class="discussion-item-header" id="event-363231945">
+
+      <span class="octicon octicon-person discussion-item-icon"></span>
+      <img alt="@nelsonic" class="avatar" height="16" src="https://avatars2.githubusercontent.com/u/194400?v=3&amp;s=32" width="16" />
+      <a href="/nelsonic" class="author">nelsonic</a>
+      self-assigned this   <a href="https://github.com/dwyl/tudo/issues/51#event-363231945" class="timestamp"><time class="timestamp" datetime="2015-07-23T10:05:19Z" is="relative-time">Jul 23, 2015</time></a>
+    </div>
+  </div>
+
+
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="/nelsonic"><img alt="@nelsonic" class="timeline-comment-avatar" height="48" src="https://avatars1.githubusercontent.com/u/194400?v=3&amp;s=96" width="48" /></a>
+    <div id="issuecomment-124048121"
+     class="comment previewable-edit timeline-comment js-comment js-task-list-container owner-comment"
+     data-body-version="5b3fb818f3ec84768307197f2ef141ee">
+
+  <div class="timeline-comment-header ">
+
+
+    <span class="timeline-comment-label">Owner</span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="/nelsonic" class="author">nelsonic</a>
+    </strong>
+
+    commented
+
+    <a href="#issuecomment-124048121" class="timestamp">
+      <time datetime="2015-07-23T10:20:15Z" is="relative-time">Jul 23, 2015</time>
+    </a>
+  </div>
+</div>
+
+
+  <div class="comment-content">
+
+    <div class="edit-comment-hide">
+      <div class="comment-body markdown-body markdown-format js-comment-body">
+          <p><a href="https://github.com/iteles" class="user-mention">@iteles</a> have you watched the <strong>Foundation</strong> Episode featuring <strong><em>Kevin Systrom</em></strong> (<strong><em>instagram</em></strong>) ?</p>
+
+<blockquote>
+<p><a href="https://www.youtube.com/watch?v=nld8B9l1aRE">https://www.youtube.com/watch?v=nld8B9l1aRE</a></p>
+</blockquote>
+
+<p>What were the <a href="https://en.wikipedia.org/wiki/Unique_selling_proposition"><strong>USP</strong></a>s that contributed to <strong><em>instagram</em></strong>'s success (<em>considering how many photo-related-apps were in the app store at the time</em>) ?</p>
+
+<p>cc: <a href="https://github.com/besarthoxhaj" class="user-mention">@besarthoxhaj</a> </p>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+  </div>
+  
+
+
+      
+
+
+  <div class="discussion-item discussion-item-unassigned">
+    <div class="discussion-item-header" id="event-363246409">
+
+      <span class="octicon octicon-person discussion-item-icon"></span>
+      <img alt="@nelsonic" class="avatar" height="16" src="https://avatars2.githubusercontent.com/u/194400?v=3&amp;s=32" width="16" />
+      <a href="/nelsonic" class="author">nelsonic</a>
+      removed their assignment   <a href="https://github.com/dwyl/tudo/issues/51#event-363246409" class="timestamp"><time class="timestamp" datetime="2015-07-23T10:20:53Z" is="relative-time">Jul 23, 2015</time></a>
+    </div>
+  </div>
+
+
+
+
+
+      
+
+
+  <div class="discussion-item discussion-item-assigned">
+    <div class="discussion-item-header" id="event-363246410">
+
+      <span class="octicon octicon-person discussion-item-icon"></span>
+      <img alt="@besarthoxhaj" class="avatar" height="16" src="https://avatars1.githubusercontent.com/u/7887496?v=3&amp;s=32" width="16" />
+      <a href="/besarthoxhaj" class="author">besarthoxhaj</a>
+      was assigned  by <a href="/nelsonic"><span class="discussion-item-entity">nelsonic</span></a> <a href="https://github.com/dwyl/tudo/issues/51#event-363246410" class="timestamp"><time class="timestamp" datetime="2015-07-23T10:20:53Z" is="relative-time">Jul 23, 2015</time></a>
+    </div>
+  </div>
+
+
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="/besarthoxhaj"><img alt="@besarthoxhaj" class="timeline-comment-avatar" height="48" src="https://avatars2.githubusercontent.com/u/7887496?v=3&amp;s=96" width="48" /></a>
+    <div id="issuecomment-124075792"
+     class="comment previewable-edit timeline-comment js-comment js-task-list-container collaborator-comment"
+     data-body-version="25c891fd8276709ec1353a0cfb700fdf">
+
+  <div class="timeline-comment-header ">
+
+
+    <span class="timeline-comment-label">Collaborator</span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="/besarthoxhaj" class="author">besarthoxhaj</a>
+    </strong>
+
+    commented
+
+    <a href="#issuecomment-124075792" class="timestamp">
+      <time datetime="2015-07-23T11:59:31Z" is="relative-time">Jul 23, 2015</time>
+    </a>
+  </div>
+</div>
+
+
+  <div class="comment-content">
+
+    <div class="edit-comment-hide">
+      <div class="comment-body markdown-body markdown-format js-comment-body">
+          <p><a href="https://github.com/nelsonic" class="user-mention">@nelsonic</a> love the idea! Let's do it!</p>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+  </div>
+  
+      <div class="discussion-item discussion-item-ref">
+    <div class="discussion-item-header" id="ref-pullrequest-97349951">
+      <span class="octicon octicon-bookmark discussion-item-icon"></span>
+
+      <img alt="@nelsonic" class="avatar" height="16" src="https://avatars2.githubusercontent.com/u/194400?v=3&amp;s=32" width="16" />
+      <a href="/nelsonic" class="author" truncate="true">nelsonic</a>
+
+      referenced
+      this issue
+        in <strong>nelsonic/github-scraper</strong>
+      <a class="timestamp" href="#ref-pullrequest-97349951">
+        <time datetime="2015-07-28T20:05:48Z" is="relative-time">Jul 28, 2015</time>
+      </a>
+    </div>
+
+      <span class="state state-merged right">
+          <span class="octicon octicon-git-pull-request"></span>
+        Merged
+      </span>
+
+
+
+    <h3 class="discussion-item-ref-title">
+      <a href="/nelsonic/github-scraper/issues/4" class="title-link">
+        Revive
+        <span class="issue-num">#4</span>
+</a>    </h3>
+    
+  </div>
+
+
+  
+
+
+      
+
+
+  <div class="discussion-item discussion-item-milestoned">
+    <div class="discussion-item-header" id="event-370333380">
+
+      <span class="octicon octicon-milestone discussion-item-icon"></span>
+      <img alt="@nelsonic" class="avatar" height="16" src="https://avatars2.githubusercontent.com/u/194400?v=3&amp;s=32" width="16" />
+      <a href="/nelsonic" class="author">nelsonic</a>
+      added this to the <a href="/dwyl/tudo/milestones/Minimal%20Viable%20Product" class="discussion-item-entity">Minimal Viable Product</a> milestone <a href="https://github.com/dwyl/tudo/issues/51#event-370333380" class="timestamp"><time class="timestamp" datetime="2015-07-31T09:40:01Z" is="relative-time">Jul 31, 2015</time></a>
+    </div>
+  </div>
+
+
+
+
+
+      
+
+
+  <div class="discussion-item discussion-item-renamed">
+    <div class="discussion-item-header" id="event-371327811">
+
+      <span class="octicon octicon-pencil discussion-item-icon"></span>
+      <img alt="@iteles" class="avatar" height="16" src="https://avatars3.githubusercontent.com/u/4185328?v=3&amp;s=32" width="16" />
+      <a href="/iteles" class="author">iteles</a>
+      changed the title from  <span class="renamed-was">Pre-fetch people&#39;s issues while they are authenticating with GiHub</span> to <span class="renamed-is">Pre-fetch people&#39;s issues while they are authenticating with GitHub</span> <a href="https://github.com/dwyl/tudo/issues/51#event-371327811" class="timestamp"><time class="timestamp" datetime="2015-08-02T08:47:00Z" is="relative-time">Aug 2, 2015</time></a>
+    </div>
+  </div>
+
+
+
+
+
+
+<!-- Rendered timeline since 2015-08-02 01:47:00 -->
+<div id="partial-timeline-marker"
+      class="js-timeline-marker js-socket-channel js-updatable-content"
+      data-channel="dwyl/tudo:issue:96442793"
+      data-url="/dwyl/tudo/issues/51/show_partial?partial=issues%2Ftimeline_marker&amp;since=1438505220"
+      data-mark-as-read-url="/dwyl/tudo/notifications/mark?ids=91538695"
+      data-last-modified="Sun, 02 Aug 2015 08:47:00 GMT">
+</div>
+
+
+        </div>
+
+          <div class="discussion-timeline-actions">
+                <div class="signed-out-comment">
+	<a href="/join" class="btn btn-primary" rel="nofollow">Sign up for free</a>
+	<strong>to join this conversation on GitHub</strong>.
+	Already have an account?
+	<a href="/login?return_to=%2Fdwyl%2Ftudo%2Fissues%2F51" rel="nofollow">Sign in to comment</a>
+</div>
+
+
+          </div>
+      </div>
+
+    </div>
+    <div class="clear"></div>
+  </div>
+
+</div>
+
+
+          </div>
+        </div>
+        <div class="modal-backdrop"></div>
+      </div>
+  </div>
+
+
+    </div><!-- /.wrapper -->
+
+      <div class="container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links right">
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+      <li><a href="https://developer.github.com" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+        <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
+
+    </ul>
+
+    <a href="https://github.com" aria-label="Homepage">
+      <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+</a>
+    <ul class="site-footer-links">
+      <li>&copy; 2015 <span title="0.08994s from github-fe125-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+
+    <div class="fullscreen-overlay js-fullscreen-overlay" id="fullscreen_overlay">
+  <div class="fullscreen-container js-suggester-container">
+    <div class="textarea-wrap">
+      <textarea name="fullscreen-contents" id="fullscreen-contents" class="fullscreen-contents js-fullscreen-contents" placeholder="" aria-label=""></textarea>
+      <div class="suggester-container">
+        <div class="suggester fullscreen-suggester js-suggester js-navigation-container"></div>
+      </div>
+    </div>
+  </div>
+  <div class="fullscreen-sidebar">
+    <a href="#" class="exit-fullscreen js-exit-fullscreen tooltipped tooltipped-w" aria-label="Exit Zen Mode">
+      <span class="mega-octicon octicon-screen-normal"></span>
+    </a>
+    <a href="#" class="theme-switcher js-theme-switcher tooltipped tooltipped-w"
+      aria-label="Switch themes">
+      <span class="octicon octicon-color-mode"></span>
+    </a>
+  </div>
+</div>
+
+
+
+    
+    
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span class="octicon octicon-alert"></span>
+      <a href="#" class="octicon octicon-x flash-close js-ajax-error-dismiss" aria-label="Dismiss error"></a>
+      Something went wrong with that request. Please try again.
+    </div>
+
+
+      <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/frameworks-eedcd4970c51d77d26b12825fc1fb1fbd554a880c0a8649a9cac6b63f1ee7cff.js"></script>
+      <script async="async" crossorigin="anonymous" src="https://assets-cdn.github.com/assets/github/index-1af8eb3fd83c34afcee37eae4704e57d3bb35ccacee5574545665527ae02d731.js"></script>
+      
+      
+  </body>
+</html>
+

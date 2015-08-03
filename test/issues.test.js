@@ -10,7 +10,7 @@ test('expect 400 repo is not stated', function(t){
 })
 
 test('expect random (non-existent) repo to return 404 error ', function(t){
-	var project = ''+Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
+	var project = '/'+Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
 	issues(project, function(err, stats){
 		t.ok(err === 404, 'Got 404 Error when username does not exist');
 		t.ok(typeof stats === 'undefined', '@param repos is undefined (as expected)');
@@ -19,7 +19,7 @@ test('expect random (non-existent) repo to return 404 error ', function(t){
 })
 
 test('crawl known repository that has *many* issues ', function(t){
-	var project = 'dwyl/time'
+	var project = '/dwyl/time'
 	issues(project, function(err, list) {
     t.ok(err === null, 'No Error when crawling ' +project +' issues');
     console.log(list.entries.length);
@@ -38,7 +38,7 @@ test('crawl known repository that has *many* issues ', function(t){
 })
 
 test('crawl known repository that only has a single page of issues ', function(t){
-	var project = 'dwyl/ignored'
+	var project = '/dwyl/ignored'
 	issues(project, function(err, list) {
     t.ok(err === null, 'No Error when crawling ' +project +' issues');
     var count = list.entries.length;

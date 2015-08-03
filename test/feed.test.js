@@ -11,21 +11,21 @@ test('expect 400 when username not stated', function(t){
 
 test('expect random (non-existent) user to return 404 error ', function(t){
 	var user = Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
-	feed(user, function(err, repos){
+	feed(user, function(err, data){
 		t.ok(err === 404, 'Got 404 Error when username does not exist');
-		t.ok(typeof repos === 'undefined', '@param repos is undefined (as expected)');
+		t.ok(typeof data === 'undefined', '@param repos is undefined (as expected)');
 		t.end();
 	})
 })
 
 test('parse @iteles activity feed (expect recent activity)', function(t){
 	var user = 'iteles';
-	feed(user, function(err, list){
+	feed(user, function(err, data){
 		t.ok(err === null, 'No error when parsing @' +user +' activity feed');
-    var entry = list.entries.filter(function(e){
+    var entry = data.entries.filter(function(e){
       return e.indexOf('commented');
     })
-    t.ok(list.entries.length === 30, '@' +user +' activity feed contains 30 entries')
+    t.ok(data.entries.length === 30, '@' +user +' activity feed contains 30 entries')
 		t.end();
 	})
 })
