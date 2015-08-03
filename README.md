@@ -93,12 +93,100 @@ Basic Profile Details for TJ (_with organisations_):
      '/jstrace https://avatars3.githubusercontent.com/u/6807372?v=3&s=84' ] }
 ```
 
+## Projects
+
 ### 2. Repositories
 
-List of the person's repos.
+The next tab on the personal profile page is "Repositories"
+this is a **list** of the ***personal projects*** the person is working on, e.g: https://github.com/iteles?tab=repositories
+
+<img width="1033" alt="github-ines-list-of-repositories" src="https://cloud.githubusercontent.com/assets/194400/8909661/7e83e97e-347a-11e5-84c9-239f558a2b98.png">
+
+We crawl this page and return an array containing the repo properties:
+
+```js
+[
+  { url: '/iteles/learn-ab-and-multivariate-testing',
+    name: 'learn-ab-and-multivariate-testing',
+    lang: '',
+    desc: 'Tutorial on A/B and multivariate testing',
+    info: '',
+    stars: '4',
+    forks: '0',
+    updated: '2015-07-08T08:36:37Z' },
+  { url: '/iteles/learn-tdd',
+    name: 'learn-tdd',
+    lang: 'JavaScript',
+    desc: 'A brief introduction to Test Driven Development (TDD) in JavaScript',
+    info: 'forked from dwyl/learn-tdd',
+    stars: '0',
+    forks: '4',
+    updated: '2015-06-29T17:24:56Z' },
+  { url: '/iteles/practical-full-stack-testing',
+    name: 'practical-full-stack-testing',
+    lang: 'HTML',
+    desc: 'A fork of @nelsonic\'s repo to allow for PRs',
+    info: 'forked from nelsonic/practical-js-tdd',
+    stars: '0',
+    forks: '36',
+    updated: '2015-06-06T14:40:43Z' },
+  { url: '/iteles/styling-for-accessibility',
+    name: 'styling-for-accessibility',
+    lang: '',
+    desc: 'A collection of \'do\'s and \'don\'t\'s of CSS to ensure accessibility',
+    info: '',
+    stars: '0',
+    forks: '0',
+    updated: '2015-05-26T11:06:28Z' },
+  { url: '/iteles/Ultimate-guide-to-successful-meetups',
+    name: 'Ultimate-guide-to-successful-meetups',
+    lang: '',
+    desc: 'The ultimate guide to organizing successful meetups',
+    info: '',
+    stars: '3',
+    forks: '0',
+    updated: '2015-05-19T09:40:39Z' },
+  { url: '/iteles/Javascript-the-Good-Parts-notes',
+    name: 'Javascript-the-Good-Parts-notes',
+    lang: '',
+    desc: 'Notes on the seminal "Javascript the Good Parts: byDouglas Crockford',
+    info: '',
+    stars: '41',
+    forks: '12',
+    updated: '2015-05-17T16:39:35Z' }
+]
+```
+
+### 3. Repository Stats
+
+This is where things start getting interesting ...
+
+![github-repo-page](https://cloud.githubusercontent.com/assets/194400/8930109/d8a76ab8-3522-11e5-8e07-95596a889fde.png)
+
+example: https://github.com/nelsonic/adoro
+
+```js
+{
+  url: 'https://github.com/nelsonic/adoro',
+  desc: 'The little publishing tool you\'ll love using. [work-in-progress]',
+  website: 'http://www.dwyl.io/',
+  watchers: 3,
+  stars: 8,
+  forks: 1,
+  commits: 12,
+  branches: 1,
+  releases: 1,
+  langs: [ 'JavaScript 90.7%', 'CSS 9.3%' ]
+}
+```
+
+> Annoyingly the number of issues and pull requests, contributors and issues
+ are only rendered *after* the page has loaded (via XHR) so we do not get
+ these three stats on page load.
 
 
-### 3. Activity feed
+
+### 4. Activity feed
 
 Every person on GitHub has an RSS feed for their recent activity;
 this is the 3rd and final tab of the person's profile page.
@@ -192,7 +280,7 @@ sadly, it only gets updated periodically so we cannot rely on it to
 have the *latest* info.
 
 
-### 3. Followers
+### 5. Followers
 
 Who is following this person
 
@@ -215,7 +303,7 @@ Example data structure:
 - **timestamp**: *startdate* when the person first starred/watched (a repo) or followed a person
 > note: when multiple timestamps are recorded this signifies that the person starred and then un-starred (or un-watched) the repo or followed then un-followed a person.
 
-### 4. starred
+### 6. starred
 
 Which repositories has the person starred?
 
@@ -248,98 +336,7 @@ Which repositories has the person starred?
 
 <br />
 
-## Projects
-
-### 2. Repositories
-
-The next tab on the personal profile page is "Repositories"
-this is a **list** of the ***personal projects*** the person is working on, e.g: https://github.com/iteles?tab=repositories
-
-<img width="1033" alt="github-ines-list-of-repositories" src="https://cloud.githubusercontent.com/assets/194400/8909661/7e83e97e-347a-11e5-84c9-239f558a2b98.png">
-
-We crawl this page and return an array containing the repo properties:
-
-```js
-[
-  { url: '/iteles/learn-ab-and-multivariate-testing',
-    name: 'learn-ab-and-multivariate-testing',
-    lang: '',
-    desc: 'Tutorial on A/B and multivariate testing',
-    info: '',
-    stars: '4',
-    forks: '0',
-    updated: '2015-07-08T08:36:37Z' },
-  { url: '/iteles/learn-tdd',
-    name: 'learn-tdd',
-    lang: 'JavaScript',
-    desc: 'A brief introduction to Test Driven Development (TDD) in JavaScript',
-    info: 'forked from dwyl/learn-tdd',
-    stars: '0',
-    forks: '4',
-    updated: '2015-06-29T17:24:56Z' },
-  { url: '/iteles/practical-full-stack-testing',
-    name: 'practical-full-stack-testing',
-    lang: 'HTML',
-    desc: 'A fork of @nelsonic\'s repo to allow for PRs',
-    info: 'forked from nelsonic/practical-js-tdd',
-    stars: '0',
-    forks: '36',
-    updated: '2015-06-06T14:40:43Z' },
-  { url: '/iteles/styling-for-accessibility',
-    name: 'styling-for-accessibility',
-    lang: '',
-    desc: 'A collection of \'do\'s and \'don\'t\'s of CSS to ensure accessibility',
-    info: '',
-    stars: '0',
-    forks: '0',
-    updated: '2015-05-26T11:06:28Z' },
-  { url: '/iteles/Ultimate-guide-to-successful-meetups',
-    name: 'Ultimate-guide-to-successful-meetups',
-    lang: '',
-    desc: 'The ultimate guide to organizing successful meetups',
-    info: '',
-    stars: '3',
-    forks: '0',
-    updated: '2015-05-19T09:40:39Z' },
-  { url: '/iteles/Javascript-the-Good-Parts-notes',
-    name: 'Javascript-the-Good-Parts-notes',
-    lang: '',
-    desc: 'Notes on the seminal "Javascript the Good Parts: byDouglas Crockford',
-    info: '',
-    stars: '41',
-    forks: '12',
-    updated: '2015-05-17T16:39:35Z' }
-]
-```
-
-### 4. Repository Stats
-
-This is where things start getting interesting ...
-
-![github-repo-page](https://cloud.githubusercontent.com/assets/194400/8930109/d8a76ab8-3522-11e5-8e07-95596a889fde.png)
-
-example: https://github.com/nelsonic/adoro
-
-```js
-{
-  url: 'https://github.com/nelsonic/adoro',
-  desc: 'The little publishing tool you\'ll love using. [work-in-progress]',
-  website: 'http://www.dwyl.io/',
-  watchers: 3,
-  stars: 8,
-  forks: 1,
-  commits: 12,
-  branches: 1,
-  releases: 1,
-  langs: [ 'JavaScript 90.7%', 'CSS 9.3%' ]
-}
-```
-
-> Annoyingly the number of issues and pull requests, contributors and issues
- are only rendered *after* the page has loaded (via XHR) so we do not get
- these three stats on page load.
-
-### 5. Issues
+### 7. Issues
 
 Clicking on the issues icon/link in any repository takes us to the list of all the issues.
 
@@ -415,7 +412,7 @@ Milestones are used to group issues into logical units.
 ```
 
 
-### 5.b Issues > Search
+### 7.b Issues > Search
 
 A ***much*** more *effective* way of collating all the issues relevant to a person is to search for them!
 
@@ -519,7 +516,7 @@ For *way* more details on searching & filters see:
 + https://help.github.com/articles/search-syntax/
 
 
-### 6. Issue (_individual_)
+### 8. Issue (_individual_)
 
 The result of scraping https://github.com/dwyl/tudo/issues/51
 
@@ -565,7 +562,7 @@ curl https://api.github.com/repos/dwyl/tudo/issues/51
 ```
 
 
-### 7. Labels (for a repository)
+### 9. Labels (for a repository)
 
 All repositories have a set of standard labels (built-in to GitHub)
 e.g: https://github.com/dwyl/tudo/labels is (_currently_) only using the "*standard*" labels.
@@ -611,7 +608,7 @@ Here's the extraction of the standard labels:
 
 ## Organisation
 
-### 8. Org
+### 10. Org
 
 ![org profile](https://cloud.githubusercontent.com/assets/4185328/9015844/f65ec83c-37c3-11e5-8ee5-ff7db9b8b715.png)
 
