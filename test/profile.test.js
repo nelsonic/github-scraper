@@ -12,7 +12,7 @@ test('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 		t.ok(p.url      === 'http://linkedin.com/in/nelsonic', '- @' + user + ' Website URL is linkedin');
 		t.ok(p.location === 'London', '- @' + user + ' Based in London');
 		t.ok(p.followercount > 100, '- @' + user + ' Has more than 100 followers');
-		t.ok(p.starred > 100, '- @' + user + ' Has starred more than 100 repos');
+		t.ok(p.starred > 100, '- @' + user + ' Has starred '+ p.starred);
 		t.ok(p.followingcount > 50, '- @' + user + ' Is following more than 50 people');
 		t.ok(p.contribs > 2000, '- @' + user + ' Has made at least 2000 contributions to Open Source this year');
 		t.ok(p.longest > 6, '- @' + user + ' Has a decent contribution "streak"')

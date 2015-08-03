@@ -32,7 +32,10 @@ test('Scrape org with multiple pages of people', function(t){
 		console.log(data.next);
 		t.ok(data.entries.length > 20, 'There are '+data.entries.length +' people in '+org);
 		t.ok(data.next === '/orgs/github/people?page=2', org +' has multiple pages of peeps!');
-		t.end();
+		people(data.next, function(err2, data2){
+			t.ok(data2.next === '/orgs/github/people?page=3', org +' has multiple pages of peeps!');
+			t.end();
+		})
 	})
 })
 

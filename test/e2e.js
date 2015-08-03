@@ -37,7 +37,7 @@ test('Find the repo with most stars for a given user', function(t) {
 })
 
 
-test.only('find issue with most comments', function(t){
+test('find issue with most comments', function(t){
 	var project = '/dwyl/tudo'
 	gs.issues(project, function(err, data) {
     t.ok(err === null, 'No Error when crawling ' +project +' issues');
