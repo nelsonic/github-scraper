@@ -42,10 +42,12 @@ is a solution to a _surprisingly **wide array of problems**_, here are a few:
 + How many projects get started but never finished?
 + ***Will*** my **Pull Request** *ever* get *merged* or is the module maintainer *too busy* and did I just [***waste 3 hours***](https://twitter.com/nelsonic/status/621984170353524736)?
 + _insert **your idea/problem** here_ ...
++ **Associative Lists** e.g: People who starred `abc` also liked `xyz`
+
 
 # How?
 
-This module fetches (_public_) pages from GitHub,  "[_scrapes_](https://en.wikipedia.org/wiki/Web_scraping)" the html to extract raw data and returns a JSON Object.
+This module fetches (_public_) pages from GitHub, "[_scrapes_](https://en.wikipedia.org/wiki/Web_scraping)" the html to extract raw data and returns a JSON Object.
 
 # Usage
 
@@ -218,6 +220,8 @@ gs(url, function(err, data) {
 })
 ```
 
+Sample output:
+
 ```js
 {
   entries:
@@ -230,15 +234,110 @@ gs(url, function(err, data) {
 }
 ```
 
+### Starred Repositories
 
+The list of projects a person has *starred* a fascinating source of insight.
+url format: https://github.com/stars/{username}
+e.g: [/stars/iteles](https://github.com/stars/iteles)
 
-### Starred repos
+```js
+var gs = require('github-scraper'); // require the module
+var url = 'stars/iteles';           // starred repos for this user
+gs(url, function(err, data) {
+  console.log(data);                // or what ever you want to do with the data
+})
+```
 
+Sample output:
 
+```js
+{
+  entries:
+   [ '/dwyl/repo-badges', '/nelsonic/learn-testling', '/joshpitzalis/testing', '/gmarena/gmarena.github.io',
+    '/dwyl/alc', '/nikhilaravi/fac5-frontend', '/foundersandcoders/dossier', '/nelsonic/health', '/dwyl/alvo',
+    '/marmelab/gremlins.js', '/docdis/learn-saucelabs', '/rogerdudler/git-guide', '/tableflip/guvnor',
+    '/dwyl/learn-redis', '/foundersandcoders/playbook', '/MIJOTHY/FOR_FLUX_SAKE', '/NataliaLKB/learn-git-basics',
+    '/nelsonic/liso', '/dwyl/learn-json-web-tokens', '/dwyl/hapi-auth-jwt2', '/dwyl/start-here',
+    '/arvida/emoji-cheat-sheet.com', '/dwyl/time', '/docdis/learn-react', '/dwyl/esta', '/alanshaw/meteor-foam',
+    '/alanshaw/stylist', '/meteor-velocity/velocity', '/0nn0/terminal-mac-cheatsheet',
+    '/bowlingjs/bowlingjs.github.io' ],
+  url: 'https://github.com/stars/iteles?direction=desc&page=2&sort=created',
+  next_page: 'https://github.com/stars/iteles?direction=desc&page=3&sort=created'
+}
+```
 
 ### Repositories
 
+The second tab on the personal profile page is "Repositories"
+this is a **list** of the ***personal projects*** the person is working on, e.g: https://github.com/iteles?tab=repositories
 
+<img width="1033" alt="github-ines-list-of-repositories" src="https://cloud.githubusercontent.com/assets/194400/8909661/7e83e97e-347a-11e5-84c9-239f558a2b98.png">
+
+We crawl this page and return an array containing the repo properties:
+
+```js
+var url = 'iteles?tab=repositories';
+gs(url, function(err, data) {
+  console.log(data);  // or what ever you want to do with the data
+})
+```
+
+sample output:
+
+```js
+{
+  entries: [
+    { url: '/iteles/learn-ab-and-multivariate-testing',
+      name: 'learn-ab-and-multivariate-testing',
+      lang: '',
+      desc: 'Tutorial on A/B and multivariate testing',
+      info: '',
+      stars: '4',
+      forks: '0',
+      updated: '2015-07-08T08:36:37Z' },
+    { url: '/iteles/learn-tdd',
+      name: 'learn-tdd',
+      lang: 'JavaScript',
+      desc: 'A brief introduction to Test Driven Development (TDD) in JavaScript',
+      info: 'forked from dwyl/learn-tdd',
+      stars: '0',
+      forks: '4',
+      updated: '2015-06-29T17:24:56Z' },
+    { url: '/iteles/practical-full-stack-testing',
+      name: 'practical-full-stack-testing',
+      lang: 'HTML',
+      desc: 'A fork of @nelsonic\'s repo to allow for PRs',
+      info: 'forked from nelsonic/practical-js-tdd',
+      stars: '0',
+      forks: '36',
+      updated: '2015-06-06T14:40:43Z' },
+    { url: '/iteles/styling-for-accessibility',
+      name: 'styling-for-accessibility',
+      lang: '',
+      desc: 'A collection of \'do\'s and \'don\'t\'s of CSS to ensure accessibility',
+      info: '',
+      stars: '0',
+      forks: '0',
+      updated: '2015-05-26T11:06:28Z' },
+    { url: '/iteles/Ultimate-guide-to-successful-meetups',
+      name: 'Ultimate-guide-to-successful-meetups',
+      lang: '',
+      desc: 'The ultimate guide to organizing successful meetups',
+      info: '',
+      stars: '3',
+      forks: '0',
+      updated: '2015-05-19T09:40:39Z' },
+    { url: '/iteles/Javascript-the-Good-Parts-notes',
+      name: 'Javascript-the-Good-Parts-notes',
+      lang: '',
+      desc: 'Notes on the seminal "Javascript the Good Parts: byDouglas Crockford',
+      info: '',
+      stars: '41',
+      forks: '12',
+      updated: '2015-05-17T16:39:35Z' }  
+  ],
+  url: 'https://github.com/iteles?tab=repositories' }
+```
 
 
 ### Activity feed
@@ -250,7 +349,8 @@ it can be viewed online by visiting:
 ```sh
 https://github.com/{username}?tab=activity
 ```
-e.g: https://github.com/iteles?tab=activity
+e.g: [/iteles?tab=activity](https://github.com/iteles?tab=activity)
+
 
 #### Parsing the Feed
 
@@ -380,6 +480,32 @@ Note #2: when an organization has *multiple pages* of repositories you will see 
 key/value in the `data` e.g: [/dwyl?**page=2**](/dwyl?page=2) (for the second page of repos)
 
 
+### Repository Stats
+
+This is where things start getting interesting ...
+
+![github-repo-page](https://cloud.githubusercontent.com/assets/194400/8930109/d8a76ab8-3522-11e5-8e07-95596a889fde.png)
+
+example: https://github.com/nelsonic/adoro
+
+```js
+{
+  url: 'https://github.com/nelsonic/adoro',
+  desc: 'The little publishing tool you\'ll love using. [work-in-progress]',
+  website: 'http://www.dwyl.io/',
+  watchers: 3,
+  stars: 8,
+  forks: 1,
+  commits: 12,
+  branches: 1,
+  releases: 1,
+  langs: [ 'JavaScript 90.7%', 'CSS 9.3%' ]
+}
+```
+
+> Annoyingly the number of issues and pull requests, contributors and issues
+ are only rendered *after* the page has loaded (via XHR) so we do not get
+ these three stats on page load.
 
 
 ## Want More Examples?

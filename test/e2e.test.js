@@ -23,7 +23,7 @@ test('FOLLOWERS LIST for @iteles', function(t){
 	})
 })
 
-test.only('FOLLOWING LIST (SECOND PAGE) for @nelsonic', function(t){
+test('FOLLOWING LIST (SECOND PAGE) for @nelsonic', function(t){
 	var url = 'nelsonic/following?page=2';
 	gs(url, function(err, data) {
     console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
@@ -31,6 +31,22 @@ test.only('FOLLOWING LIST (SECOND PAGE) for @nelsonic', function(t){
 		t.ok(data.entries.length > 10, url +' count: '+data.entries.length);
 		t.end();
 	})
+})
+
+test('STARRED repos for @iteles (multi-page)', function(t){
+  var username = 'stars/iteles';
+	gs(username, function(err, data) {
+    // t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
+		t.ok(data.entries.length === 30, '@'+username +' has only "starred": '+data.entries.length +' repos (first page)');
+		t.ok(data.next_page.indexOf('page=2') > -1, '@'+username +' has multiple pages of starred repos');
+		gs(data.next_page, function(err2, data2){
+			console.log(data2.next_page)
+      console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
+      console.log(data2);
+			t.ok(data2.next_page.indexOf('page=3') > -1, '@'+username +' has multiple pages of starred repos');
+			t.end();
+		})
+	});
 })
 
 test('parse @iteles activity feed (expect recent activity)', function(t){
@@ -43,11 +59,13 @@ test('parse @iteles activity feed (expect recent activity)', function(t){
     t.ok(data.entries.length === 30, '@' +user +' activity feed contains 30 entries')
 		t.end();
 	})
-})
+});
 
 test('Find the repo with most stars for a given user', function(t) {
   var user = 'iteles?tab=repositories';
   gs(user, function(err, data) {
+    console.log(data)
+    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
     data.entries.sort(function(a,b) {
       return b.stars - a.stars ;
     });
@@ -55,7 +73,7 @@ test('Find the repo with most stars for a given user', function(t) {
     t.ok(repo.stars > 42, '@' + user +' > ' +repo.name +' has ' + repo.stars +' stars!');
     t.end();
   })
-})
+});
 
 
 test('Scrape an org WITH a next_page of repositories (known data)', function(t){
@@ -68,7 +86,7 @@ test('Scrape an org WITH a next_page of repositories (known data)', function(t){
 		t.ok(data.pcount > 20 , '"pcount":'+data.pcount + ' (people in the company)');
 		t.end();
 	});
-})
+});
 
 
 test('find issue with most comments', function(t){
