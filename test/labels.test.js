@@ -1,29 +1,12 @@
 var test   = require('tape');
-var labels = require('../lib/labels');
-
-test('expect 400 when repo not stated', function(t){
-  var project = '';
-  labels(project, function(err){
-    t.ok(err === 400, 'got 400 error when no user defined');
-    t.end();
-  })
-})
-
-test('expect random (non-existent) repo to return 404 error ', function(t){
-	var project = Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
-	labels(project, function(err, list){
-		t.ok(err === 404, 'Got 404 Error when repo does not exist');
-		t.ok(typeof list === 'undefined', '@param list is undefined (as expected)');
-		t.end();
-	})
-})
+var labels = require('../lib/switcher');
 
 test('crawl dwyl/tudo/labels', function(t){
-	var project = 'dwyl/tudo';
+	var project = 'dwyl/tudo/labels';
 	labels(project, function(err, list) {
     console.log(list);
 		t.ok(err === null, 'No Error when crawling ' + project +' (repo pages)');
-    var question = list.filter(function(item){
+    var question = list.entries.filter(function(item){
       return item.name === 'question';
     })
     question = question[0];

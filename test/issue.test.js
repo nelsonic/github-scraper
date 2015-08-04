@@ -1,22 +1,5 @@
 var test  = require('tape');
-var issue = require('../lib/issue');
-
-test('attempt to scrape undefined issue (should fail)', function(t){
-	var url = '';
-	issue(url, function(err, data){
-		t.ok(err, 400, 'Receive 400 Error when url is undefined');
-		t.end();
-	});
-});
-
-test('Scrape random (non-existent) issue (error test) ', function(t){
-	var url = '/dwyl/tudo/issues/' + Math.floor(Math.random() * 1000000000000000);
-	issue(url, function(err, profile){
-		t.ok(err === 404, 'Got 404 Error when username does not exist');
-		t.ok(typeof data === 'undefined', 'data is undefined (as expected)');
-		t.end();
-	})
-})
+var issue = require('../lib/switcher');
 
 test('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function(t){
 	var url = '/dwyl/tudo/issues/51';
@@ -35,7 +18,6 @@ test('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function(t){
 
 		t.ok(data.entries.length > 2, url + ' has: '+data.entries.length);
 
-		// console.log(data);
 		t.end();
 	});
 })

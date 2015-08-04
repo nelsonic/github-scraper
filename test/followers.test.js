@@ -1,24 +1,8 @@
 var test      = require('tape');
-var followers = require('../lib/followers');
-
-test('Scrape undefined profile (error test) ', function(t) {
-	followers(null, function(err){
-		t.ok(err, 400, 'Receive 400 Error when orgname is undefined');
-		t.end();
-	})
-})
-
-test('Scrape random (non-existent) profile (error test) ', function(t){
-	var username = '' + Math.floor(Math.random() * 1000000000000000); // a nice long "random" number
-	followers(username, function(err, data){
-		t.ok(err === 404, 'Got 404 Error when username does not exist');
-		t.ok(typeof data === 'undefined', '@param profile is undefined (as expected)');
-		t.end();
-	})
-})
+var followers = require('../lib/switcher');
 
 test('read list of followers for @iteles ', function(t){
-  var username = 'iteles';
+  var username = 'iteles/followers';
 	followers(username, function(err, data) {
 		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
 		t.ok(data.entries.length > 10, '"followers": '+data.entries.length);
@@ -28,15 +12,15 @@ test('read list of followers for @iteles ', function(t){
 })
 
 test('read list of followers for @pgte (multi-page)', function(t){
-  var username = 'pgte';
+  var username = 'pgte/followers';
 	followers(username, function(err, data) {
 		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
 		t.ok(data.entries.length > 50, '"followers": '+data.entries.length);
-		t.ok(data.next === 'https://github.com/pgte/followers?page=2', username +' multi-page followers');
+		t.ok(data.next_page === 'https://github.com/pgte/followers?page=2', username +' multi-page followers');
     // crawl second page:
-    followers(data.next, function(err2, data2){
+    followers(data.next_page, function(err2, data2){
       t.ok(data2.entries.length > 50, '"followers": '+data.entries.length);
-      t.ok(data2.next === 'https://github.com/pgte/followers?page=3', username +' multi-page followers');
+      t.ok(data2.next_page === 'https://github.com/pgte/followers?page=3', username +' multi-page followers');
 		  t.end();
     })
 	});
