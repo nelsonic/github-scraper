@@ -37,7 +37,7 @@ test('Scrape random (non-existent) profile (error test) ', function(t){
 	})
 })
 
-test.only('Check @olizilla profile IS NOT GitHub Developer Program Member', function(t){
+test('Check @olizilla profile IS NOT GitHub Developer Program Member', function(t){
 	var user = 'olizilla';
 	profile(user, function(err, p) {
 		t.ok(typeof p.developerprogram === 'undefined', '- @' + user + ' is NOT a member of the "GitHub Developer Program"');
