@@ -1,10 +1,18 @@
 var test     = require('tape');
 var switcher = require('../lib/switcher');
 
+test('Try to break switcher by supplying non-existent user', function(t){
+	var url = '/' + Math.floor(Math.random() * 1000000000000000);
+	switcher(url, function(err, data){
+    t.ok(err === 404, 'Got 404 Error when username does not exist');
+		t.end();
+	})
+})
+
+
 test('Scrape a user profile supplying only the username', function(t){
   var url = 'iteles'
   switcher(url, function(err, data) {
-    
     console.log(data);
     t.end()
   });
@@ -19,15 +27,15 @@ test('Scrape a user profile supplying only the username', function(t){
 //   console.log(data);
 // });
 
-var url = 'https://github.com/alanshaw/followers'
+// var url = 'https://github.com/alanshaw/followers'
 // switcher(url, function(err, data) {
 //   console.log(data);
 // });
 
-var url = 'dwyl'
-switcher(url, function(err, data) {
-  console.log(data);
-});
+// var url = 'dwyl'
+// switcher(url, function(err, data) {
+//   console.log(data);
+// });
 
 
 // var url2 = 'https://github.com/iteles/following?page=2'
