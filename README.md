@@ -54,9 +54,17 @@ this is *your* section.
 
 ### Inferring Which Scraper to use from the URL
 
+`lib/switcher.js` handles inference.
+
+
+
+
 #### Example URLs
 
 + **Profile**: `https://github.com/{username}` example: [https://github.com/**alanshaw**](https://github.com/alanshaw)
++ **Organisation**: `https://github.com/{organisation}` example: [https://github.com/**dwyl**](https://github.com/dwyl) *sadly*, this has the ***identical*** url format to *Profile*
+
+
 
 
 

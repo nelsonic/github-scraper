@@ -13,7 +13,7 @@
   "indent"        : 2,
   "latedef"       : true,
   "loopfunc"      : false,
-  "noarg"         : true,
+  "noarg"         : false,
   "node"          : true,
   "regexp"        : true,
   "regexdash"     : false,
