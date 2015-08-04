@@ -16,6 +16,7 @@ test('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 		t.ok(p.followingcount > 50, '- @' + user + ' Is following more than 50 people');
 		t.ok(p.contribs > 2000, '- @' + user + ' Has made at least 2000 contributions to Open Source this year');
 		t.ok(p.longest > 6, '- @' + user + ' Has a decent contribution "streak"')
+		t.ok(p.developerprogram === true, '- @' + user + ' is a member of the "GitHub Developer Program"');
 		t.end();
 	});
 })
@@ -36,10 +37,10 @@ test('Scrape random (non-existent) profile (error test) ', function(t){
 	})
 })
 
-test('Check @alanshaw profile for GitHub Developer Program Membership', function(t){
-	var user = 'alanshaw';
+test.only('Check @olizilla profile IS NOT GitHub Developer Program Member', function(t){
+	var user = 'olizilla';
 	profile(user, function(err, p) {
-		t.ok(p.developerprogram === true, '- @' + user + ' is a member of the "GitHub Developer Program"');
+		t.ok(typeof p.developerprogram === 'undefined', '- @' + user + ' is NOT a member of the "GitHub Developer Program"');
 		t.end();
 	});
 })
