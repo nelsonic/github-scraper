@@ -9,7 +9,6 @@ test('Try to break switcher by supplying non-existent user', function(t){
 	})
 })
 
-
 test('Scrape a user profile supplying only the username', function(t){
   var url = 'iteles'
   switcher(url, function(err, data) {

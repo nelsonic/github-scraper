@@ -1,16 +1,6 @@
 var gs = require('../lib/');
 var test = require('tape');
 
-test('Scrape a known profile @alanshaw', function(t){
-  var user = 'alanshaw';
-  gs(user, function(err, data) {
-    t.ok(data.developerprogram === true, '- @' + user + ' is a member of the "GitHub Developer Program"');
-    t.ok(data.followercount > 100, '- @' + user + ' Has more than 100 followers');
-    t.ok(data.starred > 100, '- @' + user + ' Has starred more than 100 repos');
-    console.log(data);
-    t.end()
-  })
-})
 
 test('parse @iteles activity feed (expect recent activity)', function(t){
 	var user = 'iteles.atom';
@@ -36,6 +26,32 @@ test('Find the repo with most stars for a given user', function(t) {
   })
 })
 
+test('Scrape a known PROFILE @alanshaw', function(t){
+  var user = 'alanshaw';
+  gs(user, function(err, data) {
+    t.ok(data.developerprogram === true, '- @' + user + ' is a member of the "GitHub Developer Program"');
+    t.ok(data.followercount > 100, '- @' + user + ' Has more than 100 followers');
+    t.ok(data.starred > 100, '- @' + user + ' Has starred more than 100 repos');
+    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
+    console.log(data);
+    t.end()
+  })
+})
+
+
+test('Scrape an org WITH a next_page of repositories (known data)', function(t){
+	var url = 'dwyl';
+	gs(url, function(err, data) {
+    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
+    console.log(data);
+		t.ok(data.entries.length > 19, 'org '+url + ' has ' +data.entries.length + ' repos.')
+    t.ok(data.next_page === '/dwyl?page=2', 'dwyl has more than one page');
+		t.ok(data.pcount > 20 , '"pcount":'+data.pcount + ' (people in the company)');
+		t.end();
+	});
+})
+
+
 test('find issue with most comments', function(t){
 	var project = '/dwyl/tudo/issues'
 	gs(project, function(err, data) {
@@ -44,7 +60,6 @@ test('find issue with most comments', function(t){
     data.entries.sort(function(a,b) {
       return b.comments - a.comments
     })
-    // console.log(data.entries[0])
     var issue = data.entries[0];
     console.log('- - - - - - - - - - - issue with most comments in '+project)
     // console.log(issue)

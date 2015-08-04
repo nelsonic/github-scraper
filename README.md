@@ -47,9 +47,9 @@ is a solution to a _surprisingly **wide array of problems**_, here are a few:
 
 This module fetches (_public_) pages from GitHub,  "[_scrapes_](https://en.wikipedia.org/wiki/Web_scraping)" the html to extract raw data and returns a JSON Object.
 
-## Usage
+# Usage
 
-### install from NPM
+## install from NPM
 
 instal from npm and save to your `package.json`:
 
@@ -57,7 +57,7 @@ instal from npm and save to your `package.json`:
 npm install github-scraper --save
 ```
 
-### Use it in your script!
+## Use it in your script!
 
 ```js
 var gs = require('github-scraper');
@@ -67,15 +67,15 @@ switcher(url, function(err, data) {
 })
 ```
 
-#### Sample Output for Profile Page
+### Sample Output for Profile Page
 
 Using the scraper in the way described above (to scrape a user profile)
 will yield the following results
 
 ```js
 {
-  entries: [],
-  url: 'http://www.twitter.com/iteles',
+  url: 'https://github.com/iteles'
+  website: 'http://www.twitter.com/iteles',
   followercount: 45,
   starred: 88,
   followingcount: 32,
@@ -98,10 +98,105 @@ will yield the following results
 }
 ```
 
-#### Example URLs
+## Example URLs & Output
 
-+ **Profile**: `https://github.com/{username}` example: [https://github.com/**alanshaw**](https://github.com/alanshaw)
-+ **Organisation**: `https://github.com/{organisation}` example: [https://github.com/**dwyl**](https://github.com/dwyl) or [/dwyl?**page=2**](/dwyl?page=2) *sadly*, this has the ***identical*** url format to *Profile*
+### Profile Page
+
+User profile has the following format `https://github.com/{username}`  
+example: [https://github.com/**alanshaw**](https://github.com/alanshaw)
+
+```js
+var gs = require('github-scraper'); // require the module
+var url = 'alanshaw' // a random username (of someone you should follow!)
+gs(url, function(err, data) {
+  console.log(data); // or what ever you want to do with the data
+})
+```
+
+Sample output:
+
+```js
+{
+  entries: [],
+  url: 'https://github.com/alanshaw',
+  followercount: 161,
+  starred: 243,
+  followingcount: 19,
+  worksfor: 'TABLEFLIP',
+  location: 'London',
+  fullname: 'Alan Shaw',
+  email: '',
+  website: 'http://tableflip.io/',
+  joined: '2009-11-13T14:39:19Z',
+  avatar: 'https://avatars3.githubusercontent.com/u/152863?v=3&s=460',
+  contribs: 1030,
+  longest: 11,
+  current: 2,
+  lastupdated: 1438723919828,
+  orgs:
+   [ '/lnug https://avatars2.githubusercontent.com/u/4046959?v=3&s=84',
+     '/polestarglobal https://avatars0.githubusercontent.com/u/4190361?v=3&s=84',
+     '/nodesecurity https://avatars3.githubusercontent.com/u/4229593?v=3&s=84',
+     '/require-lx https://avatars3.githubusercontent.com/u/4672751?v=3&s=84',
+     '/tableflip https://avatars3.githubusercontent.com/u/5347145?v=3&s=84',
+     '/LXJS https://avatars2.githubusercontent.com/u/6461627?v=3&s=84',
+     '/nexttick https://avatars1.githubusercontent.com/u/6919683?v=3&s=84',
+     '/yldio https://avatars3.githubusercontent.com/u/6999859?v=3&s=84',
+     '/driift https://avatars1.githubusercontent.com/u/7840567?v=3&s=84',
+     '/meteor-london https://avatars3.githubusercontent.com/u/7863151?v=3&s=84',
+     '/dimsumjs https://avatars0.githubusercontent.com/u/8371806?v=3&s=84',
+     '/docdis https://avatars0.githubusercontent.com/u/10836426?v=3&s=84',
+     '/librariesio https://avatars2.githubusercontent.com/u/11243589?v=3&s=84',
+     '/dwyl https://avatars2.githubusercontent.com/u/11708465?v=3&s=84',
+     '/kittorrent https://avatars0.githubusercontent.com/u/13317556?v=3&s=84' ],
+  developerprogram: true
+}
+```
+
+### Organization
+
+Organization pages have the following url pattern: `https://github.com/{orgname}`  
+example: [https://github.com/**dwyl**](https://github.com/dwyl)
+(`entries` _truncated for brevity_)
+```js
+{
+  entries:
+   [ { name: 'hapi-auth-jwt2',
+       desc: 'Secure Hapi.js authentication plugin using JSON Web Tokens (JWT)',
+       updated: '2015-08-04T19:30:50Z',
+       lang: 'JavaScript',
+       stars: '59',
+       forks: '11' },
+     { name: 'start-here',
+       desc: 'A Quick-start Guide for People who want to DWYL',
+       updated: '2015-08-03T11:04:14Z',
+       lang: 'HTML',
+       stars: '14',
+       forks: '9' },
+     { name: 'summer-2015',
+       desc: 'Probably the best Summer Sun, Fun & Coding Experience in the World!',
+       updated: '2015-07-31T11:02:29Z',
+       lang: 'CSS',
+       stars: '16',
+       forks: '1' },
+  ],
+  url: 'http://dwyl.io',
+  name: 'dwyl - do what you love',
+  desc: 'Start here: https://github.com/dwyl/start-here',
+  location: 'Your Pocket',
+  email: 'github@dwyl.io',
+  pcount: 24,
+  avatar: 'https://avatars3.githubusercontent.com/u/11708465?v=3&s=200',
+  next_page: '/dwyl?page=2'
+}
+```
+Note #1: *sadly*, this has the ***identical*** url format to *Profile*
+
+Note #2: when an organization has *multiple pages* of repositories you will see a `next_page`
+key/value in the `data` e.g: [/dwyl?**page=2**](/dwyl?page=2) (for the second page of repos)
+
+
+
 + **Followers**: `https://github.com/{username}/followers` e.g: [https://github.com/iteles/**followers**](https://github.com/iteles/followers)
 + **Following**: `https://github.com/{username}/following` e.g: [https://github.com/iteles/**following**](https://github.com/iteles/following) or
 
@@ -110,9 +205,11 @@ will yield the following results
 
 ## Want More Examples?
 
-If you want ***even more*** examples of what
+If you want ***even more*** examples of the pages you can scrape,
+take a look at our end-to-end tests where we *test* all the scrapers!
 
 
+<br />
 
 ## tl;dr
 
