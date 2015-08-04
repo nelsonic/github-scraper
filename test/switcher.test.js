@@ -2,9 +2,11 @@ var test     = require('tape');
 var switcher = require('../lib/switcher');
 
 test('Scrape a user profile supplying only the username', function(t){
-  var url = 'https://github.com/alanshaw/followers'
+  var url = 'iteles'
   switcher(url, function(err, data) {
+    
     console.log(data);
+    t.end()
   });
 })
 // var url = 'https://github.com/iteles/followers'
@@ -18,14 +20,14 @@ test('Scrape a user profile supplying only the username', function(t){
 // });
 
 var url = 'https://github.com/alanshaw/followers'
-switcher(url, function(err, data) {
-  console.log(data);
-});
-
-// var url = 'dwyl'
 // switcher(url, function(err, data) {
 //   console.log(data);
 // });
+
+var url = 'dwyl'
+switcher(url, function(err, data) {
+  console.log(data);
+});
 
 
 // var url2 = 'https://github.com/iteles/following?page=2'
