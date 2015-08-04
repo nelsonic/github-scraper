@@ -47,6 +47,21 @@ is a solution to a _surprisingly **wide array of problems**_, here are a few:
 
 This module fetches (_public_) pages from GitHub,  "[_scrapes_](https://en.wikipedia.org/wiki/Web_scraping)" the html to extract raw data and returns a JSON Object.
 
+## tl;dr
+
+If you are the kind of person that likes to *understand* how something works,
+this is *your* section.
+
+### Inferring Which Scraper to use from the URL
+
+#### Example URLs
+
++ **Profile**: `https://github.com/{username}` example: [https://github.com/**alanshaw**](https://github.com/alanshaw)
+
+
+
+
+
 ## Interesting Facts
 
 - GitHub has 10.3 Million users (_at last count_)
