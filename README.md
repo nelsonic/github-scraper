@@ -47,17 +47,56 @@ is a solution to a _surprisingly **wide array of problems**_, here are a few:
 
 This module fetches (_public_) pages from GitHub,  "[_scrapes_](https://en.wikipedia.org/wiki/Web_scraping)" the html to extract raw data and returns a JSON Object.
 
-## tl;dr
+## Usage
 
-If you are the kind of person that likes to *understand* how something works,
-this is *your* section.
+### install from NPM
 
-### Inferring Which Scraper to use from the URL
+instal from npm and save to your `package.json`:
 
-`lib/switcher.js` handles inference.
+```sh
+npm install github-scraper --save
+```
 
+### Use it in your script!
 
+```js
+var gs = require('github-scraper');
+var url = '/iteles' // a random username
+switcher(url, function(err, data) {
+  console.log(data); // or what ever you want to do with the data
+})
+```
 
+#### Sample Output for Profile Page
+
+Using the scraper in the way described above (to scrape a user profile)
+will yield the following results
+
+```js
+{
+  entries: [],
+  url: 'http://www.twitter.com/iteles',
+  followercount: 45,
+  starred: 88,
+  followingcount: 32,
+  worksfor: 'dwyl.io',
+  location: 'London, UK',
+  fullname: 'Ines Teles',
+  email: '',
+  joined: '2013-04-17T21:10:06Z',
+  avatar: 'https://avatars1.githubusercontent.com/u/4185328?v=3&s=460',
+  contribs: 824,
+  longest: 156,
+  current: 156,
+  lastupdated: 1438751565678,
+  orgs:
+   [ '/ladieswhocode https://avatars1.githubusercontent.com/u/1634620?v=3&s=84',
+     '/bowlingjs https://avatars3.githubusercontent.com/u/8825909?v=3&s=84',
+     '/foundersandcoders https://avatars3.githubusercontent.com/u/9970257?v=3&s=84',
+     '/docdis https://avatars0.githubusercontent.com/u/10836426?v=3&s=84',
+     '/dwyl https://avatars2.githubusercontent.com/u/11708465?v=3&s=84' ]
+}
+```
 
 #### Example URLs
 
@@ -67,6 +106,24 @@ this is *your* section.
 + **Following**: `https://github.com/{username}/following` e.g: [https://github.com/iteles/**following**](https://github.com/iteles/following) or
 
 
+
+
+## Want More Examples?
+
+If you want ***even more*** examples of what
+
+
+
+## tl;dr
+
+If you are the kind of person that likes to *understand* how something works,
+this is *your* section.
+
+### Inferring Which Scraper to use from the URL
+
+`lib/switcher.js` handles inference.
+We wanted to use a `switch > case` construct but, ended up using `if/else`
+because there are two types of checks we need to do so `if/else` seemed simpler.
 
 
 
