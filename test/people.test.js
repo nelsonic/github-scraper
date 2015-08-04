@@ -1,4 +1,4 @@
-var test      = require('tape');
+var test   = require('tape');
 var people = require('../lib/people');
 
 test('Scrape undefined profile (error test) ', function(t) {

@@ -62,8 +62,9 @@ this is *your* section.
 #### Example URLs
 
 + **Profile**: `https://github.com/{username}` example: [https://github.com/**alanshaw**](https://github.com/alanshaw)
-+ **Organisation**: `https://github.com/{organisation}` example: [https://github.com/**dwyl**](https://github.com/dwyl) *sadly*, this has the ***identical*** url format to *Profile*
-
++ **Organisation**: `https://github.com/{organisation}` example: [https://github.com/**dwyl**](https://github.com/dwyl) or [/dwyl?**page=2**](/dwyl?page=2) *sadly*, this has the ***identical*** url format to *Profile*
++ **Followers**: `https://github.com/{username}/followers` e.g: [https://github.com/iteles/**followers**](https://github.com/iteles/followers)
++ **Following**: `https://github.com/{username}/following` e.g: [https://github.com/iteles/**following**](https://github.com/iteles/following) or
 
 
 

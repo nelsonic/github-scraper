@@ -1,6 +1,6 @@
-var test      = require('tape');
+var test     = require('tape');
 var validate = require('../lib/url_validator');
-var callbackerrmsg = "please supply a callback"
+var cberrmsg = "please supply a callback"
 
 
 test('Attepmt to invoke the scraper WITHOUT VALID callback funciton', function(t) {
@@ -8,7 +8,7 @@ test('Attepmt to invoke the scraper WITHOUT VALID callback funciton', function(t
     var result = validate();
   } catch (error){
     console.log(error);
-    t.ok(error.indexOf(callbackerrmsg) > -1, "Got ERROR: "+error + " (as expected!)");
+    t.ok(error.indexOf(cberrmsg) > -1, "Got ERROR: "+error + " (as expected!)");
     t.end();
   }
 })
