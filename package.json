@@ -1,12 +1,12 @@
 {
   "name": "github-scraper",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "insert imaginative description here",
   "main": "lib/index.js",
   "scripts": {
     "dev": "nodemon test/followers.js",
     "quick": "./node_modules/tape/bin/tape ./test/*.js",
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js | node_modules/tap-spec/bin/cmd.js",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js && istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
     "codeclimate": "CODECLIMATE_REPO_TOKEN=d76761e65db40196c610696b451975d738be69a40438ae9fec3a5a3113af799f ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
     "jshint": "jshint -c .jshintrc --exclude-path .gitignore .",
@@ -36,6 +36,7 @@
     "istanbul": "^0.3.17",
     "jshint": "^2.8.0",
     "pre-commit": "1.0.10",
+    "tap-spec": "^4.0.2",
     "tape": "^4.0.1"
   },
   "pre-commit": [
