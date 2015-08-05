@@ -76,7 +76,7 @@ test('Find the repo with most stars for a given user', function(t) {
 });
 
 
-test('Scrape an org WITH a next_page of repositories (known data)', function(t){
+test('Scrape an ORG WITH a next_page of repositories (known data)', function(t){
 	var url = 'dwyl';
 	gs(url, function(err, data) {
     console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
@@ -105,4 +105,57 @@ test('find issue with most comments', function(t){
     t.ok(data.closed > 5, 'repo: ' +project +' has ' +data.closed + ' CLOSED issues');
 		t.end();
 	})
+})
+
+test('Crawl a REPOSITORY single language repo', function(t){
+	var project = 'nelsonic/practical-js-tdd';
+	gs(project, function(err, data) {
+    console.log(data);
+    t.ok(data.langs[0].indexOf('JavaScript') > -1, 'Language is: '+ data.langs)
+		t.end();
+	})
+})
+
+test('LABELS for dwyl/tudo/labels', function(t){
+	var url = '/dwyl/time/labels';
+	gs(url, function(err, list) {
+    console.log(list);
+		t.ok(err === null, 'No Error when crawling ' + url +' (repo pages)');
+    var question = list.entries.filter(function(item){
+      return item.name === 'question';
+    })
+    question = question[0];
+		t.ok(question.link === url+'/question', 'question.link is : '+question.link+ ' === ' +url+'/question');
+    t.ok(question.count > 1, 'question.count (number of open issues): '+question.count);
+    t.ok(question.style.indexOf('#fff') > -1, 'question.styles are '+question.style);
+		t.end();
+	})
+})
+
+test('MILESTONSE for /dwyl/tudo/milestones', function(t){
+	var url = '/dwyl/tudo/milestones';
+	gs(url, function(err, data) {
+    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
+    console.log(data);
+		t.ok(err === null, 'No Error when crawling ' + url +' (repo pages)');
+    t.ok(data.open > 0, 'data.open '+data.open);
+    t.ok(data.closed > 0, 'data.closed '+data.closed);
+		t.end();
+	})
+})
+
+test('ISSUE contens without milestone', function(t){
+	var url = '/dwyl/time/issues/154';
+	gs(url, function(err, data){
+    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
+	  console.log(data);
+	  var d = data.entries.filter(function(item){
+	    return item.id === 'issuecomment-104228711';
+	  })
+	  d = d[0] // there should only be one entry
+		t.ok(data.state === 'Closed', url +' state is: ' + data.state)
+
+		t.ok(d.body === 'I Love you!', url +' last comment is: - - - - - - - - > '+d.body);
+		t.end()
+	});
 })
