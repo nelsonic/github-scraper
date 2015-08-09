@@ -32,3 +32,14 @@ test('Fetch Second page of dwyl org', function(t){
 		t.end();
 	});
 })
+
+test('ORG with no people', function(t){
+	var url = '/pandajs';
+	org(url, function(err, data) {
+		t.ok(typeof data.website === 'undefined', "No website")
+		t.ok(typeof data.location === 'undefined', "No location")
+		t.ok(typeof data.email === 'undefined', "No email")
+		t.ok(data.pcount === 0, url + ' "pcount":'+data.pcount);
+		t.end();
+	});
+})
