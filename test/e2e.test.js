@@ -159,3 +159,14 @@ test('ISSUE contens without milestone', function(t){
 		t.end()
 	});
 })
+
+test('ORG PEOPLE ', function(t){
+	var url = 'orgs/dwyl/people';
+	gs(url, function(err, data){
+    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - dwyl people:')
+	  console.log(data.entries.sort().join(', '));
+
+		t.ok(data.entries.indexOf('iteles') > -1, url +' has '+data.entries.length + ' people');
+		t.end()
+	});
+})
