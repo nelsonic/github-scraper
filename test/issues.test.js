@@ -23,6 +23,8 @@ test('crawl known repository that has *many* issues ', function(t){
 test('crawl known repository that only has a single page of issues ', function(t){
 	var project = '/dwyl/ignored/issues'
 	issues(project, function(err, list) {
+		console.log(list)
+		t.ok(list.url.indexOf(project) > -1, '✓ url is set: '+list.url)
     t.ok(err === null, 'No Error when crawling ' +project +' issues');
     var count = list.entries.length;
 		t.ok(count === 0, 'repo: ' +project +' has ' +count + ' issues (ZERO)');
