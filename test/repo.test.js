@@ -24,3 +24,12 @@ test('crawl single language repo', function(t){
 		t.end();
 	})
 })
+
+test('crawl ZERO language repo', function(t){
+	var project = '/PeerSun/nodestack';
+	repo(project, function(err, stats) {
+    // console.log(stats);
+    t.ok(stats.langs.length === 0, 'Language is: '+ stats.langs +" (none)")
+		t.end();
+	})
+})

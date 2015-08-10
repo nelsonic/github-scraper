@@ -8,7 +8,8 @@ test('crawl known repository that has *many* issues ', function(t){
     console.log(list.entries.length);
 		// t.ok(err === 404, 'Got 404 Error when username does not exist');
     var count = list.entries.length;
-		t.ok(count > 1, 'repo: ' +project +' has ' +count + ' issues (non-zero) on (First Page)');
+		// first page should have 25 issues!
+		t.ok(count === 25, 'repo: ' +project +' has ' +count + ' issues (non-zero) on (First Page)');
     t.ok(list.open > 1, 'repo: ' +project +' has ' +list.open + ' OPEN issues (non-zero)');
     t.ok(list.closed > 10, 'repo: ' +project +' has ' +list.closed + ' CLOSED issues');
     // crawl the next page of issues:
