@@ -43,11 +43,18 @@ test('crawl known repository (FORK) WITHOUT issues ', function(t){
 	})
 })
 
-test('Problem Child (Fork) Repo ', function(t){
-	var project = 'https://github.com/foundersandcoders/resolve-path'
-	issues(project, function(err, data) {
-		// console.log(err, data)
-		t.ok(data.watchers > 20, '✓ '+project +" Cannot simulte error")
-		t.end();
-	})
+var wreck   = require('wreck');
+var cheerio = require('cheerio')
+var issues2  = require('../lib/issues.js');
+// see: https://github.com/nelsonic/arana/issues/16
+test('Problem Child (Fork) Repo (MANUAL INVOCATION)', function(t){
+	var url = 'https://github.com/foundersandcoders/resolve-path'
+	wreck.get(url, function (error, response, html) {
+		var $ = cheerio.load(html);
+		issues2($, url, function(err, data){
+			console.log(err, data)
+			t.ok(err === 404, '✓ '+url +" Got "+err + " (as expected!)")
+			t.end();
+		})
+	});
 })
