@@ -42,3 +42,12 @@ test('crawl known repository (FORK) WITHOUT issues ', function(t){
 		t.end();
 	})
 })
+
+test('Problem Child (Fork) Repo ', function(t){
+	var project = 'https://github.com/foundersandcoders/resolve-path'
+	issues(project, function(err, data) {
+		// console.log(err, data)
+		t.ok(data.watchers > 20, '✓ '+project +" Cannot simulte error")
+		t.end();
+	})
+})
