@@ -1,6 +1,14 @@
 var test     = require('tape');
 var switcher = require('../lib/switcher');
 
+test('Force switcher error by not setting the url', function(t){
+	var url;
+	switcher(url, function(err, data){
+    t.ok(err === 404, 'Got 404 Error when username does not exist');
+		t.end();
+	})
+})
+
 test('Try to break switcher by supplying non-existent user', function(t){
 	var url = '/' + Math.floor(Math.random() * 1000000000000000);
 	switcher(url, function(err, data){
