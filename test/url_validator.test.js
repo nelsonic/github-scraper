@@ -34,6 +34,14 @@ test('Call scraper with url without leading forward slash', function(t) {
 	t.end();
 })
 
+test('url_validator rejects a url containing word "undefined"', function(t) {
+	validate('/undefined/followers', function(err){
+    console.log(err)
+  	t.ok(err, 400, 'Receive 400 Error when URL resembles "undefined" ');
+  	t.end();
+  });
+})
+
 test('Call scraper with full (valid) GitHub URL', function(t) {
   var url1 = 'https://github.com/iteles'
 	var url2 = validate(url1, function(err){	});
