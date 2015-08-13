@@ -38,7 +38,7 @@ test('crawl known repository that only has a single page of issues ', function(t
 test('crawl known repository (FORK) WITHOUT issues ', function(t){
 	var project = 'ladieswhocode/london-tech-event-hack-collection/issues'
 	issues(project, function(err, list) {
-		t.ok(err === 302, '✓ '+project +" has no issues >> HTTP Status: "+err)
+		t.ok(err === 404, '✓ '+project +" has no issues >> HTTP Status: "+err)
 		t.end();
 	})
 })
