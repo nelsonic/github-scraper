@@ -1045,7 +1045,7 @@ pretty quickly.
 - **Results** are ***Cached*** so they are not-real time like they are in the
 Web. (seems daft, but its true.) Ideally they would have a ***Streaming API***
 but sadly, [GitHub is built in Ruby-on-Rails](http://builtwith.com/github.com)
-which is "RESTful" (not real-time).
+which is "**RESTful**" (***not real-time***).
 
 #### *But*...
 
@@ -1058,3 +1058,20 @@ e.g:
 ```sh
 curl -v https://api.github.com/users/pgte/following/visionmedia
 ```
+
+# tl;dr
+
+## Is *Crawling* a Website *Legal*...?
+
+The fact that scraping or "crawling" is Google's Business Model suggests that scraping is at least "OK" ...
+
+Started typing this into google and saw:
+<img width="288" alt="is-it-illegal-to" src="https://cloud.githubusercontent.com/assets/194400/9385839/82697796-4750-11e5-8d84-09fbc98b131f.png">
+
+I read a few articles and was not able to locate a definitive answer ...
+
++ Legal Issues: https://en.wikipedia.org/wiki/Web_scraping#Legal_issues
++ It depends: http://resources.distilnetworks.com/h/i/53822104-is-web-scraping-illegal-depends-on-what-the-meaning-of-the-word-is-is/181642
++ Screen scraping: How to profit from your rival's data:
+http://www.bbc.com/news/technology-23988890
++ Web Scraping For Fun and Profit: https://blog.hartleybrody.com/web-scraping/
