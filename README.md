@@ -5,6 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/nelsonic/github-scraper.png)](https://codeclimate.com/github/nelsonic/github-scraper)
 [![Dependencies](https://david-dm.org/nelsonic/github-scraper.png?theme=shields.io)](https://david-dm.org/nelsonic/github-scraper)
 [![devDependency Status](https://david-dm.org/nelsonic/github-scraper/dev-status.svg)](https://david-dm.org/nelsonic/github-scraper#info=devDependencies)
+[![HitCount](https://hitt.herokuapp.com/nelsonic/github-scraper.svg)](https://github.com/nelsonic/hits)
 <!-- [![NPM version](https://badge.fury.io/js/fuata.png)](https://npmjs.org/package/fuata) -->
 
 ## Why?
@@ -64,7 +65,7 @@ npm install github-scraper --save
 ```js
 var gs = require('github-scraper');
 var url = '/iteles' // a random username
-switcher(url, function(err, data) {
+gs(url, function(err, data) {
   console.log(data); // or what ever you want to do with the data
 })
 ```
