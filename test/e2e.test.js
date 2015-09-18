@@ -100,7 +100,7 @@ test('find issue with most comments', function(t){
     var issue = data.entries[0];
     console.log('- - - - - - - - - - - issue with most comments in '+project)
     // console.log(issue)
-    t.ok(issue.comments > 4, issue.title + ' has ' + issue.comments + ' comments!')
+    t.ok(issue.comments > 2, issue.title + ' has ' + issue.comments + ' comments!')
 		t.ok(data.open > 5, 'repo: ' +project +' has ' + data.count + ' issues (ZERO)');
     t.ok(data.closed > 5, 'repo: ' +project +' has ' +data.closed + ' CLOSED issues');
 		t.end();
