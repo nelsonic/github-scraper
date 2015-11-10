@@ -32,12 +32,12 @@
     "xml2js": "^0.4.15"
   },
   "devDependencies": {
-    "codeclimate-test-reporter": "0.1.0",
-    "istanbul": "^0.3.17",
+    "codeclimate-test-reporter": "0.1.1",
+    "istanbul": "^0.4.0",
     "jshint": "^2.8.0",
-    "pre-commit": "1.0.10",
-    "tap-spec": "^4.0.2",
-    "tape": "^4.0.1"
+    "pre-commit": "1.1.2",
+    "tap-spec": "^4.1.0",
+    "tape": "^4.2.2"
   },
   "pre-commit": [
     "jshint",
