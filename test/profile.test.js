@@ -5,7 +5,7 @@ test('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 	var user = 'nelsonic';
 	profile(user, function(err, data){
 		console.log(data)
-		t.ok(data.current > 500, 'Current Streak ' + data.current +' is over 500 days!');
+		t.ok(data.current > 400, 'Current Streak ' + data.current +' is over 500 days!');
 		t.ok(data.joined   === '2010-02-02T08:44:49Z', '- @' + user + ' Joined Date 2009-01-20T10:54:20Z has not chaged');
 		t.ok(data.worksfor === 'dwyl.io', '- @' + user + ' Works for dwyl');
 		t.ok(data.email    === 'contact.nelsonic@gmail.com', '- @' + user + ' Email address is: contact.nelsonic@gmail.com');
