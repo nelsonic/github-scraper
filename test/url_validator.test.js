@@ -58,3 +58,13 @@ test('Confirm url validator transforms iteles/followers?page=2 into full url', f
   t.ok(url1 === url2, url + ' sucessfully transformed to: '+url2);
   t.end();
 })
+
+// see: https://github.com/nelsonic/github-scraper/issues/60
+test('Regression Test for issue #60', function(t){
+  var url = 'hangouts/followers';
+  var url1 = 'https://github.com/hangouts/followers';
+  var url2 = validate(url1, function(err){	});
+  // console.log(url1, url2)
+  t.ok(url1 === url2, url + ' sucessfully transformed to: '+url2);
+  t.end();
+})
