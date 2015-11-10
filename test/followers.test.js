@@ -25,3 +25,13 @@ test('read list of followers for @pgte (multi-page)', function(t){
     })
 	});
 })
+
+// see: https://github.com/nelsonic/github-scraper/issues/60
+test.only('Regression Test for issue #60', function(t){
+  var username = 'hangouts/followers';
+	followers(username, function(err, data) {
+    console.log(username + ' has followers: ' + data.entries);
+		t.ok(data.entries.length > 1, '"followers": '+data.entries.length);
+	  t.end();
+	});
+})

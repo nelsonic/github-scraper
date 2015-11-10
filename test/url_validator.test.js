@@ -1,17 +1,5 @@
 var test     = require('tape');
 var validate = require('../lib/url_validator');
-var cberrmsg = "please supply a callback"
-
-
-test('Attepmt to invoke the scraper WITHOUT VALID callback funciton', function(t) {
-  try {
-    var result = validate();
-  } catch (error){
-    console.log(error);
-    t.ok(error.indexOf(cberrmsg) > -1, "Got ERROR: "+error + " (as expected!)");
-    t.end();
-  }
-})
 
 test('Attempt to call scraper without a url (error test) ', function(t) {
 	validate(null, function(err){
@@ -55,6 +43,16 @@ test('Confirm url validator transforms iteles/followers?page=2 into full url', f
   var url1 = 'https://github.com/iteles/followers?page=2'
   var url2 = validate(url1, function(err){	});
   console.log(url1, url2)
+  t.ok(url1 === url2, url + ' sucessfully transformed to: '+url2);
+  t.end();
+})
+
+// see: https://github.com/nelsonic/github-scraper/issues/60
+test('Regression Test for issue #60', function(t){
+  var url = 'hangouts/followers';
+  var url1 = 'https://github.com/hangouts/followers';
+  var url2 = validate(url1, function(err){	});
+  // console.log(url1, url2)
   t.ok(url1 === url2, url + ' sucessfully transformed to: '+url2);
   t.end();
 })

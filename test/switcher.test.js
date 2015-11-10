@@ -1,5 +1,16 @@
 var test     = require('tape');
 var switcher = require('../lib/switcher');
+var cberrmsg = "please supply a callback"
+
+test('Attepmt to invoke the scraper WITHOUT VALID callback funciton', function(t) {
+  try {
+    switcher();
+  } catch (error){
+    console.log(error);
+    t.ok(error.indexOf(cberrmsg) > -1, "Got ERROR: "+error + " (as expected!)");
+    t.end();
+  }
+})
 
 test('Force switcher error by not setting the url', function(t){
 	var url;
