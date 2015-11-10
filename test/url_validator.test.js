@@ -1,17 +1,5 @@
 var test     = require('tape');
 var validate = require('../lib/url_validator');
-var cberrmsg = "please supply a callback"
-
-
-test('Attepmt to invoke the scraper WITHOUT VALID callback funciton', function(t) {
-  try {
-    var result = validate();
-  } catch (error){
-    console.log(error);
-    t.ok(error.indexOf(cberrmsg) > -1, "Got ERROR: "+error + " (as expected!)");
-    t.end();
-  }
-})
 
 test('Attempt to call scraper without a url (error test) ', function(t) {
 	validate(null, function(err){
