@@ -54,7 +54,7 @@ This module fetches (_public_) pages from GitHub, "[_scrapes_](https://en.wikipe
 
 ## install from NPM
 
-instal from npm and save to your `package.json`:
+install from npm and save to your `package.json`:
 
 ```sh
 npm install github-scraper --save
