@@ -196,9 +196,9 @@ var url = 'alanshaw/followers' // a random username (of someone you should follo
 gs(url, function(err, data) {
   console.log(data); // or what ever you want to do with the data
   if(data.next_page) {
-    gs(data.next_page, function(err2, data2)) {
+    gs(data.next_page, function(err2, data2) {
       console.log(data2); // etc.
-    }
+    })
   }
 })
 ```
