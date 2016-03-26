@@ -1,7 +1,7 @@
 var test       = require('tape');
 var milestones = require('../lib/switcher');
 
-test.only('crawl /dwyl/tudo/milestones', function(t){
+test('crawl /dwyl/tudo/milestones', function(t){
 	var project = '/dwyl/tudo/milestones';
 	milestones(project, function(err, data) {
     console.log(data);
