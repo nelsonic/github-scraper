@@ -5,7 +5,7 @@ test('crawl @iteles\' list of repositories (expect *many*!)', function(t){
 	var url = '/iteles?tab=repositories', repo;
 	repositories(url, function(err, repos){
 		t.ok(err === null, 'No Error when crawling ' +url +' repos tab');
-    console.log(repos)
+    // console.log(repos)
     console.log(' - - - - - - - - - - -')
 
     repo = repos.entries.filter(function(r) {
@@ -23,7 +23,7 @@ test('crawl @iteles\' list of repositories (expect *many*!)', function(t){
       return r.url === '/iteles/All-the-Hellos';
     })
     repo = repo[0];
-    // console.log(repo);
+    console.log(repo);
     t.ok(repo.lang === 'JavaScript', ' repo ' + repo.url + ' is written in: '+repo.lang);
 		t.end();
 	})
