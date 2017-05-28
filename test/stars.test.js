@@ -1,7 +1,7 @@
 var test  = require('tape');
 var stars = require('../lib/switcher');
 
-test.skip('read list of stars for pandajs/sad ', function(t){
+test('read list of stars for pandajs/sad ', function(t){
   var url = 'pandajs/sad/stargazers';
 	stars(url, function(err, data) {
 		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
@@ -11,8 +11,8 @@ test.skip('read list of stars for pandajs/sad ', function(t){
 	});
 })
 
-test.skip('read list of stars for nelsonic/practical-js-tdd (multi-page)', function(t){
-  var url = 'nelsonic/practical-js-tdd/stargazers';
+test('read list of stars for dwyl/learn-tdd (multi-page)', function(t){
+  var url = 'dwyl/learn-tdd/stargazers';
 	stars(url, function(err, data) {
 		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
 		t.ok(data.entries.length > 50, '"stars": '+data.entries.length);

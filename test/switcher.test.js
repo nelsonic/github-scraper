@@ -2,17 +2,17 @@ var test     = require('tape');
 var switcher = require('../lib/switcher');
 var cberrmsg = "please supply a callback"
 
-test.skip('Attepmt to invoke the scraper WITHOUT VALID callback funciton', function(t) {
+test('Attepmt to invoke the scraper WITHOUT VALID callback funciton', function(t) {
   try {
     switcher();
   } catch (error){
-    console.log(error);
+    // console.log(error);
     t.ok(error.indexOf(cberrmsg) > -1, "Got ERROR: "+error + " (as expected!)");
     t.end();
   }
 })
 
-test.skip('Force switcher error by not setting the url', function(t){
+test('Force switcher error by not setting the url', function(t){
 	var url;
 	switcher(url, function(err, data){
     t.ok(err === 404, 'Got 404 Error when username does not exist');
@@ -20,7 +20,7 @@ test.skip('Force switcher error by not setting the url', function(t){
 	})
 })
 
-test.skip('Try to break switcher by supplying non-existent user', function(t){
+test('Try to break switcher by supplying non-existent user', function(t){
 	var url = '/' + Math.floor(Math.random() * 1000000000000000);
 	switcher(url, function(err, data){
     t.ok(err === 404, 'Got 404 Error when username does not exist');
