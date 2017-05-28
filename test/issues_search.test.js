@@ -1,14 +1,14 @@
 var test = require('tape');
 var issues_search = require('../lib/issues_search');
 
-test('expect 400 repo is not stated', function(t) {
+test.skip('expect 400 repo is not stated', function(t) {
   issues_search(function(err) {
     t.ok(err === 400, 'got 400 error when no options defined');
     t.end();
   })
 })
 
-test('expect random (non-existent) repo to return zero results ', function(t){
+test.skip('expect random (non-existent) repo to return zero results ', function(t){
 	var options = { username : Math.floor(Math.random() * 1000000000000000) } // a nice long "random" number
 	issues_search(options, function(err, list){
     // console.log(err, stats)
@@ -18,7 +18,7 @@ test('expect random (non-existent) repo to return zero results ', function(t){
 	})
 })
 
-test('scrape second page of results', function(t){
+test.skip('scrape second page of results', function(t){
 	var options = {
     next: '/search?o=desc&p=2&q=author%3Aiteles&s=created&state=open&type=Issues'
   }

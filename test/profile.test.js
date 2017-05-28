@@ -1,7 +1,7 @@
 var test    = require('tape');
 var profile = require('../lib/switcher');
 
-test('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
+test.skip('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 	var user = 'nelsonic';
 	profile(user, function(err, data){
 		console.log(data)
@@ -21,7 +21,7 @@ test('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 	});
 })
 
-test('Check @olizilla profile IS NOT GitHub Developer Program Member', function(t){
+test.skip('Check @olizilla profile IS NOT GitHub Developer Program Member', function(t){
 	var url = 'olizilla';
 	profile(url, function(err, data) {
 		t.ok(typeof data.developerprogram === 'undefined', '- @' + url + ' is NOT a member of the "GitHub Developer Program"');

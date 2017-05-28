@@ -1,7 +1,7 @@
 var test = require('tape');
 var org  = require('../lib/switcher');
 
-test('Scrape an org WITHOUT a next page (known data)', function(t){
+test.skip('Scrape an org WITHOUT a next page (known data)', function(t){
 	var url = '/PeerSun';
 	org(url, function(err, data) {
 		// console.log(data);
@@ -11,7 +11,7 @@ test('Scrape an org WITHOUT a next page (known data)', function(t){
 	});
 })
 
-test('Scrape an org WITH a next page', function(t){
+test.skip('Scrape an org WITH a next page', function(t){
 	var url = '/github';
 	org(url, function(err, data) {
 		t.ok(data.pcount > 100, '"pcount":'+data.pcount);
@@ -22,7 +22,7 @@ test('Scrape an org WITH a next page', function(t){
 	});
 })
 
-test('Fetch Second page of dwyl org', function(t){
+test.skip('Fetch Second page of dwyl org', function(t){
 	var url = '/dwyl?page=2';
 	org(url, function(err, data) {
 		// console.log(data);
@@ -33,7 +33,7 @@ test('Fetch Second page of dwyl org', function(t){
 	});
 })
 
-test('ORG with no people', function(t){
+test.skip('ORG with no people', function(t){
 	var url = '/pandajs';
 	org(url, function(err, data) {
 		t.ok(typeof data.website === 'undefined', "No website")

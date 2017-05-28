@@ -1,7 +1,7 @@
 var test = require('tape');
 var repositories = require('../lib/switcher');
 
-test('crawl @iteles\' list of repositories (expect *many*!)', function(t){
+test.skip('crawl @iteles\' list of repositories (expect *many*!)', function(t){
 	var url = '/iteles?tab=repositories', repo;
 	repositories(url, function(err, repos){
 		t.ok(err === null, 'No Error when crawling ' +url +' repos tab');

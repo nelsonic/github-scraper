@@ -1,7 +1,7 @@
 var test      = require('tape');
 var followers = require('../lib/switcher');
 
-test('read list of followers for @jupiter (single page of followers) ', function (t) {
+test.skip('read list of followers for @jupiter (single page of followers) ', function (t) {
   var username = 'jupiter';
 	followers(username + '/followers', function(err, data) {
     // console.log(data);
@@ -12,7 +12,7 @@ test('read list of followers for @jupiter (single page of followers) ', function
 	});
 })
 
-test('read list of followers for @iteles (multi-page)', function(t){
+test.skip('read list of followers for @iteles (multi-page)', function(t){
   var username = 'iteles/followers';
 	followers(username, function(err, data) {
 		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
@@ -28,7 +28,7 @@ test('read list of followers for @iteles (multi-page)', function(t){
 })
 
 // see: https://github.com/nelsonic/github-scraper/issues/60
-test('Regression Test for issue #60', function(t){
+test.skip('Regression Test for issue #60', function(t){
   var username = 'hangouts/followers';
 	followers(username, function(err, data) {
     console.log(username + ' has followers: ' + data.entries);

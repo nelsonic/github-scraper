@@ -1,7 +1,7 @@
 var test = require('tape');
 var issues = require('../lib/switcher');
 
-test('crawl known repository that has *many* issues ', function(t){
+test.skip('crawl known repository that has *many* issues ', function(t){
 	var project = '/dwyl/time/issues'
 	issues(project, function(err, list) {
     t.ok(err === null, 'No Error when crawling ' +project +' issues');
@@ -21,7 +21,7 @@ test('crawl known repository that has *many* issues ', function(t){
 	})
 })
 
-test('crawl known repository that only has a single page of issues ', function(t){
+test.skip('crawl known repository that only has a single page of issues ', function(t){
 	var project = '/dwyl/ignored/issues'
 	issues(project, function(err, list) {
 		console.log(list)
@@ -35,7 +35,7 @@ test('crawl known repository that only has a single page of issues ', function(t
 })
 
 // see: https://github.com/nelsonic/github-scraper/issues/53
-test('crawl known repository (FORK) WITHOUT issues ', function(t){
+test.skip('crawl known repository (FORK) WITHOUT issues ', function(t){
 	var project = 'ladieswhocode/london-tech-event-hack-collection/issues'
 	issues(project, function(err, list) {
 		t.ok(err === 404, '✓ '+project +" has no issues >> HTTP Status: "+err)
@@ -47,7 +47,7 @@ var wreck   = require('wreck');
 var cheerio = require('cheerio')
 var issues2  = require('../lib/issues.js');
 // see: https://github.com/nelsonic/arana/issues/16
-test('Problem Child (Fork) Repo (MANUAL INVOCATION)', function(t){
+test.skip('Problem Child (Fork) Repo (MANUAL INVOCATION)', function(t){
 	var url = 'https://github.com/foundersandcoders/resolve-path'
 	wreck.get(url, function (error, response, html) {
 		var $ = cheerio.load(html);

@@ -1,7 +1,7 @@
 var test = require('tape');
 var repo = require('../lib/switcher');
 
-test('crawl known repository for stats', function(t) {
+test.skip('crawl known repository for stats', function(t) {
 	var project = 'dwyl/adoro';
 	repo(project, function(err, stats) {
     console.log(stats);
@@ -15,7 +15,7 @@ test('crawl known repository for stats', function(t) {
 	})
 })
 
-test('crawl single language repo', function(t){
+test.skip('crawl single language repo', function(t){
 	var project = 'nelsonic/coin-change-ruby';
 	repo(project, function(err, stats) {
     t.ok(stats.langs[0].indexOf('Ruby 100') > -1, 'Language is: '+ stats.langs)
@@ -23,7 +23,7 @@ test('crawl single language repo', function(t){
 	})
 })
 
-test('crawl ZERO language repo', function(t){
+test.skip('crawl ZERO language repo', function(t){
 	var project = '/PeerSun/nodestack';
 	repo(project, function(err, stats) {
     t.ok(stats.langs.length === 0, 'Language is: '+ stats.langs +" (none)")

@@ -1,7 +1,7 @@
 var test       = require('tape');
 var milestones = require('../lib/switcher');
 
-test('crawl /dwyl/tudo/milestones', function(t){
+test.skip('crawl /dwyl/tudo/milestones', function(t){
 	var project = '/dwyl/tudo/milestones';
 	milestones(project, function(err, data) {
     console.log(data);
@@ -12,7 +12,7 @@ test('crawl /dwyl/tudo/milestones', function(t){
 	})
 })
 
-test('/rethinkdb/rethinkdb has many milestones', function(t){
+test.skip('/rethinkdb/rethinkdb has many milestones', function(t){
 	var project = '/rethinkdb/rethinkdb/milestones';
 	milestones(project, function(err, data) {
     // console.log(list);

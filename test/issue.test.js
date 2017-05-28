@@ -1,7 +1,7 @@
 var test  = require('tape');
 var issue = require('../lib/switcher');
 
-test('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function(t){
+test.skip('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function(t){
 	var url = '/dwyl/tudo/issues/51';
 	issue(url, function(err, data) {
 		t.ok(data.url.indexOf(url) > -1, url + ' is: ' +data.url)
@@ -22,7 +22,7 @@ test('Scrape /dwyl/tudo/issues/51 for all comments and meta-data', function(t){
 	});
 })
 
-test('Scrape known issue without assignee', function(t) {
+test.skip('Scrape known issue without assignee', function(t) {
 	var url ='/1602/compound/issues/20'
 	issue(url, function(err, data){
 		t.ok(typeof data.assignee === 'undefined', "assignee is undefined")
@@ -31,7 +31,7 @@ test('Scrape known issue without assignee', function(t) {
 	});
 })
 
-test('Scrape known issue without milestone', function(t){
+test.skip('Scrape known issue without milestone', function(t){
 	var url = '/dwyl/time/issues/154';
 	issue(url, function(err, data){
 	  console.log(data);

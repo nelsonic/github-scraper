@@ -1,7 +1,7 @@
 var test   = require('tape');
 var people = require('../lib/switcher');
 
-test('Scrape org with single page of people', function(t){
+test.skip('Scrape org with single page of people', function(t){
 	var org = 'orgs/tableflip/people'
 	people(org, function(err, data){
 	  console.log('- - - - - - - - - - - - - - - - - - - - - - > scraping '+org +' (org/people)')
@@ -12,7 +12,7 @@ test('Scrape org with single page of people', function(t){
 	})
 })
 
-test('Scrape org with multiple pages of people', function(t){
+test.skip('Scrape org with multiple pages of people', function(t){
 	var org = 'orgs/github/people'
 	people(org, function(err, data){
 		console.log(data.next_page);

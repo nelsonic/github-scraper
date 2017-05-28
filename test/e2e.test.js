@@ -1,7 +1,7 @@
 var gs = require('../lib/');
 var test = require('tape');
 
-test('Scrape a known PROFILE @alanshaw', function(t){
+test.skip('Scrape a known PROFILE @alanshaw', function(t){
   var user = 'alanshaw';
   gs(user, function(err, data) {
     t.ok(data.developerprogram === true, '- @' + user + ' is a member of the "GitHub Developer Program"');
@@ -13,7 +13,7 @@ test('Scrape a known PROFILE @alanshaw', function(t){
   })
 })
 
-test('FOLLOWERS LIST for @iteles', function(t){
+test.skip('FOLLOWERS LIST for @iteles', function(t){
 	var url = 'iteles/followers';
 	gs(url, function(err, data) {
     console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
@@ -23,7 +23,7 @@ test('FOLLOWERS LIST for @iteles', function(t){
 	})
 })
 
-test('FOLLOWING LIST (SECOND PAGE) for @nelsonic', function(t){
+test.skip('FOLLOWING LIST (SECOND PAGE) for @nelsonic', function(t){
 	var url = 'nelsonic/following?page=2';
 	gs(url, function(err, data) {
     console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
@@ -33,7 +33,7 @@ test('FOLLOWING LIST (SECOND PAGE) for @nelsonic', function(t){
 	})
 })
 
-test('STARRED repos for @iteles (multi-page)', function(t){
+test.skip('STARRED repos for @iteles (multi-page)', function(t){
   var username = 'stars/iteles';
 	gs(username, function(err, data) {
     // t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
@@ -49,7 +49,7 @@ test('STARRED repos for @iteles (multi-page)', function(t){
 	});
 })
 
-test('parse @iteles activity feed (expect recent activity)', function(t){
+test.skip('parse @iteles activity feed (expect recent activity)', function(t){
 	var user = 'iteles.atom';
 	gs(user, function(err, data) {
 		t.ok(err === null, 'No error when parsing @' +user +' activity feed');
@@ -61,7 +61,7 @@ test('parse @iteles activity feed (expect recent activity)', function(t){
 	})
 });
 
-test('Find the repo with most stars for a given user', function(t) {
+test.skip('Find the repo with most stars for a given user', function(t) {
   var user = 'iteles?tab=repositories';
   gs(user, function(err, data) {
     console.log(data)
@@ -76,7 +76,7 @@ test('Find the repo with most stars for a given user', function(t) {
 });
 
 
-test('Scrape an ORG WITH a next_page of repositories (known data)', function(t){
+test.skip('Scrape an ORG WITH a next_page of repositories (known data)', function(t){
 	var url = 'dwyl';
 	gs(url, function(err, data) {
     console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
@@ -89,7 +89,7 @@ test('Scrape an ORG WITH a next_page of repositories (known data)', function(t){
 });
 
 
-test('find issue with most comments', function(t){
+test.skip('find issue with most comments', function(t){
 	var project = '/dwyl/tudo/issues'
 	gs(project, function(err, data) {
     t.ok(err === null, 'No Error when crawling ' +project +' issues');
@@ -107,7 +107,7 @@ test('find issue with most comments', function(t){
 	})
 })
 
-test('Crawl a REPOSITORY single language repo', function(t){
+test.skip('Crawl a REPOSITORY single language repo', function(t){
 	var project = 'nelsonic/practical-js-tdd';
 	gs(project, function(err, data) {
     console.log(data);
@@ -116,7 +116,7 @@ test('Crawl a REPOSITORY single language repo', function(t){
 	})
 })
 
-test('LABELS for dwyl/tudo/labels', function(t){
+test.skip('LABELS for dwyl/tudo/labels', function(t){
 	var url = '/dwyl/time/labels';
 	gs(url, function(err, list) {
     console.log(list);
@@ -132,7 +132,7 @@ test('LABELS for dwyl/tudo/labels', function(t){
 	})
 })
 
-test('MILESTONSE for /dwyl/tudo/milestones', function(t){
+test.skip('MILESTONSE for /dwyl/tudo/milestones', function(t){
 	var url = '/dwyl/tudo/milestones';
 	gs(url, function(err, data) {
     console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
@@ -144,7 +144,7 @@ test('MILESTONSE for /dwyl/tudo/milestones', function(t){
 	})
 })
 
-test('ISSUE contens without milestone', function(t){
+test.skip('ISSUE contens without milestone', function(t){
 	var url = '/dwyl/time/issues/154';
 	gs(url, function(err, data){
     console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
@@ -160,7 +160,7 @@ test('ISSUE contens without milestone', function(t){
 	});
 })
 
-test('ORG PEOPLE ', function(t){
+test.skip('ORG PEOPLE ', function(t){
 	var url = 'orgs/dwyl/people';
 	gs(url, function(err, data){
     console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - dwyl people:')

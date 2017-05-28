@@ -1,7 +1,7 @@
 var test      = require('tape');
 var following = require('../lib/switcher');
 
-test('read list of following for @iteles ', function(t){
+test.skip('read list of following for @iteles ', function(t){
   var url = 'iteles/following';
 	following(url, function(err, data) {
 		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
@@ -11,7 +11,7 @@ test('read list of following for @iteles ', function(t){
 	});
 })
 
-test('read list of following for @Marak (multi-page)', function(t){
+test.skip('read list of following for @Marak (multi-page)', function(t){
   var url = 'Marak/following';
 	following(url, function(err, data) {
 		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)

@@ -1,7 +1,7 @@
 var test   = require('tape');
 var labels = require('../lib/switcher');
 
-test('crawl dwyl/tudo/labels', function(t){
+test.skip('crawl dwyl/tudo/labels', function(t){
 	var project = 'dwyl/tudo/labels';
 	labels(project, function(err, list) {
     console.log(list);

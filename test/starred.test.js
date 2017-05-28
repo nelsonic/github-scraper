@@ -1,7 +1,7 @@
 var test      = require('tape');
 var starred = require('../lib/switcher');
 
-test('read list of starred repos for single page @lukebond (who never stars anything!) ', function(t){
+test.skip('read list of starred repos for single page @lukebond (who never stars anything!) ', function(t){
   var username = 'stars/lukebond';
 	starred(username, function(err, data) {
 		// console.log(data);
@@ -12,7 +12,7 @@ test('read list of starred repos for single page @lukebond (who never stars anyt
 	});
 })
 
-test('read list of starred repos for single page @iteles (multi-page) ', function(t){
+test.skip('read list of starred repos for single page @iteles (multi-page) ', function(t){
   var username = 'stars/iteles';
 	starred(username, function(err, data) {
 		// console.log(data)
