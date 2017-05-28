@@ -11,18 +11,20 @@ var BASE_DIR = path.resolve('./', 'data');
 console.log('BASE_DIR:', BASE_DIR );
 
 
+function main(repo) {
+  var DATA_DIR = path.normalize(BASE_DIR +'/' + repo);
+  mkdirp.sync(DATA_DIR); // ensure the dir exists
 
-var repo = 'dwyl/learn-tdd'
-var DATA_DIR = path.normalize(BASE_DIR +'/' + repo);
-mkdirp.sync(DATA_DIR); // ensure the dir exists
-
-var page = 'watchers';
-var url = repo + '/' + page;
-
+  var pages = ['stargazers', 'watchers'];
+  pages.forEach(function (page) {
+    var url = repo + '/' + page;
+    gs(url, process_results);
+  });
+}
 
 function process_results(err, data) {
   if (err) { return console.log(err); }
-  write_lines(data, url);
+  write_lines(data);
   if(data.next_page) {
     gs(data.next_page, process_results);
   }
@@ -48,24 +50,24 @@ function write_lines(data) {
   var existing = parse_file(filepath);
 
   var rows = data.entries.map(function(entry) {
-    var inlist = existing.indexOf(entry);
-    // console.log('entry:', entry, ' inlist:', inlist)
-    if(inlist === -1) { return TIMESTAMP + ',' + entry; }
-    else { return console.log(entry + ' already in list on line:', inlist); }
+    if(existing.indexOf(entry) === -1) {
+      return TIMESTAMP + ',' + entry;
+    }
   }).filter(function (n) { return n != undefined }); // remove blanks
 
   if (rows.length > 1) {
     var str = rows.join('\n') + '\n'; // end file with new line
     fs.appendFile(filepath, str, function (err, res) {
-      console.log(err, res);
       console.log('wrote ' + data.entries.length + ' lines to: ' + filepath);
     });
   } else {
     console.log('no new faces')
   }
-
 }
 
 
 // run first time
-gs(url, process_results);
+var repo = 'dwyl/learn-tdd'
+main(repo);
+
+module.exports = main;
