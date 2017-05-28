@@ -65,9 +65,4 @@ function write_lines(data) {
   }
 }
 
-
-// run first time
-var repo = 'dwyl/learn-tdd'
-main(repo);
-
 module.exports = main;

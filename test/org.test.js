@@ -1,12 +1,12 @@
 var test = require('tape');
 var org  = require('../lib/switcher');
 
-test.skip('Scrape an org WITHOUT a next page (known data)', function(t){
-	var url = '/PeerSun';
+test('Scrape an org WITHOUT a next page (known data)', function(t){
+	var url = '/peersun';
 	org(url, function(err, data) {
-		// console.log(data);
+		console.log(data);
 		t.ok(data.entries.length === 5, 'org '+url + ' has ' +data.entries.length + ' repos.')
-		t.ok(data.pcount === 1, '"pcount":'+data.pcount);
+		t.ok(data.pcount === 0, '"pcount":'+data.pcount);
 		t.end();
 	});
 })
