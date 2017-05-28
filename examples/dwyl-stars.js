@@ -3,34 +3,28 @@ var gs = require('../lib');
 var path = require('path');
 var fs = require('fs');
 var mkdirp = require('mkdirp');
-// var shrug = '¯\_(ツ)_/¯'; // see: https://emojipedia.org/shrug/
 
-var data_dir = path.resolve('./', 'data');
-console.log('data_dir:', data_dir );
+// constants
+var TIMESTAMP = Date.now();
+var GURL = 'https://github.com/';
+var BASE_DIR = path.resolve('./', 'data');
+console.log('BASE_DIR:', BASE_DIR );
+
+
+
 var repo = 'dwyl/learn-tdd'
-var dir = path.normalize(data_dir +'/' + repo);
+var DATA_DIR = path.normalize(BASE_DIR +'/' + repo);
+mkdirp.sync(DATA_DIR); // ensure the dir exists
 
-// don't panic this will *always* finish before the http request!
-mkdirp(dir, function (err) {
-  console.log('err:', err);
-  console.log('created (or updated):', dir);
-});
-
-var page = 'stargazers';
+var page = 'watchers';
 var url = repo + '/' + page;
 
 
 function process_results(err, data) {
-  if(err){
-    console.log(err);
-    return;
-  }
-
-  // console.log(data);
-  write_lines(data);
+  if (err) { return console.log(err); }
+  write_lines(data, url);
   if(data.next_page) {
     gs(data.next_page, process_results);
-    // console.log(data.next_page);
   }
 }
 
@@ -47,32 +41,29 @@ function parse_file(filename) {
 
 // write lines to file
 function write_lines(data) {
-  var timestamp = Date.now();
-  var filename = dir + '/' + page + '.csv'
-  var existing = parse_file(filename);
-  // console.log(existing)
-  // console.log(existing.length, existing[0]);
-  // console.log(timestamp);
+  var filepath = path.normalize(BASE_DIR +'/' +
+    data.url.replace(GURL, '').split('?')[0]) + '.csv'
+
+  fs.openSync(filepath, 'a') // "touch" file to ensure it exists
+  var existing = parse_file(filepath);
+
   var rows = data.entries.map(function(entry) {
     var inlist = existing.indexOf(entry);
     // console.log('entry:', entry, ' inlist:', inlist)
-    if(inlist === -1) {
-      return timestamp + ',' + entry
-    } else {
-      console.log(entry + ' already in list on line:', inlist)
-      return;
-    }
-  }).filter(function(n){ return n != undefined });
+    if(inlist === -1) { return TIMESTAMP + ',' + entry; }
+    else { return console.log(entry + ' already in list on line:', inlist); }
+  }).filter(function (n) { return n != undefined }); // remove blanks
 
   if (rows.length > 1) {
     var str = rows.join('\n') + '\n'; // end file with new line
-    fs.appendFile(filename, str, function (err, res) {
+    fs.appendFile(filepath, str, function (err, res) {
       console.log(err, res);
-      console.log('wrote ' + data.entries.length + ' lines to: ' + filename);
+      console.log('wrote ' + data.entries.length + ' lines to: ' + filepath);
     });
   } else {
     console.log('no new faces')
   }
+
 }
 
 
