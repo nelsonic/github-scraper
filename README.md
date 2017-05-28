@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/nelsonic/github-scraper.png?branch=master)](https://travis-ci.org/nelsonic/github-scraper)
 [![codecov.io](https://codecov.io/github/nelsonic/github-scraper/coverage.svg?branch=master)](https://codecov.io/github/nelsonic/github-scraper?branch=master)
-[![Code Climate](https://codeclimate.com/github/nelsonic/github-scraper.png)](https://codeclimate.com/github/nelsonic/github-scraper)
 [![Dependencies](https://david-dm.org/nelsonic/github-scraper.png?theme=shields.io)](https://david-dm.org/nelsonic/github-scraper)
 [![devDependency Status](https://david-dm.org/nelsonic/github-scraper/dev-status.svg)](https://david-dm.org/nelsonic/github-scraper#info=devDependencies)
 [![HitCount](https://hitt.herokuapp.com/nelsonic/github-scraper.svg)](https://github.com/nelsonic/hits)
 <!-- [![NPM version](https://badge.fury.io/js/fuata.png)](https://npmjs.org/package/fuata) -->
+<!-- the code isn't pretty!! [![Code Climate](https://codeclimate.com/github/nelsonic/github-scraper.png)](https://codeclimate.com/github/nelsonic/github-scraper) -->
 
 # Disclaimer / Warning!
 
