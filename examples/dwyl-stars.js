@@ -3,6 +3,7 @@ var gs = require('../lib');
 var path = require('path');
 var fs = require('fs');
 var mkdirp = require('mkdirp');
+// var shrug = '¯\_(ツ)_/¯'; // see: https://emojipedia.org/shrug/
 
 var data_dir = path.resolve('./', 'data');
 console.log('data_dir:', data_dir );
@@ -35,10 +36,12 @@ function process_results(err, data) {
 
 function parse_file(filename) {
   var data = fs.readFileSync(filename).toString();
-  console.log(data);
-  var rows = data.split('\n');
-  console.log(rows);
-  // rows.forEach()
+  return data.split('\n').map(function (row) {
+    if(row.length > 1) {
+      var username = row.split(',')[1]
+      return username;
+    }
+  });
 }
 
 
@@ -46,16 +49,30 @@ function parse_file(filename) {
 function write_lines(data) {
   var timestamp = Date.now();
   var filename = dir + '/' + page + '.csv'
-  parse_file(filename);
+  var existing = parse_file(filename);
+  // console.log(existing)
+  // console.log(existing.length, existing[0]);
   // console.log(timestamp);
-  var str = data.entries.map(function(entry) {
-    return timestamp + ',' + entry
-  }).join('\n') + '\n'
-  // console.log(str);
-  fs.appendFile(filename, str, function (err, res) {
-    console.log(err, res);
-    console.log('wrote ' + data.entries.length + ' lines to: ' + filename);
-  });
+  var rows = data.entries.map(function(entry) {
+    var inlist = existing.indexOf(entry);
+    // console.log('entry:', entry, ' inlist:', inlist)
+    if(inlist === -1) {
+      return timestamp + ',' + entry
+    } else {
+      console.log(entry + ' already in list on line:', inlist)
+      return;
+    }
+  }).filter(function(n){ return n != undefined });
+
+  if (rows.length > 1) {
+    var str = rows.join('\n') + '\n'; // end file with new line
+    fs.appendFile(filename, str, function (err, res) {
+      console.log(err, res);
+      console.log('wrote ' + data.entries.length + ' lines to: ' + filename);
+    });
+  } else {
+    console.log('no new faces')
+  }
 }
 
 
