@@ -8,6 +8,17 @@
 [![HitCount](https://hitt.herokuapp.com/nelsonic/github-scraper.svg)](https://github.com/nelsonic/hits)
 <!-- [![NPM version](https://badge.fury.io/js/fuata.png)](https://npmjs.org/package/fuata) -->
 
+# Disclaimer / Warning!
+
+This repository/project is intended for **_Educational Purposes_ **ONLY**.
+It is not intended to be used for any purpose other than *learning*,
+so please do not use it for any other reason
+than to learn _about_ DOM scraping!!
+
+Please do not open issues complaining that the code is "Not Working" ... <br />
+GitHub have every right to change their UI as they see fit. <br />
+When they do change their UI the scraper will _inevitably_ "_break_"! <br />
+
 ## Why?
 
 Our _initial reason_ for writing this set of scrapers was to satisfy the _curiosity_ / _question_:
