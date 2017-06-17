@@ -29,7 +29,7 @@ test('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 		t.ok(data.stars > 2000, '- @' + user + ' Has starred ' + data.stars);
 		t.end();
 	});
-})
+});
 
 test('Check @olizilla profile IS NOT GitHub Developer Program Member', function(t){
 	var url = 'olizilla';
@@ -37,4 +37,17 @@ test('Check @olizilla profile IS NOT GitHub Developer Program Member', function(
 		t.ok(typeof data.developerprogram === 'undefined', '- @' + url + ' is NOT a member of the "GitHub Developer Program"');
 		t.end();
 	});
-})
+});
+
+test.only('Scrape @nelsonic GitHub profile detailed contributions', function(t){
+	var user = 'nelsonic';
+	profile(user, function(err, data){
+		console.log(data)
+
+		t.ok(data.contribs > 5000, '- @' + user + ' Has made ' + data.contribs
+			+ ' contributions to Open Source this year!');
+			
+		t.ok(data.stars > 2000, '- @' + user + ' Has starred ' + data.stars);
+		t.end();
+	});
+});
