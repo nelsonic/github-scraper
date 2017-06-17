@@ -39,15 +39,21 @@ test('Check @olizilla profile IS NOT GitHub Developer Program Member', function(
 	});
 });
 
-test.only('Scrape @nelsonic GitHub profile detailed contributions', function(t){
+test('Scrape @nelsonic detailed contribution matrix', function(t){
 	var user = 'nelsonic';
-	profile(user, function(err, data){
-		console.log(data)
+	profile(user, function(err, data) {
+		// console.log(data)
+		// map reduce?  https://www.airpair.com/javascript/javascript-array-reduce
+		var contribs = Object.keys(data.contrib_matrix)
+		.map((k) => { return data.contrib_matrix[k].count; })
+		.reduce((total, num) => { return total + num; });
+		// console.log(contribs);
+
+		t.ok(contribs === data.contribs, "Contribution Matrix matches Total: " + contribs);
 
 		t.ok(data.contribs > 5000, '- @' + user + ' Has made ' + data.contribs
 			+ ' contributions to Open Source this year!');
-			
-		t.ok(data.stars > 2000, '- @' + user + ' Has starred ' + data.stars);
+
 		t.end();
 	});
 });
