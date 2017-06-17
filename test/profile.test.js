@@ -42,7 +42,7 @@ test('Check @olizilla profile IS NOT GitHub Developer Program Member', function(
 test('Scrape @iteles detailed contribution matrix', function(t){
 	var user = 'iteles';
 	profile(user, function(err, data) {
-		console.log(data)
+		// console.log(data)
 		// map reduce?  https://www.airpair.com/javascript/javascript-array-reduce
 		var contribs = Object.keys(data.contrib_matrix)
 		.map((k) => { return data.contrib_matrix[k].count; })
