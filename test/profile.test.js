@@ -1,7 +1,7 @@
 var test    = require('tape');
 var profile = require('../lib/switcher');
 
-test('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
+test.only('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 	var user = 'nelsonic';
 	profile(user, function(err, data){
 		console.log(data)
@@ -14,7 +14,7 @@ test('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 		t.ok(data.worksfor === 'dwyl.io', '- @' + user + ' Works for dwyl');
 		// t.ok(data.email    === 'contact.nelsonic+github@gmail.com', '- @' + user + ' Email address is: contact.nelsonic@gmail.com');
 		t.ok(data.website  === 'http://www.dwyl.io/', '- @' + user + ' Website URL is linkedin');
-		// t.ok(data.location === 'London', '- @' + user + ' Based in London');
+		t.ok(data.location === 'London', '- @' + user + ' Based in London');
 		t.ok(data.followers > 400, '- @' + user + ' Has more than 400 followers');
 		t.ok(data.stars > 100, '- @' + user + ' Has starred '+ data.starred);
 		t.ok(data.following > 300, '- @' + user + ' Is following more than 300 people');
