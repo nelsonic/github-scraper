@@ -1,7 +1,7 @@
 var test = require('tape');
 var feed = require('../lib/switcher');
 
-test.skip('parse @iteles activity feed (expect recent activity)', function(t){
+test('parse @iteles activity feed (expect recent activity)', function(t){
 	var user = 'iteles.atom';
 	feed(user, function(err, data){
 		t.ok(err === null, 'No error when parsing @' +user +' activity feed');
@@ -13,7 +13,7 @@ test.skip('parse @iteles activity feed (expect recent activity)', function(t){
 	})
 })
 
-test.skip('Try to break it by supplying non-existent user', function(t){
+test('Try to break it by supplying non-existent user', function(t){
 	var user = '' + Math.floor(Math.random() * 1000000000000000) + '.atom';
 	feed(user, function(err, data){
     t.ok(err === 404, 'Got 404 Error when username does not exist');
