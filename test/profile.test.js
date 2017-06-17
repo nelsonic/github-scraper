@@ -24,7 +24,9 @@ test('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 		t.ok(data.pinned.length === 6, '- @' + user + ' Has Six "Pinned" Repositories');
 		t.ok(data.orgs.length > 6, '- @' + user + ' Is a member of '+ data.orgs.length + ' Orgs');
 
-		// t.ok(data.developerprogram === true, '- @' + user + ' is a member of the "GitHub Developer Program"');
+		t.ok(data.developerprogram === true, '- @' + user + ' is a member of the "GitHub Developer Program"');
+		// regression: https://github.com/nelsonic/github-scraper/issues/79
+		t.ok(data.stars > 2000, '- @' + user + ' Has starred ' + data.stars);
 		t.end();
 	});
 })
