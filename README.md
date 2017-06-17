@@ -81,43 +81,12 @@ gs(url, function(err, data) {
 })
 ```
 
-### Sample Output for Profile Page
-
-Using the scraper in the way described above (to scrape a user profile)
-will yield the following results
-
-```js
-{
-  url: 'https://github.com/iteles'
-  website: 'http://www.twitter.com/iteles',
-  followercount: 45,
-  starred: 88,
-  followingcount: 32,
-  worksfor: 'dwyl.io',
-  location: 'London, UK',
-  fullname: 'Ines Teles',
-  email: '',
-  joined: '2013-04-17T21:10:06Z',
-  avatar: 'https://avatars1.githubusercontent.com/u/4185328?v=3&s=460',
-  contribs: 824,
-  longest: 156,
-  current: 156,
-  lastupdated: 1438751565678,
-  orgs:
-   [ '/ladieswhocode https://avatars1.githubusercontent.com/u/1634620?v=3&s=84',
-     '/bowlingjs https://avatars3.githubusercontent.com/u/8825909?v=3&s=84',
-     '/foundersandcoders https://avatars3.githubusercontent.com/u/9970257?v=3&s=84',
-     '/docdis https://avatars0.githubusercontent.com/u/10836426?v=3&s=84',
-     '/dwyl https://avatars2.githubusercontent.com/u/11708465?v=3&s=84' ]
-}
-```
-
 ## Example URLs and Output
 
 ### Profile Page
 
 User profile has the following format `https://github.com/{username}`  
-example: [https://github.com/**alanshaw**](https://github.com/alanshaw)
+example: [https://github.com/**iteles**](https://github.com/iteles)
 
 ```js
 var gs = require('github-scraper'); // require the module
@@ -130,42 +99,52 @@ gs(url, function(err, data) {
 Sample output:
 
 ```js
-{
-  entries: [],
-  url: 'https://github.com/alanshaw',
-  followercount: 161,
-  starred: 243,
-  followingcount: 19,
-  worksfor: 'TABLEFLIP',
-  location: 'London',
-  fullname: 'Alan Shaw',
-  email: '',
-  website: 'http://tableflip.io/',
-  joined: '2009-11-13T14:39:19Z',
-  avatar: 'https://avatars3.githubusercontent.com/u/152863?v=3&s=460',
-  contribs: 1030,
-  longest: 11,
-  current: 2,
-  lastupdated: 1438723919828,
+{ url: 'https://github.com/iteles',
+  img: 'https://avatars1.githubusercontent.com/u/4185328?v=3&s=460',
+  uid: 4185328,
+  repos: 30,
+  stars: 371,
+  followers: 219,
+  following: 69,
+  pinned:
+   [ { url: '/dwyl/start-here' },
+     { url: '/iteles/Javascript-the-Good-Parts-notes' },
+     { url: '/dwyl/learn-tdd' },
+     { url: '/iteles/learn-ab-and-multivariate-testing' },
+     { url: '/dwyl/hapi-riot' },
+     { url: '/dwyl/goodparts' } ],
+  worksfor: 'dwyl.io',
+  location: 'London, UK',
+  fullname: 'Ines Teles',
+  website: 'http://www.twitter.com/iteles',
+  avatar: 'https://avatars1.githubusercontent.com/u/4185328?v=3&s=460',
+  contribs: 887,
+  contrib_matrix:
+   { '2016-06-12': { fill: '#c6e48b', count: 1, x: '13', y: '0' },
+     '2016-06-13': { fill: '#c6e48b', count: 1, x: '13', y: '12' },
+     '2016-06-14': { fill: '#c6e48b', count: 1, x: '13', y: '24' },
+     '2016-06-15': { fill: '#c6e48b', count: 1, x: '13', y: '36' },
+     ... etc ...
+     '2017-06-12': { fill: '#196127', count: 15, x: '-39', y: '12' },
+     '2017-06-13': { fill: '#196127', count: 13, x: '-39', y: '24' },
+     '2017-06-14': { fill: '#196127', count: 12, x: '-39', y: '36' },
+     '2017-06-15': { fill: '#7bc96f', count: 4, x: '-39', y: '48' },
+     '2017-06-16': { fill: '#239a3b', count: 7, x: '-39', y: '60' },
+     '2017-06-17': { fill: '#239a3b', count: 7, x: '-39', y: '72' }
+   },
   orgs:
-   [ '/lnug https://avatars2.githubusercontent.com/u/4046959?v=3&s=84',
-     '/polestarglobal https://avatars0.githubusercontent.com/u/4190361?v=3&s=84',
-     '/nodesecurity https://avatars3.githubusercontent.com/u/4229593?v=3&s=84',
-     '/require-lx https://avatars3.githubusercontent.com/u/4672751?v=3&s=84',
-     '/tableflip https://avatars3.githubusercontent.com/u/5347145?v=3&s=84',
-     '/LXJS https://avatars2.githubusercontent.com/u/6461627?v=3&s=84',
-     '/nexttick https://avatars1.githubusercontent.com/u/6919683?v=3&s=84',
-     '/yldio https://avatars3.githubusercontent.com/u/6999859?v=3&s=84',
-     '/driift https://avatars1.githubusercontent.com/u/7840567?v=3&s=84',
-     '/meteor-london https://avatars3.githubusercontent.com/u/7863151?v=3&s=84',
-     '/dimsumjs https://avatars0.githubusercontent.com/u/8371806?v=3&s=84',
-     '/docdis https://avatars0.githubusercontent.com/u/10836426?v=3&s=84',
-     '/librariesio https://avatars2.githubusercontent.com/u/11243589?v=3&s=84',
-     '/dwyl https://avatars2.githubusercontent.com/u/11708465?v=3&s=84',
-     '/kittorrent https://avatars0.githubusercontent.com/u/13317556?v=3&s=84' ],
-  developerprogram: true
+   [ { bowlingjs: 'https://avatars1.githubusercontent.com/u/8825909?v=3&s=70' },
+     { foundersandcoders: 'https://avatars1.githubusercontent.com/u/9970257?v=3&s=70' },
+     { docdis: 'https://avatars2.githubusercontent.com/u/10836426?v=3&s=70' },
+     { dwyl: 'https://avatars0.githubusercontent.com/u/11708465?v=3&s=70' },
+     { 'node-girls': 'https://avatars0.githubusercontent.com/u/13981928?v=3&s=70' },
+     { ladiesofcode: 'https://avatars2.githubusercontent.com/u/16606192?v=3&s=70' },
+     { TheScienceMuseum: 'https://avatars2.githubusercontent.com/u/16609662?v=3&s=70' },
+     { SafeLives: 'https://avatars0.githubusercontent.com/u/20841400?v=3&s=70' }
+   ]
 }
 ```
+
 ### Followers
 
 How many people are following a given person on Github.

@@ -4,7 +4,7 @@ var profile = require('../lib/switcher');
 test('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 	var user = 'nelsonic';
 	profile(user, function(err, data){
-		console.log(data)
+		// console.log(data)
 
 		t.ok(data.img === 'https://avatars3.githubusercontent.com/u/194400?v=3&s=460',
 		'Image is what we expect: ' + data.img);
@@ -39,10 +39,10 @@ test('Check @olizilla profile IS NOT GitHub Developer Program Member', function(
 	});
 });
 
-test('Scrape @nelsonic detailed contribution matrix', function(t){
-	var user = 'nelsonic';
+test('Scrape @iteles detailed contribution matrix', function(t){
+	var user = 'iteles';
 	profile(user, function(err, data) {
-		// console.log(data)
+		console.log(data)
 		// map reduce?  https://www.airpair.com/javascript/javascript-array-reduce
 		var contribs = Object.keys(data.contrib_matrix)
 		.map((k) => { return data.contrib_matrix[k].count; })
@@ -51,7 +51,7 @@ test('Scrape @nelsonic detailed contribution matrix', function(t){
 
 		t.ok(contribs === data.contribs, "Contribution Matrix matches Total: " + contribs);
 
-		t.ok(data.contribs > 5000, '- @' + user + ' Has made ' + data.contribs
+		t.ok(data.contribs > 500, '- @' + user + ' Has made ' + data.contribs
 			+ ' contributions to Open Source this year!');
 
 		t.end();
