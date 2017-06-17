@@ -20,6 +20,8 @@ test('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 		t.ok(data.following > 300, '- @' + user + ' Is following more than 300 people');
 		// t.ok(data.contribs > 2000, '- @' + user + ' Has made at least 2000 contributions to Open Source this year');
 		t.ok(data.pinned.length === 6, '- @' + user + ' Has Six "Pinned" Repositories');
+		t.ok(data.orgs.length > 6, '- @' + user + ' Is a member of '+ data.orgs.length + ' Orgs');
+
 		// t.ok(data.developerprogram === true, '- @' + user + ' is a member of the "GitHub Developer Program"');
 		t.end();
 	});
