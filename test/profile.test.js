@@ -22,7 +22,8 @@ test('Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 		t.ok(data.contribs > 5000, '- @' + user + ' Has made ' + data.contribs
 			+ ' contributions to Open Source this year!');
 		t.ok(data.pinned.length === 6, '- @' + user + ' Has Six "Pinned" Repositories');
-		t.ok(data.orgs.length > 6, '- @' + user + ' Is a member of '+ data.orgs.length + ' Orgs');
+		t.ok(Object.keys(data.orgs).length > 6, '- @' + user + ' Is a member of '
+			+ Object.keys(data.orgs).length + ' Orgs');
 
 		t.ok(data.developerprogram === true, '- @' + user + ' is a member of the "GitHub Developer Program"');
 		// regression: https://github.com/nelsonic/github-scraper/issues/79
@@ -48,7 +49,6 @@ test('Scrape @iteles detailed contribution matrix', function(t){
 		.map((k) => { return data.contrib_matrix[k].count; })
 		.reduce((total, num) => { return total + num; });
 		// console.log(contribs);
-
 		t.ok(contribs === data.contribs, "Contribution Matrix matches Total: " + contribs);
 
 		t.ok(data.contribs > 500, '- @' + user + ' Has made ' + data.contribs
