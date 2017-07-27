@@ -30,3 +30,11 @@ test('crawl ZERO language repo', function(t){
 		t.end();
 	})
 })
+
+test('crawl forked repo', function(t){
+  var project = '/backhand/github-scraper';
+  repo(project, function(err, stats) {
+    t.ok(stats.forkedfrom === '/nelsonic/github-scraper', 'Repo forked from /nelsonic/github-scraper')
+    t.end();
+  })
+})
