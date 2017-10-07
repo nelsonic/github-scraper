@@ -3,7 +3,7 @@ var test = require('tape');
 var dir  = __dirname.split('/')[__dirname.split('/').length-1];
 var file = dir + __filename.replace(__dirname, '') + " > ";
 
-test('make GET request to invalid url (error branch check)', function (t) {
+test('make GET request to invalid url (error branch check) EXPECT RED:', function (t) {
   var path = '/' + Math.floor(Math.random() * 1000000000000000);
   http_request(path, function (e, res) {
     t.equal(e, 404);
