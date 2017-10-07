@@ -8,7 +8,7 @@ test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', functi
 	profile(user, function(err, data){
 		console.log(data)
 
-		t.ok(data.img === 'https://avatars1.githubusercontent.com/u/194400?v=4&s=460',
+		t.ok(data.img.match(/https:\/\/avatars\d+.githubusercontent.com\/u\/194400\?v=\d+&s=460/) !== null,
 		'Image is what we expect: ' + data.img);
 		t.ok(data.uid === 194400, '@' + user + ' has GitHub user_id: ' + data.uid);
 
