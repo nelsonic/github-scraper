@@ -22,13 +22,13 @@ test('Call scraper with url without leading forward slash', function(t) {
 	t.end();
 })
 
-test('url_validator rejects a url containing word "undefined"', function(t) {
-	validate('/undefined/followers', function(err){
-    console.log(err)
-  	t.ok(err, 400, 'Receive 400 Error when URL resembles "undefined" ');
-  	t.end();
-  });
-})
+// see: https://github.com/nelsonic/github-scraper/issues/84
+test('url_validator does NOT contain (perfectly valid) url containing word "undefined"', function(t) {
+	var url = validate('/undefined/followers');
+	var expected = 'https://github.com/undefined/followers';
+	t.equal(url, expected, 'User "@undefined" is legit: ' +  url);
+	t.end();
+});
 
 test('Call scraper with full (valid) GitHub URL', function(t) {
   var url1 = 'https://github.com/iteles'

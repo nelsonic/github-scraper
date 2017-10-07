@@ -10,7 +10,7 @@
 
 # Disclaimer / Warning!
 
-This repository/project is intended for **_Educational Purposes_ **ONLY**.
+This repository/project is intended for ***Educational Purposes*** **ONLY**.
 It is not intended to be used for any purpose other than *learning*,
 so please do not use it for any other reason
 than to learn _about_ DOM scraping!!
