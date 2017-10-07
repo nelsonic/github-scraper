@@ -1,17 +1,20 @@
 var test = require('tape');
 var org  = require('../lib/switcher');
+var dir  = __dirname.split('/')[__dirname.split('/').length-1];
+var file = dir + __filename.replace(__dirname, '') + " > ";
 
-test('Scrape an org WITHOUT a next page (known data)', function(t){
+test(file + 'Scrape an org WITHOUT a next page (known data)', function(t){
 	var url = '/peersun';
 	org(url, function(err, data) {
-		// console.log(data);
-		t.ok(data.entries.length > 5, 'org '+url + ' has ' +data.entries.length + ' repos.')
-		t.ok(data.pcount === 0, '"pcount":'+data.pcount);
+		console.log(data);
+		t.ok(data.entries.length > 5, 'org '
+			+ url + ' has ' + data.entries.length + ' repos.')
+		t.ok(data.pcount === 0, '"pcount":' + data.pcount);
 		t.end();
 	});
 })
 
-test('Scrape an org WITH a next page', function(t){
+test(file + 'Scrape an org WITH a next page', function(t){
 	var url = '/github';
 	org(url, function(err, data) {
 		// console.log(data);
@@ -23,7 +26,7 @@ test('Scrape an org WITH a next page', function(t){
 	});
 })
 
-test('Fetch Second page of dwyl org', function(t){
+test(file + 'Fetch Second page of dwyl org', function(t){
 	var url = '/dwyl?page=2';
 	org(url, function(err, data) {
 		// console.log(data);
@@ -34,7 +37,7 @@ test('Fetch Second page of dwyl org', function(t){
 	});
 })
 
-test('ORG with no people', function(t){
+test(file + 'ORG with no people', function(t){
 	var url = '/pandajs';
 	org(url, function(err, data) {
 		t.ok(typeof data.website === 'undefined', "No website")
