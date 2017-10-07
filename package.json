@@ -23,8 +23,7 @@
     "node": ">= 0.12"
   },
   "dependencies": {
-    "cheerio": "^0.22.0",
-    "wreck": "^12.2.0"
+    "cheerio": "^0.22.0"
   },
   "devDependencies": {
     "istanbul": "^0.4.2",
