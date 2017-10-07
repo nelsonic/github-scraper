@@ -24,8 +24,7 @@
   },
   "dependencies": {
     "cheerio": "^0.22.0",
-    "wreck": "^12.2.0",
-    "xml2js": "^0.4.17"
+    "wreck": "^12.2.0"
   },
   "devDependencies": {
     "istanbul": "^0.4.2",
