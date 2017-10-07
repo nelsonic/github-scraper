@@ -20,3 +20,15 @@ test('make GET request to invalid url (error branch check)', function (t) {
     t.end();
   });
 });
+
+// see: https://github.com/nelsonic/github-scraper/issues/60
+var validate = require('../lib/url_validator');
+
+test('Regression Test for issue #60', function(t) {
+  var path = '/hangouts/followers';
+  http_request(path, function (statusCode, html) {
+    t.equal(statusCode, 200, 'statusCode for valid request is: ' + statusCode);
+    t.ok(html.indexOf('<!DOCTYPE html>') > -1, 'got html back from GitHub');
+    t.end();
+  });
+});
