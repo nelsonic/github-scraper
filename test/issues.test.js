@@ -43,7 +43,7 @@ test.skip('crawl known repository (FORK) WITHOUT issues ', function(t){
 	})
 })
 
-var wreck   = require('wreck');
+
 var cheerio = require('cheerio')
 var issues2  = require('../lib/issues.js');
 // see: https://github.com/nelsonic/arana/issues/16

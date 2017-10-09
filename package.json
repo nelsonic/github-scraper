@@ -1,6 +1,6 @@
 {
   "name": "github-scraper",
-  "version": "4.6.0",
+  "version": "5.0.0",
   "description": "insert imaginative description here",
   "main": "lib/index.js",
   "scripts": {
@@ -23,10 +23,7 @@
     "node": ">= 0.12"
   },
   "dependencies": {
-    "chalk": "^1.1.1",
-    "cheerio": "^0.22.0",
-    "wreck": "^12.2.0",
-    "xml2js": "^0.4.17"
+    "cheerio": "^0.22.0"
   },
   "devDependencies": {
     "istanbul": "^0.4.2",
