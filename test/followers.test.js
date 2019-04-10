@@ -1,11 +1,9 @@
 var test      = require('tape');
 var followers = require('../lib/switcher');
 
-test('read list of followers for @jupiter (single page of followers) ', function (t) {
+test.skip('read list of followers for @jupiter (single page of followers) ', function (t) {
   var username = 'jupiter';
 	followers(username + '/followers', function(err, data) {
-    // console.log(data);
-		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
 		t.ok(data.entries.length > 10, '@' + username + ' has ' + data.entries.length + ' followers');
 		t.ok(typeof data.next_page === 'undefined',  '@' + username +' only has 1 page of followers');
 		t.end();
@@ -15,15 +13,19 @@ test('read list of followers for @jupiter (single page of followers) ', function
 test('read list of followers for @iteles (multi-page)', function(t){
   var username = 'iteles/followers';
 	followers(username, function(err, data) {
-		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
 		t.ok(data.entries.length > 50, '"followers": '+data.entries.length + ' on page 1');
-		t.ok(data.next_page === 'https://github.com/iteles/followers?page=2', username +' multi-page followers');
-    // crawl second page:
-    followers(data.next_page, function(err2, data2){
+    console.log(' - - - - - - - - - - - - - data.next_page:');
+    console.log(data.next_page);
+		t.ok(data.next_page.indexOf('iteles/followers?after=') > -1,
+      username +' multi-page followers');
+    // crawl second page of followers to confirm next_page is working:
+    followers(data.next_page, function (err2, data2) {
+      // console.log(err2, data2);
       t.ok(data2.entries.length > 50, '"followers": '+data.entries.length);
-      t.ok(data2.next_page === 'https://github.com/iteles/followers?page=3', username +' multi-page followers');
-		  t.end();
-    })
+      t.ok(data.next_page.indexOf('iteles/followers?after=') > -1,
+        username +' multi-page followers');
+      t.end();
+    });
 	});
 })
 
