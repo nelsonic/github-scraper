@@ -1,14 +1,23 @@
-# GitHub Scraper
+#
 
-[![Build Status](https://travis-ci.org/nelsonic/github-scraper.png?branch=master)](https://travis-ci.org/nelsonic/github-scraper)
-[![codecov.io](https://codecov.io/github/nelsonic/github-scraper/coverage.svg?branch=master)](https://codecov.io/github/nelsonic/github-scraper?branch=master)
-[![Dependencies](https://david-dm.org/nelsonic/github-scraper.png?theme=shields.io)](https://david-dm.org/nelsonic/github-scraper)
-[![devDependency Status](https://david-dm.org/nelsonic/github-scraper/dev-status.svg)](https://david-dm.org/nelsonic/github-scraper#info=devDependencies)
-[![HitCount](https://hitt.herokuapp.com/nelsonic/github-scraper.svg)](https://github.com/nelsonic/hits)
-<!-- [![NPM version](https://badge.fury.io/js/fuata.png)](https://npmjs.org/package/fuata) -->
-<!-- the code isn't pretty!! [![Code Climate](https://codeclimate.com/github/nelsonic/github-scraper.png)](https://codeclimate.com/github/nelsonic/github-scraper) -->
+div align="center">
 
-# Disclaimer / Warning!
+# 🕷 🕸 GitHub Scraper
+
+Learn how to parse the DOM
+by using your favourite coding community as an example.
+
+[![Build Status](https://img.shields.io/travis/nelsonic/github-scraper/master.svg?style=flat-square)](https://travis-ci.org/nelsonic/github-scraper)
+[![codecov.io](https://img.shields.io/codecov/c/github/nelsonic/github-scraper/master.svg?style=flat-square)](http://codecov.io/github/nelsonic/github-scraper?branch=master)
+[![Dependencies: None!](https://david-dm.org/nelsonic/github-scraper/status.svg?style=flat-square)](https://david-dm.org/nelsonic/github-scraper)
+[![devDependencies Status](https://david-dm.org/nelsonic/github-scraper/dev-status.svg?style=flat-square)](https://david-dm.org/nelsonic/github-scraper?type=dev)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/nelsonic/github-scraper/issues)
+[![HitCount](http://hits.dwyl.io/nelsonic/github-scraper.svg)](http://hits.dwyl.io/nelsonic/github-scraper)
+<!-- uncomment when service is working ... [![Inline docs](http://inch-ci.org/github/nelsonic/github-scraper.svg?branch=master&style=flat-square)](http://inch-ci.org/github/nelsonic/github-scraper) -->
+
+</div>
+
+# ⚠️  Disclaimer / Warning!
 
 This repository/project is intended for ***Educational Purposes*** **ONLY**.
 It is not intended to be used for any purpose other than *learning*,
