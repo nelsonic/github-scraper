@@ -10,7 +10,7 @@ test.skip('read list of followers for @jupiter (single page of followers) ', fun
 	});
 })
 
-test('read list of followers for @iteles (multi-page)', function(t){
+test.skip('read list of followers for @iteles (multi-page)', function(t){
   var username = 'iteles/followers';
 	followers(username, function(err, data) {
 		t.ok(data.entries.length > 50, '"followers": '+data.entries.length + ' on page 1');
