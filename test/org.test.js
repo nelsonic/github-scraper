@@ -6,10 +6,16 @@ var file = dir + __filename.replace(__dirname, '') + " > ";
 test(file + 'Scrape an org WITHOUT a next page (known data)', function(t){
 	var url = '/peersun';
 	org(url, function(err, data) {
-		// console.log(data);
 		t.ok(data.entries.length > 5, 'org '
 			+ url + ' has ' + data.entries.length + ' repos.')
 		t.ok(data.pcount === 0, '"pcount":' + data.pcount);
+
+		const last = data.entries[data.entries.length-1];
+		t.equal(last.updated, '2014-02-18T23:09:24Z',
+			'last.updated: ' + last.updated);
+		// console.log(' - - - - - - - - - - - - - data.entries:');
+		// console.log(data.entries);
+		// console.log(' - - - - - - - - - - - - -');
 		t.end();
 	});
 })
@@ -17,7 +23,6 @@ test(file + 'Scrape an org WITHOUT a next page (known data)', function(t){
 test(file + 'Scrape an org WITH a next page', function(t){
 	var url = '/github';
 	org(url, function(err, data) {
-		// console.log(data);
 		t.ok(data.pcount > 100, '"pcount":'+data.pcount);
 		t.ok(data.location === 'San Francisco, CA', 'data.location: '+data.location);
 		t.ok(data.website === 'https://github.com/about', 'data.url: '+data.url);
