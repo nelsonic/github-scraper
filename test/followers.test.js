@@ -1,7 +1,7 @@
 var test      = require('tape');
 var followers = require('../lib/switcher');
 
-test.skip('read list of followers for @jupiter (single page of followers) ', function (t) {
+test('read list of followers for @jupiter (single page of followers) ', function (t) {
   var username = 'jupiter';
 	followers(username + '/followers', function(err, data) {
 		t.ok(data.entries.length > 10, '@' + username + ' has ' + data.entries.length + ' followers');
@@ -10,7 +10,7 @@ test.skip('read list of followers for @jupiter (single page of followers) ', fun
 	});
 })
 
-test.skip('read list of followers for @iteles (multi-page)', function(t){
+test('read list of followers for @iteles (multi-page)', function(t){
   var username = 'iteles/followers';
 	followers(username, function(err, data) {
 		t.ok(data.entries.length > 50, '"followers": '+data.entries.length + ' on page 1');
