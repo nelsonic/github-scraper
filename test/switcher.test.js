@@ -1,10 +1,11 @@
 var test     = require('tape');
 var switcher = require('../lib/switcher');
-var cberrmsg = "please supply a callback"
 var dir  = __dirname.split('/')[__dirname.split('/').length-1];
 var file = dir + __filename.replace(__dirname, '') + " > ";
 
-test(file + 'Attepmt to invoke the scraper WITHOUT VALID callback funciton', function(t) {
+test(file + 'Attepmt to invoke the scraper WITHOUT VALID callback funciton',
+  function(t) {
+  var cberrmsg = "callback is required"
   try {
     switcher();
   } catch (error){

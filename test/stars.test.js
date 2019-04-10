@@ -15,12 +15,14 @@ test('read list of stars for dwyl/learn-tdd (multi-page)', function(t){
   var url = 'dwyl/learn-tdd/stargazers';
 	stars(url, function(err, data) {
 		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
-		t.ok(data.entries.length > 50, '"stars": '+data.entries.length);
-		t.ok(data.next_page === 'https://github.com/' + url +'?page=2', url +' multi-page stars');
+		t.equal(data.entries.length, 30, '"stars": '+data.entries.length);
+    t.ok(data.next_page.indexOf(url + '?after=') > -1,
+      url +' multi-page stargazers');
     // crawl second page:
     stars(data.next_page, function(err2, data2){
-      t.ok(data2.entries.length > 50, '"stars": '+data.entries.length);
-      t.ok(data2.next_page === 'https://github.com/' + url +'?page=3', url +' multi-page stars');
+      t.equal(data.entries.length, 30, '"stars": '+data.entries.length);
+      t.ok(data.next_page.indexOf(url + '?after=') > -1,
+        url +' multi-page stargazers');
 		  t.end();
     })
 	});
