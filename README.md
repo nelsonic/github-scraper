@@ -15,6 +15,12 @@ by using your favourite coding community as an example.
 [![HitCount](http://hits.dwyl.io/nelsonic/github-scraper.svg)](http://hits.dwyl.io/nelsonic/github-scraper)
 <!-- uncomment when service is working ... [![Inline docs](http://inch-ci.org/github/nelsonic/github-scraper.svg?branch=master&style=flat-square)](http://inch-ci.org/github/nelsonic/github-scraper) -->
 
+<a href=""
+ alt="Try the Demo on Heroku!">
+  <img src="https://user-images.githubusercontent.com/194400/55904193-3528da00-5bc7-11e9-828d-754df210e365.png"
+  alt="Step one: learn JavaScript!">
+</a>
+
 </div>
 
 # ⚠️  Disclaimer / Warning!
