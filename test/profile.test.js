@@ -7,7 +7,6 @@ test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', functi
 	var user = 'nelsonic';
 	profile(user, function (err, data) {
 		// console.log('data.img:', data.img)
-
 		t.ok(data.img.match(/githubusercontent.com\/u\/194400/) !== null,
 		'Image is what we expect: ' + data.img);
 		t.ok(data.uid === 194400, '@' + user + ' has GitHub user_id: ' + data.uid);
@@ -29,27 +28,28 @@ test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', functi
 			+ ' contributions to Open Source this year!');
 
 		t.ok(data.pinned.length === 6, '- @' + user + ' Has Six "Pinned" Repositories');
-/*
-		t.ok(Object.keys(data.orgs).length > 6, '- @' + user + ' Is a member of '
+
+		t.ok(Object.keys(data.orgs).length > 2, '- @' + user + ' Is a member of '
 			+ Object.keys(data.orgs).length + ' Orgs');
+
 		t.ok(data.developerprogram === true, '- @'
 			+ user + ' is a member of the "GitHub Developer Program"');
 		// regression: https://github.com/nelsonic/github-scraper/issues/79
 		t.ok(data.stars > 2000, '- @' + user + ' Has starred ' + data.stars);
-*/
+
 		t.end();
 	});
 });
 
-test.skip(file + 'Check @olizilla profile IS NOT GitHub Developer Program Member', function(t){
-	var url = 'olizilla';
+test(file + 'Check @torvalds profile IS NOT GitHub Developer Program Member', function(t){
+	var url = 'torvalds';
 	profile(url, function(err, data) {
 		t.ok(typeof data.developerprogram === 'undefined', '- @' + url + ' is NOT a member of the "GitHub Developer Program"');
 		t.end();
 	});
 });
 
-test.skip(file + 'Scrape @iteles detailed contribution matrix', function(t){
+test(file + 'Scrape @iteles detailed contribution matrix', function(t){
 	var user = 'iteles';
 	profile(user, function(err, data) {
 		// console.log(data)
