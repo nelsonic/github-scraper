@@ -52,9 +52,11 @@ test(file + 'Fetch Second page of dwyl org', function (t) {
 	});
 })
 
-test(file + 'ORG with no people', function(t){
+test.only(file + 'ORG with no people', function(t){
 	var url = '/pandajs';
 	org(url, function(err, data) {
+		console.log('data', data);
+		
 		t.ok(typeof data.website === 'undefined', "No website")
 		t.ok(typeof data.location === 'undefined', "No location")
 		t.ok(typeof data.email === 'undefined', "No email")
