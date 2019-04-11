@@ -34,7 +34,7 @@ test(file + 'Scrape an org WITH a next page', function(t){
 test(file + 'Fetch Second page of dwyl org', function (t) {
 	let url = 'dwyl';
 	org(url, function(err, data) {
-		// console.log(data);
+		// console.log(data.entries);
 		t.ok(data.entries.length === 30, 'SECOND page of org has '+data.entries.length + ' repos')
 		t.ok(data.pcount > 10, '"pcount":'+data.pcount);
 		t.ok(data.next_page === '/dwyl?page=2', 
