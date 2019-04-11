@@ -56,7 +56,9 @@ test(file + 'ORG with no people', function(t){
 	var url = '/pandajs';
 	org(url, function(err, data) {
 		console.log('data', data);
-		
+		t.equal(data.description, 
+			"people who are super into pandas and javascript!", 
+			'data.description: ' + data.description)
 		t.ok(typeof data.website === 'undefined', "No website")
 		t.ok(typeof data.location === 'undefined', "No location")
 		t.ok(typeof data.email === 'undefined', "No email")
