@@ -27,6 +27,7 @@ test(file + 'Scrape an org WITH a next page', function(t){
 		t.ok(data.location === 'San Francisco, CA', 'data.location: '+data.location);
 		t.ok(data.website === 'https://github.com/about', 'data.url: '+data.url);
 		t.ok(data.email === 'support@github.com', 'data.email: '+data.email);
+		t.equal(data.uid, 9919, url + ' uid is ' + data.uid);
 		t.end();
 	});
 })
