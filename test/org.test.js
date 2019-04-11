@@ -31,14 +31,23 @@ test(file + 'Scrape an org WITH a next page', function(t){
 	});
 })
 
-test(file + 'Fetch Second page of dwyl org', function(t){
-	var url = '/dwyl?page=2';
+test(file + 'Fetch Second page of dwyl org', function (t) {
+	let url = 'dwyl';
 	org(url, function(err, data) {
 		// console.log(data);
-		t.ok(data.entries.length === 30, 'SECOND page of org has 20 repos: '+data.entries.length)
+		t.ok(data.entries.length === 30, 'SECOND page of org has '+data.entries.length + ' repos')
 		t.ok(data.pcount > 10, '"pcount":'+data.pcount);
-		t.ok(data.next_page === '/dwyl?page=3', 'dwyl has more than one page');
-		t.end();
+		t.ok(data.next_page === '/dwyl?page=2', 
+			'data.next_page is: ' + data.next_page);
+
+		url = '/dwyl?page=2';
+		org(url, function(err, data) {
+			// console.log(data);
+			t.ok(data.entries.length === 30, 'SECOND page of org has '+data.entries.length + ' repos')
+			t.ok(data.pcount > 10, '"pcount":'+data.pcount);
+			t.ok(data.next_page === '/dwyl?page=3', 'dwyl has more than one page');
+			t.end();
+		});
 	});
 })
 
