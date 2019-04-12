@@ -1,7 +1,7 @@
 var test      = require('tape');
 var followers = require('../lib/switcher');
 
-test.only('read list of followers for @jupiter (single page of followers) ', function (t) {
+test('read list of followers for @jupiter (single page of followers) ', function (t) {
   var username = 'jupiter/followers';
 	followers(username, function(err, data) {
     t.equal(data.type, 'followers', username + ' data.type: ' + data.type);
@@ -30,7 +30,7 @@ test('read list of followers for @iteles (multi-page)', function(t){
       t.end();
     });
 	});
-})
+});
 
 // see: https://github.com/nelsonic/github-scraper/issues/60
 test('Regression Test for issue #60', function(t){
