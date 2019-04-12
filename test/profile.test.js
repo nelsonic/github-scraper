@@ -1,13 +1,13 @@
-var test    = require('tape');
+var test = require('tape');
 var profile = require('../lib/switcher');
-var dir  = __dirname.split('/')[__dirname.split('/').length-1];
+var dir = __dirname.split('/')[__dirname.split('/').length-1];
 var file = dir + __filename.replace(__dirname, '') + " > ";
 
 test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 	var user = 'nelsonic';
 	profile(user, function (err, data) {
 		// console.log('data.img:', data.img)
-		t.ok(data.img.match(/githubusercontent.com\/u\/194400/) !== null,
+		t.ok(data.avatar.match(/githubusercontent.com\/u\/194400/) !== null,
 		'Image is what we expect: ' + data.img);
 		t.ok(data.uid === 194400, '@' + user + ' has GitHub user_id: ' + data.uid);
 
