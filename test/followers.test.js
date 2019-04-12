@@ -1,11 +1,13 @@
 var test      = require('tape');
 var followers = require('../lib/switcher');
 
-test('read list of followers for @jupiter (single page of followers) ', function (t) {
+test.only('read list of followers for @jupiter (single page of followers) ', function (t) {
   var username = 'jupiter/followers';
 	followers(username, function(err, data) {
     t.equal(data.type, 'followers', username + ' data.type: ' + data.type);
-		t.ok(data.entries.length > 10, '@' + username + ' has ' + data.entries.length + ' followers');
+    t.ok(data.entries.length > 10, '@' + username + ' has ' + data.entries.length + ' followers');
+    const people = data.entries.map(e => e.username);
+	  t.ok(people.indexOf('nelsonic') >-1, 'Nelson in ' + username)
 		t.ok(typeof data.next_page === 'undefined',  '@' + username +' only has 1 page of followers');
 		t.end();
 	});
