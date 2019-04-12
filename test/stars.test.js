@@ -7,6 +7,8 @@ test('read list of stars for pandajs/sad ', function(t){
 		t.equal(data.type, 'stars', url + ' data.type: ' + data.type);
 		// t.ok(data.repos.length === 20, 'first page of org has 20 repos: '+data.repos.length)
 		t.ok(data.entries.length > 0, '"stars": '+data.entries.length);
+		const people = data.entries.map(e => e.username);
+	  t.ok(people.indexOf('nelsonic') >-1, 'Nelson starred '+ url)
 		t.ok(typeof data.next_page === 'undefined', url +' only has 1 page of stars');
 		t.end();
 	});
