@@ -13,8 +13,8 @@ test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', functi
 		t.ok(data.uid === 194400, '@' + user + ' has GitHub user_id: ' + data.uid);
 
 		// t.ok(data.current > 400, 'Current Streak ' + data.current +' is over 500 days!');
-		t.ok(data.fullname   === 'Nelson',
-			'- @' + user + ' Full Name:' + data.fullname);
+		t.ok(data.name   === 'Nelson',
+			'- @' + user + ' Name:' + data.name);
 		t.ok(data.worksfor === '@dwyl', user + ' Works for ' + data.worksfor);
 		// t.ok(data.email    === 'contact.nelsonic+github@gmail.com',
 			// '- @' + user + ' Email address is: contact.nelsonic@gmail.com');
