@@ -4,7 +4,8 @@ var repo = require('../lib/switcher');
 test('crawl known repository for stats', function(t) {
 	var project = 'dwyl/adoro';
 	repo(project, function(err, stats) {
-    console.log(stats);
+		// console.log(stats);
+		t.equal(stats.type, 'repo', project + ' data.type: ' + stats.type);
 		t.ok(err === null, 'No Error when crawling ' + project +' (repo pages)');
 		t.ok(stats.watchers > 3, ' has more than 1 watchers: '+stats.watchers);
     t.ok(stats.stars > 10, ' has more than 5 stars: '+stats.stars);

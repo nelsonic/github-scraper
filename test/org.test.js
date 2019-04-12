@@ -6,6 +6,7 @@ var file = dir + __filename.replace(__dirname, '') + " > ";
 test(file + 'Scrape an org WITHOUT a next page (known data)', function(t){
 	var url = '/peersun';
 	org(url, function(err, data) {
+		t.equal(data.type, 'org', url + ' data.type: ' + data.type);
 		t.ok(data.entries.length > 5, 'org '
 			+ url + ' has ' + data.entries.length + ' repos.')
 		t.ok(data.pcount === 0, '"pcount":' + data.pcount);
@@ -55,7 +56,7 @@ test(file + 'Fetch Second page of dwyl org', function (t) {
 test(file + 'ORG with no people', function(t){
 	var url = '/pandajs';
 	org(url, function(err, data) {
-		console.log('data', data);
+		// console.log('data', data);
 		t.equal(data.description, 
 			"people who are super into pandas and javascript!", 
 			'data.description: ' + data.description)
