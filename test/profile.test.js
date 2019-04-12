@@ -11,6 +11,7 @@ test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', functi
 		t.ok(data.avatar.match(/githubusercontent.com\/u\/194400/) !== null,
 		'Image is what we expect: ' + data.avatar);
 		t.ok(data.uid === 194400, '@' + user + ' has GitHub user_id: ' + data.uid);
+		t.ok(data.username === 'nelsonic', '@' + user + ' username: ' + data.username);
 
 		// t.ok(data.current > 400, 'Current Streak ' + data.current +' is over 500 days!');
 		t.ok(data.name   === 'Nelson',
