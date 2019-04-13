@@ -1,6 +1,6 @@
 {
   "name": "github-scraper",
-  "version": "6.6.5",
+  "version": "6.6.6",
   "description": "insert imaginative description here",
   "main": "lib/index.js",
   "scripts": {
