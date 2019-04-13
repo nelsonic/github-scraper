@@ -4,7 +4,7 @@ var repo = require('../lib/switcher');
 test('crawl known repository for stats', function(t) {
 	var project = 'dwyl/adoro';
 	repo(project, function(err, stats) {
-		console.log(stats);
+		// console.log(stats);
 		t.equal(stats.type, 'repo', project + ' data.type: ' + stats.type);
 		t.ok(err === null, 'No Error when crawling ' + project +' (repo pages)');
 		t.ok(stats.watchers > 3, ' has more than 1 watchers: '+stats.watchers);
@@ -52,8 +52,11 @@ test('crawl /dwyl/start-here (known repo)', function(t){
 test('dwyl/todo-list-javascript-tutorial known website', function(t){
   var project = 'dwyl/todo-list-javascript-tutorial';
   repo(project, function(err, stats) {
+		// console.log('stats:', stats)
 		t.ok(stats.website === 'https://todomvc-app.herokuapp.com', 
 			project + ' website: ' + stats.website);
+		t.ok(stats.tags.indexOf('javascript') > -1, 
+			project + ' tags: ' + stats.tags);
     t.end();
   })
 })

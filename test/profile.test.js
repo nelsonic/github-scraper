@@ -55,6 +55,7 @@ test(file + 'Scrape @iteles detailed contribution matrix', function(t){
 	var user = 'iteles';
 	profile(user, function(err, data) {
 		// console.log(data)
+		t.ok(data.bio.indexOf('Co-founder') > -1, '- @' + user + ' bio: ' + data.bio);
 		// map reduce?  https://www.airpair.com/javascript/javascript-array-reduce
 		var contribs = Object.keys(data.contrib_matrix)
 		.map((k) => { return data.contrib_matrix[k].count; })

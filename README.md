@@ -101,6 +101,9 @@ gs(url, function(err, data) {
 User profile has the following format `https://github.com/{username}`  
 example: [https://github.com/**iteles**](https://github.com/iteles)
 
+![iteles-github-profile-april-2019-annotated](https://user-images.githubusercontent.com/194400/56076833-3deafd00-5dcd-11e9-87b0-693341a0ff64.png)
+
+
 ```js
 var gs = require('github-scraper'); // require the module
 var url = 'alanshaw' // a random username (of someone you should follow!)
@@ -111,50 +114,49 @@ gs(url, function(err, data) {
 
 Sample output:
 
-```js
-{ url: 'https://github.com/iteles',
-  img: 'https://avatars1.githubusercontent.com/u/4185328?v=3&s=460',
-  uid: 4185328,
-  repos: 30,
-  stars: 371,
-  followers: 219,
-  following: 69,
-  pinned:
-   [ { url: '/dwyl/start-here' },
-     { url: '/iteles/Javascript-the-Good-Parts-notes' },
-     { url: '/dwyl/learn-tdd' },
-     { url: '/iteles/learn-ab-and-multivariate-testing' },
-     { url: '/dwyl/hapi-riot' },
-     { url: '/dwyl/goodparts' } ],
-  worksfor: 'dwyl.io',
-  location: 'London, UK',
-  fullname: 'Ines Teles',
-  website: 'http://www.twitter.com/iteles',
-  avatar: 'https://avatars1.githubusercontent.com/u/4185328?v=3&s=460',
-  contribs: 887,
-  contrib_matrix:
-   { '2016-06-12': { fill: '#c6e48b', count: 1, x: '13', y: '0' },
-     '2016-06-13': { fill: '#c6e48b', count: 1, x: '13', y: '12' },
-     '2016-06-14': { fill: '#c6e48b', count: 1, x: '13', y: '24' },
-     '2016-06-15': { fill: '#c6e48b', count: 1, x: '13', y: '36' },
-     ... etc ...
-     '2017-06-12': { fill: '#196127', count: 15, x: '-39', y: '12' },
-     '2017-06-13': { fill: '#196127', count: 13, x: '-39', y: '24' },
-     '2017-06-14': { fill: '#196127', count: 12, x: '-39', y: '36' },
-     '2017-06-15': { fill: '#7bc96f', count: 4, x: '-39', y: '48' },
-     '2017-06-16': { fill: '#239a3b', count: 7, x: '-39', y: '60' },
-     '2017-06-17': { fill: '#239a3b', count: 7, x: '-39', y: '72' }
-   },
-  orgs:
-   [ { bowlingjs: 'https://avatars1.githubusercontent.com/u/8825909?v=3&s=70' },
-     { foundersandcoders: 'https://avatars1.githubusercontent.com/u/9970257?v=3&s=70' },
-     { docdis: 'https://avatars2.githubusercontent.com/u/10836426?v=3&s=70' },
-     { dwyl: 'https://avatars0.githubusercontent.com/u/11708465?v=3&s=70' },
-     { 'node-girls': 'https://avatars0.githubusercontent.com/u/13981928?v=3&s=70' },
-     { ladiesofcode: 'https://avatars2.githubusercontent.com/u/16606192?v=3&s=70' },
-     { TheScienceMuseum: 'https://avatars2.githubusercontent.com/u/16609662?v=3&s=70' },
-     { SafeLives: 'https://avatars0.githubusercontent.com/u/20841400?v=3&s=70' }
-   ]
+```json
+{
+  "type": "profile",
+  "url": "/iteles",
+  "avatar": "https://avatars1.githubusercontent.com/u/4185328?s=400&v=4",
+  "name": "Ines Teles Correia",
+  "username": "iteles",
+  "bio": "Co-founder @dwyl | Head cheerleader @foundersandcoders",
+  "uid": 4185328,
+  "worksfor": "@dwyl",
+  "location": "London, UK",
+  "website": "http://www.twitter.com/iteles",
+  "orgs": {
+    "bowlingjs": "https://avatars3.githubusercontent.com/u/8825909?s=70&v=4",
+    "foundersandcoders": "https://avatars3.githubusercontent.com/u/9970257?s=70&v=4",
+    "docdis": "https://avatars0.githubusercontent.com/u/10836426?s=70&v=4",
+    "dwyl": "https://avatars2.githubusercontent.com/u/11708465?s=70&v=4",
+    "ladiesofcode": "https://avatars0.githubusercontent.com/u/16606192?s=70&v=4",
+    "TheScienceMuseum": "https://avatars0.githubusercontent.com/u/16609662?s=70&v=4",
+    "SafeLives": "https://avatars2.githubusercontent.com/u/20841400?s=70&v=4"
+  },
+  "repos": 28,
+  "projects": 0,
+  "stars": 453,
+  "followers": 341,
+  "following": 75,
+  "pinned": [
+    { "url": "/dwyl/start-here" },
+    { "url": "/dwyl/learn-tdd" },
+    { "url": "/dwyl/learn-elm-architecture-in-javascript" },
+    { "url": "/dwyl/tachyons-bootstrap" },
+    { "url": "/dwyl/learn-ab-and-multivariate-testing" },
+    { "url": "/dwyl/learn-elixir" }
+  ],
+  "contribs": 878,
+  "contrib_matrix": {
+    "2018-04-08": { "fill": "#c6e48b", "count": 1, "x": "13", "y": "0" },
+    "2018-04-09": { "fill": "#c6e48b", "count": 2, "x": "13", "y": "12" },
+    "2018-04-10": { "fill": "#7bc96f", "count": 3, "x": "13", "y": "24" },
+    ...etc...
+    "2019-04-11": { "fill": "#c6e48b", "count": 1, "x": "-39", "y": "48" },
+    "2019-04-12": { "fill": "#7bc96f", "count": 5, "x": "-39", "y": "60"}
+  }
 }
 ```
 
