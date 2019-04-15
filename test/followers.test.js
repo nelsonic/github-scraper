@@ -15,21 +15,21 @@ test('read list of followers for @jupiter (single page of followers) ', function
 
 test('read list of followers for @iteles (multi-page)', function(t){
   var username = 'iteles/followers';
-	followers(username, function(err, data) {
-		t.ok(data.entries.length > 50, '"followers": '+data.entries.length + ' on page 1');
+  followers(username, function(err, data) {
+    t.ok(data.entries.length > 50, '"followers": '+data.entries.length + ' on page 1');
     // console.log(' - - - - - - - - - - - - - data.next_page:');
     // console.log(data.next_page);
-		t.ok(data.next_page.indexOf('iteles/followers?after=') > -1,
-      username +' multi-page followers');
+    t.ok(data.next_page.indexOf('iteles/followers?after=') > -1,
+    username +' multi-page followers');
     // crawl second page of followers to confirm next_page is working:
     followers(data.next_page, function (err2, data2) {
       // console.log(err2, data2);
       t.ok(data2.entries.length > 50, '"followers": '+data.entries.length);
       t.ok(data.next_page.indexOf('iteles/followers?after=') > -1,
-        username +' multi-page followers');
+      username +' multi-page followers');
       t.end();
     });
-	});
+  });
 });
 
 // see: https://github.com/nelsonic/github-scraper/issues/60
