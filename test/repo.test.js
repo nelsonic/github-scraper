@@ -60,3 +60,14 @@ test('dwyl/todo-list-javascript-tutorial known website', function(t){
     t.end();
   })
 })
+
+test('crawl repo with lots of stars', function(t) {
+	var project = 'angular/angular';
+	repo(project, function(err, stats) {
+		t.ok(stats.watchers > 1000, ' has more than 1000 watchers: '+stats.watchers);
+    t.ok(stats.stars > 1000, ' has more than 1000 stars: '+stats.stars);
+    t.ok(stats.forks > 1000, ' has more than 1000 forks: '+stats.forks);
+    t.ok(stats.commits > 1000, ' has more than 1000 commits: '+stats.commits);
+		t.end();
+	})
+})
