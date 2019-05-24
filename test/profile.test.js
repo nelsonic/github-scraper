@@ -26,7 +26,7 @@ test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', functi
 		t.ok(data.stars > 100, '- @' + user + ' Has starred '+ data.starred);
 
 		t.ok(data.following > 300, '- @' + user + ' Is following more than 300 people');
-		t.ok(data.contribs > 5000, '- @' + user + ' Has made ' + data.contribs
+		t.ok(data.contribs > 4000, '- @' + user + ' Has made ' + data.contribs
 			+ ' contributions to Open Source this year!');
 
 		t.ok(data.pinned.length === 6, '- @' + user + ' Has Six "Pinned" Repositories');
