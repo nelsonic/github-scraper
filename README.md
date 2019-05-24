@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🕷 🕸 GitHub Scraper
+# :octocat: 🕷 🕸 GitHub Scraper
 
-Learn how to parse the DOM
+Learn how to parse the DOM of a web page
 by using your favourite coding community as an example.
 
 [![Build Status](https://img.shields.io/travis/nelsonic/github-scraper/master.svg?style=flat-square)](https://travis-ci.org/nelsonic/github-scraper)
@@ -23,14 +23,22 @@ by using your favourite coding community as an example.
 
 # ⚠️  Disclaimer / Warning!
 
-This repository/project is intended for ***Educational Purposes*** **ONLY**.
-It is not intended to be used for any purpose other than *learning*,
-so please do not use it for any other reason
-than to learn _about_ DOM scraping!!
+This repository/project is intended for
+***Educational Purposes*** **ONLY**. <br />
+The project and corresponding NPM module should not
+be used for any purpose other than *learning*.
+Please do not use it for any other reason
+than to learn _about_ DOM parsing
+and _definitely_ don't _depend_ on it for anything important!
 
-Please do not open issues complaining that the code is "Not Working" ... <br />
-GitHub have every right to change their UI as they see fit. <br />
-When they do change their UI the scraper will _inevitably_ "_break_"! <br />
+The nature of DOM parsing is that when the HTML/UI changes,
+the parser will inevitably fail ...
+GitHub have every right to change/improve their UI as they see fit.
+When they do change their UI the scraper will _inevitably_ "_break_"!
+We have Travis-CI tests precisely
+to _check_ that parsers for the various pages are working.
+You can run the tests locally too,
+see "Run The Tests" section below.
 
 ## Why?
 
@@ -946,7 +954,97 @@ Would it be interesting to see/track:
 Show your interest in this feature: https://github.com/nelsonic/github-scraper/issues/17
 
 
-<br />
+# Contributing?
+
+Contributions are _always_ welcome!
+We have a backlog of features (_many pages we want to parse_)
+please see: https://github.com/nelsonic/github-scraper/issues
+If anything interests you, please lave a comment on the issue.
+
+Your first step to _contributing_ to this project
+is to run it on your **`localhost`**.
+
+### 1. Clone the Repository
+
+In your terminal, clone the repository from GitHub:
+
+```sh
+git clone https://github.com/nelsonic/github-scraper.git && cd github-scraper
+```
+
+### 2. Install the Dependencies
+
+Ensure you have Node.js installed: https://nodejs.org
+Then run the following command to install the project dependencies:
+
+```sh
+npm install
+```
+
+### 3. Run the Tests
+
+In your terminal execute the following command:
+
+```sh
+npm test
+```
+
+You should see output similar to the following:
+
+```
+> github-scraper@6.7.1 test /Users/n/code/github-scraper
+> istanbul cover ./node_modules/tape/bin/tape ./test/*.js | node_modules/tap-spec/bin/cmd.js
+
+
+  read list of followers for @jupiter (single page of followers)
+
+      - - - GitHub Scraper >> /jupiter/followers >> followers  - - -
+    ✔ jupiter/followers data.type: followers
+    ✔ @jupiter/followers has 34 followers
+    ✔ Nelson in jupiter/followers
+    ✔ @jupiter/followers only has 1 page of followers
+
+  read list of followers for @iteles (multi-page)
+
+      - - - GitHub Scraper >> /iteles/followers >> followers  - - -
+    ✔ "followers": 51 on page 1
+    ✔ iteles/followers multi-page followers
+
+
+... etc ...
+
+=============================================================================
+Writing coverage object [/Users/n/code/github-scraper/coverage/coverage.json]
+Writing coverage reports at [/Users/n/code/github-scraper/coverage]
+=============================================================================
+    =============================== Coverage summary ===============================
+    Statements   : 100% ( 192/192 )
+    Branches     : 100% ( 63/63 )
+    Functions    : 100% ( 22/22 )
+    Lines        : 100% ( 192/192 )
+    ================================================================================
+
+
+  total:     102
+  passing:   102
+  duration:  31.6s
+```
+
+The tests take around 30 seconds to run on _my_ `localhost`,
+but your test execution time will vary depending on your location
+(_the further you are from GitHub's servers the slower the tests will run..._).
+
+
+
+
+
+
+#### Travis-CI?
+
+
+
+
+<br /><br /><br />
 
 ## tl;dr
 
@@ -1065,7 +1163,9 @@ e.g:
 curl -v https://api.github.com/users/pgte/following/visionmedia
 ```
 
-# tl;dr
+<br /><br /><br />
+
+# FAQ?
 
 ## Is *Crawling* a Website *Legal*...?
 
