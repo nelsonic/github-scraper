@@ -958,8 +958,8 @@ Show your interest in this feature: https://github.com/nelsonic/github-scraper/i
 # Contributing?
 
 Contributions are _always_ welcome!
-We have a backlog of features (_many pages we want to parse_)
-please see: https://github.com/nelsonic/github-scraper/issues
+We have a backlog of features (_many pages we want to parse_) <br >
+please see: https://github.com/nelsonic/github-scraper/issues <br />
 If anything interests you, please lave a comment on the issue.
 
 Your first step to _contributing_ to this project
@@ -975,7 +975,7 @@ git clone https://github.com/nelsonic/github-scraper.git && cd github-scraper
 
 ### 2. Install the Dependencies
 
-Ensure you have Node.js installed: https://nodejs.org
+Ensure you have Node.js installed, see https://nodejs.org <br />
 Then run the following command to install the project dependencies:
 
 ```sh
@@ -988,6 +988,11 @@ In your terminal execute the following command:
 
 ```sh
 npm test
+```
+You should see output in your terminal similar to the following:
+
+```
+added 162 packages from 177 contributors and audited 265 packages in 4.121s
 ```
 
 You should see output similar to the following:
