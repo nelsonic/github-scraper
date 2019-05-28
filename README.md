@@ -953,6 +953,7 @@ Would it be interesting to see/track:
 
 Show your interest in this feature: https://github.com/nelsonic/github-scraper/issues/17
 
+<br /><br /><br />
 
 # Contributing?
 
@@ -1034,14 +1035,68 @@ The tests take around 30 seconds to run on _my_ `localhost`,
 but your test execution time will vary depending on your location
 (_the further you are from GitHub's servers the slower the tests will run..._).
 
+Don't panic if you see some red in your terminal while the tests are running.
+We have to simulate failure `404` and `403` errors
+to ensure that we can handle them.
+Pages some times disappear
+e.g: a user leaves GitHub or deletes a project.
+And our script needs to not freak out when that happens.
+This is good practice in DOM parsing, the web changes a _lot_!
+
+When the tests _pass_ on your `localhost`,
+you know everything is working as expected.
+Time to move on to the fun bit!
+
+> **Note**: This project follows Test Driven Development (TDD)
+because it's the only way we can maintain our sanity ...
+If we didn't have tests it would be _chaos_
+and _everything_ would "break" all the time.
+If you are contributing to the project,
+please be aware that tests are required
+and any Pull Requests without tests will not be considered.
+(_please don't take it personally, it's just a rule we have_). <br />
+
+If you are new to TDD, please see:
+[github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
 
 
 
+### 4. Pick an Issue and Write Some Code!
+
+Once you have the project running on your `localhost`,
+it's time to pick a page to parse!
+
+There are a bunch of features in the backlog. see:
+https://github.com/nelsonic/github-scraper/issues
+
+Pick one that interests you
+and write a comment on it
+to _show_ your interest in contributing.
 
 
-#### Travis-CI?
+### Travis-CI?
 
+We use Travis-CI (Continuous Integration),
+to ensure that our code works
+and all tests _pass_ whenever a change is made to the code.
+This is _essential_ in _any_ project and even more so in a DOM parsing one.
 
+If you are new to Travis-CI, please see:
+[github.com/dwyl/**learn-travis**](https://github.com/dwyl/learn-travis)
+
+### Pre-Commit Hook?
+
+When you attempt to commit code on your `localhost`,
+the tests will run **`before`** your commit will register.
+This is a precaution to ensure that the code we write is _always tested_.
+There is no point writing code that is not being tested
+as it will "break" almost immediately and be unmaintainable.
+
+Simply wait a few seconds for the tests to pass
+and then push your work to GitHub.
+
+If you are new to pre-commit hooks, please see:
+[github.com/dwyl/**learn-pre-commit**](https://github.com/dwyl/learn-pre-commit)
 
 
 <br /><br /><br />
