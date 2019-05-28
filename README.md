@@ -35,10 +35,13 @@ The nature of DOM parsing is that when the HTML/UI changes,
 the parser will inevitably fail ...
 GitHub have every right to change/improve their UI as they see fit.
 When they do change their UI the scraper will _inevitably_ "_break_"!
-We have Travis-CI tests precisely
-to _check_ that parsers for the various pages are working.
+We have [Travis-CI](https://travis-ci.org/nelsonic/github-scraper)
+continuous integration to run our tests precisely
+to _check_ that parsers for the various pages are working as expected.
 You can run the tests locally too,
-see "Run The Tests" section below.
+see
+["Run The Tests"](https://github.com/nelsonic/github-scraper#3-run-the-tests)
+section below.
 
 ## Why?
 
