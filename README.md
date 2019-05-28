@@ -982,6 +982,15 @@ Then run the following command to install the project dependencies:
 npm install
 ```
 
+You should see output in your terminal similar to the following:
+
+```
+added 162 packages from 177 contributors and audited 265 packages in 4.121s
+```
+
+That tells you that the dependencies were successfully installed.
+
+
 ### 3. Run the Tests
 
 In your terminal execute the following command:
@@ -989,11 +998,7 @@ In your terminal execute the following command:
 ```sh
 npm test
 ```
-You should see output in your terminal similar to the following:
 
-```
-added 162 packages from 177 contributors and audited 265 packages in 4.121s
-```
 
 You should see output similar to the following:
 
