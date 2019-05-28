@@ -20,10 +20,10 @@
   },
   "homepage": "https://github.com/nelsonic/github-scraper",
   "engines": {
-    "node": ">= 0.12"
+    "node": ">= 10"
   },
   "dependencies": {
-    "cheerio": "^0.22.0"
+    "cheerio": "^1.0.0-rc.3"
   },
   "devDependencies": {
     "istanbul": "^0.4.5",
