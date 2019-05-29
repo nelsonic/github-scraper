@@ -1,7 +1,7 @@
 var test  = require('tape');
 var issue = require('../lib/switcher');
 
-test.only('Scrape /dwyl/tudo/issues/51 for comments & meta-data', function (t) {
+test('Scrape /dwyl/tudo/issues/51 for comments & meta-data', function (t) {
 	var url = '/dwyl/tudo/issues/51';
 	issue(url, function(err, data) {
 		t.ok(data.url.indexOf(url) > -1, url + ' is: ' +data.url)
