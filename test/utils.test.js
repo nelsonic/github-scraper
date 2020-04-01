@@ -1,5 +1,5 @@
-var test = require('tape');
-var parse_int = require('../lib/utils').parse_int;
+const test = require('tape');
+const parse_int = require('../lib/utils').parse_int;
 
 test('parse_int Parses Strings from repo stats into Ints', function(t) {
   t.equal(parse_int("1"), 1, '"1" => 1')
