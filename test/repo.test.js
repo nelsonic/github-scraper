@@ -16,7 +16,7 @@ test('crawl known repository for stats', function(t) {
 	})
 })
 
-test('crawl single language repo', function(t){
+test('crawl single language repo', function (t) {
 	var project = 'nelsonic/coin-change-ruby';
 	repo(project, function(err, stats) {
     t.ok(stats.langs[0].indexOf('Ruby 100') > -1, 'Language is: '+ stats.langs)
@@ -35,7 +35,8 @@ test('crawl ZERO language repo', function(t){
 test('crawl forked repo', function(t){
   var project = '/backhand/github-scraper';
   repo(project, function(err, stats) {
-    t.ok(stats.forkedfrom === '/nelsonic/github-scraper', 'Repo forked from /nelsonic/github-scraper')
+    t.ok(stats.forkedfrom === '/nelsonic/github-scraper',
+			'Repo forked from /nelsonic/github-scraper')
     t.end();
   })
 })
@@ -49,7 +50,7 @@ test('crawl /dwyl/start-here (known repo)', function(t){
   })
 })
 
-test('dwyl/todo-list-javascript-tutorial known website', function(t){
+test('dwyl/todo-list-javascript-tutorial known website', function (t) {
   var project = 'dwyl/javascript-todo-list-tutorial';
   repo(project, function(err, stats) {
 	// console.log('stats:', stats)

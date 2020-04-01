@@ -1,7 +1,7 @@
 var test = require('tape');
 var parse_int = require('../lib/utils').parse_int;
 
-test('Parse Integers from repo stats Strings', function(t) {
+test('parse_int Parses Strings from repo stats into Ints', function(t) {
   t.equal(parse_int("1"), 1, '"1" => 1')
   t.equal(parse_int("  1  "), 1, '"  1  " => 1')
   t.equal(parse_int("300"), 300, '"300" => 300')
