@@ -9,7 +9,7 @@ test(file + 'Scrape an org WITHOUT a next page (known data)', function(t){
 		t.equal(data.type, 'org', url + ' data.type: ' + data.type);
 		t.ok(data.entries.length > 5, 'org '
 			+ url + ' has ' + data.entries.length + ' repos.')
-		t.ok(data.pcount === 0, '"pcount":' + data.pcount);
+		// t.ok(data.pcount === 0, '"pcount":' + data.pcount);
 
 		const last = data.entries[data.entries.length-1];
 		t.equal(last.updated, '2014-02-18T23:09:24Z',
@@ -24,7 +24,9 @@ test(file + 'Scrape an org WITHOUT a next page (known data)', function(t){
 test(file + 'Scrape an org WITH a next page', function(t){
 	var url = '/github';
 	org(url, function(err, data) {
-		t.ok(data.pcount > 100, '"pcount":'+data.pcount);
+		// delete(data.entries)
+		// console.log(err, data);
+		// t.ok(data.pcount > 100, '"pcount":'+data.pcount);
 		t.ok(data.location === 'San Francisco, CA', 'data.location: '+data.location);
 		t.ok(data.website === 'https://github.com/about', 'data.url: '+data.url);
 		t.ok(data.email === 'support@github.com', 'data.email: '+data.email);
@@ -38,15 +40,15 @@ test(file + 'Fetch Second page of dwyl org', function (t) {
 	org(url, function(err, data) {
 		// console.log(data.entries);
 		t.ok(data.entries.length === 30, 'SECOND page of org has '+data.entries.length + ' repos')
-		t.ok(data.pcount > 10, '"pcount":'+data.pcount);
-		t.ok(data.next_page === '/dwyl?page=2', 
+		// t.ok(data.pcount > 10, '"pcount":'+data.pcount);
+		t.ok(data.next_page === '/dwyl?page=2',
 			'data.next_page is: ' + data.next_page);
 
 		url = '/dwyl?page=2';
 		org(url, function(err, data) {
 			// console.log(data);
 			t.ok(data.entries.length === 30, 'SECOND page of org has '+data.entries.length + ' repos')
-			t.ok(data.pcount > 10, '"pcount":'+data.pcount);
+			// t.ok(data.pcount > 10, '"pcount":'+data.pcount);
 			t.ok(data.next_page === '/dwyl?page=3', 'dwyl has more than one page');
 			t.end();
 		});
@@ -57,13 +59,13 @@ test(file + 'ORG with no people', function(t){
 	var url = '/pandajs';
 	org(url, function(err, data) {
 		// console.log('data', data);
-		t.equal(data.description, 
-			"people who are super into pandas and javascript!", 
+		t.equal(data.description,
+			"people who are super into pandas and javascript!",
 			'data.description: ' + data.description)
 		t.ok(typeof data.website === 'undefined', "No website")
 		t.ok(typeof data.location === 'undefined', "No location")
 		t.ok(typeof data.email === 'undefined', "No email")
-		t.ok(data.pcount === 0, url + ' "pcount":'+data.pcount);
+		// t.ok(data.pcount === 0, url + ' "pcount":'+data.pcount);
 		t.end();
 	});
 })
