@@ -71,3 +71,11 @@ test(file + 'Scrape @iteles detailed contribution matrix', function(t){
 		t.end();
 	});
 });
+
+test(file + '@dwylbot does not have a location!', function(t){
+	var url = 'dwylbot';
+	profile(url, function(err, data) {
+		t.ok(typeof data.location === 'undefined', '- @' + url + ' is virtual!');
+		t.end();
+	});
+});
