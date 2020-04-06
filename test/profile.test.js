@@ -19,14 +19,16 @@ test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', functi
 		t.ok(data.worksfor === '@dwyl', user + ' Works for ' + data.worksfor);
 		// t.ok(data.email    === 'contact.nelsonic+github@gmail.com',
 			// '- @' + user + ' Email address is: contact.nelsonic@gmail.com');
-		t.ok(data.website  === 'http://www.dwyl.io/',
+		// console.log('data.website:', data.website);
+		t.ok(data.website  === 'https://dwyl.com',
 			user + ' Website URL is ' + data.website);
+		// console.log(data.location);
 		t.ok(data.location === 'London', '- @' + user + ' Based in London');
 		t.ok(data.followers > 400, '- @' + user + ' Has more than 400 followers');
 		t.ok(data.stars > 100, '- @' + user + ' Has starred '+ data.starred);
 
 		t.ok(data.following > 300, '- @' + user + ' Is following more than 300 people');
-		t.ok(data.contribs > 4000, '- @' + user + ' Has made ' + data.contribs
+		t.ok(data.contribs > 2000, '- @' + user + ' Has made ' + data.contribs
 			+ ' contributions to Open Source this year!');
 
 		t.ok(data.pinned.length === 6, '- @' + user + ' Has Six "Pinned" Repositories');
@@ -63,9 +65,17 @@ test(file + 'Scrape @iteles detailed contribution matrix', function(t){
 		// console.log(contribs);
 		t.ok(contribs === data.contribs, "Contribution Matrix matches Total: " + contribs);
 
-		t.ok(data.contribs > 500, '- @' + user + ' Has made ' + data.contribs
+		t.ok(data.contribs > 300, '- @' + user + ' Has made ' + data.contribs
 			+ ' contributions to Open Source this year!');
 
+		t.end();
+	});
+});
+
+test(file + '@dwylbot does not have a location!', function(t){
+	var url = 'dwylbot';
+	profile(url, function(err, data) {
+		t.ok(typeof data.location === 'undefined', '- @' + url + ' is virtual!');
 		t.end();
 	});
 });
