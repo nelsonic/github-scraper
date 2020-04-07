@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "dev": "nodemon test/followers.js",
+    "start": "live-server --open=./examples",
     "quick": "./node_modules/tape/bin/tape ./test/*.js",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js | node_modules/tap-spec/bin/cmd.js",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js && istanbul check-coverage --lines 100 --branches 100"
@@ -28,6 +29,7 @@
   "devDependencies": {
     "istanbul": "^0.4.5",
     "jshint": "^2.11.0",
+    "live-server": "^1.2.1",
     "mkdirp": "^1.0.4",
     "pre-commit": "1.2.2",
     "tap-spec": "^5.0.0",
