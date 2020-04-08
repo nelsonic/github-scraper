@@ -8,7 +8,7 @@
 <div id="dataviz"></div>
 
 <script>
-const username = "iteles";
+const username = "andrew" // "iteles";
 
 // https://stackoverflow.com/questions/1248081/browser-viewport-dimensions
 const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -30,14 +30,14 @@ var svg = d3.select("#dataviz")
 var url = window.location;
 d3.json(url + username + ".json", function (json) {
     // console.log(data.contrib_matrix);
-    const data = Object.keys(json.contrib_matrix).map(function(key){
+    const data = Object.keys(json.contrib_matrix).map(function (key) {
+      const item = json.contrib_matrix[key];
       return {
         date: d3.timeParse("%Y-%m-%d")(key),
-        value: json.contrib_matrix[key].count
+        value: item.count == 0 ? 0.1 : item.count,
+        fill: item.fill == "#ebedf0" ? "#e74c3c"  : item.fill
       }
     })
-
-  // Now I can use this dataset:
 
     // Add X axis --> it is a date format
     var x = d3.scaleTime()
@@ -54,17 +54,36 @@ d3.json(url + username + ".json", function (json) {
     svg.append("g")
       .call(d3.axisLeft(y));
 
-    // Add the line
-    svg.append("path")
-      .datum(data)
-      .attr("fill", "blue")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.date) })
-        .y(function(d) { return y(d.value) })
+    // segment the data:
+    let group = []
+    let prev = data[0].fill;
+    data.forEach(function (item) {
+      console.log(item.fill, prev, item.fill == prev, item);
+      group.unshift(item);
+      if (item.fill !== prev) {
+        console.log(group);
+        render_line(group); // render segement of line
+        group = [item]; // reset
+      }
+      prev = item.fill;
+    })
+    // render_line(data)
+
+    function render_line (data) {
+      console.log(data.length, data[0].fill);
+      svg.append("path")
+        .datum(data)
+        .attr("d", d3.line()
+          .x(function(d) { return x(d.date) })
+          .y(function(d) { return y(d.value) })
         )
+        .attr("fill", data[0].fill)
+        .attr("stroke", data[0].fill)
+        .attr("stroke-width", 2)
+    }
+
 })
+
 
 </script>
 
