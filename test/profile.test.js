@@ -27,11 +27,13 @@ test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', functi
 		t.ok(data.followers > 400, '- @' + user + ' Has more than 400 followers');
 		t.ok(data.stars > 100, '- @' + user + ' Has starred '+ data.starred);
 
-		t.ok(data.following > 300, '- @' + user + ' Is following more than 300 people');
-		t.ok(data.contribs > 2000, '- @' + user + ' Has made ' + data.contribs
+		t.ok(data.following > 300, '- @' + user
+			+ ' Is following more than 300 people');
+		t.ok(data.contribs > 3000, '- @' + user + ' Has made ' + data.contribs
 			+ ' contributions to Open Source this year!');
 
-		t.ok(data.pinned.length === 6, '- @' + user + ' Has Six "Pinned" Repositories');
+		t.ok(data.pinned.length === 6, '- @' + user
+			+ ' Has Six "Pinned" Repositories');
 
 		t.ok(Object.keys(data.orgs).length > 2, '- @' + user + ' Is a member of '
 			+ Object.keys(data.orgs).length + ' Orgs');
@@ -45,10 +47,11 @@ test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', functi
 	});
 });
 
-test(file + 'Check @torvalds profile IS NOT GitHub Developer Program Member', function(t){
+test(file + 'Check @torvalds IS NOT GitHub Dev Program Member', function(t){
 	var url = 'torvalds';
 	profile(url, function(err, data) {
-		t.ok(typeof data.developerprogram === 'undefined', '- @' + url + ' is NOT a member of the "GitHub Developer Program"');
+		t.ok(typeof data.developerprogram === 'undefined', '- @' + url
+			+ ' is NOT a member of the "GitHub Developer Program"');
 		t.end();
 	});
 });
@@ -56,15 +59,7 @@ test(file + 'Check @torvalds profile IS NOT GitHub Developer Program Member', fu
 test(file + 'Scrape @iteles detailed contribution matrix', function(t){
 	var user = 'iteles';
 	profile(user, function(err, data) {
-		// console.log(data)
-		t.ok(data.bio.indexOf('Co-founder') > -1, '- @' + user + ' bio: ' + data.bio);
-		// map reduce?  https://www.airpair.com/javascript/javascript-array-reduce
-		var contribs = Object.keys(data.contrib_matrix)
-		.map((k) => { return data.contrib_matrix[k].count; })
-		.reduce((total, num) => { return total + num; });
-		// console.log(contribs);
-		t.ok(contribs === data.contribs, "Contribution Matrix matches Total: " + contribs);
-
+		t.ok(data.bio.match(/Co-founder/i), '- @' + user + ' bio: ' + data.bio);
 		t.ok(data.contribs > 300, '- @' + user + ' Has made ' + data.contribs
 			+ ' contributions to Open Source this year!');
 
