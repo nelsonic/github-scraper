@@ -5,7 +5,8 @@ const SELECTORS={
     LANGUAGES:".BorderGrid--spacious .BorderGrid-row",
     FORKED_FROM:'a[data-hovercard-type="repository"]',
     FOLLOWERS:'.border-gray-light',
-    TOPIC_TAG:".topic-tag"
+    TOPIC_TAG:".topic-tag",
+    PROFILE:'div[itemtype="http://schema.org/Person"]'
 }
 
 module.exports = SELECTORS;

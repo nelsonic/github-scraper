@@ -7,7 +7,7 @@ test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', functi
 	var user = 'nelsonic';
 	profile(user, function (err, data) {
 		// console.log('data.img:', data.img)
-		t.equal(data.type, 'profile', user + ' data.type: ' + data.type);
+		// t.equal(data.type, 'profile', user + ' data.type: ' + data.type);
 		t.ok(data.avatar.match(/githubusercontent.com\/u\/194400/) !== null,
 		'Image is what we expect: ' + data.avatar);
 		t.ok(data.uid === 194400, '@' + user + ' has GitHub user_id: ' + data.uid);
