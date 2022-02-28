@@ -7,12 +7,14 @@ by using your favourite coding community as an example.
 
 [![Build Status](https://img.shields.io/travis/nelsonic/github-scraper/master.svg?style=flat-square)](https://travis-ci.org/nelsonic/github-scraper)
 [![codecov.io](https://img.shields.io/codecov/c/github/nelsonic/github-scraper/master.svg?style=flat-square)](http://codecov.io/github/nelsonic/github-scraper?branch=master)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/nelsonic/github-scraper/issues)
+[![HitCount](http://hits.dwyl.com/nelsonic/github-scraper.svg)](http://hits.dwyl.com/nelsonic/github-scraper)
+[![npm package version](https://img.shields.io/npm/v/github-scraper.svg?color=brightgreen&style=flat-square)](https://www.npmjs.com/package/github-scraper)
+<!-- uncomment when service is working ... 
 [![Dependencies: None!](https://david-dm.org/nelsonic/github-scraper/status.svg?style=flat-square)](https://david-dm.org/nelsonic/github-scraper)
 [![devDependencies Status](https://david-dm.org/nelsonic/github-scraper/dev-status.svg?style=flat-square)](https://david-dm.org/nelsonic/github-scraper?type=dev)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/nelsonic/github-scraper/issues)
-[![HitCount](http://hits.dwyl.io/nelsonic/github-scraper.svg)](http://hits.dwyl.io/nelsonic/github-scraper)
-[![npm package version](https://img.shields.io/npm/v/github-scraper.svg?color=brightgreen&style=flat-square)](https://www.npmjs.com/package/github-scraper)
-<!-- uncomment when service is working ... [![Inline docs](http://inch-ci.org/github/nelsonic/github-scraper.svg?branch=master&style=flat-square)](http://inch-ci.org/github/nelsonic/github-scraper) -->
+[![Inline docs](http://inch-ci.org/github/nelsonic/github-scraper.svg?branch=master&style=flat-square)](http://inch-ci.org/github/nelsonic/github-scraper) 
+-->
 
 <a href=""
  alt="Try the Demo on Heroku!">
