@@ -29,10 +29,10 @@
   "devDependencies": {
     "istanbul": "^0.4.5",
     "jshint": "^2.11.0",
-    "live-server": "^1.2.1",
+    "live-server": "^1.1.0",
     "mkdirp": "^1.0.4",
     "pre-commit": "1.2.2",
-    "tap-spec": "^5.0.0",
+    "tap-spec": "^2.2.2",
     "tape": "^4.13.2"
   },
   "pre-commit": [
