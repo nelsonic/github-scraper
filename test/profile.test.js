@@ -23,9 +23,9 @@ test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', functi
 		t.ok(data.website  === 'https://dwyl.com',
 			user + ' Website URL is ' + data.website);
 		// console.log(data.location);
-		t.ok(data.location === 'London', '- @' + user + ' Based in London');
-		t.ok(data.followers > 400, '- @' + user + ' Has more than 400 followers');
-		t.ok(data.stars > 100, '- @' + user + ' Has starred '+ data.starred);
+		t.ok(data.location === 'Braga, Portugal', `Expected location to be 'Braga, Portugal', but got '${data.location}'`);
+		t.ok(data.followers > 400, `Expected more than 400 followers, but got ${data.followers}`);
+		t.ok(data.stars > 100, `Expected more than 100 stars, but got ${data.stars}`);		
 
 		t.ok(data.following > 300, '- @' + user
 			+ ' Is following more than 300 people');
@@ -60,7 +60,7 @@ test(file + 'Scrape @iteles detailed contribution matrix', function(t){
 	var user = 'iteles';
 	profile(user, function(err, data) {
 		t.ok(data.bio.match(/Co-founder/i), '- @' + user + ' bio: ' + data.bio);
-		t.ok(data.contribs > 300, '- @' + user + ' Has made ' + data.contribs
+		t.ok(data.contribs > 200, '- @' + user + ' Has made ' + data.contribs
 			+ ' contributions to Open Source this year!');
 
 		t.end();

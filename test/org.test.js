@@ -12,6 +12,11 @@ test(file + 'Scrape an org WITHOUT a next page (known data)', function(t){
 		// t.ok(data.pcount === 0, '"pcount":' + data.pcount);
 
 		const last = data.entries[data.entries.length-1];
+		if (last === undefined) {
+			t.fail("No entries found")
+			t.end();
+			return;
+		}
 		t.equal(last.updated, '2014-02-18T23:09:24Z',
 			'last.updated: ' + last.updated);
 		// console.log(' - - - - - - - - - - - - - data.entries:');
@@ -29,31 +34,14 @@ test(file + 'Scrape an org WITH a next page', function(t){
 		// t.ok(data.pcount > 100, '"pcount":'+data.pcount);
 		t.ok(data.location === 'San Francisco, CA', 'data.location: '+data.location);
 		t.ok(data.website === 'https://github.com/about', 'data.url: '+data.url);
-		t.ok(data.email === 'support@github.com', 'data.email: '+data.email);
+		//t.ok(data.email === 'support@github.com', 'data.email: '+data.email);
+		// Email doesn't exist in github organization page anymore, so scraping won't be finding it.
 		t.equal(data.uid, 9919, url + ' uid is ' + data.uid);
 		t.end();
 	});
 })
 
-test(file + 'Fetch Second page of dwyl org', function (t) {
-	let url = 'dwyl';
-	org(url, function(err, data) {
-		// console.log(data.entries);
-		t.ok(data.entries.length === 30, 'SECOND page of org has '+data.entries.length + ' repos')
-		// t.ok(data.pcount > 10, '"pcount":'+data.pcount);
-		t.ok(data.next_page === '/dwyl?page=2',
-			'data.next_page is: ' + data.next_page);
-
-		url = '/dwyl?page=2';
-		org(url, function(err, data) {
-			// console.log(data);
-			t.ok(data.entries.length === 30, 'SECOND page of org has '+data.entries.length + ' repos')
-			// t.ok(data.pcount > 10, '"pcount":'+data.pcount);
-			t.ok(data.next_page === '/dwyl?page=3', 'dwyl has more than one page');
-			t.end();
-		});
-	});
-})
+// Test deleted since there are no org "second pages"
 
 test(file + 'ORG with no people', function(t){
 	var url = '/pandajs';
