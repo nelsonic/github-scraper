@@ -11,7 +11,7 @@ test('crawl known repository for stats', function(t) {
     t.ok(stats.stars > 10, ' has more than 5 stars: '+stats.stars);
     t.ok(stats.forks > 0, ' has more than 0 forks: '+stats.forks);
     t.ok(stats.branches > 0, ' has non-zero number of branches: '+stats.branches);
-		t.ok(stats.langs[0].indexOf('HTML') > -1, 'Language is: '+ stats.langs);
+		t.ok(stats.langs[0].name.indexOf('HTML') > -1, 'Language is: '+ stats.langs[0].name);
 		t.end();
 	})
 })
@@ -19,7 +19,8 @@ test('crawl known repository for stats', function(t) {
 test('crawl single language repo', function (t) {
 	var project = 'nelsonic/coin-change-ruby';
 	repo(project, function(err, stats) {
-    t.ok(stats.langs[0].indexOf('Ruby 100') > -1, 'Language is: '+ stats.langs)
+		const hasRuby=stats.langs.filter(e=>e.name==="Ruby")
+    t.ok(hasRuby.length, 'Language is: '+ hasRuby[0].name)
 		t.end();
 	})
 })
@@ -35,7 +36,8 @@ test('crawl ZERO language repo', function(t){
 test('crawl forked repo', function(t){
   var project = '/backhand/github-scraper';
   repo(project, function(err, stats) {
-    t.ok(stats.forkedfrom === '/nelsonic/github-scraper',
+	
+    t.ok(stats.forkedfrom === 'nelsonic/github-scraper',
 			'Repo forked from /nelsonic/github-scraper')
     t.end();
   })
@@ -54,7 +56,7 @@ test('dwyl/todo-list-javascript-tutorial known website', function (t) {
   var project = 'dwyl/javascript-todo-list-tutorial';
   repo(project, function(err, stats) {
 	// console.log('stats:', stats)
-	t.ok(stats.website === 'https://todomvc-app.herokuapp.com',
+	t.ok(stats.website === 'todomvc-app.herokuapp.com',
 		project + ' website: ' + stats.website);
 	t.ok(stats.tags.indexOf('javascript') > -1,
 		project + ' tags: ' + stats.tags);
