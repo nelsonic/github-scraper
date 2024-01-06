@@ -25,7 +25,7 @@ test('make GET request to invalid url (error branch check)', function (t) {
 var validate = require('../lib/url_validator');
 
 test('Regression Test for issue #60', function(t) {
-  var path = '/hangouts/followers';
+  var path = '/hangouts?tab=followers';
   http_request(path, function (statusCode, html) {
     t.equal(statusCode, 200, 'statusCode for valid request is: ' + statusCode);
     t.ok(html.indexOf('<!DOCTYPE html>') > -1, 'got html back from GitHub');
