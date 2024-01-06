@@ -21,13 +21,12 @@ function process_org_page(err, data) {
   }
 }
 
-
-
 function crawl_next() {
   fs.readFile(NEXT_PAGE_LIST, 'utf8', function (err, data) {
     if (err) {
       console.log(err);
-    } else {
+    }
+    else {
       var url = data.split('\n')[0];
       var linesExceptFirst = data.split('\n').slice(1).join('\n');
       fs.writeFile(NEXT_PAGE_LIST, linesExceptFirst);

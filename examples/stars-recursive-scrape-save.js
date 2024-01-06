@@ -15,7 +15,7 @@ fs.openSync(NEXT_PAGE_LIST, 'a') // "touch" file to ensure it exists
 function main(url) {
   var DATA_DIR = path.normalize(BASE_DIR + url); // repository
   mkdirp.sync(DATA_DIR); // ensure the dir exists
-  
+
   var p = ['stargazers', 'watchers'];
   // console.log('url.indexOf(p[0]) === -1 ', url.indexOf(p[0]))
   if(url.indexOf(p[0]) === -1 && url.indexOf(p[1]) === -1 ) { // url is base repo
@@ -50,12 +50,12 @@ function parse_file(filename) {
   var data = fs.readFileSync(filename).toString();
   return data.split('\n').map(function (row) {
     if(row.length > 1) {
-      var username = row.split(',')[1]
-      return username;
+      var json_str = row.split(',')[1]
+      var json = JSON.parse(json_str);
+      return json.username;
     }
   });
 }
-
 
 // write lines to file
 function write_lines(data) {
@@ -66,12 +66,13 @@ function write_lines(data) {
   var existing = parse_file(filepath);
 
   var rows = data.entries.map(function(entry) {
-    if(existing.indexOf(entry) === -1) {
-      return TIMESTAMP + ',' + entry;
+    if(existing.indexOf(entry.username) === -1) {
+      console.log('entry', entry);
+      return TIMESTAMP + ',' + JSON.stringify(entry);
     }
   }).filter(function (n) { return n != undefined }); // remove blanks
 
-  if (rows.length > 1) {
+  if (rows.length > 0) {
     var str = rows.join('\n') + '\n'; // end file with new line
     return fs.appendFile(filepath, str, function (err, res) {
       console.log('wrote ' + data.entries.length + ' lines to: ' + filepath);

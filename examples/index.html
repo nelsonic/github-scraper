@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="dataviz"></div>
+
+<script>
+const username = "andrew" // "iteles";
+
+// https://stackoverflow.com/questions/1248081/browser-viewport-dimensions
+const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 30, left: 60},
+    width = vw - margin.left - margin.right - 20,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+var url = window.location;
+d3.json(url + username + ".json", function (json) {
+    // console.log(data.contrib_matrix);
+    const data = Object.keys(json.contrib_matrix).map(function (key) {
+      const item = json.contrib_matrix[key];
+      return {
+        date: d3.timeParse("%Y-%m-%d")(key),
+        value: item.count == 0 ? 0.1 : item.count,
+        fill: item.fill == "#ebedf0" ? "#e74c3c"  : item.fill
+      }
+    })
+
+    // Add X axis --> it is a date format
+    var x = d3.scaleTime()
+      .domain(d3.extent(data, function(d) { return d.date; }))
+      .range([ 0, width ]);
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+      .domain([0, d3.max(data, function(d) { return +d.value; })])
+      .range([ height, 0 ]);
+    svg.append("g")
+      .call(d3.axisLeft(y));
+
+    // segment the data:
+    let group = []
+    let prev = data[0].fill;
+    data.forEach(function (item) {
+      console.log(item.fill, prev, item.fill == prev, item);
+      group.unshift(item);
+      if (item.fill !== prev) {
+        console.log(group);
+        render_line(group); // render segement of line
+        group = [item]; // reset
+      }
+      prev = item.fill;
+    })
+    // render_line(data)
+
+    function render_line (data) {
+      console.log(data.length, data[0].fill);
+      svg.append("path")
+        .datum(data)
+        .attr("d", d3.line()
+          .x(function(d) { return x(d.date) })
+          .y(function(d) { return y(d.value) })
+        )
+        .attr("fill", data[0].fill)
+        .attr("stroke", data[0].fill)
+        .attr("stroke-width", 2)
+    }
+
+})
+
+
+</script>
+
+</html>

@@ -1,10 +1,11 @@
 {
   "name": "github-scraper",
-  "version": "6.8.0",
+  "version": "7.0.1",
   "description": "insert imaginative description here",
   "main": "lib/index.js",
   "scripts": {
     "dev": "nodemon test/followers.js",
+    "start": "live-server --open=./examples",
     "quick": "./node_modules/tape/bin/tape ./test/*.js",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js | node_modules/tap-spec/bin/cmd.js",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js && istanbul check-coverage --lines 100 --branches 100"
@@ -27,11 +28,12 @@
   },
   "devDependencies": {
     "istanbul": "^0.4.5",
-    "jshint": "^2.10.2",
-    "mkdirp": "^0.5.1",
+    "jshint": "^2.11.0",
+    "live-server": "^1.2.1",
+    "mkdirp": "^1.0.4",
     "pre-commit": "1.2.2",
     "tap-spec": "^5.0.0",
-    "tape": "^4.10.1"
+    "tape": "^4.13.2"
   },
   "pre-commit": [
     "coverage"
