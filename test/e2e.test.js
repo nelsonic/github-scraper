@@ -1,33 +1,27 @@
 var gs = require('../lib/');
 var test = require('tape');
 
-test.skip('Scrape a known PROFILE @alanshaw', function(t){
+test('Scrape a known PROFILE @alanshaw', function(t){
   var user = 'alanshaw';
   gs(user, function(err, data) {
     t.ok(data.developerprogram === true, '- @' + user + ' is a member of the "GitHub Developer Program"');
-    t.ok(data.followercount > 100, '- @' + user + ' Has more than 100 followers');
-    t.ok(data.starred > 100, '- @' + user + ' Has starred more than 100 repos');
-    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
-    console.log(data);
+    t.ok(data.followers > 100, '- @' + user + ' Has more than 100 followers');
+    t.ok(data.stars > 100, '- @' + user + ' Has starred more than 100 repos');
     t.end()
   })
 })
 
-test.skip('FOLLOWERS LIST for @iteles', function(t){
-	var url = 'iteles/followers';
+test('FOLLOWERS LIST for @iteles', function(t){
+	var url = 'iteles?tab=followers';
 	gs(url, function(err, data) {
-    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
-    console.log(data);
 		t.ok(data.entries.length > 42, url +' count: '+data.entries.length);
 		t.end();
 	})
 })
 
-test.skip('FOLLOWING LIST (SECOND PAGE) for @nelsonic', function(t){
-	var url = 'nelsonic/following?page=2';
+test('FOLLOWING LIST (SECOND PAGE) for @nelsonic', function(t){
+	var url = 'nelsonic?page=2&tab=following';
 	gs(url, function(err, data) {
-    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
-    console.log(data);
 		t.ok(data.entries.length > 10, url +' count: '+data.entries.length);
 		t.end();
 	})
