@@ -1,7 +1,7 @@
 var test  = require('tape');
 var stars = require('../lib/switcher');
 
-test.only('read list of stars for pandajs/sad ', function(t){
+test('read list of stars for pandajs/sad ', function(t){
   var url = 'pandajs/sad/stargazers';
 	stars(url, function (err, data) {
 	  t.equal(data.type, 'stars', url + ' data.type: ' + data.type);
