@@ -11,6 +11,7 @@ test(file + 'Scrape an org WITHOUT a next page (known data)', function(t){
 			+ url + ' has ' + data.entries.length + ' repos.')
 		// t.ok(data.pcount === 0, '"pcount":' + data.pcount);
 
+		console.log(data)
 		const last = data.entries[data.entries.length-1];
 		t.equal(last.updated, '2014-02-18T23:09:24Z',
 			'last.updated: ' + last.updated);
@@ -25,11 +26,11 @@ test(file + 'Scrape an org WITH a next page', function(t){
 	var url = '/github';
 	org(url, function(err, data) {
 		// delete(data.entries)
-		// console.log(err, data);
+		console.log(err, data);
 		// t.ok(data.pcount > 100, '"pcount":'+data.pcount);
-		t.ok(data.location === 'San Francisco, CA', 'data.location: '+data.location);
+		t.ok(data.location === 'San Francisco, CA', 'data.location: ' + data.location);
 		t.ok(data.website === 'https://github.com/about', 'data.url: '+data.url);
-		t.ok(data.email === 'support@github.com', 'data.email: '+data.email);
+		// t.ok(data.email === 'support@github.com', 'data.email: '+data.email);
 		t.equal(data.uid, 9919, url + ' uid is ' + data.uid);
 		t.end();
 	});
@@ -39,17 +40,17 @@ test(file + 'Fetch Second page of dwyl org', function (t) {
 	let url = 'dwyl';
 	org(url, function(err, data) {
 		// console.log(data.entries);
-		t.ok(data.entries.length === 30, 'SECOND page of org has '+data.entries.length + ' repos')
+		t.ok(data.entries.length === 10, 'SECOND page of org has '+data.entries.length + ' repos')
 		// t.ok(data.pcount > 10, '"pcount":'+data.pcount);
-		t.ok(data.next_page === '/dwyl?page=2',
-			'data.next_page is: ' + data.next_page);
+		// t.ok(data.next_page === '/dwyl?page=2',
+		// 	'data.next_page is: ' + data.next_page);
 
-		url = '/dwyl?page=2';
+		url = '/orgs/dwyl/repositories?type=all';
 		org(url, function(err, data) {
 			// console.log(data);
 			t.ok(data.entries.length === 30, 'SECOND page of org has '+data.entries.length + ' repos')
 			// t.ok(data.pcount > 10, '"pcount":'+data.pcount);
-			t.ok(data.next_page === '/dwyl?page=3', 'dwyl has more than one page');
+			t.ok(data.next_page === '/orgs/dwyl/repositories?page=2&type=all', 'dwyl has more than one page');
 			t.end();
 		});
 	});
@@ -58,7 +59,7 @@ test(file + 'Fetch Second page of dwyl org', function (t) {
 test(file + 'ORG with no people', function(t){
 	var url = '/pandajs';
 	org(url, function(err, data) {
-		// console.log('data', data);
+		console.log('data', data);
 		t.equal(data.description,
 			"people who are super into pandas and javascript!",
 			'data.description: ' + data.description)

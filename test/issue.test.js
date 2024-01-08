@@ -4,6 +4,7 @@ var issue = require('../lib/switcher');
 test('Scrape /dwyl/tudo/issues/51 for comments & meta-data', function (t) {
 	var url = '/dwyl/tudo/issues/51';
 	issue(url, function(err, data) {
+		console.log(data)
 		t.ok(data.url.indexOf(url) > -1, url + ' is: ' +data.url)
 		t.ok(data.title.length > 0, url + ' has title: '+data.title);
 		t.ok(data.state.length > 0, url + ' is: '+data.state);

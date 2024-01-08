@@ -5,10 +5,10 @@
 Learn how to parse the DOM of a web page
 by using your favourite coding community as an example.
 
-[![Build Status](https://img.shields.io/travis/nelsonic/github-scraper/master.svg?style=flat-square)](https://travis-ci.org/nelsonic/github-scraper)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/nelsonic/github-scraper/ci.yml?label=build&style=flat-square&branch=main)](https://github.com/nelsonic/github-scraper/actions)
 [![codecov.io](https://img.shields.io/codecov/c/github/nelsonic/github-scraper/master.svg?style=flat-square)](http://codecov.io/github/nelsonic/github-scraper?branch=master)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/nelsonic/github-scraper/issues)
-[![HitCount](http://hits.dwyl.com/nelsonic/github-scraper.svg)](http://hits.dwyl.com/nelsonic/github-scraper)
+[![HitCount](https://hits.dwyl.com/nelsonic/github-scraper.svg)](https://hits.dwyl.com/nelsonic/github-scraper)
 [![npm package version](https://img.shields.io/npm/v/github-scraper.svg?color=brightgreen&style=flat-square)](https://www.npmjs.com/package/github-scraper)
 <!-- uncomment when service is working ... 
 [![Dependencies: None!](https://david-dm.org/nelsonic/github-scraper/status.svg?style=flat-square)](https://david-dm.org/nelsonic/github-scraper)

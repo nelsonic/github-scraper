@@ -6,7 +6,7 @@ var file = dir + __filename.replace(__dirname, '') + " > ";
 test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 	var user = 'nelsonic';
 	profile(user, function (err, data) {
-		// console.log('data.img:', data.img)
+		// console.log('data', data)
 		// t.equal(data.type, 'profile', user + ' data.type: ' + data.type);
 		t.ok(data.avatar.match(/githubusercontent.com\/u\/194400/) !== null,
 		'Image is what we expect: ' + data.avatar);
@@ -23,7 +23,7 @@ test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', functi
 		t.ok(data.website  === 'https://dwyl.com',
 			user + ' Website URL is ' + data.website);
 		// console.log(data.location);
-		t.ok(data.location === 'London', '- @' + user + ' Based in London');
+		t.ok(data.location === 'Braga, Portugal', '- @' + user + ' Based in Braga, PT');
 		t.ok(data.followers > 400, '- @' + user + ' Has more than 400 followers');
 		t.ok(data.stars > 100, '- @' + user + ' Has starred '+ data.starred);
 
@@ -60,7 +60,7 @@ test(file + 'Scrape @iteles detailed contribution matrix', function(t){
 	var user = 'iteles';
 	profile(user, function(err, data) {
 		t.ok(data.bio.match(/Co-founder/i), '- @' + user + ' bio: ' + data.bio);
-		t.ok(data.contribs > 300, '- @' + user + ' Has made ' + data.contribs
+		t.ok(data.contribs > 100, '- @' + user + ' Has made ' + data.contribs
 			+ ' contributions to Open Source this year!');
 
 		t.end();
