@@ -6,7 +6,7 @@ var file = dir + __filename.replace(__dirname, '') + " > ";
 test(file + 'Scrape @nelsonic GitHub profile (consistent state profile)', function(t){
 	var user = 'nelsonic';
 	profile(user, function (err, data) {
-		console.log('data', data)
+		// console.log('data', data)
 		// t.equal(data.type, 'profile', user + ' data.type: ' + data.type);
 		t.ok(data.avatar.match(/githubusercontent.com\/u\/194400/) !== null,
 		'Image is what we expect: ' + data.avatar);
