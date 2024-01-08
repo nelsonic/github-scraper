@@ -56,7 +56,7 @@ test('dwyl/todo-list-javascript-tutorial known website', function (t) {
   var project = 'dwyl/javascript-todo-list-tutorial';
   repo(project, function(err, stats) {
 	// console.log('stats:', stats)
-	t.ok(stats.website === 'todomvc-app.herokuapp.com',
+	t.ok(stats.website === 'dwyl.github.io/javascript-todo-list-tutorial',
 		project + ' website: ' + stats.website);
 	t.ok(stats.tags.indexOf('javascript') > -1,
 		project + ' tags: ' + stats.tags);
