@@ -33,7 +33,7 @@
     "mkdirp": "^3.0.1",
     "pre-commit": "1.2.2",
     "tap-spec": "^5.0.0",
-    "tape": "^4.13.2"
+    "tape": "^5.7.2"
   },
   "pre-commit": [
     "coverage"
