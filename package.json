@@ -41,7 +41,7 @@
     "coverage"
   ],
   "files_to_deploy": [
-    "lambda/index.js",
+    "index.js",
     "package.json",
     "lambda/",
     "lib/",
