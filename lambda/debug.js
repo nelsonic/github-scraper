@@ -1,6 +1,6 @@
 'use strict';
 require('env2')('.env');
-const save = require('../lib/s3.js').save;
+const save = require('./s3.js').save;
 
 /**
  * `debug` is used to debug SNS notification events.
