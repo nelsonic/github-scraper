@@ -28,6 +28,7 @@
     "cheerio": "^1.0.0-rc.3"
   },
   "devDependencies": {
+    "dpl": "^5.0.0",
     "istanbul": "^0.4.5",
     "jshint": "^2.11.0",
     "live-server": "^1.2.1",
@@ -40,7 +41,7 @@
     "coverage"
   ],
   "files_to_deploy": [
-    "labmda/index.js",
+    "lambda/index.js",
     "package.json",
     "lambda/",
     "lib/",
