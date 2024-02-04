@@ -8,7 +8,8 @@
     "start": "live-server --open=./examples",
     "quick": "./node_modules/tape/bin/tape ./test/*.js",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js | node_modules/tap-spec/bin/cmd.js",
-    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js && istanbul check-coverage --lines 100 --branches 100"
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js && istanbul check-coverage --lines 100 --branches 100",
+    "deploy": "dpl"
   },
   "repository": {
     "type": "git",
@@ -37,5 +38,14 @@
   },
   "pre-commit": [
     "coverage"
-  ]
+  ],
+  "files_to_deploy": [
+    "labmda/index.js",
+    "package.json",
+    "lambda/",
+    "lib/",
+    ".env"
+  ],
+  "lambda_memory": 128,
+  "lambda_timeout": 42
 }
