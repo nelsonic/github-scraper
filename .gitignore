@@ -31,3 +31,4 @@ crawl.js
 .DS_Store
 
 .env
+tmp/
