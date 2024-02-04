@@ -29,3 +29,5 @@ node_modules
 .vagrant
 crawl.js
 .DS_Store
+
+.env
