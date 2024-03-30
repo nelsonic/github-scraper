@@ -12,6 +12,6 @@ exports.handler = function handler (event, context, callback) {
     console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
     console.log(data);
   
-    return callback(null, event);
+    return callback(null, data);
   });
 }
