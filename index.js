@@ -8,7 +8,7 @@ exports.handler = function handler (event, context, callback) {
   debug(event);
   console.log('rawPath:', event.rawPath)
 
-  const url = 'dwyl';
+  const url = event.rawPath;
   gs(url, function(err, data) {
     console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
     console.log(data);
