@@ -1,6 +1,6 @@
 require("env2")(".env");
 const debug = require("./lambda/debug.js");
-const gs = require('./lib/');
+const gs = require('github-scraper');
 
 exports.handler = function handler (event, context, callback) {
   console.log(event);
