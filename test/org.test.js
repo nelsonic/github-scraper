@@ -40,17 +40,16 @@ test(file + 'Fetch Second page of dwyl org', function (t) {
 	let url = 'dwyl';
 	org(url, function(err, data) {
 		// console.log(data.entries);
-		t.ok(data.entries.length === 10, 'SECOND page of org has '+data.entries.length + ' repos')
+		t.ok(data.entries.length === 10, 'FIRST page of org has ' + data.entries.length + ' repos')
 		// t.ok(data.pcount > 10, '"pcount":'+data.pcount);
 		// t.ok(data.next_page === '/dwyl?page=2',
 		// 	'data.next_page is: ' + data.next_page);
-
 		url = '/orgs/dwyl/repositories?type=all';
 		org(url, function(err, data) {
-			// console.log(data);
-			t.ok(data.entries.length === 30, 'SECOND page of org has '+data.entries.length + ' repos')
+			console.log(data);
+			t.ok(data.entries.length === 30, 'SECOND page of org has ' + data.entries.length + ' repos')
 			// t.ok(data.pcount > 10, '"pcount":'+data.pcount);
-			t.ok(data.next_page === '/orgs/dwyl/repositories?page=2&type=all', 'dwyl has more than one page');
+			t.ok(data.next_page === '/orgs/dwyl/repositories?type=all&page=2', 'dwyl has more than one page');
 			t.end();
 		});
 	});

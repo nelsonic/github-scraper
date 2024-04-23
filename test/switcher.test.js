@@ -42,6 +42,14 @@ test.skip('Scrape a user profile supplying only the username', function(t){
   });
 })
 
+test(file + 'Should correctly identify org repositories page', function(t){
+	var url = 'https://github.com/orgs/dwyl/repositories?type=all';
+  console.log('url:', url)
+	switcher(url, function(err, data) {
+    t.ok(data.type === 'org_repos')
+    t.end()
+	})
+})
 
 // var url = 'https://github.com/iteles/followers'
 // switcher(url, function(err, data){
