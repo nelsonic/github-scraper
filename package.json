@@ -50,6 +50,6 @@
     "lib/",
     ".env"
   ],
-  "lambda_memory": 128,
+  "lambda_memory": 256,
   "lambda_timeout": 42
 }
