@@ -25,7 +25,7 @@
     "node": ">= 10"
   },
   "dependencies": {
-    "aws-sdk": "^2.1692.0",
+    "aws-sdk": "^2.1693.0",
     "cheerio": "^1.1.2",
     "env2": "^2.2.2",
     "github-scraper": "^7.1.1"
